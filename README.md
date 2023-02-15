@@ -2,6 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
 
+## Installation
+
+- Install the latest version of [nvm](https://github.com/nvm-sh/nvm)
+- Install the version of Node.js defined in .nvmrc `nvm install`
+- Used the version of Node.js defined in .nvmrc `nvm use`
+- Install the latest version of [Angular CLI](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04) with `npm install -g @angular/cli`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
