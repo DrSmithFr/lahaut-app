@@ -104,7 +104,7 @@ export class ApiService {
     updatePassword(token: string, oldPassword: string, newPassword: string): Observable<MessageModel> {
         return this
             .http
-            .put<MessageModel>(
+            .patch<MessageModel>(
                 this.API_URL + '/user/password_update',
                 {oldPassword, newPassword},
             );

@@ -39,7 +39,13 @@ const routes: Routes = [
       {
         path: '404',
         component: Page404Component
-      }
+      },
+      {
+        path:        '',
+        pathMatch:   'full',
+        redirectTo:  '/home'
+      },
+      { path: '**', pathMatch: 'full', component: Page404Component }
     ]
   },
 ];
