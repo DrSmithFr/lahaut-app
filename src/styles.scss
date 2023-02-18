@@ -1,6 +1,121 @@
-@import "scss/variables/breakpoint";
 @import "scss/grid";
-@import "scss/variables/font";
+@import "colors";
+@import "fonts";
 
+// reset styles
 html, body { height: 100%; }
 body { margin: 0; font-family: $font-text; }
+
+// setting background image
+body {
+  background-image: url(/assets/background.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+// import custom material styles
+@import "scss/material";
+
+// helpers
+// helpers
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}
+
+.full {
+  width: 100%;
+}
+
+.marge {
+  margin: 10px;
+}
+
+.hide {
+  display: none;
+}
+
+.top-space {
+  margin-top: 100px;
+
+  @include tablet {
+    margin-top: 80px;
+  }
+
+  @include mobile {
+    margin-top: 50px;
+  }
+}
+
+.alpha {
+  color: $alpha;
+}
+
+.gray {
+  color: $border-dark;
+}
+
+// breakpoint helper
+.only-small-mobile {
+  display: none;
+
+  @include xsmobile {
+    display: block;
+  }
+}
+
+.only-mobile {
+  display: none;
+
+  @include mobile {
+    display: block;
+  }
+}
+
+.only-tablet {
+  display: none;
+
+  @include tablet {
+    display: block;
+  }
+}
+
+.only-desktop {
+  display: none;
+
+  @include desktop {
+    display: block;
+  }
+}
+
+.hide-on-small-mobile {
+  @include xsmobile {
+    display: none;
+  }
+}
+
+.hide-on-mobile {
+  @include mobile {
+    display: none;
+  }
+}
+
+.hide-on-tablet {
+  @include tablet {
+    display: none;
+  }
+}
+
+.hide-on-desktop {
+  @include desktop {
+    display: none;
+  }
+}

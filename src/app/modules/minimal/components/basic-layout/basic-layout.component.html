@@ -1,0 +1,9 @@
+<header class="showcase">
+  <div class="showcase-top"></div>
+
+  <div class="showcase-content">
+    <div [@routeAnimations]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+  </div>
+</header>

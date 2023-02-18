@@ -25,5 +25,3 @@ $desktop-break: 1200;
 @mixin desktop {
   @media screen and (min-width: #{$desktop-break}px) { @content; }
 }
-
-
