@@ -15,15 +15,38 @@
       <mat-icon matBadge="1">account_circle</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/login">
-        <mat-icon>login</mat-icon>
-        <span>Connexion</span>
-      </button>
-      <button mat-menu-item routerLink="/register">
-        <mat-icon>person_add</mat-icon>
-        <span>Inscription</span>
-      </button>
+      <div *ngIf="!isLogged">
+        <button mat-menu-item routerLink="/login">
+          <mat-icon>login</mat-icon>
+          <span>Connexion</span>
+        </button>
+        <button mat-menu-item routerLink="/register">
+          <mat-icon>person_add</mat-icon>
+          <span>Inscription</span>
+        </button>
+      </div>
+
+      <div *ngIf="isLogged">
+        <button mat-menu-item routerLink="/user/account">
+          <mat-icon>person</mat-icon>
+          <span>Mon compte</span>
+        </button>
+        <button mat-menu-item routerLink="/user/chat">
+          <mat-icon matBadge="1">chat</mat-icon>
+          <span>Mes Messages</span>
+        </button>
+        <button mat-menu-item routerLink="/user/booking" disabled>
+          <mat-icon>event</mat-icon>
+          <span>Mes réservations</span>
+        </button>
+        <button mat-menu-item (click)="disconnect()">
+          <mat-icon>logout</mat-icon>
+          <span>Se déconnecter</span>
+        </button>
+      </div>
+
     </mat-menu>
+
   </mat-toolbar-row>
 </mat-toolbar>
 

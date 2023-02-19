@@ -32,9 +32,9 @@ export class ApiService {
                 {username, password}
             )
             .pipe(
-                tap(token => {
+                tap(tokens => {
                     // updating session with current token
-                    this.state.TOKEN.next(token);
+                    this.state.TOKEN.next(tokens);
                 })
             );
     }
@@ -85,7 +85,7 @@ export class ApiService {
         return this
             .http
             .post<ReconnectModel>(
-                this.API_URL + '/users/reconnect',
+                this.API_URL + '/login/refresh',
                 {
                     refresh_token: token,
                 }

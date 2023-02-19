@@ -63,7 +63,7 @@ export class AuthService {
         return this.state.LOGGED_USER.getValue();
     }
 
-    hasSession(): boolean {
+    isLogged(): boolean {
         return this.state.LOGGED_USER.getValue() !== null;
     }
 

@@ -41,7 +41,7 @@ export class InterceptorService implements HttpInterceptor {
                     () => {
                     },
                     err => {
-                        if (err instanceof HttpErrorResponse && err.status === 401 && this.authService.hasSession()) {
+                        if (err instanceof HttpErrorResponse && err.status === 401 && this.authService.isLogged()) {
                             this.authService.clearSession();
 
                             this

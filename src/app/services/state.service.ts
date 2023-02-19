@@ -20,31 +20,23 @@ export class StateService {
   constructor(
     private localService: LocalService
   ) {
-    this.REDIRECT_AFTER_LOGIN = new BehaviorSubject<string>('/login');
+    this.REDIRECT_AFTER_LOGIN = new BehaviorSubject<string>('/home');
 
     this.TOKEN = new BehaviorSubject<TokenModel|null>(
-      this.getFromCache('STATE_TOKEN') || null
+      this.localService.getObject('STATE_TOKEN') || null
     );
 
     this.LOGGED_USER = new BehaviorSubject<UserModel|null>(
-      this.getFromCache('STATE_USER') || null
+      this.localService.getObject('STATE_USER') || null
     );
 
     // trigger persist data to localstorage when updated
     this.TOKEN.subscribe((token: TokenModel|null) => {
-      this.setToCache('STATE_TOKEN', token);
+      this.localService.setObject('STATE_TOKEN', token);
     });
 
     this.LOGGED_USER.subscribe((user: UserModel|null) => {
-      this.setToCache('STATE_USER', user);
+      this.localService.setObject('STATE_USER', user);
     });
-  }
-
-  private getFromCache(str: string): any {
-    return this.localService.getObject(str);
-  }
-
-  private setToCache(key: string, value: any) {
-    this.localService.setObject(key, value);
   }
 }

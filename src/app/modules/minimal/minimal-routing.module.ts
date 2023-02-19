@@ -30,7 +30,6 @@ const routes: Routes = [
       },
       {
         path:        'home',
-        canActivate: [IsDisconnectedGuard],
         component:   HomeComponent,
         data:        {
           animation: 'home'
