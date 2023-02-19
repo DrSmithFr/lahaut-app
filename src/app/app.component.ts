@@ -25,7 +25,6 @@ declare let gtag: any;
 export class AppComponent implements OnInit {
 
   constructor(
-    private auth: AuthService,
     private swPush: SwPush,
     private swUpdate: SwUpdate,
     private router: Router,
@@ -112,14 +111,5 @@ export class AppComponent implements OnInit {
 
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
-  }
-
-  isLogged() {
-    return this.auth.isLogged();
-  }
-
-  disconnect() {
-    this.auth.clearSession();
-    this.router.navigate(['/home']);
   }
 }

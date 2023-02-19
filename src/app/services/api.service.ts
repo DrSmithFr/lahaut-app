@@ -45,7 +45,7 @@ export class ApiService {
             .get<UserModel>(this.API_URL + '/user/information')
             .pipe(
                 tap(user => {
-                    // updating session with current user information
+                    // updating session with current users information
                     this.state.LOGGED_USER.next(user);
                 }),
             );
@@ -60,7 +60,7 @@ export class ApiService {
             )
             .pipe(
                 tap(user => {
-                    // updating session with current user information
+                    // updating session with current users information
                     this.state.LOGGED_USER.next(user);
                 }),
             );
@@ -75,7 +75,7 @@ export class ApiService {
       )
       .pipe(
         tap(user => {
-          // updating session with current user information
+          // updating session with current users information
           this.state.LOGGED_USER.next(user);
         }),
       );

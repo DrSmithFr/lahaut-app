@@ -136,10 +136,10 @@ export class RegisterComponent {
                 'register',
                 'users',
                 'valid',
-                'New user ' + this.getUsername()?.value
+                'New users ' + this.getUsername()?.value
               );
 
-              this.router.navigateByUrl('/series/search');
+              this.router.navigateByUrl('/home');
             });
         },
         () => {

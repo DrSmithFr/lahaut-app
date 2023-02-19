@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BasicLayoutComponent } from './basic-layout.component';
+import { LogoutDialog } from './logout.dialog';
 
-describe('BasicLayoutComponent', () => {
-  let component: BasicLayoutComponent;
-  let fixture: ComponentFixture<BasicLayoutComponent>;
+describe('HomeComponent', () => {
+  let component: LogoutDialog;
+  let fixture: ComponentFixture<LogoutDialog>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BasicLayoutComponent ]
+      declarations: [ LogoutDialog ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BasicLayoutComponent);
+    fixture = TestBed.createComponent(LogoutDialog);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

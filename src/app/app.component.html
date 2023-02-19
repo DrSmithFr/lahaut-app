@@ -1,55 +1,11 @@
-<mat-toolbar class="toolbar" [ngClass]="{'fadeOut': false}">
-  <mat-toolbar-row class="space-between">
-    <!-- 'absorbs' the auto-focus behavior -->
-    <button mat-button style="height: 0; position: absolute;" aria-label="disable-auto-focus"></button>
+<app-navigation></app-navigation>
 
-    <button mat-icon-button aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
+<header class="showcase">
+  <div class="showcase-top"></div>
 
-    <a routerLink="/home">
-      <img class="logo" src="/assets/logo.png" height="50">
-    </a>
-
-    <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
-      <mat-icon matBadge="1">account_circle</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <div *ngIf="!isLogged">
-        <button mat-menu-item routerLink="/login">
-          <mat-icon>login</mat-icon>
-          <span>Connexion</span>
-        </button>
-        <button mat-menu-item routerLink="/register">
-          <mat-icon>person_add</mat-icon>
-          <span>Inscription</span>
-        </button>
-      </div>
-
-      <div *ngIf="isLogged">
-        <button mat-menu-item routerLink="/user/account">
-          <mat-icon>person</mat-icon>
-          <span>Mon compte</span>
-        </button>
-        <button mat-menu-item routerLink="/user/chat">
-          <mat-icon matBadge="1">chat</mat-icon>
-          <span>Mes Messages</span>
-        </button>
-        <button mat-menu-item routerLink="/user/booking" disabled>
-          <mat-icon>event</mat-icon>
-          <span>Mes réservations</span>
-        </button>
-        <button mat-menu-item (click)="disconnect()">
-          <mat-icon>logout</mat-icon>
-          <span>Se déconnecter</span>
-        </button>
-      </div>
-
-    </mat-menu>
-
-  </mat-toolbar-row>
-</mat-toolbar>
-
-<div [@routeAnimations]="prepareRoute(outlet)">
-  <router-outlet #outlet="outlet"></router-outlet>
-</div>
+  <div class="showcase-content">
+    <div [@routeAnimations]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+  </div>
+</header>

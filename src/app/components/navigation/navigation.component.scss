@@ -1,0 +1,55 @@
+@import "colors";
+@import "breakpoints";
+
+// toolbar
+.logo {
+  padding: 0 14px;
+  height: 90px;
+
+  @include tablet() {
+    height: 50px;
+  }
+
+  @include mobile() {
+    height: 30px;
+  }
+}
+
+.toolbar {
+  background-color: $white;
+
+  color: #333;
+
+  z-index: 10;
+
+  position: fixed;
+  top: 0;
+
+  padding: 0;
+
+  .row {
+    width: auto;
+  }
+
+  &.fadeOut {
+    opacity: 0;
+    transition: all 3s ease-in-out;
+  }
+
+  .mat-toolbar-row {
+    height: 120px;
+
+    @include tablet() {
+      height: 70px;
+    }
+
+    @include mobile() {
+      height: 50px;
+    }
+  }
+}
+
+.space-between{
+  display: flex;
+  justify-content: space-between;
+}

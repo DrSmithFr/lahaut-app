@@ -18,8 +18,8 @@ export class IsConnectedGuard implements CanActivate, CanActivateChild {
     return this.isLogged(childRoute);
   }
 
-  // security : forcing user to login
-  // redirect user to the login page if no session is initialise
+  // security : forcing users to login
+  // redirect users to the login page if no session is initialise
   // passing url referer as URL param
   async isLogged(route: ActivatedRouteSnapshot) {
     return this.auth.isLogged();

@@ -18,8 +18,8 @@ export class IsDisconnectedGuard implements CanActivate, CanActivateChild {
     return this.isDisconnected();
   }
 
-  // security : forcing user to login
-  // redirect connected user to the dashboard
+  // security : forcing users to login
+  // redirect connected users to the dashboard
   isDisconnected() {
     return !this.auth.isLogged();
   }

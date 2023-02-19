@@ -13,10 +13,23 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatBadgeModule} from "@angular/material/badge";
+import {AutoFocusDirective} from "./components/directives/auto-focus.directive";
+import {LoaderComponent} from "./components/loader/loader.component";
+import {Page404Component} from "./components/page404/page404.component";
+import {HomeComponent} from "./components/home/home.component";
+import {NavigationComponent} from "./components/navigation/navigation.component";
+import {LogoutDialog} from "./components/logout-dialog/logout.dialog";
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AutoFocusDirective,
+    LoaderComponent,
+    Page404Component,
+    HomeComponent,
+    NavigationComponent,
+    LogoutDialog
   ],
   imports: [
     // routing main module
@@ -44,6 +57,7 @@ import {MatBadgeModule} from "@angular/material/badge";
     MatButtonModule,
     MatMenuModule,
     MatBadgeModule,
+    MatDialogModule,
   ],
   exports:      [
     HttpClientModule,
@@ -61,6 +75,10 @@ import {MatBadgeModule} from "@angular/material/badge";
       useClass: InterceptorService,
       multi:    true
     },
+    {
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: {hasBackdrop: false}
+    }
   ],
   bootstrap: [AppComponent]
 })
