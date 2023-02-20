@@ -19,17 +19,29 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  isLogged() {
-    return this.auth.isLogged();
-  }
-
   openLogoutDialog() {
     this.dialog.open(LogoutDialog);
   }
 
+  isLogged() {
+    return this.auth.isLogged();
+  }
+
+  isLoggedCustomer() {
+    return this.auth.isLogged() && this.auth.isCustomer();
+  }
+
+  isLoggedMonitor() {
+    return this.auth.isLogged() && this.auth.isMonitor();
+  }
+
   getBadgeCount() {
-    if (this.isLogged()) {
+    if (this.isLoggedCustomer()) {
       return this.getBadgeCountForBooking() + this.getBadgeCountForMessage();
+    }
+
+    if (this.isLoggedMonitor()) {
+      return this.getBadgeCountForMessage() + 1;
     }
 
     return 0;

@@ -1,0 +1,97 @@
+<div class="login-container"
+     [ngClass]="{'shake-on-error form-error': shaking && hasErrorInForm()}">
+  <div class="login">
+    <div class="login-header">
+      <h1 class="login-title">Inscription Moniteur</h1>
+    </div>
+    <form [formGroup]="registerForm"
+          (ngSubmit)="onSubmit()">
+      <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          required
+          autofocus
+          type="text"
+          formControlName="username"
+          autocomplete="email">
+        <mat-icon matPrefix>mail</mat-icon>
+        <mat-error *ngIf="hasError(getUsername())">
+            <span *ngIf="getUsername()?.errors?.['required']">
+              Entre ton email
+            </span>
+          <span *ngIf="getUsername()?.errors?.['email']">
+              Entre une adresse email valide
+            </span>
+          <span *ngIf="getUsername()?.errors?.['used']">
+              Un compte existe déjà pour cette adresse.
+              <a routerLink="./login" class="forgot-password">essayer de vous connecter ?</a>
+            </span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          required
+          #password
+          [type]="hidePassword ? 'password' : 'text'"
+          formControlName="password"
+          autocomplete="password"
+          placeholder="Mot de passe">
+        <mat-icon matPrefix>key</mat-icon>
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="hasError(getPassword())">
+          Entre ton mot de passe !
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Confirmation</mat-label>
+        <input
+          matInput
+          required
+          #password
+          [type]="hidePassword2 ? 'password' : 'text'"
+          formControlName="password2"
+          autocomplete="password_repeat"
+          placeholder="Comfirmes ton mot de passe">
+        <mat-icon matPrefix>key</mat-icon>
+        <button mat-icon-button matSuffix (click)="hidePassword2 = !hidePassword2" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePassword2">
+          <mat-icon>{{hidePassword2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="hasError(getPassword2())">
+          <span *ngIf="getPassword2()?.errors?.['required']">
+            Comfirmes ton mot de passe !
+          </span>
+          <span *ngIf="getPassword2()?.errors?.['different']">
+            Les mots de passe ne correspondent pas
+          </span>
+        </mat-error>
+      </mat-form-field>
+
+
+      <div class="row buttons">
+        <p class="button-container">
+          <button
+            *ngIf="!showLoader"
+            [disabled]="registerForm.invalid"
+            mat-flat-button
+            color="primary"
+            type="submit">
+            S'inscrire
+          </button>
+          <mat-spinner *ngIf="showLoader"
+                       diameter="37"
+                       style="margin: 0 auto">
+          </mat-spinner>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

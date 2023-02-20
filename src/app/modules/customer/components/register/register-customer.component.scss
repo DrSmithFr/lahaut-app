@@ -5,6 +5,8 @@
   max-width: 680px;
   margin: 0 auto;
 
+  margin-bottom: 50px;
+
   @include mobile() {
     max-width: 500px;
   }
@@ -14,8 +16,13 @@
   padding: 0 30px;
   padding-top: 30px;
 
+  mat-icon {
+    color: #777;
+  }
+
   .login-header {
     text-align: center;
+
     h1 {
       color: $blue;
       font-size: 20px;
@@ -38,10 +45,6 @@
     color: $light-purple;
     font-size: 12px;
     font-weight: bold;
-  }
-
-  .buttons {
-    padding: 10px;
   }
 
   .button-container {
@@ -110,3 +113,14 @@
   }
 }
 
+.login-footer {
+  position: relative;
+  top: 100px;
+
+  display: flex;
+  justify-content: center;
+
+  button {
+    margin-bottom: 20px;
+  }
+}

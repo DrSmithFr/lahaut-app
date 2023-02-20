@@ -1,0 +1,115 @@
+@import "src/scss/default/colors";
+@import "src/scss/default/breakpoints";
+
+.login-container {
+  max-width: 680px;
+  margin: 0 auto;
+
+  @include mobile() {
+    max-width: 500px;
+  }
+}
+
+.login {
+  padding: 0 30px;
+  padding-top: 30px;
+
+  mat-icon {
+    color: #777;
+  }
+
+  .login-header {
+    text-align: center;
+    h1 {
+      color: $blue;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+  }
+
+  .forgot-password {
+    text-align: right;
+    margin: 12px 0;
+    a {
+      color: $light-purple;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+
+  @include mobile() {
+    max-width: 75%;
+    margin: auto;
+  }
+
+  .full-width {
+    display: block;
+    margin: 10px auto;
+  }
+
+  .button-container {
+    margin: 0 auto;
+  }
+
+  @-webkit-keyframes wawes {
+    from {
+      -webkit-transform: rotate(0);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @-moz-keyframes wawes {
+    from {
+      -moz-transform: rotate(0);
+    }
+    to {
+      -moz-transform: rotate(360deg);
+    }
+  }
+  @keyframes wawes {
+    from {
+      -webkit-transform: rotate(0);
+      -moz-transform: rotate(0);
+      -ms-transform: rotate(0);
+      -o-transform: rotate(0);
+      transform: rotate(0);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.shake-on-error {
+  animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: 1;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

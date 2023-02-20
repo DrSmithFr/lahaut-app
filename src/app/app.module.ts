@@ -20,6 +20,12 @@ import {HomeComponent} from "./components/home/home.component";
 import {NavigationComponent} from "./components/navigation/navigation.component";
 import {LogoutDialog} from "./components/logout-dialog/logout.dialog";
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
+import {LoginComponent} from "./components/login/login.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatInputModule} from "@angular/material/input";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -29,6 +35,7 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dia
     Page404Component,
     HomeComponent,
     NavigationComponent,
+    LoginComponent,
     LogoutDialog
   ],
   imports: [
@@ -42,8 +49,22 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dia
     BrowserModule,
     BrowserAnimationsModule,
 
-    // snackBar for overall notification system
-    MatSnackBarModule,
+    // importing reactive form
+    FormsModule,
+    ReactiveFormsModule,
+
+    // users modules
+    MatInputModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatBadgeModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatIconModule,
+    MatToolbarModule,
 
     // PWA service worker (cache management)
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -52,12 +73,6 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dia
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatBadgeModule,
-    MatDialogModule,
   ],
   exports:      [
     HttpClientModule,

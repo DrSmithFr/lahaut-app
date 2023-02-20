@@ -17,31 +17,65 @@
     </button>
     <mat-menu #menu="matMenu">
       <div *ngIf="!isLogged()">
-        <button mat-menu-item routerLink="/users/login">
+        <button mat-menu-item routerLink="/login">
           <mat-icon>login</mat-icon>
           <span>Connexion</span>
         </button>
-        <button mat-menu-item routerLink="/users/register">
+        <button mat-menu-item routerLink="/customer/register">
           <mat-icon>person_add</mat-icon>
           <span>Inscription</span>
         </button>
+        <hr>
+        <button mat-menu-item routerLink="/monitor/register">
+          <mat-icon>verified</mat-icon>
+          <span>Devenir Moniteur</span>
+        </button>
       </div>
 
-      <div *ngIf="isLogged()">
+      <div *ngIf="isLoggedCustomer()">
+        <button mat-menu-item routerLink="/user/chat">
+          <mat-icon *ngIf="getBadgeCountForMessage() === 0">chat</mat-icon>
+          <mat-icon *ngIf="getBadgeCountForMessage() !== 0" [matBadge]="getBadgeCountForMessage()">chat</mat-icon>
+          <span>Messages</span>
+        </button>
+        <button mat-menu-item routerLink="/customer/booking" disabled>
+          <mat-icon *ngIf="getBadgeCountForBooking() === 0">event</mat-icon>
+          <mat-icon *ngIf="getBadgeCountForBooking() !== 0" [matBadge]="getBadgeCountForBooking()">event</mat-icon>
+          <span>Réservations</span>
+        </button>
+        <hr>
         <button mat-menu-item routerLink="/user/account">
           <mat-icon>person</mat-icon>
           <span>Mon compte</span>
         </button>
+        <button mat-menu-item (click)="openLogoutDialog()">
+          <mat-icon>logout</mat-icon>
+          <span>Se déconnecter</span>
+        </button>
+      </div>
+
+
+      <div *ngIf="isLoggedMonitor()">
         <button mat-menu-item routerLink="/user/chat">
           <mat-icon *ngIf="getBadgeCountForMessage() === 0">chat</mat-icon>
           <mat-icon *ngIf="getBadgeCountForMessage() !== 0" [matBadge]="getBadgeCountForMessage()">chat</mat-icon>
-          <span>Mes Messages</span>
+          <span>Messages</span>
         </button>
         <button mat-menu-item routerLink="/user/booking" disabled>
-          <mat-icon *ngIf="getBadgeCountForBooking() === 0">event</mat-icon>
-          <mat-icon *ngIf="getBadgeCountForBooking() !== 0" [matBadge]="getBadgeCountForBooking()">event</mat-icon>
-          <span>Mes réservations</span>
+          <mat-icon *ngIf="getBadgeCountForBooking() === 0">today</mat-icon>
+          <mat-icon *ngIf="getBadgeCountForBooking() !== 0" [matBadge]="getBadgeCountForBooking()">today</mat-icon>
+          <span>Réservations</span>
         </button>
+        <hr>
+        <button mat-menu-item routerLink="/monitor/calendar">
+          <mat-icon>calendar_month</mat-icon>
+          <span>Disponibilité</span>
+        </button>
+        <button mat-menu-item routerLink="/user/account">
+          <mat-icon>person</mat-icon>
+          <span>Mon compte</span>
+        </button>
+        <hr>
         <button mat-menu-item (click)="openLogoutDialog()">
           <mat-icon>logout</mat-icon>
           <span>Se déconnecter</span>

@@ -9,12 +9,15 @@ import {GoogleAnalyticsService} from '../../../../services/google-analytics.serv
 
 @Component(
   {
-    selector:    'app-register',
-    templateUrl: './register.component.html',
-    styleUrls:   ['./register.component.scss']
+    selector:    'app-register-customer',
+    templateUrl: './register-customer.component.html',
+    styleUrls:   ['./register-customer.component.scss']
   }
 )
-export class RegisterComponent {
+export class RegisterCustomerComponent {
+
+  hidePassword = true;
+  hidePassword2 = true;
   showLoader = false;
   shaking    = false;
 
@@ -119,7 +122,7 @@ export class RegisterComponent {
 
     this
       .auth
-      .register(
+      .registerCustomer(
         this.getUsername()?.value,
         this.getPassword()?.value
       )

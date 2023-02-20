@@ -37,10 +37,16 @@ export class AuthService {
         });
     }
 
-    register(email: string, password: string) {
+    registerCustomer(email: string, password: string) {
         return this
             .api
             .registerCustomer(email, password);
+    }
+
+    registerMonitor(email: string, password: string) {
+        return this
+            .api
+            .registerMonitor(email, password);
     }
 
     reconnect(): Observable<UserModel> {
@@ -81,4 +87,12 @@ export class AuthService {
 
         return false;
     }
+
+  isCustomer(): boolean {
+    return this.isGranted('ROLE_CUSTOMER');
+  }
+
+  isMonitor(): boolean {
+    return this.isGranted('ROLE_MONITOR');
+  }
 }

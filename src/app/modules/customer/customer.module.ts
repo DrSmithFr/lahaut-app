@@ -1,12 +1,11 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {LoginComponent} from './components/login/login.component';
-import {RegisterComponent} from './components/register/register.component';
+import {RegisterCustomerComponent} from './components/register/register-customer.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {UsersRoutingModule} from './users-routing.module';
+import {CustomerRoutingModule} from './customer-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from "@angular/material/icon";
@@ -15,15 +14,13 @@ import {MatIconModule} from "@angular/material/icon";
 @NgModule(
   {
     declarations: [
-      // subRoot component when logged
-      LoginComponent,
-      RegisterComponent,
+      RegisterCustomerComponent,
     ],
     imports:      [
       CommonModule,
 
       // routing
-      UsersRoutingModule,
+      CustomerRoutingModule,
 
       // importing reactive form
       FormsModule,
@@ -47,5 +44,5 @@ import {MatIconModule} from "@angular/material/icon";
     ]
   }
 )
-export class UsersModule {
+export class CustomerModule {
 }

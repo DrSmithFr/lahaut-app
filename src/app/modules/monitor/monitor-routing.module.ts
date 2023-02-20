@@ -1,24 +1,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {IsDisconnectedGuard} from '../../guards/is-disconnected-guard.service';
-import {LoginComponent} from './components/login/login.component';
-import {RegisterComponent} from './components/register/register.component';
+import {RegisterMonitorComponent} from './components/register/register-monitor.component';
 
 const routes: Routes = [
   {
-    path: 'login',
-    canActivate: [IsDisconnectedGuard],
-    component: LoginComponent,
-    data: {
-      animation: 'login'
-    }
-  },
-  {
     path: 'register',
     canActivate: [IsDisconnectedGuard],
-    component: RegisterComponent,
+    component: RegisterMonitorComponent,
     data: {
-      animation: 'register'
+      animation: 'register',
     }
   },
 ];
@@ -29,5 +20,5 @@ const routes: Routes = [
     exports: [RouterModule]
   }
 )
-export class UsersRoutingModule {
+export class MonitorRoutingModule {
 }

@@ -2,23 +2,24 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {StateService} from '../../../../services/state.service';
-import {AuthService} from '../../../../services/auth.service';
+import {StateService} from '../../services/state.service';
+import {AuthService} from '../../services/auth.service';
 import {MatDialog} from '@angular/material/dialog';
-import {GoogleAnalyticsService} from '../../../../services/google-analytics.service';
+import {GoogleAnalyticsService} from '../../services/google-analytics.service';
 
 @Component(
   {
-    selector:    'app-login',
+    selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls:   ['./login.component.scss']
+    styleUrls: ['./login.component.scss']
   }
 )
 export class LoginComponent {
   @ViewChild('password') passwordField: ElementRef<HTMLInputElement>;
 
-  shaking            = false;
-  showLoader         = false;
+  hidePassword = true;
+  shaking = false;
+  showLoader = false;
 
   loginForm = this.fb.group(
     {
@@ -38,18 +39,18 @@ export class LoginComponent {
   ) {
   }
 
-  getEmail(): AbstractControl|null {
+  getEmail(): AbstractControl | null {
     return this.loginForm.get('username');
   }
 
-  getPassword(): AbstractControl|null {
+  getPassword(): AbstractControl | null {
     return this.loginForm.get('password');
   }
 
   /**
    * triggered when field invalid an edited
    */
-  hasError(field: AbstractControl|null): boolean {
+  hasError(field: AbstractControl | null): boolean {
     if (field === null) {
       return false;
     }
@@ -73,7 +74,7 @@ export class LoginComponent {
       return;
     }
 
-    this.shaking    = false;
+    this.shaking = false;
     this.showLoader = true;
 
     this
