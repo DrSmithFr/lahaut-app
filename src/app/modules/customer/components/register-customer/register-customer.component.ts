@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
 import {AuthService} from '../../../../services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -9,15 +9,12 @@ import {GoogleAnalyticsService} from '../../../../services/google-analytics.serv
 
 @Component(
   {
-    selector: 'app-register-monitor',
-    templateUrl: './register-monitor.component.html',
-    styleUrls: ['./register-monitor.component.scss']
+    selector: 'app-register-customer',
+    templateUrl: './register-customer.component.html',
+    styleUrls: ['./register-customer.component.scss']
   }
 )
-export class RegisterMonitorComponent {
-
-  hidePassword = true;
-  hidePassword2 = true;
+export class RegisterCustomerComponent implements OnInit {
 
   showLoader = false;
   shaking = false;
@@ -30,14 +27,17 @@ export class RegisterMonitorComponent {
     }
   );
 
+  hidePassword = true;
+  hidePassword2 = true;
+
   constructor(
-    private auth: AuthService,
     private fb: FormBuilder,
     private router: Router,
-    private snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private auth: AuthService,
     private api: ApiService,
     private ga: GoogleAnalyticsService,
-    private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -133,7 +133,7 @@ export class RegisterMonitorComponent {
 
     this
       .auth
-      .registerMonitor(
+      .registerCustomer(
         this.getUsername()?.value,
         this.getPassword()?.value
       )

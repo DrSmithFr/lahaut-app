@@ -17,10 +17,10 @@ export class PasswordResetRequestDialog {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { email: string },
-    public dialogRef: MatDialogRef<PasswordResetRequestDialog>,
     private fb: FormBuilder,
     private api: ApiService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<PasswordResetRequestDialog>,
   ) {
     this.getUsername()?.setValue(data.email);
   }

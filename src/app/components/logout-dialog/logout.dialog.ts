@@ -12,8 +12,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class LogoutDialog {
   constructor(
     public dialogRef: MatDialogRef<LogoutDialog>,
-    private auth: AuthService,
     private router: Router,
+    private auth: AuthService,
     private snackBar: MatSnackBar,
   ) {
   }

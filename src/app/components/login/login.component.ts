@@ -31,14 +31,14 @@ export class LoginComponent implements OnInit {
   );
 
   constructor(
-    private auth: AuthService,
     private fb: FormBuilder,
     private router: Router,
-    private snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private auth: AuthService,
     private state: StateService,
-    public dialog: MatDialog,
     private ga: GoogleAnalyticsService,
-    private route: ActivatedRoute
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog,
   ) {
   }
 

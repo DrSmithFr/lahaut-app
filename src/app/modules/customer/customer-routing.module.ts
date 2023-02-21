@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {IsDisconnectedGuard} from '../../guards/is-disconnected-guard.service';
-import {RegisterCustomerComponent} from './components/register/register-customer.component';
+import {RegisterCustomerComponent} from './components/register-customer/register-customer.component';
 
 const routes: Routes = [
   {

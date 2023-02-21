@@ -30,11 +30,11 @@ export class PasswordResetDialog implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { token: string },
-    public dialogRef: MatDialogRef<PasswordResetDialog>,
     private fb: FormBuilder,
     private api: ApiService,
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
+    public dialogRef: MatDialogRef<PasswordResetDialog>,
   ) {
     this.getToken()?.setValue(data.token);
   }
