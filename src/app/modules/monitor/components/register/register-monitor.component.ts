@@ -24,7 +24,7 @@ export class RegisterMonitorComponent {
 
   registerForm = this.fb.group(
     {
-      username: ['', [Validators.required], this.validateUsernameAvailable.bind(this)],
+      username: ['', [Validators.required, Validators.email], this.validateUsernameAvailable.bind(this)],
       password: ['', [Validators.required]],
       password2: ['', [Validators.required, this.validateSamePassword.bind(this)]],
     }

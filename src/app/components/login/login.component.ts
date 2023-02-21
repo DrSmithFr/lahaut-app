@@ -6,6 +6,7 @@ import {StateService} from '../../services/state.service';
 import {AuthService} from '../../services/auth.service';
 import {MatDialog} from '@angular/material/dialog';
 import {GoogleAnalyticsService} from '../../services/google-analytics.service';
+import {PasswordResetDialog} from "../password-reset/password-reset-dialog.component";
 
 @Component(
   {
@@ -123,5 +124,18 @@ export class LoginComponent {
 
   shakeForm() {
     this.shaking = true;
+  }
+
+  openPasswordResetDialog() {
+    this.dialog.open(
+      PasswordResetDialog,
+      {
+        height: '480px',
+        width: '600px',
+        data: {
+          email: this.getEmail()?.value,
+        }
+      }
+    );
   }
 }

@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
-  selector: 'logout-dialog',
+  selector: 'app-logout-dialog',
   templateUrl: './logout.dialog.html',
   styleUrls: ['./logout.dialog.scss']
 })

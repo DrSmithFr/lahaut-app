@@ -115,4 +115,10 @@ export class ApiService {
             .http
             .post<MessageModel>(this.API_URL + '/register/available', {username: email});
     }
+
+  resetPassword(email: string): Observable<MessageModel> {
+    return this
+      .http
+      .post<MessageModel>(this.API_URL + '/reset_password', {username: email});
+  }
 }

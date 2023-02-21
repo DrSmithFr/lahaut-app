@@ -56,12 +56,17 @@
 
 
       <div *ngIf="isLoggedMonitor()">
+        <button mat-menu-item routerLink="/monitor/dashboard">
+          <mat-icon>dashboard</mat-icon>
+          <span>Tableau de bord</span>
+        </button>
+        <hr>
         <button mat-menu-item routerLink="/user/chat">
           <mat-icon *ngIf="getBadgeCountForMessage() === 0">chat</mat-icon>
           <mat-icon *ngIf="getBadgeCountForMessage() !== 0" [matBadge]="getBadgeCountForMessage()">chat</mat-icon>
           <span>Messages</span>
         </button>
-        <button mat-menu-item routerLink="/user/booking" disabled>
+        <button mat-menu-item routerLink="/monitor/booking" disabled>
           <mat-icon *ngIf="getBadgeCountForBooking() === 0">today</mat-icon>
           <mat-icon *ngIf="getBadgeCountForBooking() !== 0" [matBadge]="getBadgeCountForBooking()">today</mat-icon>
           <span>Réservations</span>
