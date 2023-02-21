@@ -16,8 +16,6 @@ import {GoogleAnalyticsService} from '../../../../services/google-analytics.serv
 )
 export class RegisterCustomerComponent implements OnInit {
 
-  hidePassword = true;
-  hidePassword2 = true;
   showLoader = false;
   shaking = false;
 
@@ -28,6 +26,9 @@ export class RegisterCustomerComponent implements OnInit {
       password2: ['', [Validators.required, this.validateSamePassword.bind(this)]],
     }
   );
+
+  hidePassword = true;
+  hidePassword2 = true;
 
   constructor(
     private auth: AuthService,

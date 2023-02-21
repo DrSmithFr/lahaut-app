@@ -7,6 +7,7 @@ import {AuthService} from '../../services/auth.service';
 import {MatDialog} from '@angular/material/dialog';
 import {GoogleAnalyticsService} from '../../services/google-analytics.service';
 import {PasswordResetDialog} from "../password-reset/password-reset-dialog.component";
+import {PasswordResetRequestDialog} from "../password-reset-request/password-reset-request.dialog";
 
 @Component(
   {
@@ -46,8 +47,12 @@ export class LoginComponent implements OnInit {
         if (params['username'] !== undefined) {
           this.getUsername()?.setValue(params['username']);
         }
+
+        if (params['token'] !== undefined) {
+          this.openPasswordResetDialog(params['token']);
+        }
       }
-    );
+    )
   }
 
   getUsername(): AbstractControl | null {
@@ -136,14 +141,27 @@ export class LoginComponent implements OnInit {
     this.shaking = true;
   }
 
-  openPasswordResetDialog() {
+  openPasswordResetRequestDialog() {
     this.dialog.open(
-      PasswordResetDialog,
+      PasswordResetRequestDialog,
       {
         height: '480px',
         width: '600px',
         data: {
           email: this.getUsername()?.value,
+        }
+      }
+    );
+  }
+
+  openPasswordResetDialog(token: string) {
+    this.dialog.open(
+      PasswordResetDialog,
+      {
+        height: '680px',
+        width: '600px',
+        data: {
+          token: token,
         }
       }
     );

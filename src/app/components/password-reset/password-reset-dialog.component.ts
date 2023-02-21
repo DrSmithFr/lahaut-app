@@ -1,10 +1,11 @@
-import {Component, ElementRef, Inject, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Observable} from "rxjs";
 import {ApiService} from "../../services/api.service";
+import {PasswordResetRequestDialog} from "../password-reset-request/password-reset-request.dialog";
 
 @Component(
   {
@@ -13,45 +14,82 @@ import {ApiService} from "../../services/api.service";
     styleUrls: ['./password-reset-dialog.component.scss']
   }
 )
-export class PasswordResetDialog {
+export class PasswordResetDialog implements OnInit {
   @ViewChild('password') passwordField: ElementRef<HTMLInputElement>;
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { email: string },
-    public dialogRef: MatDialogRef<PasswordResetDialog>,
-    private fb: FormBuilder,
-    private api: ApiService,
-    private snackBar: MatSnackBar
-  ) {
-    this.getUsername()?.setValue(data.email);
-  }
-
-  resetPasswordForm = this.fb.group(
+  form = this.fb.group(
     {
-      username: ['', [Validators.required, Validators.email], this.validateUsernameExist.bind(this)],
+      token: ['', [Validators.required], this.validateResetToken.bind(this)],
+      password: ['', [Validators.required]],
+      password2: ['', [Validators.required, this.validateSamePassword.bind(this)]],
     }
   );
 
-  validateUsernameExist(control: AbstractControl): Observable<ValidationErrors | null> {
+  hidePassword = true;
+  hidePassword2 = true;
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { token: string },
+    public dialogRef: MatDialogRef<PasswordResetDialog>,
+    private fb: FormBuilder,
+    private api: ApiService,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog,
+  ) {
+    this.getToken()?.setValue(data.token);
+  }
+
+  ngOnInit() {
+    // force validation of token
+    this.getToken()?.markAsDirty();
+    this.getToken()?.markAsTouched()
+    this.form.updateValueAndValidity();
+  }
+
+  validateResetToken(control: AbstractControl): Observable<ValidationErrors | null> {
     return new Observable<ValidationErrors | null>(subscriber => {
       this
         .api
-        .checkAccountExist(control.value)
+        .checkPasswordResetTokenValidity(control.value)
         .subscribe(
           () => {
-            subscriber.next({notFound: true});
+            subscriber.next(null);
             subscriber.complete();
           },
           () => {
-            subscriber.next(null);
+            subscriber.next({invalid: true});
             subscriber.complete();
           },
         );
     });
   }
 
-  getUsername(): AbstractControl | null {
-    return this.resetPasswordForm.get('username');
+  validateSamePassword(control: AbstractControl): ValidationErrors | null {
+    if (control.value === '' || control.value === null) {
+      return {
+        ['invalid']: 'invalid format'
+      };
+    }
+
+    if (this.getPassword()?.value !== control.value) {
+      return {
+        ['different']: 'password different'
+      };
+    }
+
+    return null;
+  }
+
+  getToken(): AbstractControl | null {
+    return this.form.get('token');
+  }
+
+  getPassword(): AbstractControl | null {
+    return this.form.get('password');
+  }
+
+  getPassword2(): AbstractControl | null {
+    return this.form.get('password2');
   }
 
   /**
@@ -67,12 +105,12 @@ export class PasswordResetDialog {
 
   isFormValid() {
     // as it was programmatically called, form can be set as dirty
-    this.getUsername()?.markAsDirty();
+    this.getToken()?.markAsDirty();
 
     // trigger form validation
-    this.resetPasswordForm.updateValueAndValidity();
+    this.form.updateValueAndValidity();
 
-    return this.resetPasswordForm.valid;
+    return this.form.valid;
   }
 
   onSubmit() {
@@ -80,10 +118,10 @@ export class PasswordResetDialog {
       return;
     }
 
-    this.api.resetPassword(this.getUsername()?.value).subscribe(
+    this.api.resetPassword(this.getToken()?.value, this.getPassword()?.value).subscribe(
       () => {
-        this.snackBar.open('Un email de réinitialisation de mot de passe vous a été envoyé', 'Close', {duration: 5000});
-        this.closeModal();
+        this.snackBar.open('Le mot de passe à été changer', 'Close', {duration: 5000});
+        this.dialogRef.close();
       },
       () => {
         this.snackBar.open('Une erreur est survenue lors de la réinitialisation de votre mot de passe', 'Close', {duration: 5000});
@@ -92,7 +130,18 @@ export class PasswordResetDialog {
     );
   }
 
-  closeModal(): void {
+  openRequestResetPasswordDialog() {
     this.dialogRef.close();
+
+    this.dialog.open(
+      PasswordResetRequestDialog,
+      {
+        height: '480px',
+        width: '600px',
+        data: {
+          email: '',
+        }
+      }
+    )
   }
 }

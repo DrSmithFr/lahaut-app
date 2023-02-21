@@ -27,6 +27,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {PasswordResetDialog} from "./components/password-reset/password-reset-dialog.component";
+import {PasswordResetRequestDialog} from "./components/password-reset-request/password-reset-request.dialog";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {PasswordResetDialog} from "./components/password-reset/password-reset-di
     NavigationComponent,
     LoginComponent,
     LogoutDialog,
-    PasswordResetDialog
+    PasswordResetRequestDialog,
+    PasswordResetDialog,
   ],
   imports: [
     // routing main module
