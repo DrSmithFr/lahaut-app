@@ -5,13 +5,17 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Installation
 
 - Install the latest version of [nvm](https://github.com/nvm-sh/nvm)
-- Install the version of Node.js defined in .nvmrc `nvm install`
-- Used the version of Node.js defined in .nvmrc `nvm use`
 - Install the latest version of [Angular CLI](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04) with `npm install -g @angular/cli`
+- Install everything with `make install`
+
+## Manual installation of dependencies (if make `make install` fails)
+
+- Install the version of Node.js defined in .nvmrc `nvm install` or `nvm install $(cat .nvmrc)`
+- Used the version of Node.js defined in .nvmrc `nvm use` or `nvm use $(cat .nvmrc)`
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `make start` or `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -19,11 +23,11 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `make build` or `ng build --prod` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `make test` or `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Running end-to-end tests
 

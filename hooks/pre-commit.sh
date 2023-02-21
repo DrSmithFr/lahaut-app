@@ -46,5 +46,7 @@ then
 fi
 
 # Post checkup validation
+echo ""
+display title "Affected files validation"
 ./hooks/src/ask-validation.sh ${FILES}
 exit $?
