@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
 import {AuthService} from '../../../../services/auth.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ApiService} from '../../../../services/api.service';
 import {Observable} from 'rxjs';
@@ -36,8 +36,18 @@ export class RegisterMonitorComponent {
     private router: Router,
     private snackBar: MatSnackBar,
     private api: ApiService,
-    private ga: GoogleAnalyticsService
+    private ga: GoogleAnalyticsService,
+    private route: ActivatedRoute,
   ) {
+  }
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+        if (params['username'] !== undefined) {
+          this.getUsername()?.setValue(params['username']);
+        }
+      }
+    );
   }
 
   validateUsernameAvailable(control: AbstractControl): Observable<ValidationErrors | null> {

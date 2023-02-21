@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
 import {AuthService} from '../../../../services/auth.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ApiService} from '../../../../services/api.service';
 import {Observable} from 'rxjs';
@@ -9,22 +9,22 @@ import {GoogleAnalyticsService} from '../../../../services/google-analytics.serv
 
 @Component(
   {
-    selector:    'app-register-customer',
+    selector: 'app-register-customer',
     templateUrl: './register-customer.component.html',
-    styleUrls:   ['./register-customer.component.scss']
+    styleUrls: ['./register-customer.component.scss']
   }
 )
-export class RegisterCustomerComponent {
+export class RegisterCustomerComponent implements OnInit {
 
   hidePassword = true;
   hidePassword2 = true;
   showLoader = false;
-  shaking    = false;
+  shaking = false;
 
   registerForm = this.fb.group(
     {
-      username:  ['', [Validators.required, Validators.email], this.validateUsernameAvailable.bind(this)],
-      password:  ['', [Validators.required]],
+      username: ['', [Validators.required, Validators.email], this.validateUsernameAvailable.bind(this)],
+      password: ['', [Validators.required]],
       password2: ['', [Validators.required, this.validateSamePassword.bind(this)]],
     }
   );
@@ -35,8 +35,18 @@ export class RegisterCustomerComponent {
     private router: Router,
     private snackBar: MatSnackBar,
     private api: ApiService,
-    private ga: GoogleAnalyticsService
+    private ga: GoogleAnalyticsService,
+    private route: ActivatedRoute,
   ) {
+  }
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+        if (params['username'] !== undefined) {
+          this.getUsername()?.setValue(params['username']);
+        }
+      }
+    );
   }
 
   validateUsernameAvailable(control: AbstractControl): Observable<ValidationErrors | null> {
@@ -73,22 +83,22 @@ export class RegisterCustomerComponent {
     return null;
   }
 
-  getUsername(): AbstractControl|null {
+  getUsername(): AbstractControl | null {
     return this.registerForm.get('username');
   }
 
-  getPassword(): AbstractControl|null {
+  getPassword(): AbstractControl | null {
     return this.registerForm.get('password');
   }
 
-  getPassword2(): AbstractControl|null {
+  getPassword2(): AbstractControl | null {
     return this.registerForm.get('password2');
   }
 
   /**
    * triggered when field invalid an edited
    */
-  hasError(field: AbstractControl|null): boolean {
+  hasError(field: AbstractControl | null): boolean {
     if (field === null) {
       return false;
     }
@@ -98,7 +108,7 @@ export class RegisterCustomerComponent {
 
   hasErrorInForm() {
     return this.hasError(this.getUsername()) ||
-           this.hasError(this.getPassword2());
+      this.hasError(this.getPassword2());
   }
 
   isFormValid() {
@@ -147,7 +157,7 @@ export class RegisterCustomerComponent {
         },
         () => {
           this.showLoader = false;
-          this.shaking    = true;
+          this.shaking = true;
           this.snackBar.open('Une erreur est survenue');
         }
       );

@@ -25,7 +25,7 @@
             </span>
           <span *ngIf="getUsername()?.errors?.['used']">
               Un compte existe déjà pour cette adresse.
-              <a routerLink="./login" class="forgot-password">essayer de vous connecter ?</a>
+              <a routerLink="/login" [queryParams]="{username: getUsername()?.value}" class="forgot-password">essayer de vous connecter ?</a>
             </span>
         </mat-error>
       </mat-form-field>

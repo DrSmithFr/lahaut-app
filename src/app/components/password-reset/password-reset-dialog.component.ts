@@ -1,6 +1,6 @@
 import {Component, ElementRef, Inject, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Observable} from "rxjs";
@@ -21,9 +21,9 @@ export class PasswordResetDialog {
     public dialogRef: MatDialogRef<PasswordResetDialog>,
     private fb: FormBuilder,
     private api: ApiService,
-    private snackBar: MatSnackBar,
+    private snackBar: MatSnackBar
   ) {
-    this.getEmail()?.setValue(data.email);
+    this.getUsername()?.setValue(data.email);
   }
 
   resetPasswordForm = this.fb.group(
@@ -50,7 +50,7 @@ export class PasswordResetDialog {
     });
   }
 
-  getEmail(): AbstractControl | null {
+  getUsername(): AbstractControl | null {
     return this.resetPasswordForm.get('username');
   }
 
@@ -67,7 +67,7 @@ export class PasswordResetDialog {
 
   isFormValid() {
     // as it was programmatically called, form can be set as dirty
-    this.getEmail()?.markAsDirty();
+    this.getUsername()?.markAsDirty();
 
     // trigger form validation
     this.resetPasswordForm.updateValueAndValidity();
@@ -80,7 +80,7 @@ export class PasswordResetDialog {
       return;
     }
 
-    this.api.resetPassword(this.getEmail()?.value).subscribe(
+    this.api.resetPassword(this.getUsername()?.value).subscribe(
       () => {
         this.snackBar.open('Un email de réinitialisation de mot de passe vous a été envoyé', 'Close', {duration: 5000});
         this.closeModal();
