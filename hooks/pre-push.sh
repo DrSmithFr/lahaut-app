@@ -4,7 +4,7 @@
 source ./hooks/bin/display.sh
 
 # switching to project node version
-nvm use $(cat .nvmrc)
+. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc)
 
 display title "Running ng test"
 ng test --no-watch

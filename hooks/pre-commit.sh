@@ -6,7 +6,7 @@ source ./hooks/bin/display.sh
 source ./hooks/bin/git.sh
 
 # switching to project node version
-nvm use $(cat .nvmrc)
+. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc)
 
 # get all modified files array
 FILES=$(git_modified_files $(git_current_commit))
