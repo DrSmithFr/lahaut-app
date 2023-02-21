@@ -6,7 +6,6 @@ import {environment} from '../environments/environment';
 import {transition, trigger} from '@angular/animations';
 import {fadeIn} from './animations/animations';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {AuthService} from "./services/auth.service";
 
 declare let gtag: any;
 
@@ -84,7 +83,7 @@ export class AppComponent implements OnInit {
       // PWA on update available
       this
         .swUpdate
-        .available
+        .versionUpdates
         .subscribe(() => {
           this.showUpdateBanner();
         });

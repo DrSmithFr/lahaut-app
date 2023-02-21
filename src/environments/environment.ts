@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
+  production: false,
   fake_api:   true,
   debug:      true,
   url_api:    'https://ms-base'
