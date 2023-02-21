@@ -1,17 +1,18 @@
 APP_DIR := $(abspath $(lastword $(MAKEFILE_LIST)))
 
-build: reload
-install: env hooks dependencies start build start database
-reload: stop start
+build: nvm prod
 
-dependencies:
+nvm:
+	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc)
+
+dependencies: nvm
 	npm install
 
-start:
+start: nvm
 	ng serve
 
-prod:
+prod: nvm
 	ng build --prod
 
-test:
+test: nvm
 	ng test
