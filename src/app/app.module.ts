@@ -14,7 +14,6 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatBadgeModule} from "@angular/material/badge";
 import {AutoFocusDirective} from "./components/directives/auto-focus.directive";
-import {LoaderComponent} from "./components/loader/loader.component";
 import {Page404Component} from "./components/page404/page404.component";
 import {HomeComponent} from "./components/home/home.component";
 import {NavigationComponent} from "./components/navigation/navigation.component";
@@ -33,7 +32,6 @@ import {PasswordResetRequestDialog} from "./components/password-reset-request/pa
   declarations: [
     AppComponent,
     AutoFocusDirective,
-    LoaderComponent,
     Page404Component,
     HomeComponent,
     NavigationComponent,
