@@ -23,11 +23,11 @@ export class StateService {
     this.REDIRECT_AFTER_LOGIN = new BehaviorSubject<string>('/home');
 
     this.TOKEN = new BehaviorSubject<TokenModel|null>(
-      this.localService.getObject('STATE_TOKEN') || null
+      this.localService.getObject<TokenModel>('STATE_TOKEN') || null
     );
 
     this.LOGGED_USER = new BehaviorSubject<UserModel|null>(
-      this.localService.getObject('STATE_USER') || null
+      this.localService.getObject<UserModel>('STATE_USER') || null
     );
 
     // trigger persist data to localstorage when updated

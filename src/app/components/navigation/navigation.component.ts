@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {LogoutDialog} from "../logout-dialog/logout.dialog";
@@ -8,15 +8,12 @@ import {LogoutDialog} from "../logout-dialog/logout.dialog";
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
 
   constructor(
     private auth: AuthService,
     public dialog: MatDialog
   ) {
-  }
-
-  ngOnInit(): void {
   }
 
   openLogoutDialog() {

@@ -5,7 +5,6 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatDialog} from "@angular/material/dialog";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
-import {AppComponent} from "../../app.component";
 import {AuthService} from "../../services/auth.service";
 
 describe('NavigationComponent', () => {

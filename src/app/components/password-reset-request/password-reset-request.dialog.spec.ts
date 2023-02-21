@@ -1,11 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { PasswordResetRequestDialog } from './password-reset-request.dialog';
+import {PasswordResetRequestDialog} from './password-reset-request.dialog';
 import {RouterTestingModule} from "@angular/router/testing";
 import {MatIconModule} from "@angular/material/icon";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
-import {PasswordResetDialog} from "../password-reset/password-reset-dialog.component";
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {ApiService} from "../../services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 

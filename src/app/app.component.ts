@@ -59,16 +59,12 @@ export class AppComponent implements OnInit {
         window.scrollTo(0, 0);
       });
 
-    this.router.events.subscribe(event => {
-
-    });
-
     if (environment.production) {
       // PWA notification clicked
       this
         .swPush
         .notificationClicks
-        .subscribe(event => {
+        .subscribe(() => {
           this.showUpdateBanner();
         });
 
@@ -109,6 +105,6 @@ export class AppComponent implements OnInit {
   }
 
   prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+    return outlet.activatedRouteData['animation'];
   }
 }

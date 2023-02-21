@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
 import {AuthService} from '../../../../services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -14,7 +14,7 @@ import {GoogleAnalyticsService} from '../../../../services/google-analytics.serv
     styleUrls: ['./register-monitor.component.scss']
   }
 )
-export class RegisterMonitorComponent {
+export class RegisterMonitorComponent implements OnInit {
 
   hidePassword = true;
   hidePassword2 = true;
