@@ -17,7 +17,6 @@ describe('RegisterCustomerComponent', () => {
     const AuthServiceMock = jasmine.createSpyObj('AuthService', ['isLogged', 'isCustomer', 'isMonitor']);
     const ApiServiceMock = jasmine.createSpyObj('ApiService', ['']);
     const GoogleAnalyticsServiceMock = jasmine.createSpyObj('GoogleAnalyticsService', ['']);
-
     const MatSnackBarSpy = jasmine.createSpyObj('MatSnackBar', ['open']);
 
     await TestBed.configureTestingModule({

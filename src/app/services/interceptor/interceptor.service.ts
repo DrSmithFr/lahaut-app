@@ -22,7 +22,7 @@ export class InterceptorService implements HttpInterceptor {
     ) {
     }
 
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept<T>(request: HttpRequest<T>, next: HttpHandler): Observable<HttpEvent<T>> {
         const token = this.stateService.TOKEN.getValue();
 
         if (request.headers.get('Authorization') === null && null !== token && null !== token.token) {

@@ -9,6 +9,7 @@ import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatMenuModule} from "@angular/material/menu";
+import {GoogleAnalyticsService} from "./services/google-analytics.service";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -17,6 +18,7 @@ describe('AppComponent', () => {
     const SwUpdateMock = jasmine.createSpyObj('SwUpdate', ['checkForUpdate', 'versionUpdates']);
     const MatDialogMock = jasmine.createSpyObj('MatDialog', ['open']);
     const AuthServiceMock = jasmine.createSpyObj('AuthService', ['isLogged', 'isCustomer', 'isMonitor']);
+    const GoogleAnalyticsServiceMock = jasmine.createSpyObj('GoogleAnalyticsService', ['event']);
 
     await TestBed.configureTestingModule({
       imports: [
@@ -36,6 +38,7 @@ describe('AppComponent', () => {
         { provide: SwUpdate, useValue: SwUpdateMock },
         { provide: MatDialog, useValue: MatDialogMock },
         { provide: AuthService, useValue: AuthServiceMock },
+        { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsServiceMock}
       ]
     }).compileComponents();
   });

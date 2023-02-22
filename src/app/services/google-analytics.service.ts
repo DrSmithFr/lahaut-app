@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-
-declare let gtag: any;
+import {Gtag} from "angular-gtag";
+import {GtagEvent, GtagPageview} from "angular-gtag/src/interfaces";
 
 @Injectable(
   {
@@ -8,17 +8,18 @@ declare let gtag: any;
   }
 )
 export class GoogleAnalyticsService {
-  public eventEmitter(
-    eventName: string,
-    eventCategory: string,
-    eventAction: string,
-    eventLabel: string|null = null,
-    eventValue: number|null = null) {
-    gtag('event', eventName, {
-      eventCategory,
-      eventLabel,
-      eventAction,
-      eventValue
-    });
+  constructor(private gtag: Gtag) {
+  }
+
+  event(action: string, params?: GtagEvent): void {
+    this
+      .gtag
+      .event(action, params);
+  }
+
+  pageview(params: GtagPageview): void {
+    this
+      .gtag
+      .pageview(params);
   }
 }

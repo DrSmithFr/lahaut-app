@@ -6,15 +6,14 @@ import {environment} from '../environments/environment';
 import {transition, trigger} from '@angular/animations';
 import {fadeIn} from './animations/animations';
 import {MatSnackBar} from '@angular/material/snack-bar';
-
-declare let gtag: any;
+import {GoogleAnalyticsService} from "./services/google-analytics.service";
 
 @Component(
   {
-    selector:    'app-root',
+    selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls:   ['./app.component.scss'],
-    animations:  [
+    styleUrls: ['./app.component.scss'],
+    animations: [
       trigger('routeAnimations', [
         transition('disconnected <=> connected', fadeIn),
       ])
@@ -27,7 +26,8 @@ export class AppComponent implements OnInit {
     private swPush: SwPush,
     private swUpdate: SwUpdate,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private gtag: GoogleAnalyticsService,
   ) {
   }
 
@@ -44,16 +44,10 @@ export class AppComponent implements OnInit {
       )
       .subscribe((event) => {
         if (event instanceof NavigationEnd) {
-          gtag('js', new Date());
-          gtag(
-            'config',
-            'UA-132202996-1',
-            {
-              page_path: event.urlAfterRedirects
-            }
-          );
-
-          gtag('send', 'pageview');
+          this.gtag.pageview({
+            page_title: event.toString(),
+            page_path: event.urlAfterRedirects,
+          });
         }
 
         window.scrollTo(0, 0);

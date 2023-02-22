@@ -27,6 +27,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {PasswordResetDialog} from "./components/password-reset/password-reset-dialog.component";
 import {PasswordResetRequestDialog} from "./components/password-reset-request/password-reset-request.dialog";
+import {GtagModule} from "angular-gtag";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import {PasswordResetRequestDialog} from "./components/password-reset-request/pa
     FormsModule,
     ReactiveFormsModule,
 
-    // users modules
+    // Material modules
     MatInputModule,
     MatButtonModule,
     MatMenuModule,
@@ -75,6 +76,9 @@ import {PasswordResetRequestDialog} from "./components/password-reset-request/pa
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+
+    // Google Analytics
+    GtagModule.forRoot({ trackingId: 'UA-132202996-1', trackPageviews: true })
   ],
   exports:      [
     HttpClientModule,

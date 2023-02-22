@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private auth: AuthService,
     private state: StateService,
-    private ga: GoogleAnalyticsService,
+    private gtag: GoogleAnalyticsService,
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
   ) {
@@ -103,24 +103,30 @@ export class LoginComponent implements OnInit {
         () => {
           const redirect = this.state.REDIRECT_AFTER_LOGIN.getValue();
 
-          this.ga.eventEmitter(
-            'login',
-            'users',
-            'valid',
-            'Login ' + this.getUsername()?.value
-          );
+          this
+            .gtag
+            .event(
+            "login",
+            {
+              event_category: "users",
+              event_label: "Login " + this.getUsername()?.value,
+              value: "valid"
+            })
 
           this.router.navigateByUrl(redirect);
         },
         error => {
           this.showLoader = false;
 
-          this.ga.eventEmitter(
-            'login',
-            'users',
-            error.status,
-            'Error' + error.status + ' for ' + this.getUsername()?.value
-          );
+          this
+            .gtag
+            .event(
+              "login",
+              {
+                event_category: "users",
+                event_label: 'Error' + error.status + ' for ' + this.getUsername()?.value,
+                value: error.status
+              })
 
           if (error.status === 401) {
             this.snackBar.open('Les identifiants de connexion sont incorrects');

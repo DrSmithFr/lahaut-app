@@ -36,7 +36,7 @@ export class RegisterCustomerComponent implements OnInit {
     private route: ActivatedRoute,
     private auth: AuthService,
     private api: ApiService,
-    private ga: GoogleAnalyticsService,
+    private gtag: GoogleAnalyticsService,
     private snackBar: MatSnackBar,
   ) {
   }
@@ -146,12 +146,15 @@ export class RegisterCustomerComponent implements OnInit {
               this.getPassword()?.value
             )
             .subscribe(() => {
-              this.ga.eventEmitter(
-                'register',
-                'users',
-                'valid',
-                'New users ' + this.getUsername()?.value
-              );
+              this
+                .gtag
+                .event(
+                  "register",
+                  {
+                    event_category: "users",
+                    event_label: 'New users ' + this.getUsername()?.value,
+                    value: 'valid'
+                  })
 
               this.router.navigateByUrl('/home');
             });
