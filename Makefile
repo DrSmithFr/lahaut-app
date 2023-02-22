@@ -8,16 +8,16 @@ install: nvm hooks dependencies start
 nvm:
 	. ${NVM_DIR}/nvm.sh && nvm install $(cat .nvmrc)
 
-dependencies: nvm
+dependencies:
 	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && npm install
 
-start: nvm
+start:
 	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && ng serve
 
-prod: nvm
+prod:
 	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && ng build --prod
 
-test: nvm
+test:
 	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && ng test
 
 hooks:
