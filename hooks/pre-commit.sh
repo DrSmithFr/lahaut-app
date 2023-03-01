@@ -37,7 +37,7 @@ then
 fi
 
 display title "Running ng test"
-ng test --no-watch
+ng test --no-watch --browsers=ChromeHeadless --code-coverage
 UNITTEST=$?
 if [[ ${UNITTEST} -ne 0 ]]
 then
