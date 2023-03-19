@@ -14,7 +14,8 @@
           autofocus
           type="text"
           formControlName="username"
-          autocomplete="email">
+          autocomplete="email"
+          tabindex="1">
         <mat-icon matPrefix>mail</mat-icon>
         <mat-error *ngIf="hasError(getUsername())">
             <span *ngIf="getUsername()?.errors?.['required']">
@@ -39,7 +40,8 @@
           [type]="hidePassword ? 'password' : 'text'"
           formControlName="password"
           autocomplete="password"
-          placeholder="Mot de passe">
+          placeholder="Mot de passe"
+          tabindex="2">
         <mat-icon matPrefix>key</mat-icon>
         <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hidePassword">
@@ -59,7 +61,8 @@
           [type]="hidePassword2 ? 'password' : 'text'"
           formControlName="password2"
           autocomplete="password_repeat"
-          placeholder="Comfirmes ton mot de passe">
+          placeholder="Comfirmes ton mot de passe"
+          tabindex="3">
         <mat-icon matPrefix>key</mat-icon>
         <button mat-icon-button matSuffix (click)="hidePassword2 = !hidePassword2" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hidePassword2">
@@ -83,7 +86,8 @@
             [disabled]="registerForm.invalid"
             mat-flat-button
             color="primary"
-            type="submit">
+            type="submit"
+            tabindex="4">
             S'inscrire
           </button>
           <mat-spinner *ngIf="showLoader"

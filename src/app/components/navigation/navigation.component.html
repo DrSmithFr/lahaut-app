@@ -32,6 +32,8 @@
         </button>
       </div>
 
+      <!-- Customer -->
+
       <div *ngIf="isLoggedCustomer()">
         <button mat-menu-item routerLink="/user/chat">
           <mat-icon *ngIf="getBadgeCountForMessage() === 0">chat</mat-icon>
@@ -44,7 +46,7 @@
           <span>Réservations</span>
         </button>
         <hr>
-        <button mat-menu-item routerLink="/user/account">
+        <button mat-menu-item routerLink="/customer/account">
           <mat-icon>person</mat-icon>
           <span>Mon compte</span>
         </button>
@@ -54,6 +56,7 @@
         </button>
       </div>
 
+      <!-- Monitor -->
 
       <div *ngIf="isLoggedMonitor()">
         <button mat-menu-item routerLink="/monitor/dashboard">
@@ -76,7 +79,7 @@
           <mat-icon>calendar_month</mat-icon>
           <span>Disponibilité</span>
         </button>
-        <button mat-menu-item routerLink="/user/account">
+        <button mat-menu-item routerLink="/monitor/account">
           <mat-icon>person</mat-icon>
           <span>Mon compte</span>
         </button>

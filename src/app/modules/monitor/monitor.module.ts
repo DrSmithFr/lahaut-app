@@ -9,14 +9,17 @@ import {MonitorRoutingModule} from './monitor-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from "@angular/material/icon";
+import { MyMonitorAccountComponent } from './components/my-monitor-account/my-monitor-account.component';
+import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule(
   {
     declarations: [
       RegisterMonitorComponent,
+      MyMonitorAccountComponent,
     ],
-    imports:      [
+    imports: [
       CommonModule,
 
       // routing
@@ -32,7 +35,8 @@ import {MatIconModule} from "@angular/material/icon";
       MatProgressSpinnerModule,
       MatCheckboxModule,
       MatDialogModule,
-      MatIconModule
+      MatIconModule,
+      MatCardModule
     ],
     providers:    [
       {

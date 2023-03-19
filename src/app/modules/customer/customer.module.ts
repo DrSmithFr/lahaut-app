@@ -9,14 +9,17 @@ import {CustomerRoutingModule} from './customer-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from "@angular/material/icon";
+import { MyCustomerAccountComponent } from './components/my-customer-account/my-customer-account.component';
+import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule(
   {
     declarations: [
       RegisterCustomerComponent,
+      MyCustomerAccountComponent,
     ],
-    imports:      [
+    imports: [
       CommonModule,
 
       // routing
@@ -32,7 +35,8 @@ import {MatIconModule} from "@angular/material/icon";
       MatProgressSpinnerModule,
       MatCheckboxModule,
       MatDialogModule,
-      MatIconModule
+      MatIconModule,
+      MatCardModule
     ],
     providers:    [
       {
