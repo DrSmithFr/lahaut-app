@@ -35,7 +35,7 @@
       <!-- Customer -->
 
       <div *ngIf="isLoggedCustomer()">
-        <button mat-menu-item routerLink="/user/chat">
+        <button mat-menu-item routerLink="/chat">
           <mat-icon *ngIf="getBadgeCountForMessage() === 0">chat</mat-icon>
           <mat-icon *ngIf="getBadgeCountForMessage() !== 0" [matBadge]="getBadgeCountForMessage()">chat</mat-icon>
           <span>Messages</span>
@@ -64,7 +64,7 @@
           <span>Tableau de bord</span>
         </button>
         <hr>
-        <button mat-menu-item routerLink="/user/chat">
+        <button mat-menu-item routerLink="/chat">
           <mat-icon *ngIf="getBadgeCountForMessage() === 0">chat</mat-icon>
           <mat-icon *ngIf="getBadgeCountForMessage() !== 0" [matBadge]="getBadgeCountForMessage()">chat</mat-icon>
           <span>Messages</span>
