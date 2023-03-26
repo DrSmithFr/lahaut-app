@@ -9,10 +9,10 @@ body { margin: 0; font-family: $font-text; }
 
 // setting background image
 body {
-  background-image: url(/assets/background.png);
+  background-image: url(./assets/background.png);
 
   @include desktop {
-    background-image: url(/assets/background-short.png);
+    background-image: url(./assets/background-short.png);
   }
 
   background-size: contain;
