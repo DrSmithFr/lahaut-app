@@ -5,7 +5,7 @@
   max-width: 680px;
   margin: 0 auto;
 
-  @include mobile() {
+  @include mobile-all() {
     max-width: 500px;
   }
 }
@@ -28,7 +28,7 @@
     }
   }
 
-  @include mobile() {
+  @include mobile-all() {
     max-width: 75%;
     margin: auto;
   }

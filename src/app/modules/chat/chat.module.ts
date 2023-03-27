@@ -1,14 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { ChatRoutingModule } from './chat-routing.module';
-import { ChatComponent } from './components/chatbox/chat.component';
+import {ChatRoutingModule} from './chat-routing.module';
+import {ChatComponent} from './components/chatbox/chat.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -17,7 +16,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
   ],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     ChatRoutingModule,
     MatSidenavModule,
     MatListModule,
@@ -26,4 +24,5 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatIconModule
   ]
 })
-export class ChatModule { }
+export class ChatModule {
+}

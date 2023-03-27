@@ -22,6 +22,31 @@ $gridNumberOfColumns: 12;
   width: 100%;
 }
 
+// helpers
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}
+
+.full {
+  width: 100%;
+}
+
+.marge {
+  margin: 10px;
+}
+
+.hide {
+  display: none;
+}
+
 // get back extra small autocomplete
 .xsmall-1 {}
 .xsmall-2 {}

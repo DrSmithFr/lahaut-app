@@ -1,21 +1,19 @@
-$mobile-break: 660;
+$mobile-break: 500;
 $tablet-break: 900;
 $desktop-break: 1200;
 
-@mixin mobile {
-  @media screen and (max-width: #{$tablet-break}px) { @content; }
-}
 
-@mixin xsmobile {
+
+@mixin mobile-xs {
   @media screen and (max-width: #{$mobile-break}px) { @content; }
 }
 
-@mixin xsmobile {
+@mixin mobile-xl {
   @media screen and (min-width: #{$mobile-break}px) and (max-width: #{$tablet-break}px) { @content; }
 }
 
-@mixin not-mobile() {
-  @media screen and (min-width: #{$tablet-break}px) { @content; }
+@mixin mobile-all {
+  @media screen and (max-width: #{$tablet-break}px) { @content; }
 }
 
 @mixin tablet {
@@ -24,4 +22,8 @@ $desktop-break: 1200;
 
 @mixin desktop {
   @media screen and (min-width: #{$desktop-break}px) { @content; }
+}
+
+@mixin tablet-and-desktop() {
+  @media screen and (min-width: #{$tablet-break}px) { @content; }
 }

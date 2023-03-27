@@ -1,12 +1,10 @@
 <mat-sidenav-container id="chatbox">
   <mat-sidenav mode="side" id="chatbox-room-list" opened>
     <mat-list>
-      <mat-list-item class="active">Room 1</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Room 2</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Room 3</mat-list-item>
-      <mat-divider></mat-divider>
+      <div *ngFor="let room of rooms">
+        <mat-list-item [class.active]="isRoomActive(room)">{{room.name}}</mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -16,22 +14,12 @@
       </div>
       <div id="chatbox-room-chat">
         <div id="chatbox-room-chat-content">
-          <div class="message-box">
-            <span class="message-time">12:00</span>
-            <span class="message">
-              Nam sed pharetra ipsum, id posuere ante.
-            </span>
+
+          <div *ngFor="let msg of messages" class="message-box" [class.me]="isMessageMine(msg)">
+            <span class="message-time">{{msg.time}}</span>
+            <span class="message">{{msg.content}}</span>
           </div>
-          <div class="message-box me">
-            <span class="message-time">12:00</span>
-            <span class="message">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur porta cursus rhoncus. Donec id lacus at lacus ornare sagittis. Quisque placerat tincidunt ligula, eget hendrerit elit vulputate ac. Aliquam et dolor tincidunt ante volutpat malesuada. Nunc augue massa, placerat ac iaculis sed, lacinia volutpat turpis. Proin non malesuada lacus. Fusce luctus, tortor at mollis semper, dui mi maximus metus, sed ultricies velit elit at nisi. Curabitur eget felis erat. Nam volutpat turpis vitae quam iaculis, vitae viverra ipsum iaculis. Sed nec metus tincidunt, consequat sapien sed, congue diam. Proin blandit sem sit amet dapibus bibendum. Nunc volutpat vel erat eu suscipit. Quisque eu blandit sapien, ac suscipit mi.
-            </span>
-          </div>
-          <div class="message-box">
-            <span class="message-time">12:00</span>
-            <span class="message">Ok</span>
-          </div>
+
         </div>
       </div>
       <div id="chatbox-room-input">

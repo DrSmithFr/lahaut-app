@@ -15,7 +15,7 @@
     margin: 50px 15px;
   }
 
-  @include mobile() {
+  @include mobile-all() {
     margin: 20px 0;
   }
 }
@@ -26,7 +26,7 @@
 .error-container > span.four {
   width: 136px;
 
-  @include mobile() {
+  @include mobile-all() {
     width: 120px;
   }
 
@@ -68,7 +68,7 @@
   width: 156px;
   height: 156px;
 
-  @include mobile() {
+  @include mobile-all() {
     width: 100px;
   }
 
@@ -104,7 +104,7 @@
   background: #FDFAF5;
   box-shadow: -2px 2px 2px 0px rgba(0, 0, 0, 0.1);
 
-  @include mobile() {
+  @include mobile-all() {
     width: 50px;
     left: 27px;
   }

@@ -12,7 +12,7 @@
   align-items: center;
   text-align: center;
 
-  @include mobile() {
+  @include mobile-all() {
     margin-top: 2rem;
   }
 }
@@ -26,11 +26,11 @@
     line-height: 1.1;
     margin: 0 0 2rem;
 
-    @include xsmobile() {
+    @include mobile-xs() {
       font-size: 2rem;
     }
 
-    @include mobile() {
+    @include mobile-all() {
       font-size: 2rem;
     }
   }
@@ -41,7 +41,7 @@
     font-size: 1.9rem;
     line-height: 1.25;
 
-    @include mobile() {
+    @include mobile-all() {
       font-size: 0.9rem;
     }
 

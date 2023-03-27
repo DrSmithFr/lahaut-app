@@ -33,6 +33,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/chat/chat.module').then(m => m.ChatModule),
   },
   {
+    path: 'search',
+    loadChildren: () => import('./modules/search/search.module').then(m => m.SearchModule),
+  },
+  {
     path: 'home',
     component: HomeComponent,
     data: {
@@ -46,7 +50,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/home'
+    redirectTo: '/search'
   },
   {path: '**', pathMatch: 'full', component: Page404Component},
 ];

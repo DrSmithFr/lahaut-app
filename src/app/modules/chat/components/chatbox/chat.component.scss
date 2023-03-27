@@ -8,7 +8,7 @@
     height: calc(100vh - 70px);
   }
 
-  @include mobile() {
+  @include mobile-all() {
     height: calc(100vh - 64px);
   }
 
@@ -19,7 +19,7 @@
       width: 200px;
     }
 
-    @include mobile() {
+    @include mobile-all() {
       width: 100px;
     }
   }

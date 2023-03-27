@@ -1,10 +1,10 @@
-import { NgModule, isDevMode } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {isDevMode, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
 import {InterceptorService} from "./services/interceptor/interceptor.service";
@@ -78,9 +78,9 @@ import {GtagModule} from "angular-gtag";
     }),
 
     // Google Analytics
-    GtagModule.forRoot({ trackingId: 'UA-132202996-1', trackPageviews: true })
+    GtagModule.forRoot({trackingId: 'UA-132202996-1', trackPageviews: true}),
   ],
-  exports:      [
+  exports: [
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -88,13 +88,13 @@ import {GtagModule} from "angular-gtag";
   ],
   providers: [
     {
-      provide:  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
       useValue: {duration: 2500}
     },
     {
-      provide:  HTTP_INTERCEPTORS,
+      provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
-      multi:    true
+      multi: true
     },
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
@@ -103,4 +103,5 @@ import {GtagModule} from "angular-gtag";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
