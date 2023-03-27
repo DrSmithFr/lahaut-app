@@ -8,6 +8,8 @@ import {UserModel} from '../models/user.model';
 import {map, tap} from 'rxjs/operators';
 import {ReconnectModel} from '../models/reconnect.model';
 import {MessageModel} from "../models/message.model";
+import {SearchQuery} from "../modules/search/models/search-query";
+import {SlotsModel} from "../models/fly/slots.model";
 
 // contain every api call to be easily fake using angular provider mechanism
 @Injectable(
@@ -132,5 +134,17 @@ export class ApiService {
     return this
       .http
       .patch<MessageModel>(this.API_URL + '/reset_password', {token, password});
+  }
+
+  findSlots(query: SearchQuery) {
+    const uri = '/slots/' + query.location + '/' + query.type + '/' + this.formatDateForApiCall(query.date);
+    return this
+      .http
+      .get<SlotsModel[]>(this.API_URL + uri);
+  }
+
+  formatDateForApiCall(date: Date) {
+
+    return '' + date.getFullYear() + '-0' + (date.getMonth() + 1) + '-' + date.getDate();
   }
 }

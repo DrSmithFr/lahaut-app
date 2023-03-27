@@ -11,11 +11,19 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import { SearchFormComponent } from './components/search-form/search-form.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
+import {MatListModule} from "@angular/material/list";
 
 
 @NgModule({
   declarations: [
     SearchComponent,
+    SearchFormComponent,
+    SearchResultsComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +41,10 @@ import {MatIconModule} from "@angular/material/icon";
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressBarModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatListModule,
   ]
 })
 export class SearchModule {

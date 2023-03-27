@@ -1,0 +1,51 @@
+<mat-card class="light-card">
+  <mat-card-content>
+
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+
+      <div class="search-form-grid">
+        <div class="title">
+          <h1>Reserve ton vol</h1>
+        </div>
+        <div class="input1">
+          <mat-form-field appearance="fill">
+            <mat-label>Lieu</mat-label>
+            <mat-select formControlName="location" (selectionChange)="trySubmit()">
+              <mat-option value="fly-location-from-fixture">Default</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="input2">
+          <mat-form-field appearance="fill">
+            <mat-label>Type de vol</mat-label>
+            <mat-select formControlName="flyType" (selectionChange)="trySubmit()">
+              <mat-option value="discovery">Vol Decouverte</mat-option>
+              <mat-option value="freestyle">Vol Freestyle</mat-option>
+              <mat-option value="xl">Vol XL</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="input3">
+          <mat-form-field appearance="fill">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date" (dateChange)="trySubmit()">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="input4">
+          <mat-form-field appearance="fill">
+            <mat-label>NBR de PERS</mat-label>
+            <mat-select formControlName="person" (selectionChange)="trySubmit()">
+              <mat-option value="adult">1 Adulte</mat-option>
+              <mat-option value="child">1 Enfants</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </form>
+
+  </mat-card-content>
+</mat-card>
