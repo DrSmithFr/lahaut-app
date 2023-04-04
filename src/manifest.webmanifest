@@ -1,8 +1,8 @@
 {
-  "name": "ms-app",
-  "short_name": "ms-app",
-  "theme_color": "#1976d2",
-  "background_color": "#ffffff",
+  "name": "LaHaut - Paratente",
+  "short_name": "LaHaut",
+  "theme_color": "#aa80d8",
+  "background_color": "#aa80d8",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
