@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {SlotsModel} from "../../../../models/fly/slots.model";
+import {MonitorModel} from "../../../../models/monitor.model";
+import {Search} from "../../models/search";
 
 @Component({
   selector: 'app-search-results',
@@ -7,25 +8,67 @@ import {SlotsModel} from "../../../../models/fly/slots.model";
   styleUrls: ['./search-results.component.scss']
 })
 export class SearchResultsComponent {
-  results: Map<string, SlotsModel[]> = new Map<string, SlotsModel[]>();
-
-  @Input() set searchResults(slots: SlotsModel[]) {
-    this.results = this.transformSlotToSearchResult(slots);
-  }
-
-  private transformSlotToSearchResult(slots: SlotsModel[]): Map<string, SlotsModel[]> {
-    const group = new Map<string, SlotsModel[]>();
-
-    for (const slot of slots) {
-      const key = slot.startAt + slot.endAt;
-
-      if (!group.has(key) || group.get(key) === undefined) {
-        group.set(key, [slot]);
-      } else {
-        group.get(key)?.push(slot);
+  @Input() search: Search;
+  public mockMonitors: MonitorModel[] = [
+    {
+      uuid: 'uuid',
+      roles: ['roles'],
+      identity: {
+        firstName: 'Fred',
+        lastName: 'Hiver',
+        anniversary: '1994-10-28',
+        nationality: 'ES',
       }
-    }
-
-    return group;
-  }
+    },
+    {
+      uuid: 'uuid',
+      roles: ['roles'],
+      identity: {
+        firstName: 'Barbara',
+        lastName: 'Linkom',
+        anniversary: '2005-04-13',
+        nationality: 'FR',
+      }
+    },
+    {
+      uuid: 'uuid',
+      roles: ['roles'],
+      identity: {
+        firstName: 'Joe',
+        lastName: 'Rod',
+        anniversary: '1989-07-20',
+        nationality: 'EN',
+      }
+    },
+    {
+      uuid: 'uuid',
+      roles: ['roles'],
+      identity: {
+        firstName: 'Fred',
+        lastName: 'Hiver',
+        anniversary: '1994-10-28',
+        nationality: 'ES',
+      }
+    },
+    {
+      uuid: 'uuid',
+      roles: ['roles'],
+      identity: {
+        firstName: 'Barbara',
+        lastName: 'Linkom',
+        anniversary: '2005-04-13',
+        nationality: 'FR',
+      }
+    },
+    {
+      uuid: 'uuid',
+      roles: ['roles'],
+      identity: {
+        firstName: 'Joe',
+        lastName: 'Rod',
+        anniversary: '1989-07-20',
+        nationality: 'EN',
+      }
+    },
+  ];
 }

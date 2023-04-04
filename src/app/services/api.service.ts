@@ -10,6 +10,8 @@ import {ReconnectModel} from '../models/reconnect.model';
 import {MessageModel} from "../models/message.model";
 import {SearchQuery} from "../modules/search/models/search-query";
 import {SlotsModel} from "../models/fly/slots.model";
+import {DateService} from "./date.service";
+import {MonitorModel} from "../models/monitor.model";
 
 // contain every api call to be easily fake using angular provider mechanism
 @Injectable(
@@ -22,15 +24,20 @@ export class ApiService {
 
   constructor(
     protected state: StateService,
-    protected http: HttpClient
+    protected http: HttpClient,
+    private dateService: DateService
   ) {
+  }
+
+  private apiUrlFormUri(uri: string): string {
+    return this.API_URL + uri;
   }
 
   login(username: string, password: string): Observable<TokenModel> {
     return this
       .http
       .post<TokenModel>(
-        this.API_URL + '/login',
+        this.apiUrlFormUri('/public/login'),
         {username, password}
       )
       .pipe(
@@ -44,7 +51,7 @@ export class ApiService {
   getCurrentUser(): Observable<UserModel> {
     return this
       .http
-      .get<UserModel>(this.API_URL + '/user/information')
+      .get<UserModel>(this.apiUrlFormUri('/user/information'))
       .pipe(
         tap(user => {
           // updating session with current users information
@@ -57,7 +64,7 @@ export class ApiService {
     return this
       .http
       .post<UserModel>(
-        this.API_URL + '/register/customer',
+        this.apiUrlFormUri('/public/register/customer'),
         {username, password}
       )
       .pipe(
@@ -72,7 +79,7 @@ export class ApiService {
     return this
       .http
       .post<UserModel>(
-        this.API_URL + '/register/monitor',
+        this.apiUrlFormUri('/public/register/monitor'),
         {username, password}
       )
       .pipe(
@@ -87,7 +94,7 @@ export class ApiService {
     return this
       .http
       .post<ReconnectModel>(
-        this.API_URL + '/login/refresh',
+        this.apiUrlFormUri('/public/login/refresh'),
         {
           refresh_token: token,
         }
@@ -107,7 +114,7 @@ export class ApiService {
     return this
       .http
       .patch<MessageModel>(
-        this.API_URL + '/user/password_update',
+        this.apiUrlFormUri('/public/user/password_update'),
         {oldPassword, newPassword},
       );
   }
@@ -115,36 +122,37 @@ export class ApiService {
   checkAccountExist(email: string): Observable<MessageModel> {
     return this
       .http
-      .post<MessageModel>(this.API_URL + '/register/available', {username: email});
+      .post<MessageModel>(this.apiUrlFormUri('/public/register/available'), {username: email});
   }
 
   resetPasswordRequest(email: string): Observable<MessageModel> {
     return this
       .http
-      .post<MessageModel>(this.API_URL + '/reset_password', {username: email});
+      .post<MessageModel>(this.apiUrlFormUri('/public/reset_password'), {username: email});
   }
 
   checkPasswordResetTokenValidity(token: string): Observable<MessageModel> {
     return this
       .http
-      .post<MessageModel>(this.API_URL + '/reset_password/validity', {token});
+      .post<MessageModel>(this.apiUrlFormUri('/public/reset_password/validity'), {token});
   }
 
   resetPassword(token: string, password: string): Observable<MessageModel> {
     return this
       .http
-      .patch<MessageModel>(this.API_URL + '/reset_password', {token, password});
+      .patch<MessageModel>(this.apiUrlFormUri('/public/reset_password'), {token, password});
   }
 
   findSlots(query: SearchQuery) {
-    const uri = '/slots/' + query.location + '/' + query.type + '/' + this.formatDateForApiCall(query.date);
+    const uri = '/public/slots/' + query.location + '/' + query.type + '/' + this.dateService.formatDate(query.date);
     return this
       .http
-      .get<SlotsModel[]>(this.API_URL + uri);
+      .get<SlotsModel[]>(this.apiUrlFormUri(uri));
   }
 
-  formatDateForApiCall(date: Date) {
-
-    return '' + date.getFullYear() + '-0' + (date.getMonth() + 1) + '-' + date.getDate();
+  getMonitorFromUuid(uuid: string): Observable<MonitorModel> {
+    return this
+      .http
+      .get<MonitorModel>(this.apiUrlFormUri('/public/monitor/' + uuid));
   }
 }

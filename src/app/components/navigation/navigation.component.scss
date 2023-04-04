@@ -30,6 +30,9 @@
 
   padding: 0;
 
+  transform: translateY(-100%);
+  animation: slide-in 1s 0.5s forwards;
+
   .row {
     width: auto;
   }
@@ -55,4 +58,17 @@
 .space-between{
   display: flex;
   justify-content: space-between;
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }

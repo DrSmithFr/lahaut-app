@@ -3,11 +3,20 @@
 <div class="search-container">
   <section>
     <img src="assets/logo_large.png" alt="logo: LaHaut - Parapente">
-    <app-search-form (query)="requestResults($event)"></app-search-form>
+    <div class="search-form-slider">
+      <app-search-form [defaultQuery]="lastQuery" (query)="requestResults($event)"></app-search-form>
+    </div>
   </section>
 
-  <section class="results-container" *ngIf="results.length">
-      <app-search-results [searchResults]="results"></app-search-results>
+  <section class="results-container" #container>
+      <app-search-results [search]="search"></app-search-results>
+  </section>
+
+  <section class="results-empty" *ngIf="searched && search.results && search.results.size === 0">
+    <h2>Aucun résultat pour votre recherche...</h2>
+    <hr>
+    <h3>Recherche des prochaines disponibilité</h3>
+    <mat-spinner style="height: 15px; width: 15px"></mat-spinner>
   </section>
 </div>
 

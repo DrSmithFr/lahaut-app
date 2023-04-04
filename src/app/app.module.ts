@@ -28,6 +28,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {PasswordResetDialog} from "./components/password-reset/password-reset-dialog.component";
 import {PasswordResetRequestDialog} from "./components/password-reset-request/password-reset-request.dialog";
 import {GtagModule} from "angular-gtag";
+import {MAT_DATE_LOCALE} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import {GtagModule} from "angular-gtag";
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
       useValue: {hasBackdrop: false}
-    }
+    },
+    {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
   ],
   bootstrap: [AppComponent]
 })

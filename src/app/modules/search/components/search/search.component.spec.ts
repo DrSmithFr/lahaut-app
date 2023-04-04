@@ -13,6 +13,9 @@ import {SearchResultsComponent} from "../search-results/search-results.component
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatListModule} from "@angular/material/list";
+import {RouterTestingModule} from "@angular/router/testing";
+import {ActivatedRoute} from "@angular/router";
+import {of} from "rxjs";
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -23,6 +26,7 @@ describe('SearchComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [
+        RouterTestingModule,
         MatCardModule,
         MatListModule,
         BrowserAnimationsModule,
@@ -40,7 +44,13 @@ describe('SearchComponent', () => {
         SearchResultsComponent
       ],
       providers: [
-        {provide: ApiService, useValue: ApiServiceMock}
+        {provide: ApiService, useValue: ApiServiceMock},
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            queryParams: of({id: 123})
+          }
+        }
       ]
     })
       .compileComponents();

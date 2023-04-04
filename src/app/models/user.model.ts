@@ -1,6 +1,12 @@
 export class UserModel {
   uuid: string;
-  username: string;
   roles: string[];
-  validatedAt: Date;
+  identity: UserIdentityModel;
+}
+
+export class UserIdentityModel {
+  firstName: string;
+  lastName: string;
+  anniversary: string;
+  nationality: string;
 }

@@ -3,5 +3,6 @@ export class SearchQuery {
     public location: string,
     public type: string,
     public date: Date,
+    public person: number = 1,
   ) {}
 }

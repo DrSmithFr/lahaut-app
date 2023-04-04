@@ -1,0 +1,16 @@
+<div class="monitor-card-container">
+  <a href="javascript:void(0)" *ngFor="let monitor of monitors" class="monitor-card">
+    <span class="rank">
+      <mat-icon>star</mat-icon>
+      <mat-icon>star</mat-icon>
+      <mat-icon>star</mat-icon>
+      <mat-icon>star</mat-icon>
+      <mat-icon >star_outline</mat-icon>
+    </span>
+    <span class="price">130€</span>
+    <span class="identity">
+      <span class="name">{{monitor.identity.firstName}}</span>
+      <span class="age">{{getMonitorAge(monitor)}} ans</span>
+    </span>
+  </a>
+</div>

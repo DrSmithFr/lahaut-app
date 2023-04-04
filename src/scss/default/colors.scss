@@ -4,13 +4,64 @@ $alpha: #fff;
 $blue: #9bebe7;
 $light-blue: #cbf0ee;
 
+$blue-palette: (
+  50 : #e4f4f3,
+  100 : #bce3e2,
+  200 : #90d1ce,
+  300 : #63bfba,
+  400 : #41b1ac,
+  500 : #20a39d,
+  600 : #1c9b95,
+  700 : #18918b,
+  800 : #138881,
+  900 : #0b776f,
+  A100 : #a8fff8,
+  A200 : #75fff4,
+  A400 : #42fff0,
+  A700 : #29ffee,
+);
+
 $purple: #aa80d8;
 $light-purple: #ceb8e5;
+
+$purple-palette: (
+  50 : #f5f0fa,
+  100 : #e6d9f3,
+  200 : #d5c0ec,
+  300 : #c4a6e4,
+  400 : #b793de,
+  500 : #aa80d8,
+  600 : #a378d4,
+  700 : #996dce,
+  800 : #9063c8,
+  900 : #7f50bf,
+  A100 : #ffffff,
+  A200 : #f3ebff,
+  A400 : #d5b8ff,
+  A700 : #c69eff,
+);
 
 $black: #141414;
 $gray: #222222;
 $gray-light: #4d4d4d;
 $white: #fff;
+
+$gray-palette: (
+  50 : #e4e4e4,
+  100 : #bdbdbd,
+  200 : #919191,
+  300 : #646464,
+  400 : #434343,
+  500 : #222222,
+  600 : #1e1e1e,
+  700 : #191919,
+  800 : #141414,
+  900 : #0c0c0c,
+  A100 : #e76c6c,
+  A200 : #e04040,
+  A400 : #ec0000,
+  A700 : #d30000,
+);
 
 // -------------------- HELPER COLORS --------------------
 $border: #e7e7e7;

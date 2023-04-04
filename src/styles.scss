@@ -17,8 +17,19 @@ body {
 
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: bottom;
   background-attachment: fixed;
+
+  background-position: 0 200%;
+  animation: animatedBackground 0.75s linear 0.1s forwards;
+}
+
+@keyframes animatedBackground {
+  from {
+    background-position: 0 200%;
+  }
+  to {
+    background-position: bottom;
+  }
 }
 
 // import custom material styles

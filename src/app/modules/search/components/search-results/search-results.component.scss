@@ -1,5 +1,64 @@
+@use 'sass:map';
+
+@import "colors";
+
 .result-row {
-  margin: 20px 0;
+  margin: 10px 0;
   background: rgba(255, 255, 255, 0.7);
   box-shadow: none;
+
+  .mat-expansion-panel-header-title {
+    .time {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .start {
+        font-size: 20px;
+        color: #68cf3b;
+      }
+
+      .end {
+        align-self: center;
+        color: $border-dark;
+      }
+    }
+
+  }
+
+  .mat-expansion-panel-header-description {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &.mat-expanded {
+    background: map.get($purple-palette, 100);
+
+    .mat-expansion-panel-header-title {
+      .start {
+        color: map.get($purple-palette, 900) !important;
+      }
+      .end {
+        color: $gray-light !important;
+      }
+    }
+
+    .mat-expansion-panel-header-description {
+      color: map.get($purple-palette, 700);
+    }
+  }
+}
+
+.result-container {
+  opacity: 0;
+  animation: fade-in 0.5s linear forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

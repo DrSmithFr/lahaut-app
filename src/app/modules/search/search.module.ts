@@ -17,6 +17,9 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
 import {MatListModule} from "@angular/material/list";
+import { MonitorsCardViewComponent } from './components/monitor-quickview/monitors-card-view.component';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -24,6 +27,7 @@ import {MatListModule} from "@angular/material/list";
     SearchComponent,
     SearchFormComponent,
     SearchResultsComponent,
+    MonitorsCardViewComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +49,8 @@ import {MatListModule} from "@angular/material/list";
     MatPaginatorModule,
     MatTableModule,
     MatListModule,
+    MatExpansionModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class SearchModule {

@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SearchQuery} from "../../models/search-query";
 
 @Component({
@@ -7,21 +7,41 @@ import {SearchQuery} from "../../models/search-query";
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.scss']
 })
-export class SearchFormComponent {
+export class SearchFormComponent implements OnInit {
+  @Input() defaultQuery: SearchQuery;
+
   @Output() query = new EventEmitter<SearchQuery>();
 
-  searchForm = this.fb.group(
-    {
-      location: ['', [Validators.required]],
-      flyType: ['', [Validators.required]],
-      date: ['', [Validators.required]],
-      person: ['adult', [Validators.required]],
-    }
-  );
+  searchForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
   ) {
+  }
+
+  ngOnInit(): void {
+    this.searchForm = this.fb.group(
+      {
+        location: [
+          this.defaultQuery?.location ?? '',
+          [Validators.required]
+        ],
+        flyType: [
+          this.defaultQuery?.type ?? '',
+          [Validators.required]
+        ],
+        date: [
+          this.defaultQuery?.date ?? '',
+          [Validators.required]
+        ],
+        person: [
+          this.defaultQuery?.person ?? '1',
+          [Validators.required]
+        ],
+      }
+    );
+
+    this.onSubmit();
   }
 
   trySubmit() {
@@ -30,22 +50,24 @@ export class SearchFormComponent {
     }
   }
 
+
   onSubmit() {
     if (!this.searchForm.valid) {
       console.error('Form is not valid')
       return;
     }
 
-    const location = this.searchForm.value.location;
-    const flyType = this.searchForm.value.flyType;
-    const date = this.searchForm.value.date;
+    const location: string = this.searchForm.value.location;
+    const flyType: string = this.searchForm.value.flyType;
+    const date: Date = this.searchForm.value.date;
+    const person: number = this.searchForm.value.person;
 
-    if (!location || !flyType || !date) {
+    if (!location || !flyType || date === undefined || person < 1) {
       console.error('Form is not valid');
       return;
     }
 
-    const query = new SearchQuery(location, flyType, new Date(date));
+    const query = new SearchQuery(location, flyType, new Date(date), person);
     this.query.emit(query);
   }
 }
