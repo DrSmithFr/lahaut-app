@@ -11,15 +11,16 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import { SearchFormComponent } from './components/search-form/search-form.component';
-import { SearchResultsComponent } from './components/search-results/search-results.component';
+import {SearchFormComponent} from './components/search-form/search-form.component';
+import {SearchResultsComponent} from './components/search-results/search-results.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
 import {MatListModule} from "@angular/material/list";
-import { MonitorsCardViewComponent } from './components/monitor-quickview/monitors-card-view.component';
+import {MonitorsCardViewComponent} from './components/monitor-quickview/monitors-card-view.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {SearchNextResultComponent} from './components/search-next-result/search-next-result.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     SearchFormComponent,
     SearchResultsComponent,
     MonitorsCardViewComponent,
+    SearchNextResultComponent,
   ],
   imports: [
     CommonModule,

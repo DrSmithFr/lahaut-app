@@ -1,7 +1,6 @@
 <mat-accordion *ngIf="search && search.results && search.results.size > 0">
 
-    <section *ngFor="let slot of search.results | keyvalue">
-
+    <div *ngFor="let slot of search.results | keyvalue">
       <mat-expansion-panel class="result-row">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -17,25 +16,8 @@
         </mat-expansion-panel-header>
         <app-monitors-card-view [monitors]="slot.value.monitors"></app-monitors-card-view>
       </mat-expansion-panel>
-
-
-      <!-- Mock for integration -->
-      <mat-expansion-panel class="result-row" [expanded]="true" *ngIf="false">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-          <span class="time">
-            <span class="start">07:00</span>
-            <span class="end">08:00</span>
-          </span>
-          </mat-panel-title>
-          <mat-panel-description>
-            {{mockMonitors.length}} Moniteurs disponibles
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <app-monitors-card-view [monitors]="mockMonitors"></app-monitors-card-view>
-        <button mat-raised-button color="primary" disabled>Réserver</button>
-      </mat-expansion-panel>
-
-    </section>
+    </div>
 
 </mat-accordion>
+
+<h2 *ngIf="search && search.results && search.results.size === 0">Aucun résultat pour votre recherche...</h2>

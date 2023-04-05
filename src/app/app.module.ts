@@ -1,4 +1,4 @@
-import {isDevMode, NgModule} from '@angular/core';
+import {isDevMode, LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -29,6 +29,10 @@ import {PasswordResetDialog} from "./components/password-reset/password-reset-di
 import {PasswordResetRequestDialog} from "./components/password-reset-request/password-reset-request.dialog";
 import {GtagModule} from "angular-gtag";
 import {MAT_DATE_LOCALE} from "@angular/material/core";
+import fr from '@angular/common/locales/fr';
+import {registerLocaleData} from '@angular/common';
+
+registerLocaleData(fr);
 
 @NgModule({
   declarations: [
@@ -101,7 +105,8 @@ import {MAT_DATE_LOCALE} from "@angular/material/core";
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
       useValue: {hasBackdrop: false}
     },
-    {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
+    {provide: LOCALE_ID, useValue: 'fr-FR'},
+    {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'}
   ],
   bootstrap: [AppComponent]
 })

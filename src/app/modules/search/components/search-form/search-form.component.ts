@@ -8,7 +8,7 @@ import {SearchQuery} from "../../models/search-query";
   styleUrls: ['./search-form.component.scss']
 })
 export class SearchFormComponent implements OnInit {
-  @Input() defaultQuery: SearchQuery;
+  @Input() urlParamQuery: SearchQuery;
 
   @Output() query = new EventEmitter<SearchQuery>();
 
@@ -23,19 +23,19 @@ export class SearchFormComponent implements OnInit {
     this.searchForm = this.fb.group(
       {
         location: [
-          this.defaultQuery?.location ?? '',
+          this.urlParamQuery?.location ?? '',
           [Validators.required]
         ],
         flyType: [
-          this.defaultQuery?.type ?? '',
+          this.urlParamQuery?.type ?? '',
           [Validators.required]
         ],
         date: [
-          this.defaultQuery?.date ?? '',
+          this.urlParamQuery?.date ?? '',
           [Validators.required]
         ],
         person: [
-          this.defaultQuery?.person ?? '1',
+          this.urlParamQuery?.person ?? '1',
           [Validators.required]
         ],
       }

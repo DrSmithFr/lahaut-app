@@ -1,0 +1,19 @@
+<hr>
+
+<div class="results-empty">
+  <div class="container" *ngIf="searching">
+    <h3>Recherche des prochaines disponibilité</h3>
+    <mat-spinner style="height: 15px; width: 15px"></mat-spinner>
+  </div>
+
+  <div class="container" *ngIf="!searching && result === null">
+    <h3>Aucune disponibilité trouvée dans les 15 prochains jours</h3>
+  </div>
+
+  <div *ngIf="!searching && result !== null" #container>
+    <div class="container">
+      <h3>Prochaine disponibilité trouvée le {{result.query.date|date: 'EEEE d MMMM yyyy'}}</h3>
+    </div>
+    <app-search-results [search]="result"></app-search-results>
+  </div>
+</div>

@@ -53,29 +53,3 @@
     transform: translateY(0%);
   }
 }
-
-.results-empty {
-  h2 {
-    text-align: center;
-    margin: 20px;
-
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.7);
-
-    border-radius: 5px;
-  }
-
-  h3 {
-    margin: 20px 10px 20px 20px;
-    display: inline-block;
-
-    color: #6c6c6c;
-  }
-
-  mat-spinner {
-    display: inline-block;
-
-    height: 15px;
-    width: 15px;
-  }
-}
