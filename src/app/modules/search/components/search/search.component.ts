@@ -90,6 +90,6 @@ export class SearchComponent implements OnInit {
         .container
         .nativeElement
         .scrollIntoView({behavior: 'smooth'});
-    }, 100);
+    }, 300);
   }
 }

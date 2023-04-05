@@ -54,13 +54,13 @@ export class AppComponent implements OnInit {
       });
 
     if (environment.production) {
-      // PWA notification clicked
-      this
-        .swPush
-        .notificationClicks
-        .subscribe(() => {
-          this.showUpdateBanner();
-        });
+      // // PWA notification clicked
+      // this
+      //   .swPush
+      //   .notificationClicks
+      //   .subscribe(() => {
+      //     this.showUpdateBanner();
+      //   });
 
       // PWA look for update
       this

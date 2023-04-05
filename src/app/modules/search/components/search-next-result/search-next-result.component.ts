@@ -73,6 +73,6 @@ export class SearchNextResultComponent implements OnInit {
         .container
         .nativeElement
         .scrollIntoView({behavior: 'smooth'});
-    }, 100);
+    }, 300);
   }
 }

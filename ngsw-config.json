@@ -8,6 +8,8 @@
       "resources": {
         "files": [
           "/favicon.ico",
+          "/assets/logo.png",
+          "/assets/logo_large.png",
           "/index.html",
           "/manifest.webmanifest",
           "/*.css",

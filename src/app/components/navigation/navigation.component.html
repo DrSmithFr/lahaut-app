@@ -12,7 +12,7 @@
     </a>
 
     <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
-      <mat-icon *ngIf="getBadgeCount() === 0">app_registration</mat-icon>
+      <mat-icon *ngIf="getBadgeCount() === 0">person</mat-icon>
       <mat-icon *ngIf="getBadgeCount() !== 0" [matBadge]="getBadgeCount()">face</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
@@ -23,7 +23,7 @@
         </button>
         <button mat-menu-item routerLink="/customer/register">
           <mat-icon>person_add</mat-icon>
-          <span>Inscription</span>
+          <span>S'inscrire</span>
         </button>
         <hr>
         <button mat-menu-item routerLink="/monitor/register">
