@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
-import {SwPush, SwUpdate} from '@angular/service-worker';
-import {filter} from 'rxjs/operators';
+import {SwPush, SwUpdate, VersionReadyEvent} from '@angular/service-worker';
+import {filter, map} from 'rxjs/operators';
 import {environment} from '../environments/environment';
 import {transition, trigger} from '@angular/animations';
 import {fadeIn} from './animations/animations';
@@ -54,21 +54,22 @@ export class AppComponent implements OnInit {
       });
 
     if (environment.production && this.swUpdate.isEnabled) {
-      // // PWA notification clicked
-      // this
-      //   .swPush
-      //   .notificationClicks
-      //   .subscribe(() => {
-      //     this.showUpdateBanner();
-      //   });
-
       // PWA look for update
       this
         .swUpdate
-        .checkForUpdate()
-        .then(() => {
-          this.showUpdateBanner();
-        });
+        .versionUpdates
+        .pipe(
+          filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY'),
+          map(
+            evt => ({
+              type: 'UPDATE_AVAILABLE',
+              current: evt.currentVersion,
+              available: evt.latestVersion,
+            })
+          )
+        ).subscribe(() => {
+        this.showUpdateBanner();
+      });
     }
   }
 
