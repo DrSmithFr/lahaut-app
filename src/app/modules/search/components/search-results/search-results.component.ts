@@ -17,6 +17,6 @@ export class SearchResultsComponent {
         .container
         .nativeElement
         .scrollIntoView({behavior: 'smooth'});
-    }, 300);
+    }, 50);
   }
 }
