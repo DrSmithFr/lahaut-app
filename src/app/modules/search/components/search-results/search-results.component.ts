@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {Search} from "../../models/search";
 
 @Component({
@@ -8,4 +8,15 @@ import {Search} from "../../models/search";
 })
 export class SearchResultsComponent {
   @Input() search: Search;
+
+  @ViewChild('container') container: ElementRef;
+
+  slideToContent() {
+    setTimeout(() => {
+      this
+        .container
+        .nativeElement
+        .scrollIntoView({behavior: 'smooth'});
+    }, 300);
+  }
 }

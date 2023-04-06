@@ -1,7 +1,7 @@
 <mat-accordion *ngIf="search && search.results && search.results.size > 0">
 
-    <div *ngFor="let slot of search.results | keyvalue">
-      <mat-expansion-panel class="result-row">
+    <div *ngFor="let slot of search.results | keyvalue" #container>
+      <mat-expansion-panel class="result-row" (opened)="slideToContent()">
         <mat-expansion-panel-header>
           <mat-panel-title>
           <span class="time">
