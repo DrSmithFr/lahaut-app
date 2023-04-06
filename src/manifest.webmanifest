@@ -4,7 +4,7 @@
   "description": "Sample PWA App",
   "orientation": "any",
   "theme_color": "transparent",
-  "background_color": "transparent",
+  "background_color": "#aa80d8",
   "display": "fullscreen",
   "prefer_related_applications": false,
   "scope": "./",
