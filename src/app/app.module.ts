@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {InterceptorService} from "./services/interceptor/interceptor.service";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
@@ -93,17 +93,15 @@ registerLocaleData(fr);
   ],
   providers: [
     {
-      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-      useValue: {duration: 2500}
-    },
-    {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true
     },
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
-      useValue: {hasBackdrop: false}
+      useValue: {
+        hasBackdrop: true
+      }
     },
     {provide: LOCALE_ID, useValue: 'fr-FR'},
     {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'}

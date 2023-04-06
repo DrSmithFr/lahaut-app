@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
       // PWA look for update
       this
         .swUpdate
-        .activateUpdate()
+        .checkForUpdate()
         .then(() => {
           this.showUpdateBanner();
         });
