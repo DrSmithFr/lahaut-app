@@ -9,6 +9,17 @@
   "prefer_related_applications": false,
   "scope": "./",
   "start_url": "./",
+  "shortcuts" : [
+    {
+      "name": "Réservations",
+      "url": "/search",
+      "description": "List of events planned for today"
+    },
+    {
+      "name": "Messages",
+      "url": "/chat"
+    },
+  ],
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
