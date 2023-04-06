@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
         window.scrollTo(0, 0);
       });
 
-    if (environment.production) {
+    if (environment.production && this.swUpdate.isEnabled) {
       // // PWA notification clicked
       // this
       //   .swPush
@@ -65,16 +65,8 @@ export class AppComponent implements OnInit {
       // PWA look for update
       this
         .swUpdate
-        .checkForUpdate()
+        .activateUpdate()
         .then(() => {
-          console.log('checking for update');
-        });
-
-      // PWA on update available
-      this
-        .swUpdate
-        .versionUpdates
-        .subscribe(() => {
           this.showUpdateBanner();
         });
     }
@@ -93,7 +85,7 @@ export class AppComponent implements OnInit {
           .swUpdate
           .activateUpdate()
           .then(() => {
-            document.location.reload();
+            window.location.reload();
           });
       });
   }

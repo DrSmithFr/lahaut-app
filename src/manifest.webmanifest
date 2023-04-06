@@ -1,9 +1,12 @@
 {
   "name": "LaHaut - Paratente",
   "short_name": "LaHaut",
-  "theme_color": "#aa80d8",
-  "background_color": "#aa80d8",
-  "display": "standalone",
+  "description": "Sample PWA App",
+  "orientation": "any",
+  "theme_color": "transparent",
+  "background_color": "transparent",
+  "display": "fullscreen",
+  "prefer_related_applications": false,
   "scope": "./",
   "start_url": "./",
   "icons": [
