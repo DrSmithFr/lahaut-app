@@ -1,0 +1,122 @@
+@use 'sass:map';
+
+@import "colors";
+@import "breakpoints";
+
+.slot-info {
+  padding: 9px 24px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .date-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: auto 0;
+
+    .date {
+      font-size: 26px;
+      font-weight: 500;
+      color: map.get($purple-palette, 400);
+    }
+  }
+
+  .time {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+
+    .start {
+      font-size: 20px;
+      color: #68cf3b;
+    }
+
+    .end {
+      align-self: center;
+      color: #9b9b9b;
+    }
+  }
+}
+
+.slot-price {
+  text-align: center;
+
+  h1 {
+    font-size: 40px;
+    font-weight: 500;
+    color: $purple;
+
+    margin-bottom: 0;
+  }
+}
+
+.slot-card {
+  margin-bottom: 29px;
+
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  @include mobile-xs {
+    flex-direction: column-reverse;
+  }
+
+  .monitor-profile {
+    display: flex;
+    flex-direction: row;
+
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+
+    .monitor-info {
+      align-self: center;
+      text-align: center;
+      margin-left: 16px;
+    }
+  }
+
+  .rank {
+    .material-icons {
+      padding-top: 5px;
+
+      text-align: center;
+      font-size: 18px;
+
+      color: map.get($gray-palette, 300);
+    }
+    .mat-icon {
+      height: inherit;
+      width: inherit;
+    }
+  }
+
+  .price {
+    font-size: 30px;
+    color: map.get($purple-palette, 500);
+
+    font-weight: bold;
+  }
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buy-button {
+  color: $white;
+}

@@ -9,9 +9,9 @@ import {map, tap} from 'rxjs/operators';
 import {ReconnectModel} from '../models/reconnect.model';
 import {MessageModel} from "../models/message.model";
 import {SearchQuery} from "../modules/search/models/search-query";
-import {SlotsModel} from "../models/fly/slots.model";
+import {SlotModel} from "../models/fly/slotModel";
 import {DateService} from "./date.service";
-import {MonitorModel} from "../models/monitor.model";
+import {SlotDetailModel} from "../models/fly/slotDetailModel";
 
 // contain every api call to be easily fake using angular provider mechanism
 @Injectable(
@@ -147,12 +147,12 @@ export class ApiService {
     const uri = '/public/slots/' + query.location + '/' + query.type + '/' + this.dateService.formatDate(query.date);
     return this
       .http
-      .get<SlotsModel[]>(this.apiUrlFormUri(uri));
+      .get<SlotModel[]>(this.apiUrlFormUri(uri));
   }
 
-  getMonitorFromUuid(uuid: string): Observable<MonitorModel> {
+  getSlot(id: number) {
     return this
       .http
-      .get<MonitorModel>(this.apiUrlFormUri('/public/monitor/' + uuid));
+      .get<SlotDetailModel>(this.apiUrlFormUri('/public/slots/' + id));
   }
 }

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import {SearchQuery} from "../modules/search/models/search-query";
-import {SlotsModel} from "../models/fly/slots.model";
+import {SlotModel} from "../models/fly/slotModel";
 import {SearchResult} from "../modules/search/models/search-result";
+import {SearchMonitorPriceResult} from "../modules/search/models/search-monitor-price-result";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  public transformSlotToSearchResult(query: SearchQuery, slots: SlotsModel[]): Map<string, SearchResult> {
+  public transformSlotToSearchResult(query: SearchQuery, slots: SlotModel[]): Map<string, SearchResult> {
     const results = new Map<string, SearchResult>();
 
     for (const slot of slots) {
@@ -15,13 +16,15 @@ export class SearchService {
 
       if (!results.has(key)) {
         const slotResult = new SearchResult(
-          [slot.monitor],
+          new Map<number, SearchMonitorPriceResult>(),
           slot.flyLocation.uuid,
           slot.startAt,
           slot.endAt,
           slot.averageFlyDuration,
           slot.type,
         );
+
+        slotResult.monitors.set(slot.id, new SearchMonitorPriceResult(slot.price, slot.monitor));
 
         results.set(key, slotResult);
       } else {
@@ -31,7 +34,7 @@ export class SearchService {
           throw new Error('result is null');
         }
 
-        slotResult.monitors.push(slot.monitor);
+        slotResult.monitors.set(slot.id, new SearchMonitorPriceResult(slot.price, slot.monitor));
       }
     }
 
@@ -42,7 +45,7 @@ export class SearchService {
         throw new Error('result is null');
       }
 
-      if (result.monitors.length < query.person) {
+      if (result.monitors.size < query.person) {
         results.delete(key);
       }
     }
@@ -50,7 +53,7 @@ export class SearchService {
     return results;
   }
 
-  public getSlotUniqIdentifier(slot: SlotsModel): string {
+  public getSlotUniqIdentifier(slot: SlotModel): string {
     return `${slot.flyLocation.uuid}-${slot.startAt}-${slot.endAt}-${slot.averageFlyDuration}-${slot.type}`;
   }
 }

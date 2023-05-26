@@ -1,7 +1,10 @@
 export class UserModel {
-  uuid: string;
-  roles: string[];
-  identity: UserIdentityModel;
+  constructor(
+    public uuid: string,
+    public roles: string[],
+    public identity: UserIdentityModel,
+  ) {
+  }
 }
 
 export class UserIdentityModel {

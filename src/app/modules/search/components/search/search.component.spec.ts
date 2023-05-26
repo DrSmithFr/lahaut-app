@@ -9,7 +9,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ApiService} from "../../../../services/api.service";
 import {SearchFormComponent} from "../search-form/search-form.component";
-import {SearchResultsComponent} from "../search-results/search-results.component";
+import {ResultComponent} from "../result/result.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatListModule} from "@angular/material/list";
@@ -41,7 +41,7 @@ describe('SearchComponent', () => {
       declarations: [
         SearchComponent,
         SearchFormComponent,
-        SearchResultsComponent
+        ResultComponent
       ],
       providers: [
         {provide: ApiService, useValue: ApiServiceMock},

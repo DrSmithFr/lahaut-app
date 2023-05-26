@@ -1,0 +1,21 @@
+<div class="monitor-card-container">
+
+  <div *ngFor="let item of monitors| keyvalue">
+    <a
+      class="monitor-card"
+      (click)="openAddToCart(item.key)">
+    <span class="rank">
+      <mat-icon>star</mat-icon>
+      <mat-icon>star</mat-icon>
+      <mat-icon>star</mat-icon>
+      <mat-icon>star</mat-icon>
+      <mat-icon >star_outline</mat-icon>
+    </span>
+      <span class="price">{{item.value.price|currency: 'EUR': 'symbol-narrow': '1.0-2'}}</span>
+      <span class="identity">
+      <span class="name">{{item.value.identity.firstName}}</span>
+    </span>
+    </a>
+  </div>
+
+</div>

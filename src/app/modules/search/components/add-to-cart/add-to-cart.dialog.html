@@ -1,0 +1,95 @@
+<mat-progress-bar mode="indeterminate" *ngIf="slot === undefined"></mat-progress-bar>
+<div *ngIf="slot !== undefined">
+
+  <div class="slot-info">
+    <div class="date-wrapper">
+      <span class="date">{{slot.startAt|date: 'dd MMMM YYYY'}}</span>
+    </div>
+    <span class="time">
+      <span class="start">{{slot.startAt|date: 'HH:mm'}}</span>
+      <span class="end">{{slot.endAt|date: 'HH:mm'}}</span>
+    </span>
+  </div>
+
+  <div mat-dialog-content>
+
+    <div class="slot-card">
+      <div class="monitor-profile">
+        <img
+          src="assets/illustration/undraw_profile_picture.svg"
+          alt="{{slot.monitor.identity.firstName | titlecase}} {{slot.monitor.identity.lastName | uppercase}}"
+        />
+        <div class="monitor-info">
+          <div class="name">
+            {{slot.monitor.identity.firstName | titlecase}} {{slot.monitor.identity.lastName | uppercase}}
+          </div>
+            <span class="rank">
+            <mat-icon>star</mat-icon>
+            <mat-icon>star</mat-icon>
+            <mat-icon>star</mat-icon>
+            <mat-icon>star</mat-icon>
+            <mat-icon >star_outline</mat-icon>
+          </span>
+        </div>
+      </div>
+
+      <div class="slot-price">
+        <h1>{{slot.price|currency: 'EUR': 'symbol-narrow': '1.0-2'}}</h1>
+        <h2>{{slot.type|flyType|titlecase}}</h2>
+      </div>
+    </div>
+
+    <mat-accordion>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Rendez-vous</mat-panel-title>
+          <mat-panel-description>
+            {{slot.flyLocation.meetingPoint.name}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>
+          <b>Addresse:</b>
+          {{slot.flyLocation.meetingPoint.name}},
+          {{slot.flyLocation.meetingPoint.address.street}},
+          {{slot.flyLocation.meetingPoint.address.zipCode}}
+          {{slot.flyLocation.meetingPoint.address.city | uppercase}},
+          {{slot.flyLocation.meetingPoint.address.country | titlecase}}
+        </p>
+        <google-map
+          height="250px"
+          width="100%"
+          [zoom]="16"
+          [center]="{lat: slot.flyLocation.meetingPoint.latitude, lng: slot.flyLocation.meetingPoint.longitude}"
+          [options]="options"
+        >
+          <map-marker
+            [position]="{lat: slot.flyLocation.meetingPoint.latitude, lng: slot.flyLocation.meetingPoint.longitude}"
+            [title]="slot.flyLocation.meetingPoint.name"
+            [label]="slot.flyLocation.meetingPoint.description"
+          >
+          </map-marker>
+        </google-map>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Plan de vol</mat-panel-title>
+          <mat-panel-description>
+            ~ {{slot.averageFlyDuration | duration}} minutes
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <app-add-to-cart-fly-map [slot]="slot"></app-add-to-cart-fly-map>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
+  </div>
+  <div mat-dialog-actions class="modal-buttons">
+    <button mat-button mat-dialog-close>Annuler</button>
+    <button mat-raised-button color="primary" cdkFocusInitial class="buy-button">
+      <mat-icon>shopping_cart</mat-icon> Réserver
+    </button>
+  </div>
+</div>

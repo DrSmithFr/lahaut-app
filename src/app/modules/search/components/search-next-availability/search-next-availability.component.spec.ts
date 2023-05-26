@@ -1,13 +1,13 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {SearchNextResultComponent} from './search-next-result.component';
-import {SearchResultsComponent} from "../search-results/search-results.component";
+import {SearchNextAvailabilityComponent} from './search-next-availability.component';
+import {ResultComponent} from "../result/result.component";
 import {ApiService} from "../../../../services/api.service";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 describe('SearchNextAvailabilityComponent', () => {
-  let component: SearchNextResultComponent;
-  let fixture: ComponentFixture<SearchNextResultComponent>;
+  let component: SearchNextAvailabilityComponent;
+  let fixture: ComponentFixture<SearchNextAvailabilityComponent>;
 
   beforeEach(async () => {
     const ApiServiceMock = jasmine.createSpyObj('ApiService', ['findSlots']);
@@ -17,8 +17,8 @@ describe('SearchNextAvailabilityComponent', () => {
         MatProgressSpinnerModule
       ],
       declarations: [
-        SearchNextResultComponent,
-        SearchResultsComponent
+        SearchNextAvailabilityComponent,
+        ResultComponent
       ],
       providers: [
         {provide: ApiService, useValue: ApiServiceMock},
@@ -26,7 +26,7 @@ describe('SearchNextAvailabilityComponent', () => {
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(SearchNextResultComponent);
+    fixture = TestBed.createComponent(SearchNextAvailabilityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

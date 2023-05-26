@@ -1,0 +1,19 @@
+<div #container>
+  <mat-expansion-panel class="result-row" (opened)="slideToContent()" >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+          <span class="time">
+            <span class="start">{{slot.startAt|slice:10}}</span>
+            <span class="end">{{slot.endAt|slice:10}}</span>
+          </span>
+
+      </mat-panel-title>
+      <mat-panel-description>
+        {{slot.monitors.size}} Moniteurs disponibles
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <app-result-card [monitors]="slot.monitors"></app-result-card>
+  </mat-expansion-panel>
+</div>
+

@@ -1,14 +1,13 @@
 import {Component, ElementRef, Input, ViewChild} from '@angular/core';
-import {Search} from "../../models/search";
+import {SearchResult} from "../../models/search-result";
 
 @Component({
-  selector: 'app-search-results',
-  templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.scss']
+  selector: 'app-result-row',
+  templateUrl: './result-row.component.html',
+  styleUrls: ['./result-row.component.scss']
 })
-export class SearchResultsComponent {
-  @Input() search: Search;
-
+export class ResultRowComponent {
+  @Input() slot: SearchResult;
   @ViewChild('container') container: ElementRef;
 
   slideToContent() {

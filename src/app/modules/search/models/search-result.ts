@@ -1,12 +1,13 @@
-import {MonitorModel} from "../../../models/monitor.model";
+import {SearchMonitorPriceResult} from "./search-monitor-price-result";
 
 export class SearchResult {
   constructor(
-    public monitors: MonitorModel[],
+    public monitors: Map<number, SearchMonitorPriceResult>,
     public flyLocation: string,
     public startAt: string,
     public endAt: string,
     public averageFlyDuration: string,
     public type: string,
-  ) {}
+  ) {
+  }
 }

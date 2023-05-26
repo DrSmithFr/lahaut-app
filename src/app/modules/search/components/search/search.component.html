@@ -9,11 +9,11 @@
   </section>
 
   <section class="results-container" #container>
-      <app-search-results [search]="search"></app-search-results>
+      <app-result [search]="search"></app-result>
   </section>
 
   <section *ngIf="!loading && searched && search.results && search.results.size === 0">
-    <app-search-next-result [query]="currentQuery"></app-search-next-result>
+    <app-search-next-availability [query]="currentQuery"></app-search-next-availability>
   </section>
 </div>
 

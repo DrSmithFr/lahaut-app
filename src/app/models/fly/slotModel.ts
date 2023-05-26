@@ -1,7 +1,9 @@
 import {MonitorModel} from "../monitor.model";
 
-export class SlotsModel {
+export class SlotModel {
   constructor(
+    public id: number,
+    public price: number,
     public monitor: MonitorModel,
     public flyLocation: {
       uuid: string,

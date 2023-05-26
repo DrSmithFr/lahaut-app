@@ -6,11 +6,11 @@ import {SearchService} from "../../../../services/search.service";
 import {firstValueFrom} from "rxjs";
 
 @Component({
-  selector: 'app-search-next-result',
-  templateUrl: './search-next-result.component.html',
-  styleUrls: ['./search-next-result.component.scss']
+  selector: 'app-search-next-availability',
+  templateUrl: './search-next-availability.component.html',
+  styleUrls: ['./search-next-availability.component.scss']
 })
-export class SearchNextResultComponent implements OnInit {
+export class SearchNextAvailabilityComponent implements OnInit {
   @Input() query: SearchQuery;
   @ViewChild('container') container: ElementRef;
   searching = true;

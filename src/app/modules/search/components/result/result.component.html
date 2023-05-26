@@ -1,0 +1,9 @@
+<mat-accordion *ngIf="search && search.results && search.results.size > 0">
+
+    <div *ngFor="let slot of search.results | keyvalue">
+      <app-result-row [slot]="slot.value"></app-result-row>
+    </div>
+
+</mat-accordion>
+
+<h2 *ngIf="search && search.results && search.results.size === 0">Aucun résultat pour votre recherche...</h2>
