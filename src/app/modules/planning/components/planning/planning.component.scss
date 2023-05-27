@@ -1,0 +1,118 @@
+@use "sass:map";
+
+@import "colors";
+@import "breakpoints";
+
+.planning {
+  h1 {
+
+  }
+
+  .planning-navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      margin: 0;
+
+      color: $blue;
+      font-size: 2.5rem;
+      font-weight: 500;
+    }
+
+    button {
+      text-align: center;
+    }
+  }
+
+  .day-picker {
+    margin: 32px 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .day {
+      width: 70px;
+      text-decoration: none;
+
+      .day-number {
+        width: 32px;
+        height: 32px;
+
+        margin: 0 auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        border-radius: 50%;
+        border: 2px solid map.get($gray-palette, 200);
+
+        color: map.get($gray-palette, 200);
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+
+      .day-name {
+        color: map.get($gray-palette, 200);
+        font-size: 1rem;
+        font-weight: 500;
+
+        text-align: center;
+
+        &.short {
+          display: none;
+        }
+
+        @include mobile-all {
+          &.short {
+            display: block;
+          }
+
+          &.long {
+            display: none;
+          }
+        }
+      }
+
+      &.selected, &:hover {
+        .day-number {
+          border-color: $purple;
+          color: $purple;
+        }
+
+        .day-name {
+          color: $purple;
+        }
+      }
+
+      &.today {
+        .day-number {
+          background: $blue;
+          border-color: map.get($blue-palette, 200);
+          color: $white;
+        }
+
+        .day-name {
+          color: $blue;
+        }
+
+        &:hover, &.selected {
+          .day-number {
+            background: $purple;
+            border-color: map.get($purple-palette, 200);
+            color: $white;
+          }
+
+          .day-name {
+            color: $purple;
+          }
+        }
+      }
+    }
+  }
+}

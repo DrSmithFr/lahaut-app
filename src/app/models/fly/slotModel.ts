@@ -1,4 +1,5 @@
 import {MonitorModel} from "../monitor.model";
+import {BookingModel} from "./bookingModel";
 
 export class SlotModel {
   constructor(
@@ -12,5 +13,6 @@ export class SlotModel {
     public endAt: string,
     public averageFlyDuration: string,
     public type: string,
+    public booking: null|BookingModel
   ) {}
 }

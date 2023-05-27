@@ -23,6 +23,14 @@ body {
   animation: animatedBackground 0.75s linear 0.1s forwards;
 }
 
+// page-container
+.page-container {
+  max-width: 800px;
+  margin: 0 auto;
+
+  padding: 20px;
+}
+
 @keyframes animatedBackground {
   from {
     background-position: 0 200%;

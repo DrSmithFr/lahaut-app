@@ -1,0 +1,48 @@
+import {Injectable} from '@angular/core';
+import {SlotModel} from "../models/fly/slotModel";
+import {PlanningResult} from "../modules/planning/models/planning-result";
+import {BookingModel} from "../models/fly/bookingModel";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PlanningService {
+  public transformSlotToPlanningResult(slots: SlotModel[]): Map<string, PlanningResult> {
+    const results = new Map<string, PlanningResult>();
+
+    for (const slot of slots) {
+      const key = `${slot.startAt}`;
+
+      if (!results.has(key)) {
+        const planningResult = new PlanningResult(
+          slot.startAt,
+          slot.endAt,
+          new Map<number, SlotModel>(),
+          new Map<number, BookingModel>(),
+        );
+
+        if (slot.booking !== null) {
+          planningResult.bookings.set(slot.booking.id, slot.booking);
+        } else {
+          planningResult.slots.set(slot.id, slot);
+        }
+
+        results.set(key, planningResult);
+      } else {
+        const planningResult = results.get(key);
+
+        if (!planningResult) {
+          throw new Error('result is null');
+        }
+
+        if (slot.booking !== null) {
+          planningResult.bookings.set(slot.booking.id, slot.booking);
+        } else {
+          planningResult.slots.set(slot.id, slot);
+        }
+      }
+    }
+
+    return results;
+  }
+}

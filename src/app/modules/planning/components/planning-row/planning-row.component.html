@@ -1,0 +1,49 @@
+<div #container>
+  <mat-expansion-panel
+    class="planning-row"
+    (opened)="slideToContent()"
+    [class.error]="error"
+    [class.pending]="booking && (booking.status === 'pending' || booking.status === 'paid')"
+    [class.confirmed]="booking && booking.status === 'confirmed'">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+          <span class="time">
+            <span class="start">{{result.startAt|slice:10}}</span>
+            <span class="end" *ngIf="error"><mat-icon>error</mat-icon></span>
+            <span class="end" *ngIf="!error && booking">{{result.endAt|slice:10}}</span>
+          </span>
+
+      </mat-panel-title>
+      <mat-panel-description>
+        {{ '' // errors }}
+        <div *ngIf="result.bookings.size > 0 && result.slots.size > 0">
+            {{result.bookings.size}} Réservations /
+            {{result.slots.size}} disponibilités
+        </div>
+        <div *ngIf="result.bookings.size > 1 && result.slots.size === 0">
+            {{result.bookings.size}} Réservations
+        </div>
+
+        {{ '' // normal }}
+        <div *ngIf="result.bookings.size === 0 && result.slots.size > 0">
+            {{result.slots.size}} disponibilités
+        </div>
+        <div *ngIf="booking">
+            {{booking.customer.identity.firstName|titlecase}} {{booking.customer.identity.lastName|uppercase}}
+        </div>
+
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <h2>Disponibilité</h2>
+    <ul *ngFor="let slot of result.slots | keyvalue">
+      <li>{{slot.value.startAt|slice:11}} - {{slot.value.endAt|slice:11}} : {{slot.value.id}}</li>
+    </ul>
+
+    <h2>Réservations</h2>
+    <ul *ngFor="let booking of result.bookings | keyvalue">
+      <li>{{booking.value.customer.identity.firstName|titlecase}} {{booking.value.customer.identity.lastName|uppercase}} : {{booking.value.id}}</li>
+    </ul>
+
+  </mat-expansion-panel>
+</div>

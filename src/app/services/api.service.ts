@@ -60,6 +60,13 @@ export class ApiService {
       );
   }
 
+  findCurrentMonitorSlots(date: Date): Observable<SlotModel[]> {
+    const uri = '/monitor/slots/' + this.dateService.formatDate(date);
+    return this
+      .http
+      .get<SlotModel[]>(this.apiUrlFormUri(uri));
+  }
+
   registerCustomer(username: string, password: string): Observable<UserModel> {
     return this
       .http

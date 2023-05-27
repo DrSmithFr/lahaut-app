@@ -5,6 +5,8 @@ import {IsDisconnectedGuard} from "./guards/is-disconnected-guard.service";
 import {HomeComponent} from "./components/home/home.component";
 import {Page404Component} from "./components/page404/page404.component";
 import {LoginComponent} from "./components/login/login.component";
+import {IsMonitorGuard} from "./guards/is-monitor-guard.service";
+import {IsCustomerGuard} from "./guards/is-customer-guard.service";
 
 const routes: Routes = [
   {
@@ -37,6 +39,12 @@ const routes: Routes = [
     loadChildren: () => import('./modules/search/search.module').then(m => m.SearchModule),
   },
   {
+    path: 'planning',
+    canActivate: [IsMonitorGuard],
+    canActivateChild: [IsMonitorGuard],
+    loadChildren: () => import('./modules/planning/planning.module').then(m => m.PlanningModule),
+  },
+  {
     path: 'home',
     component: HomeComponent,
     data: {
@@ -56,7 +64,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  providers: [IsConnectedGuard, IsDisconnectedGuard],
+  providers: [IsConnectedGuard, IsMonitorGuard, IsCustomerGuard, IsDisconnectedGuard],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

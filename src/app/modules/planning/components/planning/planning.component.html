@@ -1,0 +1,110 @@
+<mat-progress-bar mode="indeterminate" *ngIf="loading" class="top-loader"></mat-progress-bar>
+<div class="page-container planning">
+
+  <div class="planning-navigation">
+    <button mat-icon-button aria-label="Semaine précédente" (click)="goPreviousWeek()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1 class="center">Planning - {{selectedDate|date: 'MMMM'|titlecase}}</h1>
+    <div>
+      <button mat-icon-button aria-label="Revenir aujourd'hui" (click)="goToday()">
+        <mat-icon>today</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Semaine suivante" (click)="goNextWeek()">
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+
+  </div>
+
+
+  <div class="day-picker">
+    <a class="day"
+       href="javascript:void(0)"
+       [class.today]="today.getDate() === week.monday.getDate()"
+       [class.selected]="selectedDate.getDate() === week.monday.getDate()"
+       (click)="selectDate(week.monday)">
+      <div class="day-number">
+        <span>{{week.monday|date: 'd'}}</span>
+      </div>
+      <div class="day-name short">{{week.monday|date: 'EE'|titlecase}}</div>
+      <div class="day-name long">{{week.monday|date: 'EEEE'|titlecase}}</div>
+    </a>
+    <a class="day"
+       href="javascript:void(0)"
+       [class.today]="today.getDate() === week.tuesday.getDate()"
+       [class.selected]="selectedDate.getDate() === week.tuesday.getDate()"
+       (click)="selectDate(week.tuesday)">
+      <div class="day-number">
+        <span>{{week.tuesday|date: 'd'}}</span>
+      </div>
+      <div class="day-name short">{{week.tuesday|date: 'EE'|titlecase}}</div>
+      <div class="day-name long">{{week.tuesday|date: 'EEEE'|titlecase}}</div>
+    </a>
+    <a class="day"
+       href="javascript:void(0)"
+       [class.today]="today.getDate() === week.tuesday.getDate()"
+       [class.selected]="selectedDate.getDate() === week.wednesday.getDate()"
+       (click)="selectDate(week.wednesday)">
+      <div class="day-number">
+        <span>{{week.wednesday|date: 'd'}}</span>
+      </div>
+      <div class="day-name short">{{week.wednesday|date: 'EE'|titlecase}}</div>
+      <div class="day-name long">{{week.wednesday|date: 'EEEE'|titlecase}}</div>
+    </a>
+    <a class="day"
+       href="javascript:void(0)"
+       [class.today]="today.getDate() === week.thursday.getDate()"
+       [class.selected]="selectedDate.getDate() === week.thursday.getDate()"
+       (click)="selectDate(week.thursday)">
+      <div class="day-number">
+        <span>{{week.thursday|date: 'd'}}</span>
+      </div>
+      <div class="day-name short">{{week.thursday|date: 'EE'|titlecase}}</div>
+      <div class="day-name long">{{week.thursday|date: 'EEEE'|titlecase}}</div>
+    </a>
+    <a class="day"
+       href="javascript:void(0)"
+       [class.today]="today.getDate() === week.friday.getDate()"
+       [class.selected]="selectedDate.getDate() === week.friday.getDate()"
+       (click)="selectDate(week.friday)">
+      <div class="day-number">
+        <span>{{week.friday|date: 'd'}}</span>
+      </div>
+      <div class="day-name short">{{week.friday|date: 'EE'|titlecase}}</div>
+      <div class="day-name long">{{week.friday|date: 'EEEE'|titlecase}}</div>
+    </a>
+    <a class="day"
+       href="javascript:void(0)"
+       [class.today]="today.getDate() === week.saturday.getDate()"
+       [class.selected]="selectedDate.getDate() === week.saturday.getDate()"
+       (click)="selectDate(week.saturday)">
+      <div class="day-number">
+        <span>{{week.saturday|date: 'd'}}</span>
+      </div>
+      <div class="day-name short">{{week.saturday|date: 'EE'|titlecase}}</div>
+      <div class="day-name long">{{week.saturday|date: 'EEEE'|titlecase}}</div>
+    </a>
+    <a class="day"
+       href="javascript:void(0)"
+       [class.today]="today.getDate() === week.sunday.getDate()"
+       [class.selected]="selectedDate.getDate() === week.sunday.getDate()"
+       (click)="selectDate(week.sunday)">
+      <div class="day-number">
+        <span>{{week.sunday|date: 'd'}}</span>
+      </div>
+      <div class="day-name short">{{week.sunday|date: 'EE'|titlecase}}</div>
+      <div class="day-name long">{{week.sunday|date: 'EEEE'|titlecase}}</div>
+    </a>
+  </div>
+
+  <div class="agenda" *ngIf="!loading">
+    <mat-accordion>
+
+      <div *ngFor="let result of results | keyvalue">
+        <app-planning-row [result]="result.value"></app-planning-row>
+      </div>
+
+    </mat-accordion>
+  </div>
+</div>
