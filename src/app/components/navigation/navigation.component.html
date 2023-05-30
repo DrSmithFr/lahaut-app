@@ -3,7 +3,7 @@
     <!-- 'absorbs' the auto-focus behavior -->
     <button mat-button style="height: 0; position: absolute;" aria-label="disable-auto-focus"></button>
 
-    <button mat-icon-button aria-label="Example icon-button with menu icon">
+    <button mat-icon-button aria-label="Example icon-button with menu icon" style="opacity: 0">
       <mat-icon>menu</mat-icon>
     </button>
 
@@ -12,8 +12,8 @@
     </a>
 
     <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
-      <mat-icon *ngIf="getBadgeCount() === 0">person</mat-icon>
-      <mat-icon *ngIf="getBadgeCount() !== 0" [matBadge]="getBadgeCount()">face</mat-icon>
+      <mat-icon *ngIf="getBadgeCount() === 0">menu</mat-icon>
+      <mat-icon *ngIf="getBadgeCount() !== 0" [matBadge]="getBadgeCount()">person</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
       <div *ngIf="!isLogged()">
@@ -24,11 +24,6 @@
         <button mat-menu-item routerLink="/customer/register">
           <mat-icon>person_add</mat-icon>
           <span>S'inscrire</span>
-        </button>
-        <hr>
-        <button mat-menu-item routerLink="/monitor/register">
-          <mat-icon>verified</mat-icon>
-          <span>Devenir Moniteur</span>
         </button>
       </div>
 
@@ -63,6 +58,10 @@
           <mat-icon>dashboard</mat-icon>
           <span>Tableau de bord</span>
         </button>
+        <button mat-menu-item routerLink="/planning">
+          <mat-icon>calendar_month</mat-icon>
+          <span>Planning</span>
+        </button>
         <hr>
         <button mat-menu-item routerLink="/chat">
           <mat-icon *ngIf="getBadgeCountForMessage() === 0">chat</mat-icon>
@@ -75,15 +74,10 @@
           <span>Réservations</span>
         </button>
         <hr>
-        <button mat-menu-item routerLink="/planning">
-          <mat-icon>calendar_month</mat-icon>
-          <span>Planning</span>
-        </button>
         <button mat-menu-item routerLink="/monitor/account">
           <mat-icon>person</mat-icon>
           <span>Mon compte</span>
         </button>
-        <hr>
         <button mat-menu-item (click)="openLogoutDialog()">
           <mat-icon>logout</mat-icon>
           <span>Se déconnecter</span>

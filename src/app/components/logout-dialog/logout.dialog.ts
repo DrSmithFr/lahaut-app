@@ -20,7 +20,7 @@ export class LogoutDialog {
 
   disconnect() {
     this.auth.clearSession();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/search']);
     this.snackBar.open('Vous êtes déconnecté', undefined, {duration: 2000});
     this.dialogRef.close();
   }

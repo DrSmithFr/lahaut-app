@@ -20,7 +20,7 @@ export class StateService {
   constructor(
     private localService: LocalService
   ) {
-    this.REDIRECT_AFTER_LOGIN = new BehaviorSubject<string>('/home');
+    this.REDIRECT_AFTER_LOGIN = new BehaviorSubject<string>('/dashboard');
 
     this.TOKEN = new BehaviorSubject<TokenModel|null>(
       this.localService.getObject<TokenModel>('STATE_TOKEN') || null

@@ -35,7 +35,11 @@
             autocomplete="password"
             tabindex="2">
           <mat-icon matPrefix>key</mat-icon>
-          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+          <button
+            mat-icon-button
+            matSuffix
+            tabindex="-1"
+            (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
                   [attr.aria-pressed]="hidePassword">
             <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>

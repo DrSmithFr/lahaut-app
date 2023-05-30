@@ -99,23 +99,27 @@ export class LoginComponent implements OnInit {
         this.getUsername()?.value,
         this.getPassword()?.value,
       )
-      .subscribe(
-        () => {
-          const redirect = this.state.REDIRECT_AFTER_LOGIN.getValue();
-
+      .subscribe({
+        next: (user) => {
           this
             .gtag
             .event(
-            "login",
-            {
-              event_category: "users",
-              event_label: "Login " + this.getUsername()?.value,
-              value: "valid"
-            })
+              "login",
+              {
+                event_category: "users",
+                event_label: "Login " + this.getUsername()?.value,
+                value: "valid"
+              })
 
-          this.router.navigateByUrl(redirect);
+          if (this.auth.isCustomer()) {
+            this.router.navigateByUrl('search');
+          } else if (this.auth.isMonitor()) {
+            this.router.navigateByUrl('dashboard');
+          } else {
+            this.router.navigateByUrl('home');
+          }
         },
-        error => {
+        error: error => {
           this.showLoader = false;
 
           this
@@ -140,7 +144,7 @@ export class LoginComponent implements OnInit {
             this.snackBar.open('Une erreur est survenue');
           }
         }
-      );
+      });
   }
 
   shakeForm() {
