@@ -5,8 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {TokenModel} from '../models/token.model';
 import {Observable} from 'rxjs';
 import {UserModel} from '../models/user.model';
-import {map, tap} from 'rxjs/operators';
-import {ReconnectModel} from '../models/reconnect.model';
+import {tap} from 'rxjs/operators';
 import {MessageModel} from "../models/message.model";
 import {SearchQuery} from "../modules/search/models/search-query";
 import {SlotModel} from "../models/fly/slotModel";
@@ -29,7 +28,7 @@ export class ApiService {
   ) {
   }
 
-  private apiUrlFormUri(uri: string): string {
+  apiUrlFormUri(uri: string): string {
     return this.API_URL + uri;
   }
 
@@ -44,6 +43,22 @@ export class ApiService {
         tap(tokens => {
           // updating session with current token
           this.state.TOKEN.next(tokens);
+        })
+      );
+  }
+
+  reconnect(token: string): Observable<TokenModel> {
+    return this
+      .http
+      .post<TokenModel>(
+        this.apiUrlFormUri('/public/login/refresh'),
+        {
+          refresh_token: token,
+        }
+      )
+      .pipe(
+        tap(data => {
+          this.state.TOKEN.next(data);
         })
       );
   }
@@ -94,26 +109,6 @@ export class ApiService {
           // updating session with current users information
           this.state.LOGGED_USER.next(user);
         }),
-      );
-  }
-
-  reconnect(token: string): Observable<UserModel> {
-    return this
-      .http
-      .post<ReconnectModel>(
-        this.apiUrlFormUri('/public/login/refresh'),
-        {
-          refresh_token: token,
-        }
-      )
-      .pipe(
-        tap(data => {
-          this.state.TOKEN.next(data.token);
-          this.state.LOGGED_USER.next(data.user);
-        })
-      )
-      .pipe(
-        map(data => data.user)
       );
   }
 

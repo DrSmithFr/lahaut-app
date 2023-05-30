@@ -50,7 +50,11 @@ export class SearchComponent implements OnInit {
     }).unsubscribe()
   }
 
-  updateSearchUrl(query: SearchQuery) {
+  requestResults(query: SearchQuery) {
+    this.loading = true;
+    this.currentQuery = query;
+
+    // Update URL with current request params
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
@@ -61,13 +65,6 @@ export class SearchComponent implements OnInit {
       },
       queryParamsHandling: "merge",
     });
-  }
-
-  requestResults(query: SearchQuery) {
-    this.loading = true;
-
-    this.currentQuery = query;
-    this.updateSearchUrl(query);
 
     this
       .api

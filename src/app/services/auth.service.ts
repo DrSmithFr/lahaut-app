@@ -3,6 +3,7 @@ import {StateService} from './state.service';
 import {Observable} from 'rxjs';
 import {ApiService} from './api.service';
 import {UserModel} from '../models/user.model';
+import {TokenModel} from "../models/token.model";
 
 @Injectable(
   {
@@ -37,6 +38,29 @@ export class AuthService {
     });
   }
 
+  reconnect(): Observable<TokenModel> {
+    return new Observable(observer => {
+      const token = this.state.TOKEN.getValue();
+
+      if (null === token) {
+        observer.error('No token found');
+        observer.complete();
+        return;
+      }
+
+      return this
+        .api
+        .reconnect(token.refresh_token)
+        .subscribe({
+          next: (token: TokenModel) => {
+            observer.next(token);
+            observer.complete();
+          },
+          error: e => observer.error(e)
+        });
+    });
+  }
+
   registerCustomer(email: string, password: string) {
     return this
       .api
@@ -49,28 +73,16 @@ export class AuthService {
       .registerMonitor(email, password);
   }
 
-  reconnect(): Observable<UserModel> {
-    return new Observable(observer => {
-      const token = this.state.TOKEN.getValue();
-
-      if (null === token) {
-        observer.complete();
-        return;
-      }
-
-      this.api.reconnect(token.refresh_token).subscribe(user => {
-        observer.next(user);
-        observer.complete();
-      });
-    });
-  }
-
-  getCurrentUser(): UserModel | null {
+  getUser(): UserModel | null {
     return this.state.LOGGED_USER.getValue();
   }
 
+  getToken(): TokenModel | null {
+    return this.state.TOKEN.getValue();
+  }
+
   isLogged(): boolean {
-    return this.state.LOGGED_USER.getValue() !== null;
+    return this.state.LOGGED_USER.getValue() !== null && this.state.TOKEN.getValue() !== null;
   }
 
   clearSession() {
@@ -79,7 +91,7 @@ export class AuthService {
   }
 
   isGranted(...roles: string[]) {
-    const user = this.getCurrentUser();
+    const user = this.getUser();
 
     if (!user) {
       return false;

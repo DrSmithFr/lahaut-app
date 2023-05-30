@@ -52,7 +52,7 @@ export class ChatComponent implements OnInit {
   }
 
   isMessageMine(message: {content: string, time: string, sentBy: string}) {
-    const user = this.authService.getCurrentUser();
+    const user = this.authService.getUser();
 
     if (user === null) {
       return false

@@ -7,7 +7,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {InterceptorService} from "./services/interceptor/interceptor.service";
+import {AuthInterceptorService} from "./services/interceptor/auth-interceptor.service";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
@@ -94,7 +94,7 @@ registerLocaleData(fr);
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
+      useClass: AuthInterceptorService,
       multi: true
     },
     {

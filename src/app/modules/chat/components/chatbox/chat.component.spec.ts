@@ -17,7 +17,7 @@ describe('ChatboxComponent', () => {
     const AuthServiceMock = jasmine.createSpyObj(
       'AuthService',
       {
-        'getCurrentUser': {uuid: '00e312f3-9483-4305-b4b7-ee881c19e8da'}
+        'getUser': {uuid: '00e312f3-9483-4305-b4b7-ee881c19e8da'}
       }
     );
 
