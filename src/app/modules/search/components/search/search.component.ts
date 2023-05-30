@@ -31,30 +31,27 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      const location: string = params["from"];
-      const type: string = params["type"];
-      const date: Date = params["date"];
-      const person: number = params["for"];
+    this
+      .route
+      .queryParams
+      .subscribe(params => {
+        const location: string = params["from"];
+        const type: string = params["type"];
+        const date: Date = params["date"];
+        const person: number = params["for"];
 
-      if (location || type || date !== undefined || person) {
-        this.urlParamQuery = new SearchQuery(
-          params["from"],
-          params["type"],
-          new Date(params["date"]),
-          params["for"],
-        );
-
-        this.requestResults(this.urlParamQuery);
-      }
-    }).unsubscribe()
+        if (location || type || date !== undefined || person) {
+          this.urlParamQuery = new SearchQuery(
+            params["from"],
+            params["type"],
+            new Date(params["date"]),
+            params["for"],
+          );
+        }
+      }).unsubscribe()
   }
 
-  requestResults(query: SearchQuery) {
-    this.loading = true;
-    this.currentQuery = query;
-
-    // Update URL with current request params
+  updateSearchUrl(query: SearchQuery) {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
@@ -65,6 +62,13 @@ export class SearchComponent implements OnInit {
       },
       queryParamsHandling: "merge",
     });
+  }
+
+  requestResults(query: SearchQuery) {
+    this.loading = true;
+
+    this.currentQuery = query;
+    this.updateSearchUrl(query);
 
     this
       .api
