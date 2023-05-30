@@ -3,6 +3,8 @@ import {WeekModel} from "../../../../models/week.model";
 import {ApiService} from "../../../../services/api.service";
 import {PlanningService} from "../../../../services/planning.service";
 import {PlanningResult} from "../../models/planning-result";
+import {ActivatedRoute, Router} from "@angular/router";
+import {DateService} from "../../../../services/date.service";
 
 @Component({
   selector: 'app-planning',
@@ -21,12 +23,35 @@ export class PlanningComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private planningService: PlanningService,
+    private dateService: DateService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
-    this.goToday()
   }
 
   ngOnInit(): void {
-    this.loadSlots();
+    this
+      .route
+      .queryParams
+      .subscribe(params => {
+        const dateString: string = params["date"];
+
+        if (dateString !== undefined && dateString !== "today") {
+          this.goTo(new Date(dateString));
+        } else {
+          this.goToday()
+        }
+      }).unsubscribe()
+  }
+
+  updateUrl(date: Date) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        "date": this.dateService.formatDate(date),
+      },
+      queryParamsHandling: "merge",
+    });
   }
 
   loadSlots(): void {
@@ -47,11 +72,21 @@ export class PlanningComponent implements OnInit {
     return new Date(now.setDate(diff));
   }
 
-  goToday(): void {
-    this.selectedDate = this.today;
-    this.week = new WeekModel(this.getMonday(this.today));
-
+  // Only change the selected date, not the week
+  selectDate(date: Date) {
+    this.selectedDate = date;
+    this.updateUrl(date);
     this.loadSlots();
+  }
+
+  // Change the selected date and the week
+  goTo(date: Date) {
+    this.week = new WeekModel(this.getMonday(date));
+    this.selectDate(date);
+  }
+
+  goToday(): void {
+    this.goTo(this.today);
   }
 
   goNextWeek(): void {
@@ -71,11 +106,6 @@ export class PlanningComponent implements OnInit {
     this.selectedDate = previousMonday;
     this.week = new WeekModel(previousMonday);
 
-    this.loadSlots();
-  }
-
-  selectDate(date: Date) {
-    this.selectedDate = date;
     this.loadSlots();
   }
 }
