@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {IsConnectedGuard} from "../../guards/is-connected-guard.service";
 import {ChatComponent} from "./components/chatbox/chat.component";
+import {RoleGuard} from "../../guards/role-guard.service";
 
 const routes: Routes = [
   {
     path: '',
-    canActivate: [IsConnectedGuard],
+    canActivate: [RoleGuard.isConnected(true)],
     component: ChatComponent,
   },
 ];

@@ -78,14 +78,20 @@ export class AuthService {
         this.state.LOGGED_USER.next(null);
     }
 
-    isGranted(role: string) {
+    isGranted(...roles: string[]) {
         const user = this.getCurrentUser();
 
-        if (user) {
-            return user.roles.includes(role);
+        if (!user) {
+            return false;
         }
 
-        return false;
+        for (const role of roles) {
+            if (!user.roles.includes(role)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
   isCustomer(): boolean {

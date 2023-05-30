@@ -1,14 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {IsDisconnectedGuard} from '../../guards/is-disconnected-guard.service';
 import {RegisterMonitorComponent} from './components/register-monitor/register-monitor.component';
-import {IsConnectedGuard} from "../../guards/is-connected-guard.service";
 import {MyMonitorAccountComponent} from "./components/my-monitor-account/my-monitor-account.component";
+import {RoleGuard} from "../../guards/role-guard.service";
 
 const routes: Routes = [
   {
     path: 'register',
-    canActivate: [IsDisconnectedGuard],
+    canActivate: [RoleGuard.isConnected(false)],
     component: RegisterMonitorComponent,
     data: {
       animation: 'register',
@@ -16,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'account',
-    canActivate: [IsConnectedGuard],
+    canActivate: [RoleGuard.isConnected(true)],
     component: MyMonitorAccountComponent,
   },
 ];

@@ -1,12 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {IsConnectedGuard} from "./guards/is-connected-guard.service";
-import {IsDisconnectedGuard} from "./guards/is-disconnected-guard.service";
 import {HomeComponent} from "./components/home/home.component";
 import {Page404Component} from "./components/page404/page404.component";
 import {LoginComponent} from "./components/login/login.component";
-import {IsMonitorGuard} from "./guards/is-monitor-guard.service";
-import {IsCustomerGuard} from "./guards/is-customer-guard.service";
+import {RoleGuard, Roles} from "./guards/role-guard.service";
 
 const routes: Routes = [
   {
@@ -40,8 +37,8 @@ const routes: Routes = [
   },
   {
     path: 'planning',
-    canActivate: [IsMonitorGuard],
-    canActivateChild: [IsMonitorGuard],
+    canActivate: [RoleGuard.forRoles(Roles.monitor)],
+    canActivateChild: [RoleGuard.forRoles(Roles.monitor)],
     loadChildren: () => import('./modules/planning/planning.module').then(m => m.PlanningModule),
   },
   {
@@ -64,7 +61,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  providers: [IsConnectedGuard, IsMonitorGuard, IsCustomerGuard, IsDisconnectedGuard],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
