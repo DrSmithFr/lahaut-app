@@ -14,52 +14,51 @@ const TIME_OUT_DELAY_DEFAULT = 12000;
 // handle session expiration (cleared when getting 401) sending back use to login page
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
-    constructor(
-        private router: Router,
-        private authService: AuthService,
-        private stateService: StateService,
-        private readonly snackBar: MatSnackBar,
-    ) {
-    }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private stateService: StateService,
+    private readonly snackBar: MatSnackBar,
+  ) {
+  }
 
-    intercept<T>(request: HttpRequest<T>, next: HttpHandler): Observable<HttpEvent<T>> {
-        const token = this.stateService.TOKEN.getValue();
+  intercept<T>(request: HttpRequest<T>, next: HttpHandler): Observable<HttpEvent<T>> {
+    const token = this.stateService.TOKEN.getValue();
 
-        if (request.headers.get('Authorization') === null && null !== token && null !== token.token) {
-            request = request.clone(
-                {
-                    setHeaders: {Authorization: `Bearer ${token.token}`},
-                }
-            );
+    if (request.headers.get('Authorization') === null && null !== token && null !== token.token) {
+      request = request.clone(
+        {
+          setHeaders: {Authorization: `Bearer ${token.token}`},
         }
-
-        return next
-            .handle(request)
-            .pipe(
-                timeout(TIME_OUT_DELAY_DEFAULT),
-                tap(
-                    () => {
-                    },
-                    err => {
-                        if (err instanceof HttpErrorResponse && err.status === 401 && this.authService.isLogged()) {
-                            this.authService.clearSession();
-
-                            this
-                                .snackBar
-                                .open(
-                                    'La sessions à expirer',
-                                    'OK',
-                                    {
-                                        horizontalPosition: 'center',
-                                        verticalPosition:   'bottom',
-                                        duration:           0,
-                                    }
-                                );
-
-                            this.router.navigate(['/login']);
-                        }
-                    },
-                ),
-            );
+      );
     }
+
+    return next
+      .handle(request)
+      .pipe(
+        timeout(TIME_OUT_DELAY_DEFAULT),
+        tap({
+            error: (err) => {
+              if (err instanceof HttpErrorResponse && err.status === 401 && this.authService.isLogged()) {
+                this.authService.clearSession();
+
+                this
+                  .snackBar
+                  .open(
+                    'La sessions à expirer',
+                    'OK',
+                    {
+                      horizontalPosition: 'center',
+                      verticalPosition: 'bottom',
+                      duration: 0,
+                    }
+                  );
+
+                this.router.navigate(['/login']);
+              }
+            }
+          }
+        ),
+      );
+  }
 }

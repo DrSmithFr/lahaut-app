@@ -50,16 +50,16 @@ export class PasswordResetDialog implements OnInit {
       this
         .api
         .checkPasswordResetTokenValidity(control.value)
-        .subscribe(
-          () => {
+        .subscribe({
+          next: () => {
             subscriber.next(null);
             subscriber.complete();
           },
-          () => {
+          error: () => {
             subscriber.next({invalid: true});
             subscriber.complete();
           },
-        );
+        });
     });
   }
 
@@ -117,16 +117,20 @@ export class PasswordResetDialog implements OnInit {
       return;
     }
 
-    this.api.resetPassword(this.getToken()?.value, this.getPassword()?.value).subscribe(
-      () => {
-        this.snackBar.open('Le mot de passe à été changer', 'Close', {duration: 5000});
-        this.dialogRef.close();
-      },
-      () => {
-        this.snackBar.open('Une erreur est survenue lors de la réinitialisation de votre mot de passe', 'Close', {duration: 5000});
-        this.dialogRef.close();
-      }
-    );
+    this
+      .api
+      .resetPassword(this.getToken()?.value, this.getPassword()?.value)
+      .subscribe({
+        next: () => {
+          this.snackBar.open('Le mot de passe à été changer', 'Close', {duration: 5000});
+          this.dialogRef.close();
+        }
+        ,
+        error: () => {
+          this.snackBar.open('Une erreur est survenue lors de la réinitialisation de votre mot de passe', 'Close', {duration: 5000});
+          this.dialogRef.close();
+        }
+      });
   }
 
   openRequestResetPasswordDialog() {

@@ -36,16 +36,17 @@ export class PasswordResetRequestDialog {
       this
         .api
         .checkAccountExist(control.value)
-        .subscribe(
-          () => {
+        .subscribe({
+          next: () => {
             subscriber.next({notFound: true});
             subscriber.complete();
-          },
-          () => {
+          }
+          ,
+          error: () => {
             subscriber.next(null);
             subscriber.complete();
           },
-        );
+        });
     });
   }
 

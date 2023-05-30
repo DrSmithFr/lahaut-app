@@ -5,94 +5,94 @@ import {ApiService} from './api.service';
 import {UserModel} from '../models/user.model';
 
 @Injectable(
-    {
-        providedIn: 'root'
-    }
+  {
+    providedIn: 'root'
+  }
 )
 export class AuthService {
 
-    constructor(
-        private api: ApiService,
-        private state: StateService
-    ) {
-    }
+  constructor(
+    private api: ApiService,
+    private state: StateService
+  ) {
+  }
 
-    connect(login: string, password: string): Observable<UserModel> {
-        return new Observable(observer => {
+  connect(login: string, password: string): Observable<UserModel> {
+    return new Observable(observer => {
+      this
+        .api
+        .login(login, password)
+        .subscribe({
+          next: () => {
             this
-                .api
-                .login(login, password)
-                .subscribe(
-                    () => {
-                        this
-                            .api
-                            .getCurrentUser()
-                            .subscribe(
-                                user => observer.next(user),
-                                e => observer.error(e),
-                            );
-                    },
-                    e => observer.error(e)
-                );
+              .api
+              .getCurrentUser()
+              .subscribe({
+                next: user => observer.next(user),
+                error: e => observer.error(e),
+              });
+          },
+          error: e => observer.error(e)
         });
+    });
+  }
+
+  registerCustomer(email: string, password: string) {
+    return this
+      .api
+      .registerCustomer(email, password);
+  }
+
+  registerMonitor(email: string, password: string) {
+    return this
+      .api
+      .registerMonitor(email, password);
+  }
+
+  reconnect(): Observable<UserModel> {
+    return new Observable(observer => {
+      const token = this.state.TOKEN.getValue();
+
+      if (null === token) {
+        observer.complete();
+        return;
+      }
+
+      this.api.reconnect(token.refresh_token).subscribe(user => {
+        observer.next(user);
+        observer.complete();
+      });
+    });
+  }
+
+  getCurrentUser(): UserModel | null {
+    return this.state.LOGGED_USER.getValue();
+  }
+
+  isLogged(): boolean {
+    return this.state.LOGGED_USER.getValue() !== null;
+  }
+
+  clearSession() {
+    this.state.TOKEN.next(null);
+    this.state.LOGGED_USER.next(null);
+  }
+
+  isGranted(...roles: string[]) {
+    const user = this.getCurrentUser();
+
+    if (!user) {
+      return false;
     }
 
-    registerCustomer(email: string, password: string) {
-        return this
-            .api
-            .registerCustomer(email, password);
+    for (const role of roles) {
+      if (!user.roles.includes(role)) {
+        return false;
+      }
     }
 
-    registerMonitor(email: string, password: string) {
-        return this
-            .api
-            .registerMonitor(email, password);
-    }
-
-    reconnect(): Observable<UserModel> {
-        return new Observable(observer => {
-            const token = this.state.TOKEN.getValue();
-
-            if (null === token) {
-                observer.complete();
-                return;
-            }
-
-            this.api.reconnect(token.refresh_token).subscribe(user => {
-                observer.next(user);
-                observer.complete();
-            });
-        });
-    }
-
-    getCurrentUser(): UserModel | null {
-        return this.state.LOGGED_USER.getValue();
-    }
-
-    isLogged(): boolean {
-        return this.state.LOGGED_USER.getValue() !== null;
-    }
-
-    clearSession() {
-        this.state.TOKEN.next(null);
-        this.state.LOGGED_USER.next(null);
-    }
-
-    isGranted(...roles: string[]) {
-        const user = this.getCurrentUser();
-
-        if (!user) {
-            return false;
-        }
-
-        for (const role of roles) {
-            if (!user.roles.includes(role)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
+    return true;
+  }
 
   isCustomer(): boolean {
     return this.isGranted('ROLE_CUSTOMER');

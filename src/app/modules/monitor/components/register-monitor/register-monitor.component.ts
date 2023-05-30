@@ -55,16 +55,16 @@ export class RegisterMonitorComponent implements OnInit {
       this
         .api
         .checkAccountExist(control.value)
-        .subscribe(
-          () => {
+        .subscribe({
+          next: () => {
             subscriber.next(null);
             subscriber.complete();
           },
-          () => {
+          error: () => {
             subscriber.next({used: true});
             subscriber.complete();
           },
-        );
+        });
     });
   }
 
@@ -137,8 +137,8 @@ export class RegisterMonitorComponent implements OnInit {
         this.getUsername()?.value,
         this.getPassword()?.value
       )
-      .subscribe(
-        () => {
+      .subscribe({
+        next: () => {
           this
             .auth
             .connect(
@@ -159,12 +159,12 @@ export class RegisterMonitorComponent implements OnInit {
               this.router.navigateByUrl('/home');
             });
         },
-        () => {
+        error: () => {
           this.showLoader = false;
           this.shaking = true;
           this.snackBar.open('Une erreur est survenue');
         }
-      );
+      });
   }
 
 }
