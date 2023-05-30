@@ -20,81 +20,16 @@
 
   <div class="day-picker">
     <a class="day"
+       *ngFor="let day of week.days"
        href="javascript:void(0)"
-       [class.today]="today.getDate() === week.monday.getDate()"
-       [class.selected]="selectedDate.getDate() === week.monday.getDate()"
-       (click)="selectDate(week.monday)">
+       [class.today]="today.getDate() === day.getDate()"
+       [class.selected]="selectedDate.getDate() === day.getDate()"
+       (click)="selectDate(day)">
       <div class="day-number">
-        <span>{{week.monday|date: 'd'}}</span>
+        <span>{{day|date: 'd'}}</span>
       </div>
-      <div class="day-name short">{{week.monday|date: 'EE'|titlecase}}</div>
-      <div class="day-name long">{{week.monday|date: 'EEEE'|titlecase}}</div>
-    </a>
-    <a class="day"
-       href="javascript:void(0)"
-       [class.today]="today.getDate() === week.tuesday.getDate()"
-       [class.selected]="selectedDate.getDate() === week.tuesday.getDate()"
-       (click)="selectDate(week.tuesday)">
-      <div class="day-number">
-        <span>{{week.tuesday|date: 'd'}}</span>
-      </div>
-      <div class="day-name short">{{week.tuesday|date: 'EE'|titlecase}}</div>
-      <div class="day-name long">{{week.tuesday|date: 'EEEE'|titlecase}}</div>
-    </a>
-    <a class="day"
-       href="javascript:void(0)"
-       [class.today]="today.getDate() === week.tuesday.getDate()"
-       [class.selected]="selectedDate.getDate() === week.wednesday.getDate()"
-       (click)="selectDate(week.wednesday)">
-      <div class="day-number">
-        <span>{{week.wednesday|date: 'd'}}</span>
-      </div>
-      <div class="day-name short">{{week.wednesday|date: 'EE'|titlecase}}</div>
-      <div class="day-name long">{{week.wednesday|date: 'EEEE'|titlecase}}</div>
-    </a>
-    <a class="day"
-       href="javascript:void(0)"
-       [class.today]="today.getDate() === week.thursday.getDate()"
-       [class.selected]="selectedDate.getDate() === week.thursday.getDate()"
-       (click)="selectDate(week.thursday)">
-      <div class="day-number">
-        <span>{{week.thursday|date: 'd'}}</span>
-      </div>
-      <div class="day-name short">{{week.thursday|date: 'EE'|titlecase}}</div>
-      <div class="day-name long">{{week.thursday|date: 'EEEE'|titlecase}}</div>
-    </a>
-    <a class="day"
-       href="javascript:void(0)"
-       [class.today]="today.getDate() === week.friday.getDate()"
-       [class.selected]="selectedDate.getDate() === week.friday.getDate()"
-       (click)="selectDate(week.friday)">
-      <div class="day-number">
-        <span>{{week.friday|date: 'd'}}</span>
-      </div>
-      <div class="day-name short">{{week.friday|date: 'EE'|titlecase}}</div>
-      <div class="day-name long">{{week.friday|date: 'EEEE'|titlecase}}</div>
-    </a>
-    <a class="day"
-       href="javascript:void(0)"
-       [class.today]="today.getDate() === week.saturday.getDate()"
-       [class.selected]="selectedDate.getDate() === week.saturday.getDate()"
-       (click)="selectDate(week.saturday)">
-      <div class="day-number">
-        <span>{{week.saturday|date: 'd'}}</span>
-      </div>
-      <div class="day-name short">{{week.saturday|date: 'EE'|titlecase}}</div>
-      <div class="day-name long">{{week.saturday|date: 'EEEE'|titlecase}}</div>
-    </a>
-    <a class="day"
-       href="javascript:void(0)"
-       [class.today]="today.getDate() === week.sunday.getDate()"
-       [class.selected]="selectedDate.getDate() === week.sunday.getDate()"
-       (click)="selectDate(week.sunday)">
-      <div class="day-number">
-        <span>{{week.sunday|date: 'd'}}</span>
-      </div>
-      <div class="day-name short">{{week.sunday|date: 'EE'|titlecase}}</div>
-      <div class="day-name long">{{week.sunday|date: 'EEEE'|titlecase}}</div>
+      <div class="day-name short">{{day|date: 'EE'|titlecase}}</div>
+      <div class="day-name long">{{day|date: 'EEEE'|titlecase}}</div>
     </a>
   </div>
 

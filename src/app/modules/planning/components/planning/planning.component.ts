@@ -47,35 +47,9 @@ export class PlanningComponent implements OnInit {
     return new Date(now.setDate(diff));
   }
 
-  getWeekFromMonday(monday: Date): WeekModel {
-    const tuesday = new Date(monday);
-    const wednesday = new Date(monday);
-    const thursday = new Date(monday);
-    const friday = new Date(monday);
-    const saturday = new Date(monday);
-    const sunday = new Date(monday);
-
-    tuesday.setDate(tuesday.getDate() + 1);
-    wednesday.setDate(wednesday.getDate() + 2);
-    thursday.setDate(thursday.getDate() + 3);
-    friday.setDate(friday.getDate() + 4);
-    saturday.setDate(saturday.getDate() + 5);
-    sunday.setDate(sunday.getDate() + 6);
-
-    return {
-      monday,
-      tuesday,
-      wednesday,
-      thursday,
-      friday,
-      saturday,
-      sunday,
-    }
-  }
-
   goToday(): void {
     this.selectedDate = this.today;
-    this.week = this.getWeekFromMonday(this.getMonday(this.today));
+    this.week = new WeekModel(this.getMonday(this.today));
 
     this.loadSlots();
   }
@@ -85,7 +59,7 @@ export class PlanningComponent implements OnInit {
     nextMonday.setDate(nextMonday.getDate() + 6);
 
     this.selectedDate = nextMonday;
-    this.week = this.getWeekFromMonday(nextMonday);
+    this.week = new WeekModel(nextMonday);
 
     this.loadSlots();
   }
@@ -95,7 +69,7 @@ export class PlanningComponent implements OnInit {
     previousMonday.setDate(previousMonday.getDate() - 6);
 
     this.selectedDate = previousMonday;
-    this.week = this.getWeekFromMonday(previousMonday);
+    this.week = new WeekModel(previousMonday);
 
     this.loadSlots();
   }
