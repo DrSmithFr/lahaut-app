@@ -22,9 +22,18 @@ export class RegisterMonitorComponent implements OnInit {
   showLoader = false;
   shaking = false;
 
-  registerForm = this.fb.group(
+  identityForm = this.fb.group({
+    firstname: ['', Validators.required],
+    lastname: ['', Validators.required],
+  });
+
+  contactForm = this.fb.group({
+    username: ['', [Validators.required, Validators.email], this.validateUsernameAvailable.bind(this)],
+    phone: ['', Validators.required],
+  });
+
+  passwordForm = this.fb.group(
     {
-      username: ['', [Validators.required, Validators.email], this.validateUsernameAvailable.bind(this)],
       password: ['', [Validators.required]],
       password2: ['', [Validators.required, this.validateSamePassword.bind(this)]],
     }
@@ -84,16 +93,28 @@ export class RegisterMonitorComponent implements OnInit {
     return null;
   }
 
+  getFirstname(): AbstractControl | null {
+    return this.identityForm.get('firstname');
+  }
+
+  getLastname(): AbstractControl | null {
+    return this.identityForm.get('lastname');
+  }
+
   getUsername(): AbstractControl | null {
-    return this.registerForm.get('username');
+    return this.contactForm.get('username');
+  }
+
+  getPhone(): AbstractControl | null {
+    return this.contactForm.get('phone');
   }
 
   getPassword(): AbstractControl | null {
-    return this.registerForm.get('password');
+    return this.passwordForm.get('password');
   }
 
   getPassword2(): AbstractControl | null {
-    return this.registerForm.get('password2');
+    return this.passwordForm.get('password2');
   }
 
   /**
@@ -112,20 +133,27 @@ export class RegisterMonitorComponent implements OnInit {
       this.hasError(this.getPassword2());
   }
 
-  isFormValid() {
+  isRegisterValid() {
     // as it was programmatically called, form can be set as dirty
+    this.getFirstname()?.markAsDirty();
+    this.getLastname()?.markAsDirty();
+
     this.getUsername()?.markAsDirty();
+    this.getPhone()?.markAsDirty();
+
     this.getPassword()?.markAsDirty();
     this.getPassword2()?.markAsDirty();
 
     // trigger form validation
-    this.registerForm.updateValueAndValidity();
+    this.identityForm.updateValueAndValidity();
+    this.contactForm.updateValueAndValidity();
+    this.passwordForm.updateValueAndValidity();
 
-    return this.registerForm.valid;
+    return this.identityForm.valid && this.contactForm.valid && this.passwordForm.valid;
   }
 
   onSubmit() {
-    if (!this.isFormValid()) {
+    if (!this.isRegisterValid()) {
       return;
     }
 
@@ -134,6 +162,9 @@ export class RegisterMonitorComponent implements OnInit {
     this
       .auth
       .registerMonitor(
+        this.getFirstname()?.value,
+        this.getLastname()?.value,
+        this.getPhone()?.value,
         this.getUsername()?.value,
         this.getPassword()?.value
       )
@@ -156,7 +187,7 @@ export class RegisterMonitorComponent implements OnInit {
                     value: 'valid'
                   })
 
-              this.router.navigateByUrl('/home');
+              this.router.navigateByUrl('/dashboard');
             });
         },
         error: () => {

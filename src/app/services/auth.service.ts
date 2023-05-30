@@ -67,10 +67,22 @@ export class AuthService {
       .registerCustomer(email, password);
   }
 
-  registerMonitor(email: string, password: string) {
+  registerMonitor(
+    firstname: string,
+    lastname: string,
+    phone: string,
+    email: string,
+    password: string
+  ) {
     return this
       .api
-      .registerMonitor(email, password);
+      .registerMonitor(
+        firstname,
+        lastname,
+        phone,
+        email,
+        password
+      );
   }
 
   getUser(): UserModel | null {

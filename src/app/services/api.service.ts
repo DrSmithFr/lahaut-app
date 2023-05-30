@@ -97,12 +97,24 @@ export class ApiService {
       );
   }
 
-  registerMonitor(username: string, password: string): Observable<UserModel> {
+  registerMonitor(
+    firstname: string,
+    lastname: string,
+    phone: string,
+    username: string,
+    password: string
+  ): Observable<UserModel> {
     return this
       .http
       .post<UserModel>(
         this.apiUrlFormUri('/public/register/monitor'),
-        {username, password}
+        {
+          firstname,
+          lastname,
+          phone,
+          username,
+          password
+        }
       )
       .pipe(
         tap(user => {

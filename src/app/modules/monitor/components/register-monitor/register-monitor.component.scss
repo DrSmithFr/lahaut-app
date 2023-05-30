@@ -1,6 +1,10 @@
 @import "colors";
 @import "breakpoints";
 
+.mat-stepper-horizontal, .mat-stepper-vertical {
+  background-color: transparent !important;
+}
+
 .login-container {
   max-width: 680px;
   margin: 0 auto;
