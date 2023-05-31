@@ -6,6 +6,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {ApiService} from '../../../../services/api.service';
 import {Observable} from 'rxjs';
 import {GoogleAnalyticsService} from '../../../../services/google-analytics.service';
+import {PhoneInputComponent, PhoneNumber} from "../../../shared/components/phone-input/phone-input.component";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component(
   {
@@ -29,7 +31,7 @@ export class RegisterMonitorComponent implements OnInit {
 
   contactForm = this.fb.group({
     username: ['', [Validators.required, Validators.email], this.validateUsernameAvailable.bind(this)],
-    phone: ['', Validators.required],
+    phone: [new PhoneNumber('33', '', '', '', '', ''), [PhoneInputComponent.validator]],
   });
 
   passwordForm = this.fb.group(
@@ -164,12 +166,22 @@ export class RegisterMonitorComponent implements OnInit {
       .registerMonitor(
         this.getFirstname()?.value,
         this.getLastname()?.value,
-        this.getPhone()?.value,
+        this.getPhone()?.value.toString(),
         this.getUsername()?.value,
         this.getPassword()?.value
       )
       .subscribe({
         next: () => {
+          this
+            .gtag
+            .event(
+              "register",
+              {
+                event_category: "monitors",
+                event_label: 'New users ' + this.getUsername()?.value,
+                value: 'valid'
+              })
+
           this
             .auth
             .connect(
@@ -180,17 +192,27 @@ export class RegisterMonitorComponent implements OnInit {
               this
                 .gtag
                 .event(
-                  "register",
+                  "login",
                   {
-                    event_category: "users",
-                    event_label: 'New users ' + this.getUsername()?.value,
+                    event_category: "monitors",
+                    event_label: 'Login of ' + this.getUsername()?.value,
                     value: 'valid'
                   })
 
               this.router.navigateByUrl('/dashboard');
             });
         },
-        error: () => {
+        error: (err: HttpErrorResponse) => {
+          this
+            .gtag
+            .event(
+              "register",
+              {
+                event_category: "monitors",
+                event_label: 'Subscription error for ' + this.getUsername()?.value,
+                value: 'error: ' + err.message
+              })
+
           this.showLoader = false;
           this.shaking = true;
           this.snackBar.open('Une erreur est survenue');

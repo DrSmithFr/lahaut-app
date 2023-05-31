@@ -5,7 +5,7 @@
       <h1 class="login-title">Nouveau Moniteur</h1>
     </div>
 
-    <mat-stepper orientation="vertical" [linear]="true" #stepper>
+    <mat-stepper orientation="vertical" [linear]="false" #stepper>
       <mat-step [stepControl]="identityForm">
         <form [formGroup]="identityForm">
           <ng-template matStepLabel>Identité</ng-template>
@@ -58,13 +58,13 @@
           </mat-form-field>
           <mat-form-field class="full-width">
             <mat-label>Mobile</mat-label>
-            <input matInput placeholder="Mobile" formControlName="phone" required>
+            <app-phone-input formControlName="phone"></app-phone-input>
             <mat-icon matPrefix>phone</mat-icon>
           </mat-form-field>
           <div class="row buttons">
             <p class="button-container">
               <button
-                [disabled]="identityForm.invalid || contactForm.invalid"
+                [disabled]="contactForm.invalid"
                 mat-flat-button
                 color="primary"
                 matStepperNext>

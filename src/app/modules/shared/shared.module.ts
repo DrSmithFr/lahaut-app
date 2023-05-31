@@ -1,18 +1,23 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DurationPipe } from './pipes/duration.pipe';
-import { FlyTypePipe } from './pipes/fly-type.pipe';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {DurationPipe} from './pipes/duration.pipe';
+import {FlyTypePipe} from './pipes/fly-type.pipe';
+import {PhoneInputComponent} from './components/phone-input/phone-input.component';
+
 @NgModule({
   declarations: [
     DurationPipe,
-    FlyTypePipe
+    FlyTypePipe,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    PhoneInputComponent
   ],
   exports: [
     DurationPipe,
-    FlyTypePipe
+    FlyTypePipe,
+    PhoneInputComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

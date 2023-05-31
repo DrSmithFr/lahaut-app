@@ -42,7 +42,7 @@ export class SearchFormComponent implements OnInit {
     );
 
     setTimeout(() => {
-      this.onSubmit();
+      this.trySubmit();
     })
   }
 

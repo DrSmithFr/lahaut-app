@@ -12,6 +12,7 @@ import {ApiService} from "../../../../services/api.service";
 import {GoogleAnalyticsService} from "../../../../services/google-analytics.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatStepperModule} from "@angular/material/stepper";
+import {PhoneInputComponent} from "../../../shared/components/phone-input/phone-input.component";
 
 describe('RegisterMonitorComponent', () => {
   beforeEach(async () => {
@@ -30,6 +31,7 @@ describe('RegisterMonitorComponent', () => {
         MatIconModule,
         MatFormFieldModule,
         MatStepperModule,
+        PhoneInputComponent,
       ],
       declarations: [
         RegisterMonitorComponent,

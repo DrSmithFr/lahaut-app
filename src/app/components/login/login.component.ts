@@ -106,8 +106,8 @@ export class LoginComponent implements OnInit {
             .event(
               "login",
               {
-                event_category: "users",
-                event_label: "Login " + this.getUsername()?.value,
+                event_category: this.auth.isCustomer() ? "customers" : "monitors",
+                event_label: "Login of " + this.getUsername()?.value,
                 value: "valid"
               })
 

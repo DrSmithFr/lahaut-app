@@ -88,12 +88,6 @@ export class ApiService {
       .post<UserModel>(
         this.apiUrlFormUri('/public/register/customer'),
         {username, password}
-      )
-      .pipe(
-        tap(user => {
-          // updating session with current users information
-          this.state.LOGGED_USER.next(user);
-        }),
       );
   }
 
@@ -115,12 +109,6 @@ export class ApiService {
           username,
           password
         }
-      )
-      .pipe(
-        tap(user => {
-          // updating session with current users information
-          this.state.LOGGED_USER.next(user);
-        }),
       );
   }
 

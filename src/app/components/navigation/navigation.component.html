@@ -29,7 +29,7 @@
 
       <!-- Customer -->
 
-      <div *ngIf="isLoggedCustomer()">
+      <div *ngIf="isLoggedCustomer">
         <button mat-menu-item routerLink="/chat">
           <mat-icon *ngIf="getBadgeCountForMessage() === 0">chat</mat-icon>
           <mat-icon *ngIf="getBadgeCountForMessage() !== 0" [matBadge]="getBadgeCountForMessage()">chat</mat-icon>
@@ -53,7 +53,7 @@
 
       <!-- Monitor -->
 
-      <div *ngIf="isLoggedMonitor()">
+      <div *ngIf="isLoggedMonitor">
         <button mat-menu-item routerLink="/monitor/dashboard">
           <mat-icon>dashboard</mat-icon>
           <span>Tableau de bord</span>

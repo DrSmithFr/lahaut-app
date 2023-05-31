@@ -6,6 +6,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {ApiService} from '../../../../services/api.service';
 import {Observable} from 'rxjs';
 import {GoogleAnalyticsService} from '../../../../services/google-analytics.service';
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component(
   {
@@ -140,6 +141,16 @@ export class RegisterCustomerComponent implements OnInit {
       .subscribe({
         next: () => {
           this
+            .gtag
+            .event(
+              "register",
+              {
+                event_category: "customers",
+                event_label: 'New customer ' + this.getUsername()?.value,
+                value: 'valid'
+              })
+
+          this
             .auth
             .connect(
               this.getUsername()?.value,
@@ -149,17 +160,27 @@ export class RegisterCustomerComponent implements OnInit {
               this
                 .gtag
                 .event(
-                  "register",
+                  "login",
                   {
-                    event_category: "users",
-                    event_label: 'New users ' + this.getUsername()?.value,
+                    event_category: "customers",
+                    event_label: 'Login of ' + this.getUsername()?.value,
                     value: 'valid'
                   })
 
-              this.router.navigateByUrl('/home');
+              this.router.navigateByUrl('/search');
             });
         },
-        error: () => {
+        error: (err: HttpErrorResponse) => {
+          this
+            .gtag
+            .event(
+              "register",
+              {
+                event_category: "customers",
+                event_label: 'Subscription error for ' + this.getUsername()?.value,
+                value: 'error: ' + err.message
+              })
+
           this.showLoader = false;
           this.shaking = true;
           this.snackBar.open('Une erreur est survenue');

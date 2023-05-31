@@ -9,9 +9,10 @@ import {MonitorRoutingModule} from './monitor-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from "@angular/material/icon";
-import { MyMonitorAccountComponent } from './components/my-monitor-account/my-monitor-account.component';
+import {MyMonitorAccountComponent} from './components/my-monitor-account/my-monitor-account.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatStepperModule} from "@angular/material/stepper";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule(
@@ -20,29 +21,30 @@ import {MatStepperModule} from "@angular/material/stepper";
       RegisterMonitorComponent,
       MyMonitorAccountComponent,
     ],
-      imports: [
-          CommonModule,
+    imports: [
+      CommonModule,
 
-          // routing
-          MonitorRoutingModule,
+      // routing
+      MonitorRoutingModule,
 
-          // importing reactive form
-          FormsModule,
-          ReactiveFormsModule,
+      // importing reactive form
+      FormsModule,
+      ReactiveFormsModule,
 
-          // users modules
-          MatInputModule,
-          MatButtonModule,
-          MatProgressSpinnerModule,
-          MatCheckboxModule,
-          MatDialogModule,
-          MatIconModule,
-          MatCardModule,
-          MatStepperModule
-      ],
-    providers:    [
+      // users modules
+      MatInputModule,
+      MatButtonModule,
+      MatProgressSpinnerModule,
+      MatCheckboxModule,
+      MatDialogModule,
+      MatIconModule,
+      MatCardModule,
+      MatStepperModule,
+      SharedModule,
+    ],
+    providers: [
       {
-        provide:  MAT_DIALOG_DEFAULT_OPTIONS,
+        provide: MAT_DIALOG_DEFAULT_OPTIONS,
         useValue: {
           hasBackdrop: true
         }
