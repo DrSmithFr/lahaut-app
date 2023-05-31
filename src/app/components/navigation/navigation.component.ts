@@ -24,7 +24,7 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
     this.stateService.LOGGED_USER.subscribe((user) => {
       this.isLoggedCustomer = user?.roles.includes(Roles.customer) ?? false;
-      this.isLoggedCustomer = user?.roles.includes(Roles.monitor) ?? false;
+      this.isLoggedMonitor = user?.roles.includes(Roles.monitor) ?? false;
     });
   }
 
