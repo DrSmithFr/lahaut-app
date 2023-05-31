@@ -164,3 +164,14 @@ body {
     user-select: auto !important;
   }
 }
+
+// mat-stepper
+.mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
+  background-color: #aa80d8 !important;
+}
+
+.mat-stepper-horizontal, .mat-stepper-vertical {
+  background-color: transparent !important;
+}
