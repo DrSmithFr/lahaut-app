@@ -35,15 +35,37 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <h2>Disponibilité</h2>
-    <ul *ngFor="let slot of result.slots | keyvalue">
-      <li>{{slot.value.startAt|slice:11}} - {{slot.value.endAt|slice:11}} : {{slot.value.id}}</li>
-    </ul>
+    <div *ngIf="result.slots.size > 0">
+      <div class="slot-card-container">
+        <div *ngFor="let slot of result.slots | keyvalue">
+          <a class="slot-card">
+            <span class="type">
+              {{slot.value.type|flyType}}<br>
+              #{{slot.value.id}}
+            </span>
 
-    <h2>Réservations</h2>
-    <ul *ngFor="let booking of result.bookings | keyvalue">
-      <li>{{booking.value.customer.identity.firstName|titlecase}} {{booking.value.customer.identity.lastName|uppercase}} : {{booking.value.id}}</li>
-    </ul>
+            <span class="time">
+              <span class="start">{{slot.value.startAt|slice:10}}</span>
+              <span class="end">{{slot.value.endAt|slice:10}}</span>
+            </span>
+
+            <span class="price">
+              {{slot.value.price|currency: 'EUR': 'symbol-narrow': '1.0-2'}}
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="slots-removal-button">
+        <button mat-button color="warn">Se rendre indisponible</button>
+      </div>
+    </div>
+
+    <div *ngIf="result.bookings.size > 0">
+      <h2>Réservations</h2>
+      <ul *ngFor="let booking of result.bookings | keyvalue">
+        <li>#{{booking.value.id}} : {{booking.value.customer.identity.firstName|titlecase}} {{booking.value.customer.identity.lastName|uppercase}}</li>
+      </ul>
+    </div>
 
   </mat-expansion-panel>
 </div>

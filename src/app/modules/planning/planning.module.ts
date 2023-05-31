@@ -8,6 +8,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatExpansionModule} from "@angular/material/expansion";
 import { PlanningRowComponent } from './components/planning-row/planning-row.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -15,15 +16,16 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     PlanningComponent,
     PlanningRowComponent
   ],
-  imports: [
-    CommonModule,
-    PlanningRoutingModule,
+    imports: [
+        CommonModule,
+        PlanningRoutingModule,
 
-    MatIconModule,
-    MatButtonModule,
-    MatExpansionModule,
-    MatProgressBarModule
-  ]
+        MatIconModule,
+        MatButtonModule,
+        MatExpansionModule,
+        MatProgressBarModule,
+        SharedModule
+    ]
 })
 export class PlanningModule {
 }

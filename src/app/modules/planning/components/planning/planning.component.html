@@ -26,7 +26,7 @@
        [class.selected]="selectedDate.getDate() === day.getDate()"
        (click)="selectDate(day)">
       <div class="day-number">
-        <span>{{day|date: 'd'}}</span>
+        {{day|date: 'd'}}
       </div>
       <div class="day-name short">{{day|date: 'EE'|titlecase}}</div>
       <div class="day-name long">{{day|date: 'EEEE'|titlecase}}</div>

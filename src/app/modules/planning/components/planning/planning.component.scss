@@ -53,8 +53,10 @@
         border: 2px solid map.get($gray-palette, 200);
 
         color: map.get($gray-palette, 200);
-        font-size: 1.5rem;
-        font-weight: 500;
+
+        font-size: 1rem;
+        font-weight: bold;
+        font-family: monospace;
       }
 
       .day-name {
