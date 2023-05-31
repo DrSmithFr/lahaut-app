@@ -2,10 +2,18 @@
 <div class="page-container planning">
 
   <div class="planning-navigation">
-    <button mat-icon-button aria-label="Semaine précédente" (click)="goPreviousWeek()">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-    <h1 class="center">Planning - {{selectedDate|date: 'MMMM'|titlecase}}</h1>
+    <div>
+      <button mat-icon-button aria-label="Semaine précédente" (click)="goPreviousWeek()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Ajouter des diponibilité">
+        <mat-icon>edit_calendar</mat-icon>
+      </button>
+    </div>
+    <div>
+      <h1 class="center">{{selectedDate|date: 'MMMM'|uppercase}}</h1>
+      <h2 class="center">SEMAINE {{selectedDate|date: 'w'}}</h2>
+    </div>
     <div>
       <button mat-icon-button aria-label="Revenir aujourd'hui" (click)="goToday()">
         <mat-icon>today</mat-icon>
