@@ -1,6 +1,9 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {PlanningResult} from "../../models/planning-result";
 import {BookingModel} from "../../../../models/fly/bookingModel";
+import {SlotModel} from "../../../../models/fly/slotModel";
+import {MatDialog} from "@angular/material/dialog";
+import {RemoveAvailabilityDialog} from "../remove-availability/remove-availability.dialog";
 
 @Component({
   selector: 'app-planning-row',
@@ -9,10 +12,16 @@ import {BookingModel} from "../../../../models/fly/bookingModel";
 })
 export class PlanningRowComponent implements OnInit {
   @Input() result: PlanningResult;
+  @Output() requestPlanningRefresh = new EventEmitter<boolean>();
   @ViewChild('container') container: ElementRef;
 
   public error = false;
-  public booking: BookingModel|undefined = undefined;
+  public booking: BookingModel | undefined = undefined;
+
+  constructor(
+    public dialog: MatDialog,
+  ) {
+  }
 
   ngOnInit(): void {
     // Show error if:
@@ -27,6 +36,7 @@ export class PlanningRowComponent implements OnInit {
       this.booking = this.result.bookings.get(key.value);
     }
   }
+
   slideToContent() {
     setTimeout(() => {
       this
@@ -34,5 +44,23 @@ export class PlanningRowComponent implements OnInit {
         .nativeElement
         .scrollIntoView({behavior: 'smooth'});
     }, 150);
+  }
+
+  removeAvailability(slots: Map<number, SlotModel>) {
+    this
+      .dialog
+      .open(
+        RemoveAvailabilityDialog,
+        {
+          width: '600px',
+          data: slots
+        }
+      )
+      .afterClosed()
+      .subscribe((removed: boolean) => {
+        if (removed) {
+          this.requestPlanningRefresh.emit(true);
+        }
+      });
   }
 }

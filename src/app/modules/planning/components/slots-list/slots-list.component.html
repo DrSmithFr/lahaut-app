@@ -1,0 +1,19 @@
+<div class="slot-card-container">
+  <div *ngFor="let slot of slots|keyvalue">
+    <a class="slot-card">
+      <span class="type">
+        {{slot.value.type|flyType}}<br>
+        #{{slot.value.id}}
+      </span>
+
+      <span class="time">
+        <span class="start">{{slot.value.startAt|slice:10}}</span>
+        <span class="end">{{slot.value.endAt|slice:10}}</span>
+      </span>
+
+      <span class="price">
+        {{slot.value.price|currency: 'EUR': 'symbol-narrow': '1.0-2'}}
+      </span>
+    </a>
+  </div>
+</div>

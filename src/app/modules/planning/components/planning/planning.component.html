@@ -45,7 +45,7 @@
     <mat-accordion>
 
       <div *ngFor="let result of results | keyvalue">
-        <app-planning-row [result]="result.value"></app-planning-row>
+        <app-planning-row [result]="result.value" (requestPlanningRefresh)="loadSlots()"></app-planning-row>
       </div>
 
     </mat-accordion>

@@ -1,5 +1,4 @@
-@import "src/scss/default/colors";
-@import "src/scss/default/breakpoints";
+@import "colors";
 
 h1.title {
   color: $blue;
@@ -9,6 +8,15 @@ h1.title {
   text-transform: uppercase;
 
   margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.content {
+  padding-bottom: 0;
+}
+
+.slots-list {
+  padding: 20px 0;
 }
 
 .modal-buttons {
@@ -23,11 +31,5 @@ div.illustration {
   img {
     width: 50%;
     min-width: 150px;
-  }
-}
-
-form.password-reset-form {
-  mat-icon {
-    color: #777;
   }
 }

@@ -5,5 +5,11 @@
 </div>
 <div mat-dialog-actions class="modal-buttons">
   <button mat-button (click)="closeModal()">Non</button>
-  <button mat-flat-button color="primary" (click)="disconnect()" cdkFocusInitial>Oui</button>
+  <button
+    mat-flat-button
+    color="primary"
+    [class.spinner]="loading"
+    [disabled]="loading"
+    (click)="disconnect()"
+    cdkFocusInitial>Oui</button>
 </div>

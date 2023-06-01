@@ -36,27 +36,9 @@
     </mat-expansion-panel-header>
 
     <div *ngIf="result.slots.size > 0">
-      <div class="slot-card-container">
-        <div *ngFor="let slot of result.slots | keyvalue">
-          <a class="slot-card">
-            <span class="type">
-              {{slot.value.type|flyType}}<br>
-              #{{slot.value.id}}
-            </span>
-
-            <span class="time">
-              <span class="start">{{slot.value.startAt|slice:10}}</span>
-              <span class="end">{{slot.value.endAt|slice:10}}</span>
-            </span>
-
-            <span class="price">
-              {{slot.value.price|currency: 'EUR': 'symbol-narrow': '1.0-2'}}
-            </span>
-          </a>
-        </div>
-      </div>
+      <app-slots-list [slots]="result.slots"></app-slots-list>
       <div class="slots-removal-button">
-        <button mat-button color="warn">Se rendre indisponible</button>
+        <button mat-button color="warn" (click)="removeAvailability(result.slots)">Se rendre indisponible</button>
       </div>
     </div>
 

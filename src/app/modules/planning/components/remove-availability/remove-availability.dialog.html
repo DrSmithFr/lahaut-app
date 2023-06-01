@@ -1,0 +1,21 @@
+<h1 mat-dialog-title class="title">Se rendre indisponible</h1>
+
+<div mat-dialog-content class="content">
+  <p>
+    En continuant, vous allez rendre indisponible les créneaux suivant :
+  </p>
+  <div class="slots-list">
+    <app-slots-list [slots]="slots"></app-slots-list>
+  </div>
+</div>
+
+<div mat-dialog-actions class="modal-buttons">
+  <button mat-button (click)="closeModal()">Annuler</button>
+  <button
+    mat-flat-button
+    color="primary"
+    [class.spinner]="loading"
+    [disabled]="loading"
+    (click)="onSubmit()"
+    cdkFocusInitial>Supprimer</button>
+</div>

@@ -6,15 +6,20 @@ import {PlanningComponent} from './components/planning/planning.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatExpansionModule} from "@angular/material/expansion";
-import { PlanningRowComponent } from './components/planning-row/planning-row.component';
+import {PlanningRowComponent} from './components/planning-row/planning-row.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {SharedModule} from "../shared/shared.module";
+import {RemoveAvailabilityDialog} from './components/remove-availability/remove-availability.dialog';
+import {MatDialogModule} from "@angular/material/dialog";
+import { SlotsListComponent } from './components/slots-list/slots-list.component';
 
 
 @NgModule({
   declarations: [
     PlanningComponent,
-    PlanningRowComponent
+    PlanningRowComponent,
+    RemoveAvailabilityDialog,
+    SlotsListComponent
   ],
     imports: [
         CommonModule,
@@ -24,7 +29,8 @@ import {SharedModule} from "../shared/shared.module";
         MatButtonModule,
         MatExpansionModule,
         MatProgressBarModule,
-        SharedModule
+        SharedModule,
+        MatDialogModule
     ]
 })
 export class PlanningModule {

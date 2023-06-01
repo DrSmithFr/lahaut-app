@@ -15,6 +15,8 @@ import {ApiService} from "../../services/api.service";
 export class PasswordResetRequestDialog {
   @ViewChild('password') passwordField: ElementRef<HTMLInputElement>;
 
+  loading = false;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { email: string },
     private fb: FormBuilder,
@@ -80,16 +82,21 @@ export class PasswordResetRequestDialog {
       return;
     }
 
-    this.api.resetPasswordRequest(this.getUsername()?.value).subscribe(
-      () => {
-        this.snackBar.open('Un email de réinitialisation de mot de passe vous a été envoyé', 'Close', {duration: 5000});
-        this.closeModal();
-      },
-      () => {
-        this.snackBar.open('Une erreur est survenue lors de la réinitialisation de votre mot de passe', 'Close', {duration: 5000});
-        this.dialogRef.close();
-      }
-    );
+    this.loading = true;
+
+    this
+      .api
+      .resetPasswordRequest(this.getUsername()?.value)
+      .subscribe({
+        next: () => {
+          this.snackBar.open('Un email de réinitialisation de mot de passe vous a été envoyé', 'Close', {duration: 5000});
+          this.closeModal();
+        },
+        error: () => {
+          this.loading = false;
+          this.snackBar.open('Une erreur est survenue lors de la réinitialisation de votre mot de passe', 'Close', {duration: 5000});
+        }
+      });
   }
 
   closeModal(): void {

@@ -157,4 +157,11 @@ export class ApiService {
       .http
       .get<SlotDetailModel>(this.apiUrlFormUri('/public/slots/' + id));
   }
+
+  removeSlots(slotIds: number[]) {
+    return this
+      .http
+      .delete<SlotDetailModel>(
+        this.apiUrlFormUri('/slots'), {body: {slots: slotIds}});
+  }
 }

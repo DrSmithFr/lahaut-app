@@ -10,6 +10,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./logout.dialog.scss']
 })
 export class LogoutDialog {
+  loading = false;
   constructor(
     public dialogRef: MatDialogRef<LogoutDialog>,
     private router: Router,
@@ -19,6 +20,7 @@ export class LogoutDialog {
   }
 
   disconnect() {
+    this.loading = true;
     this.auth.clearSession();
     this.router.navigate(['/search']);
     this.snackBar.open('Vous êtes déconnecté', undefined, {duration: 2000});
