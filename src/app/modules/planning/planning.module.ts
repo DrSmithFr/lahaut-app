@@ -11,7 +11,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {SharedModule} from "../shared/shared.module";
 import {RemoveAvailabilityDialog} from './components/remove-availability/remove-availability.dialog';
 import {MatDialogModule} from "@angular/material/dialog";
-import { SlotsListComponent } from './components/slots-list/slots-list.component';
+import {SlotsListComponent} from './components/slots-list/slots-list.component';
 
 
 @NgModule({
@@ -21,17 +21,17 @@ import { SlotsListComponent } from './components/slots-list/slots-list.component
     RemoveAvailabilityDialog,
     SlotsListComponent
   ],
-    imports: [
-        CommonModule,
-        PlanningRoutingModule,
+  imports: [
+    CommonModule,
+    PlanningRoutingModule,
 
-        MatIconModule,
-        MatButtonModule,
-        MatExpansionModule,
-        MatProgressBarModule,
-        SharedModule,
-        MatDialogModule
-    ]
+    MatIconModule,
+    MatButtonModule,
+    MatExpansionModule,
+    MatProgressBarModule,
+    SharedModule,
+    MatDialogModule
+  ],
 })
 export class PlanningModule {
 }

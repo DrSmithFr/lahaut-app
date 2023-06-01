@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {WeekModel} from "../../../../models/week.model";
 import {ApiService} from "../../../../services/api.service";
 import {PlanningService} from "../../../../services/planning.service";
@@ -12,6 +12,7 @@ import {DateService} from "../../../../services/date.service";
   styleUrls: ['./planning.component.scss']
 })
 export class PlanningComponent implements OnInit {
+  @ViewChild('header') header: ElementRef;
 
   public today = new Date();
   public selectedDate = this.today;

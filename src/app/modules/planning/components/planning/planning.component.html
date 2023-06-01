@@ -1,47 +1,46 @@
 <mat-progress-bar mode="indeterminate" *ngIf="loading" class="top-loader"></mat-progress-bar>
 <div class="page-container planning">
 
-  <div class="planning-navigation">
-    <div>
-      <button mat-icon-button aria-label="Semaine précédente" (click)="goPreviousWeek()">
-        <mat-icon>arrow_back</mat-icon>
+  <div class="planning-header">
+    <div class="planning-menu">
+      <button mat-icon-button aria-label="Revenir aujourd'hui" (click)="goToday()">
+        <mat-icon>today</mat-icon>
       </button>
+      <h1 class="center">{{selectedDate|date: 'MMMM'|uppercase}}</h1>
       <button mat-icon-button aria-label="Ajouter des diponibilité">
         <mat-icon>edit_calendar</mat-icon>
       </button>
     </div>
-    <div>
-      <h1 class="center">{{selectedDate|date: 'MMMM'|uppercase}}</h1>
-      <h2 class="center">SEMAINE {{selectedDate|date: 'w'}}</h2>
-    </div>
-    <div>
-      <button mat-icon-button aria-label="Revenir aujourd'hui" (click)="goToday()">
-        <mat-icon>today</mat-icon>
-      </button>
-      <button mat-icon-button aria-label="Semaine suivante" (click)="goNextWeek()">
-        <mat-icon>arrow_forward</mat-icon>
-      </button>
-    </div>
 
-  </div>
-
-
-  <div class="day-picker">
-    <a class="day"
-       *ngFor="let day of week.days"
-       href="javascript:void(0)"
-       [class.today]="today.getDate() === day.getDate()"
-       [class.selected]="selectedDate.getDate() === day.getDate()"
-       (click)="selectDate(day)">
-      <div class="day-number">
-        {{day|date: 'd'}}
+    <div class="planning-navigation">
+      <div class="week-selector">
+        <button mat-icon-button aria-label="Semaine précédente" (click)="goPreviousWeek()">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <h2 class="center">SEMAINE {{selectedDate|date: 'w'}}</h2>
+        <button mat-icon-button aria-label="Semaine suivante" (click)="goNextWeek()">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
       </div>
-      <div class="day-name short">{{day|date: 'EE'|titlecase}}</div>
-      <div class="day-name long">{{day|date: 'EEEE'|titlecase}}</div>
-    </a>
+    </div>
+
+    <div class="day-picker">
+      <a class="day"
+         *ngFor="let day of week.days"
+         href="javascript:void(0)"
+         [class.today]="today.getDate() === day.getDate()"
+         [class.selected]="selectedDate.getDate() === day.getDate()"
+         (click)="selectDate(day)">
+        <div class="day-number">
+          {{day|date: 'd'}}
+        </div>
+        <div class="day-name short">{{day|date: 'EE'|titlecase}}</div>
+        <div class="day-name long">{{day|date: 'EEEE'|titlecase}}</div>
+      </a>
+    </div>
   </div>
 
-  <div class="agenda" *ngIf="!loading">
+  <div class="agenda content" *ngIf="!loading">
     <mat-accordion>
 
       <div *ngFor="let result of results | keyvalue">

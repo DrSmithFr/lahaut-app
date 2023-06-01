@@ -4,11 +4,11 @@
 @import "breakpoints";
 
 .planning {
-  h1 {
+  .planning-header {
 
   }
 
-  .planning-navigation {
+  .planning-menu {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -22,8 +22,33 @@
       font-weight: 500;
     }
 
-    h2 {
-      color: $purple;
+    button {
+      color: $blue
+    }
+  }
+
+  .planning-navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    .week-selector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      h2 {
+        margin: 0;
+
+        color: $purple;
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+
+      button {
+        color: $purple
+      }
     }
 
     button {
