@@ -9,11 +9,17 @@ import {BehaviorSubject} from 'rxjs';
 export class NavigationService {
 
   public isNavigationVisible: BehaviorSubject<boolean>;
+
+  public isLogoVisible: BehaviorSubject<boolean>;
+
   public isMenuButtonVisible: BehaviorSubject<boolean>;
   public isMenuOpen: BehaviorSubject<boolean>;
 
   constructor() {
     this.isNavigationVisible = new BehaviorSubject<boolean>(false);
+
+    this.isLogoVisible = new BehaviorSubject<boolean>(true);
+
     this.isMenuButtonVisible = new BehaviorSubject<boolean>(false);
     this.isMenuOpen = new BehaviorSubject<boolean>(false);
   }
@@ -24,6 +30,14 @@ export class NavigationService {
 
   show() {
     this.isNavigationVisible.next(true);
+  }
+
+  hideLogo() {
+    this.isLogoVisible.next(false);
+  }
+
+  showLogo() {
+    this.isLogoVisible.next(true);
   }
 
   showMenuButton() {

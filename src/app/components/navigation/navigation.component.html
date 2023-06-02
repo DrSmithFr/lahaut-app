@@ -1,16 +1,18 @@
 <mat-toolbar class="toolbar" [ngClass]="{'fadeOut': false}">
   <mat-toolbar-row class="space-between">
-    <!-- 'absorbs' the auto-focus behavior -->
-    <button mat-button style="height: 0; position: absolute;" aria-label="disable-auto-focus"></button>
 
-    <button mat-icon-button aria-label="Example icon-button with menu icon" (click)="toggleMenu()">
-      <mat-icon *ngIf="isMenuOpen">chevron_left</mat-icon>
-      <mat-icon *ngIf="!isMenuOpen">menu</mat-icon>
-    </button>
+    <div class="navigation-button"  *ngIf="showMenuButton">
+      <button mat-icon-button aria-label="Example icon-button with menu icon" (click)="toggleMenu()">
+        <mat-icon *ngIf="isMenuOpen">chevron_left</mat-icon>
+        <mat-icon *ngIf="!isMenuOpen">menu</mat-icon>
+      </button>
+    </div>
 
-    <a routerLink="/">
-      <img class="logo" src="assets/logo.png">
-    </a>
+    <div>
+      <a routerLink="/search" *ngIf="showLogo">
+        <img class="logo" src="assets/logo.png" alt="Logo">
+      </a>
+    </div>
 
     <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
       <mat-icon *ngIf="getBadgeCount() === 0">menu</mat-icon>

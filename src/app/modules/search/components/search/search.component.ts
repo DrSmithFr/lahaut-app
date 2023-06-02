@@ -1,17 +1,18 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {SearchQuery} from "../../models/search-query";
 import {ApiService} from "../../../../services/api.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DateService} from "../../../../services/date.service";
 import {Search} from "../../models/search";
 import {SearchService} from "../../../../services/search.service";
+import {NavigationService} from "../../../../services/navigation.service";
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   @ViewChild('container') container: ElementRef;
 
   searched = false;
@@ -27,10 +28,13 @@ export class SearchComponent implements OnInit {
     private dateService: DateService,
     private router: Router,
     private route: ActivatedRoute,
+    private navigationService: NavigationService,
   ) {
   }
 
   ngOnInit(): void {
+    this.navigationService.hideLogo();
+
     this
       .route
       .queryParams
@@ -49,6 +53,10 @@ export class SearchComponent implements OnInit {
           );
         }
       }).unsubscribe()
+  }
+
+  ngOnDestroy() {
+    this.navigationService.showLogo();
   }
 
   updateUrl(query: SearchQuery) {

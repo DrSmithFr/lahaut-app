@@ -26,7 +26,6 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Manage the menu button
-    this.navigationService.showMenuButton();
     this.navigationService.isMenuOpen.subscribe((isOpened) => {
       this.isOpened = isOpened;
     });
@@ -42,6 +41,10 @@ export class ChatComponent implements OnInit, OnDestroy {
       if (!this.isMobile) {
         this.current = this.rooms.at(0) ?? null;
         this.isOpened = true;
+
+        // updating navigation
+        this.navigationService.showMenuButton();
+        this.navigationService.isMenuOpen.next(true);
       }
     });
   }
@@ -52,7 +55,10 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   switchTo(room: ConversationModel) {
     this.current = room;
-    this.navigationService.isMenuOpen.next(false);
     this.isOpened = false;
+
+    // updating navigation
+    this.navigationService.showMenuButton();
+    this.navigationService.isMenuOpen.next(false);
   }
 }

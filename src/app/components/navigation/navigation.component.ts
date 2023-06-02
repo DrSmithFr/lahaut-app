@@ -12,7 +12,9 @@ import {NavigationService} from "../../services/navigation.service";
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
+  showLogo = true;
   showMenuButton = false;
+
   isMenuOpen = false;
 
   public isLoggedCustomer = false;
@@ -30,6 +32,10 @@ export class NavigationComponent implements OnInit {
     this.stateService.LOGGED_USER.subscribe((user) => {
       this.isLoggedCustomer = user?.roles.includes(Roles.customer) ?? false;
       this.isLoggedMonitor = user?.roles.includes(Roles.monitor) ?? false;
+    });
+
+    this.navigationService.isLogoVisible.subscribe((show) => {
+      this.showLogo = show;
     });
 
     this.navigationService.isMenuButtonVisible.subscribe((show) => {
