@@ -1,0 +1,91 @@
+<h1 mat-dialog-title class="title">Déclarer une indisponibilité</h1>
+
+<div mat-dialog-content class="content">
+  <p>
+    En continuant, vous allez rendre indisponible tous les créneaux sur la période sélectionnée. :
+  </p>
+
+  <form [formGroup]="periodForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Date debut</mat-label>
+      <input
+        matInput
+        [disabled]="validated"
+        [matDatepicker]="pickerStart"
+        (dateChange)="updateEndDate()"
+        formControlName="start"
+        placeholder="mm/dd/yyyy">
+      <mat-datepicker-toggle matIconSuffix [for]="pickerStart"></mat-datepicker-toggle>
+      <mat-datepicker #pickerStart></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width" *ngIf="periodForm.value.dayOnly === false">
+      <mat-label>Date de fin</mat-label>
+      <input
+        matInput
+        [disabled]="validated"
+        [matDatepicker]="pickerEnd"
+        formControlName="end"
+        placeholder="mm/dd/yyyy">
+      <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+      <mat-datepicker #pickerEnd></mat-datepicker>
+
+      <mat-error *ngIf="getEnd()?.errors?.['invalid_period']">
+        La période est invalide.
+      </mat-error>
+
+    </mat-form-field>
+
+    <div class="center">
+      <mat-slide-toggle
+        [disabled]="validated"
+        formControlName="dayOnly"
+        (change)="updateEndDate()">
+        Seulement la journée
+      </mat-slide-toggle>
+    </div>
+  </form>
+
+  <div *ngIf="bookings !== null && bookings.length > 0" class="booking-error">
+    <mat-error class="error">
+      Des créneaux sont déjà réservés sur cette période.<br>
+      Penser à gérer les annulation après avoir déclarer votre indisponibilité.
+    </mat-error>
+
+    <mat-checkbox color="warn" [(ngModel)]="override">
+      Je m'engage à gérer ces annulations
+    </mat-checkbox>
+  </div>
+
+  <div *ngIf="bookings !== null && bookings.length === 0" class="booking-ready">
+    <p class="info">
+      Aucun réservations sur cette période.<br>
+      Vous pouvez déclarer votre indisponibilité sans gérer d'annulations.
+    </p>
+  </div>
+
+</div>
+
+<div mat-dialog-actions class="modal-buttons">
+  <button mat-button (click)="closeModal()">Annuler</button>
+
+  <button
+    mat-flat-button
+    color="primary"
+    *ngIf="!validated"
+    [class.spinner]="loading"
+    [disabled]="loading || periodForm.invalid"
+    (click)="onValidated()">
+    Valider
+  </button>
+
+  <button
+    mat-flat-button
+    color="primary"
+    *ngIf="validated"
+    [class.spinner]="loading"
+    [disabled]="loading || !canSubmit()"
+    (click)="onSubmit()">
+    Déclarer
+  </button>
+</div>

@@ -8,8 +8,11 @@ export class UserModel {
 }
 
 export class UserIdentityModel {
-  firstName: string;
-  lastName: string;
-  anniversary: string;
-  nationality: string;
+  constructor(
+    public firstName: string,
+    public lastName: string,
+    public anniversary: string,
+    public nationality: string,
+  ) {
+  }
 }

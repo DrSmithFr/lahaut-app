@@ -3,7 +3,7 @@ import {PlanningResult} from "../../models/planning-result";
 import {BookingModel} from "../../../../models/fly/bookingModel";
 import {SlotModel} from "../../../../models/fly/slotModel";
 import {MatDialog} from "@angular/material/dialog";
-import {RemoveAvailabilityDialog} from "../remove-availability/remove-availability.dialog";
+import {RemoveHourAvailabilityDialog} from "../remove-hour-availability/remove-hour-availability.dialog";
 
 @Component({
   selector: 'app-planning-row',
@@ -50,7 +50,7 @@ export class PlanningRowComponent implements OnInit {
     this
       .dialog
       .open(
-        RemoveAvailabilityDialog,
+        RemoveHourAvailabilityDialog,
         {
           width: '600px',
           data: slots

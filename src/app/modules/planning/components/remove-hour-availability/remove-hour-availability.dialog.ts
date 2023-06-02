@@ -6,17 +6,17 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
-  selector: 'app-remove-availablity',
-  templateUrl: './remove-availability.dialog.html',
-  styleUrls: ['./remove-availability.dialog.scss']
+  selector: 'app-remove-hour-availability',
+  templateUrl: './remove-hour-availability.dialog.html',
+  styleUrls: ['./remove-hour-availability.dialog.scss']
 })
-export class RemoveAvailabilityDialog implements OnInit {
+export class RemoveHourAvailabilityDialog implements OnInit {
   slots: Map<number, SlotModel>;
   loading = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Map<number, SlotModel>,
-    public dialogRef: MatDialogRef<RemoveAvailabilityDialog>,
+    public dialogRef: MatDialogRef<RemoveHourAvailabilityDialog>,
     private apiService: ApiService,
     private snackBar: MatSnackBar,
   ) {

@@ -1,4 +1,16 @@
 <mat-progress-bar mode="indeterminate" *ngIf="loading" class="top-loader"></mat-progress-bar>
+
+<mat-menu #menu>
+  <button mat-menu-item (click)="addAvailability()">
+    <mat-icon>event_available</mat-icon>
+    <span>Ajouter des créneaux</span>
+  </button>
+  <button mat-menu-item (click)="removeAvailability()">
+    <mat-icon>event_busy</mat-icon>
+    <span>Se rendre indisponible</span>
+  </button>
+</mat-menu>
+
 <div class="page-container planning">
 
   <div class="planning-header">
@@ -7,8 +19,8 @@
         <mat-icon>today</mat-icon>
       </button>
       <h1 class="center">{{selectedDate|date: 'MMMM'|uppercase}}</h1>
-      <button mat-icon-button aria-label="Ajouter des diponibilité">
-        <mat-icon>edit_calendar</mat-icon>
+      <button mat-icon-button aria-label="Ajouter des diponibilité" [matMenuTriggerFor]="menu">
+        <mat-icon>settings</mat-icon>
       </button>
     </div>
 

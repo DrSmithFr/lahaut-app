@@ -13,6 +13,7 @@ import {DateService} from "./date.service";
 import {SlotDetailModel} from "../models/fly/slotDetailModel";
 import {ConversationModel} from "../models/chat/ConversationModel";
 import {ConversationMessageModel} from "../models/chat/ConversationMessageModel";
+import {BookingModel} from "../models/fly/bookingModel";
 
 // contain every api call to be easily fake using angular provider mechanism
 @Injectable(
@@ -34,6 +35,7 @@ export class ApiService {
     return this.API_URL + uri;
   }
 
+  // Login
   login(username: string, password: string): Observable<TokenModel> {
     return this
       .http
@@ -77,13 +79,7 @@ export class ApiService {
       );
   }
 
-  findCurrentMonitorSlots(date: Date): Observable<SlotModel[]> {
-    const uri = '/monitor/slots/' + this.dateService.formatDate(date);
-    return this
-      .http
-      .get<SlotModel[]>(this.apiUrlFormUri(uri));
-  }
-
+  // Register
   registerCustomer(username: string, password: string): Observable<UserModel> {
     return this
       .http
@@ -114,21 +110,13 @@ export class ApiService {
       );
   }
 
-  updatePassword(token: string, oldPassword: string, newPassword: string): Observable<MessageModel> {
-    return this
-      .http
-      .patch<MessageModel>(
-        this.apiUrlFormUri('/public/user/password_update'),
-        {oldPassword, newPassword},
-      );
-  }
-
   checkAccountExist(email: string): Observable<MessageModel> {
     return this
       .http
       .post<MessageModel>(this.apiUrlFormUri('/public/register/available'), {username: email});
   }
 
+  // Password Reset
   resetPasswordRequest(email: string): Observable<MessageModel> {
     return this
       .http
@@ -147,8 +135,27 @@ export class ApiService {
       .patch<MessageModel>(this.apiUrlFormUri('/public/reset_password'), {token, password});
   }
 
+  // Account Management
+  updatePassword(token: string, oldPassword: string, newPassword: string): Observable<MessageModel> {
+    return this
+      .http
+      .patch<MessageModel>(
+        this.apiUrlFormUri('/public/user/password_update'),
+        {oldPassword, newPassword},
+      );
+  }
+
+  // Search
   findSlots(query: SearchQuery) {
     const uri = '/public/slots/' + query.location + '/' + query.type + '/' + this.dateService.formatDate(query.date);
+    return this
+      .http
+      .get<SlotModel[]>(this.apiUrlFormUri(uri));
+  }
+
+  // Planning
+  findCurrentMonitorSlots(date: Date): Observable<SlotModel[]> {
+    const uri = '/monitor/slots/' + this.dateService.formatDate(date);
     return this
       .http
       .get<SlotModel[]>(this.apiUrlFormUri(uri));
@@ -167,6 +174,21 @@ export class ApiService {
         this.apiUrlFormUri('/slots'), {body: {slots: slotIds}});
   }
 
+  removeSlotsPeriod(start: Date, end: Date) {
+    const uri = '/slots/' + this.dateService.formatDate(start) + '-' + this.dateService.formatDate(end);
+    return this
+      .http
+      .delete<SlotDetailModel>(this.apiUrlFormUri(uri));
+  }
+
+  checkBookingForPeriod(start: Date, end: Date) {
+    const uri = '/booking/' + this.dateService.formatDate(start) + '-' + this.dateService.formatDate(end);
+    return this
+      .http
+      .get<BookingModel[]>(this.apiUrlFormUri(uri));
+  }
+
+  // Chat
   getConversations() {
     return this
       .http

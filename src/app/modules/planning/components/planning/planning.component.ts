@@ -5,6 +5,8 @@ import {PlanningService} from "../../../../services/planning.service";
 import {PlanningResult} from "../../models/planning-result";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DateService} from "../../../../services/date.service";
+import {MatDialog} from "@angular/material/dialog";
+import {RemovePeriodAvailabilityDialog} from "../remove-period-availability/remove-period-availability.dialog";
 
 @Component({
   selector: 'app-planning',
@@ -27,6 +29,7 @@ export class PlanningComponent implements OnInit {
     private dateService: DateService,
     private router: Router,
     private route: ActivatedRoute,
+    public dialog: MatDialog,
   ) {
   }
 
@@ -108,5 +111,26 @@ export class PlanningComponent implements OnInit {
     this.week = new WeekModel(previousMonday);
 
     this.loadSlots();
+  }
+
+  addAvailability() {
+    console.debug("Add availability");
+  }
+
+  removeAvailability() {
+    this
+      .dialog
+      .open(
+        RemovePeriodAvailabilityDialog,
+        {
+          width: '600px',
+        }
+      )
+      .afterClosed()
+      .subscribe((removed: boolean) => {
+        if (removed) {
+          this.loadSlots();
+        }
+      });
   }
 }
