@@ -1,6 +1,32 @@
-<mat-list>
-  <div *ngFor="let room of rooms">
-    <mat-list-item [class.active]="isRoomActive(room)" (click)="switchTo(room)">{{room.id}}</mat-list-item>
+<div class="chat-list">
+
+  <h1 *ngIf="rooms === null">Aucune Conversations</h1>
+  <h1 *ngIf="rooms !== null">{{rooms.length}} Conversations</h1>
+
+  <mat-list>
     <mat-divider></mat-divider>
-  </div>
-</mat-list>
+    <div *ngFor="let room of rooms">
+      <mat-list-item [class.active]="isRoomActive(room)" (click)="switchTo(room)" class="chat-room-title">
+        <div class="overview">
+          <img *ngIf="room.participants.length === 2" src="assets/default_profile.png" alt="avatar" class="avatar">
+          <img *ngIf="room.participants.length > 2" src="assets/default_profile_group.png" alt="avatar" class="avatar">
+          <div class="infos">
+            <div>
+              <span class="participant" *ngFor="let user of getOtherParticipants(room.participants); last as isLast">
+                {{user.identity.firstName|titlecase}} {{user.identity.lastName|uppercase}}
+                  <span class="participant" *ngIf="!isLast"> & </span>
+              </span>
+            </div>
+            <span *ngIf="room.lastMessage" class="last-message">
+            {{ (room.lastMessage.content.length > 30) ? (room.lastMessage.content | slice:0:30) + '...' : (room.lastMessage.content) }}
+              •
+              {{room.lastMessage.sentAt | date:'d MMM'}}
+          </span>
+          </div>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-list>
+
+</div>

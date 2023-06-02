@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ConversationModel} from "../../../../models/chat/ConversationModel";
+import {AuthService} from "../../../../services/auth.service";
+import {UserModel} from "../../../../models/user.model";
 
 @Component({
   selector: 'app-chat-list',
@@ -9,8 +11,12 @@ import {ConversationModel} from "../../../../models/chat/ConversationModel";
 export class ChatListComponent {
   @Input() current: ConversationModel | null = null;
   @Input() rooms: ConversationModel[] | null = null;
-
   @Output() selected = new EventEmitter<ConversationModel>();
+
+  constructor(
+    private authService: AuthService,
+  ) {
+  }
 
   isRoomActive(room: ConversationModel) {
     if (this.current === null) {
@@ -22,5 +28,21 @@ export class ChatListComponent {
 
   switchTo(room: ConversationModel) {
     this.selected.emit(room);
+  }
+
+  isCurrentUser(user: UserModel) {
+    const current = this.authService.getUser();
+
+    if (current === null) {
+      return false
+    }
+
+    return user.uuid === current.uuid;
+  }
+
+  getOtherParticipants(participants: UserModel[]) {
+    return participants.filter((participant) => {
+      return !this.isCurrentUser(participant);
+    });
   }
 }

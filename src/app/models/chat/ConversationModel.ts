@@ -5,7 +5,7 @@ export class ConversationModel {
   constructor(
     public id: string,
     public participants: UserModel[],
-    public lastMessage: ConversationMessageModel,
+    public lastMessage: ConversationMessageModel|null,
   ) {
   }
 }
