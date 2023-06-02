@@ -1,0 +1,6 @@
+<mat-list>
+  <div *ngFor="let room of rooms">
+    <mat-list-item [class.active]="isRoomActive(room)" (click)="switchTo(room)">{{room.id}}</mat-list-item>
+    <mat-divider></mat-divider>
+  </div>
+</mat-list>

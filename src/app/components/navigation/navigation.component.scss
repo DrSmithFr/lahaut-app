@@ -1,5 +1,6 @@
 @import "colors";
 @import "breakpoints";
+@import "toolbar";
 
 // toolbar
 .logo {
@@ -43,14 +44,14 @@
   }
 
   .mat-toolbar-row {
-    height: 137px;
+    height: $toolbar-desktop;
 
     @include tablet() {
-      height: 70px;
+      height: $toolbar-tablet;
     }
 
     @include mobile-all() {
-      height: 50px;
+      height: $toolbar-mobile;
     }
   }
 }

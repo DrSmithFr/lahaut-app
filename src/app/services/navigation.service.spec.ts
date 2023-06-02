@@ -15,12 +15,12 @@ describe('NavigationService', () => {
   });
 
   it('should hide navigation by default', () => {
-    expect(service.showNavigation.getValue()).toBeFalse();
+    expect(service.isNavigationVisible.getValue()).toBeFalse();
   });
 
   it('should dispatch navigation opening when calling .show()', (done) => {
     service.show();
-    service.showNavigation.subscribe((value) => {
+    service.isNavigationVisible.subscribe((value) => {
       expect(value).toBeTrue();
       done();
     });
@@ -28,7 +28,7 @@ describe('NavigationService', () => {
 
   it('should dispatch navigation closing when calling .hide()', (done) => {
     service.hide();
-    service.showNavigation.subscribe((value) => {
+    service.isNavigationVisible.subscribe((value) => {
       expect(value).toBeFalse();
       done();
     });

@@ -11,6 +11,8 @@ import {SearchQuery} from "../modules/search/models/search-query";
 import {SlotModel} from "../models/fly/slotModel";
 import {DateService} from "./date.service";
 import {SlotDetailModel} from "../models/fly/slotDetailModel";
+import {ConversationModel} from "../models/chat/ConversationModel";
+import {ConversationMessageModel} from "../models/chat/ConversationMessageModel";
 
 // contain every api call to be easily fake using angular provider mechanism
 @Injectable(
@@ -163,5 +165,23 @@ export class ApiService {
       .http
       .delete<SlotDetailModel>(
         this.apiUrlFormUri('/slots'), {body: {slots: slotIds}});
+  }
+
+  getConversations() {
+    return this
+      .http
+      .get<ConversationModel[]>(this.apiUrlFormUri('/conversations'));
+  }
+
+  getMessages(uuid: string) {
+    return this
+      .http
+      .get<ConversationMessageModel[]>(this.apiUrlFormUri('/conversations/' + uuid));
+  }
+
+  sendMessage(id: string, message: string) {
+    return this
+      .http
+      .post<ConversationMessageModel>(this.apiUrlFormUri('/conversations/' + id), {content: message});
   }
 }

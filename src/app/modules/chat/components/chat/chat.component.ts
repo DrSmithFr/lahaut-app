@@ -1,0 +1,58 @@
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ApiService} from "../../../../services/api.service";
+import {ConversationModel} from "../../../../models/chat/ConversationModel";
+import {BreakpointObserver} from "@angular/cdk/layout";
+import {NavigationService} from "../../../../services/navigation.service";
+
+@Component({
+  selector: 'app-chat',
+  templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.scss']
+})
+export class ChatComponent implements OnInit, OnDestroy {
+
+  public rooms: ConversationModel[] | null = null;
+  public current: ConversationModel | null = null;
+
+  isMobile = false;
+  isOpened = false;
+
+  constructor(
+    private apiService: ApiService,
+    private breakpointObserver: BreakpointObserver,
+    private navigationService: NavigationService
+  ) {
+  }
+
+  ngOnInit() {
+    // Manage the menu button
+    this.navigationService.showMenuButton();
+    this.navigationService.isMenuOpen.subscribe((isOpened) => {
+      this.isOpened = isOpened;
+    });
+
+    // Customize display for mobiles
+    this.isMobile = this.breakpointObserver.isMatched('(max-width: 800px)');
+
+    // Get the list of conversations
+    this.apiService.getConversations().subscribe(rooms => {
+      this.rooms = rooms;
+
+      // Only auto-open the first chat if we are not on mobile
+      if (!this.isMobile) {
+        this.current = this.rooms.at(0) ?? null;
+        this.isOpened = true;
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.navigationService.hideMenuButton();
+  }
+
+  switchTo(room: ConversationModel) {
+    this.current = room;
+    this.navigationService.isMenuOpen.next(false);
+    this.isOpened = false;
+  }
+}

@@ -4,6 +4,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {LogoutDialog} from "../logout-dialog/logout.dialog";
 import {StateService} from "../../services/state.service";
 import {Roles} from "../../guards/role-guard.service";
+import {NavigationService} from "../../services/navigation.service";
 
 @Component({
   selector: 'app-navigation',
@@ -11,12 +12,16 @@ import {Roles} from "../../guards/role-guard.service";
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
+  showMenuButton = false;
+  isMenuOpen = false;
+
   public isLoggedCustomer = false;
   public isLoggedMonitor = false;
 
   constructor(
     private auth: AuthService,
     private stateService: StateService,
+    private navigationService: NavigationService,
     public dialog: MatDialog
   ) {
   }
@@ -25,6 +30,14 @@ export class NavigationComponent implements OnInit {
     this.stateService.LOGGED_USER.subscribe((user) => {
       this.isLoggedCustomer = user?.roles.includes(Roles.customer) ?? false;
       this.isLoggedMonitor = user?.roles.includes(Roles.monitor) ?? false;
+    });
+
+    this.navigationService.isMenuButtonVisible.subscribe((show) => {
+      this.showMenuButton = show;
+    });
+
+    this.navigationService.isMenuOpen.subscribe((isOpened) => {
+      this.isMenuOpen = isOpened;
     });
   }
 
@@ -54,5 +67,10 @@ export class NavigationComponent implements OnInit {
 
   getBadgeCountForBooking() {
     return this.isLogged() ? 1 : 0;
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+    this.navigationService.isMenuOpen.next(this.isMenuOpen);
   }
 }

@@ -196,3 +196,8 @@ body {
   border-top-color: $purple;
   animation: spinner .8s linear infinite;
 }
+
+// mat-drawer
+.mat-drawer-container {
+  background: transparent;
+}

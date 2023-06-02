@@ -1,0 +1,30 @@
+<div class="chat-room">
+  <div class="chat-room-header">
+
+  </div>
+
+  <div class="chat-room-chat">
+    <div class="chat-room-chat-content">
+
+
+
+      <div *ngFor="let msg of messages; let last = last" class="message-box" [class.me]="isMessageMine(msg)">
+        <span class="message">{{msg.content}}</span>
+        <span class="message-time" *ngIf="last">{{msg.sentAt|date: 'hh:mm'}}</span>
+<!--        <span class="message-time">{{msg.sentAt|date: 'dd MMMM y à hh:mm'}}</span>-->
+      </div>
+
+    </div>
+  </div>
+
+  <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="chat-form" (keydown)="keyDownFunction($event)">
+    <mat-form-field>
+      <textarea matInput formControlName="message" placeholder="Aa" style="resize: none;"></textarea>
+    </mat-form-field>
+
+    <button mat-icon-button color="primary" aria-label="Envoyer" type="submit">
+      <mat-icon>send</mat-icon>
+    </button>
+  </form>
+
+</div>

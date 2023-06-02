@@ -3,8 +3,9 @@
     <!-- 'absorbs' the auto-focus behavior -->
     <button mat-button style="height: 0; position: absolute;" aria-label="disable-auto-focus"></button>
 
-    <button mat-icon-button aria-label="Example icon-button with menu icon" style="opacity: 0">
-      <mat-icon>menu</mat-icon>
+    <button mat-icon-button aria-label="Example icon-button with menu icon" (click)="toggleMenu()">
+      <mat-icon *ngIf="isMenuOpen">chevron_left</mat-icon>
+      <mat-icon *ngIf="!isMenuOpen">menu</mat-icon>
     </button>
 
     <a routerLink="/">

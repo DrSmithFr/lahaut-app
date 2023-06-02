@@ -1,0 +1,23 @@
+@import "colors";
+@import "breakpoints";
+@import "toolbar";
+
+.chat {
+  height: calc(100vh - $toolbar-desktop);
+
+  @include tablet() {
+    height: calc(100vh - $toolbar-tablet);
+  }
+
+  @include mobile-all() {
+    height: calc(100vh - $toolbar-mobile);
+  }
+
+  .chat-sidenav {
+    width: 300px;
+
+    @include mobile-xs() {
+      width: 80%;
+    }
+  }
+}
