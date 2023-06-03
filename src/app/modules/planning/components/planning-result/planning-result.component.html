@@ -1,0 +1,31 @@
+<mat-accordion>
+  <div *ngFor="let result of results | keyvalue">
+    <app-planning-row [result]="result.value" (requestPlanningRefresh)="refresh()"></app-planning-row>
+  </div>
+
+  <div *ngIf="results.size === 0" class="empty">
+    <div>
+      <img src="assets/illustration/undraw_calendar.svg" alt="Aucune disponibilité">
+    </div>
+
+    <div class="empty-info">
+      <h2>Aucun crénaux</h2>
+      <div>
+        <p>
+          Vous n'avez pas encore ajouté de <strong>créneaux</strong> pour cette journée.
+        </p>
+        <div class="empty-instruction">
+          <div class="empty-instruction-icon">
+            <mat-icon>info</mat-icon>
+          </div>
+          <span>
+                Vous pouvez en <strong>Ajouter des créneaux</strong> en cliquant sur le <strong>bouton réglage</strong> en haut à droite du planning.
+              </span>
+        </div>
+      </div>
+      <div class="button">
+        <button mat-raised-button color="primary" (click)="addAvailability()">Ajouter des créneaux</button>
+      </div>
+    </div>
+  </div>
+</mat-accordion>

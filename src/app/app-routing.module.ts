@@ -42,6 +42,12 @@ const routes: Routes = [
     loadChildren: () => import('./modules/planning/planning.module').then(m => m.PlanningModule),
   },
   {
+    path: 'dashboard',
+    canActivate: [RoleGuard.forRoles(Roles.monitor)],
+    canActivateChild: [RoleGuard.forRoles(Roles.monitor)],
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
+  },
+  {
     path: 'home',
     component: HomeComponent,
     data: {

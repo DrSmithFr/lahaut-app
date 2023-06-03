@@ -1,0 +1,37 @@
+import {Component, OnInit} from '@angular/core';
+import {tap} from "rxjs/operators";
+import {ApiService} from "../../../../services/api.service";
+import {PlanningService} from "../../../../services/planning.service";
+import {PlanningResult} from "../../../planning/models/planning-result";
+
+@Component({
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
+})
+export class DashboardComponent implements OnInit {
+  public loading = true;
+  public results: Map<string, PlanningResult>;
+
+  constructor(
+    private apiService: ApiService,
+    private planningService: PlanningService,
+  ) {
+
+  }
+
+  ngOnInit() {
+    this
+      .apiService
+      .findCurrentMonitorSlots(new Date())
+      .pipe(
+        tap(() => {
+          this.loading = false
+        }),
+      )
+      .subscribe(slots => {
+        this.results = this.planningService.transformSlotToPlanningResult(slots);
+        this.loading = false;
+      });
+  }
+}

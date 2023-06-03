@@ -27,6 +27,7 @@ import {AddAvailabilityDialog} from './components/add-availability/add-availabil
 import {MatSelectModule} from "@angular/material/select";
 import {AddAvailabilityConfirmDialog} from './components/add-availability-confirm/add-availability-confirm.dialog';
 import {SlotsListPreviewComponent} from './components/slots-list-preview/slots-list-preview.component';
+import { PlanningResultComponent } from './components/planning-result/planning-result.component';
 
 
 @NgModule({
@@ -38,12 +39,12 @@ import {SlotsListPreviewComponent} from './components/slots-list-preview/slots-l
     RemovePeriodAvailabilityDialog,
     AddAvailabilityDialog,
     AddAvailabilityConfirmDialog,
-    SlotsListPreviewComponent
+    SlotsListPreviewComponent,
+    PlanningResultComponent
   ],
   imports: [
     CommonModule,
     PlanningRoutingModule,
-
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
@@ -62,6 +63,9 @@ import {SlotsListPreviewComponent} from './components/slots-list-preview/slots-l
     MatOptionModule,
     MatSelectModule
   ],
+  exports: [
+    PlanningResultComponent
+  ]
 })
 export class PlanningModule {
 }

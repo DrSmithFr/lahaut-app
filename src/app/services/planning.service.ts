@@ -2,11 +2,18 @@ import {Injectable} from '@angular/core';
 import {SlotModel} from "../models/fly/slotModel";
 import {PlanningResult} from "../modules/planning/models/planning-result";
 import {BookingModel} from "../models/fly/bookingModel";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {AddAvailabilityDialog} from "../modules/planning/components/add-availability/add-availability.dialog";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlanningService {
+  constructor(
+    public dialog: MatDialog,
+  ) {
+  }
+
   public transformSlotToPlanningResult(slots: SlotModel[]): Map<string, PlanningResult> {
     const results = new Map<string, PlanningResult>();
 
@@ -44,5 +51,16 @@ export class PlanningService {
     }
 
     return results;
+  }
+
+  openAddAvailabilityDialog(): MatDialogRef<AddAvailabilityDialog> {
+    return this
+      .dialog
+      .open(
+        AddAvailabilityDialog,
+        {
+          width: '600px',
+        }
+      )
   }
 }
