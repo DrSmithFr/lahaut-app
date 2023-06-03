@@ -13,14 +13,20 @@ import {RemoveHourAvailabilityDialog} from './components/remove-hour-availabilit
 import {MatDialogModule} from "@angular/material/dialog";
 import {SlotsListComponent} from './components/slots-list/slots-list.component';
 import {MatMenuModule} from "@angular/material/menu";
-import { RemovePeriodAvailabilityDialog } from './components/remove-period-availability/remove-period-availability.dialog';
+import {
+  RemovePeriodAvailabilityDialog
+} from './components/remove-period-availability/remove-period-availability.dialog';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {MatNativeDateModule} from "@angular/material/core";
+import {MatNativeDateModule, MatOptionModule} from "@angular/material/core";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {AddAvailabilityDialog} from './components/add-availability/add-availability.dialog';
+import {MatSelectModule} from "@angular/material/select";
+import {AddAvailabilityConfirmDialog} from './components/add-availability-confirm/add-availability-confirm.dialog';
+import {SlotsListPreviewComponent} from './components/slots-list-preview/slots-list-preview.component';
 
 
 @NgModule({
@@ -29,7 +35,10 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     PlanningRowComponent,
     RemoveHourAvailabilityDialog,
     SlotsListComponent,
-    RemovePeriodAvailabilityDialog
+    RemovePeriodAvailabilityDialog,
+    AddAvailabilityDialog,
+    AddAvailabilityConfirmDialog,
+    SlotsListPreviewComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +58,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatFormFieldModule,
     MatInputModule,
     MatSlideToggleModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatOptionModule,
+    MatSelectModule
   ],
 })
 export class PlanningModule {

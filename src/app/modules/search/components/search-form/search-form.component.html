@@ -11,7 +11,7 @@
           <mat-form-field appearance="fill">
             <mat-label>Lieu</mat-label>
             <mat-select formControlName="location" (selectionChange)="trySubmit()">
-              <mat-option value="fly-location-from-fixture">Default</mat-option>
+              <mat-option *ngFor="let type of flyLocations|keyvalue" [value]="type.key">{{type.value}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -19,9 +19,7 @@
           <mat-form-field appearance="fill">
             <mat-label>Type de vol</mat-label>
             <mat-select formControlName="flyType" (selectionChange)="trySubmit()">
-              <mat-option value="discovery">Vol Decouverte</mat-option>
-              <mat-option value="freestyle">Vol Freestyle</mat-option>
-              <mat-option value="xl">Vol XL</mat-option>
+              <mat-option *ngFor="let type of flyTypes|keyvalue" [value]="type.key">{{type.value}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>

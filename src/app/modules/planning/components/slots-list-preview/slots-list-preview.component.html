@@ -1,0 +1,21 @@
+<div class="slot-card-container">
+  <div *ngFor="let slot of slots">
+    <a class="slot-card">
+      <div class="type">
+        <span>
+          {{slot.type|flyType}}<br>
+          <small class="duration">~ {{slot.averageFlyDuration|duration}} minutes</small>
+        </span>
+      </div>
+
+      <span class="time">
+        <span class="start">{{slot.startAt}}</span>
+        <span class="end">{{slot.endAt}}</span>
+      </span>
+
+      <span class="price">
+        {{slot.price|currency: 'EUR': 'symbol-narrow': '1.0-2'}}
+      </span>
+    </a>
+  </div>
+</div>

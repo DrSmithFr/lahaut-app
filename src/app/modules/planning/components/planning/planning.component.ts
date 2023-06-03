@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {DateService} from "../../../../services/date.service";
 import {MatDialog} from "@angular/material/dialog";
 import {RemovePeriodAvailabilityDialog} from "../remove-period-availability/remove-period-availability.dialog";
+import {AddAvailabilityDialog} from "../add-availability/add-availability.dialog";
 
 @Component({
   selector: 'app-planning',
@@ -114,7 +115,20 @@ export class PlanningComponent implements OnInit {
   }
 
   addAvailability() {
-    console.debug("Add availability");
+    this
+      .dialog
+      .open(
+        AddAvailabilityDialog,
+        {
+          width: '600px',
+        }
+      )
+      .afterClosed()
+      .subscribe((added: boolean) => {
+        if (added) {
+          this.loadSlots();
+        }
+      });
   }
 
   removeAvailability() {

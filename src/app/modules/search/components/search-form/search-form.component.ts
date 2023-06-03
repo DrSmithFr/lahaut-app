@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SearchQuery} from "../../models/search-query";
+import {flyLocation, flyType} from "../../../../../environments/fly-location";
 
 @Component({
   selector: 'app-search-form',
@@ -13,6 +14,9 @@ export class SearchFormComponent implements OnInit {
   @Output() query = new EventEmitter<SearchQuery>();
 
   searchForm: FormGroup;
+
+  flyLocations = flyLocation;
+  flyTypes = flyType;
 
   constructor(
     private fb: FormBuilder,

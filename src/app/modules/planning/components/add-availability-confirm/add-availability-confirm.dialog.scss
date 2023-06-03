@@ -1,0 +1,67 @@
+@use "sass:map";
+@import "colors";
+@import "breakpoints";
+
+h1.title {
+  color: $blue;
+
+  font-size: 20px;
+  font-weight: bold;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+
+.content {
+  padding-bottom: 0;
+
+  h2 {
+    color: $purple;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  section {
+    background: rgba(250, 250, 250, 0.7);
+
+    margin: 10px 0;
+    padding: 10px 20px;
+
+    border-radius: 5px;
+
+    .header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 10px;
+
+      .time {
+        color: $gray-light;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .label {
+        color: $border-dark;
+        line-height: 20px;
+
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}

@@ -14,6 +14,7 @@ import {SlotDetailModel} from "../models/fly/slotDetailModel";
 import {ConversationModel} from "../models/chat/ConversationModel";
 import {ConversationMessageModel} from "../models/chat/ConversationMessageModel";
 import {BookingModel} from "../models/fly/bookingModel";
+import {SlotProposedModel} from "../models/fly/slotProposedModel";
 
 // contain every api call to be easily fake using angular provider mechanism
 @Injectable(
@@ -165,6 +166,12 @@ export class ApiService {
     return this
       .http
       .get<SlotDetailModel>(this.apiUrlFormUri('/public/slots/' + id));
+  }
+
+  getSlotProposedForLocation(location: string) {
+    return this
+      .http
+      .get<SlotProposedModel[]>(this.apiUrlFormUri('/public/slots/proposed/' + location));
   }
 
   removeSlots(slotIds: number[]) {
