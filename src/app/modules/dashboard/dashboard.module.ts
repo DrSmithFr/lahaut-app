@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import {DashboardRoutingModule} from './dashboard-routing.module';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {PlanningModule} from "../planning/planning.module";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -15,7 +16,9 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     CommonModule,
     DashboardRoutingModule,
     PlanningModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatButtonModule,
   ]
 })
-export class DashboardModule { }
+export class DashboardModule {
+}

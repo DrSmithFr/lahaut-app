@@ -5,7 +5,6 @@ import {SearchRoutingModule} from './search-routing.module';
 import {MatCardModule} from "@angular/material/card";
 import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatNativeDateModule} from "@angular/material/core";
 import {SearchComponent} from "./components/search/search.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
@@ -59,7 +58,6 @@ import { AddToCartFlyMapComponent } from './components/add-to-cart-fly-map/add-t
     MatCardModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule,
     MatProgressBarModule,
     MatPaginatorModule,
     MatTableModule,

@@ -4,6 +4,9 @@ import {PlanningResult} from "../modules/planning/models/planning-result";
 import {BookingModel} from "../models/fly/bookingModel";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {AddAvailabilityDialog} from "../modules/planning/components/add-availability/add-availability.dialog";
+import {
+  RemovePeriodAvailabilityDialog
+} from "../modules/planning/components/remove-period-availability/remove-period-availability.dialog";
 
 @Injectable({
   providedIn: 'root'
@@ -53,14 +56,21 @@ export class PlanningService {
     return results;
   }
 
-  openAddAvailabilityDialog(): MatDialogRef<AddAvailabilityDialog> {
-    return this
-      .dialog
-      .open(
-        AddAvailabilityDialog,
-        {
-          width: '600px',
-        }
-      )
+  openAddAvailabilityDialog(dialog: MatDialog): MatDialogRef<AddAvailabilityDialog> {
+    return dialog.open(
+      AddAvailabilityDialog,
+      {
+        width: '600px',
+      }
+    )
+  }
+
+  openRemoveAvailabilityDialog(dialog: MatDialog): MatDialogRef<RemovePeriodAvailabilityDialog> {
+    return dialog.open(
+      RemovePeriodAvailabilityDialog,
+      {
+        width: '600px',
+      }
+    )
   }
 }

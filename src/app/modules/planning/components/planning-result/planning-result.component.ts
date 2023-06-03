@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {PlanningService} from "../../../../services/planning.service";
 import {PlanningResult} from "../../models/planning-result";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-planning-result',
@@ -13,13 +14,14 @@ export class PlanningResultComponent {
 
   constructor(
     private planningService: PlanningService,
+    private dialog: MatDialog,
   ) {
   }
 
   addAvailability() {
     this
       .planningService
-      .openAddAvailabilityDialog()
+      .openAddAvailabilityDialog(this.dialog)
       .afterClosed()
       .subscribe((added: boolean) => {
         if (added) {

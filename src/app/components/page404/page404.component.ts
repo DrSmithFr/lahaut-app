@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {StateService} from "../../services/state.service";
+import {Roles} from "../../guards/role-guard.service";
 
 @Component(
   {
@@ -7,6 +9,17 @@ import {Component} from '@angular/core';
     styleUrls: ['./page404.component.scss']
   }
 )
-export class Page404Component {
+export class Page404Component implements OnInit {
+  public isLoggedMonitor = false;
 
+  constructor(
+    private stateService: StateService,
+  ) {
+  }
+
+  ngOnInit() {
+    this.stateService.LOGGED_USER.subscribe((user) => {
+      this.isLoggedMonitor = user?.roles.includes(Roles.monitor) ?? false;
+    });
+  }
 }

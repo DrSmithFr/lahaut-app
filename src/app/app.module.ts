@@ -28,7 +28,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {PasswordResetDialog} from "./components/password-reset/password-reset-dialog.component";
 import {PasswordResetRequestDialog} from "./components/password-reset-request/password-reset-request.dialog";
 import {GtagModule} from "angular-gtag";
-import {MAT_DATE_LOCALE} from "@angular/material/core";
+import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import fr from '@angular/common/locales/fr';
 import {registerLocaleData} from '@angular/common';
 
@@ -60,6 +60,9 @@ registerLocaleData(fr);
     // importing reactive form
     FormsModule,
     ReactiveFormsModule,
+
+    // Date modules
+    MatNativeDateModule,
 
     // Material modules
     MatInputModule,
