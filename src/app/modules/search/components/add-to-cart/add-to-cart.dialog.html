@@ -48,28 +48,31 @@
             {{slot.flyLocation.meetingPoint.name}}
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <p>
-          <b>Addresse:</b>
-          {{slot.flyLocation.meetingPoint.name}},
-          {{slot.flyLocation.meetingPoint.address.street}},
-          {{slot.flyLocation.meetingPoint.address.zipCode}}
-          {{slot.flyLocation.meetingPoint.address.city | uppercase}},
-          {{slot.flyLocation.meetingPoint.address.country | titlecase}}
-        </p>
-        <google-map
-          height="250px"
-          width="100%"
-          [zoom]="16"
-          [center]="{lat: slot.flyLocation.meetingPoint.latitude, lng: slot.flyLocation.meetingPoint.longitude}"
-          [options]="options"
-        >
-          <map-marker
-            [position]="{lat: slot.flyLocation.meetingPoint.latitude, lng: slot.flyLocation.meetingPoint.longitude}"
-            [title]="slot.flyLocation.meetingPoint.name"
-            [label]="slot.flyLocation.meetingPoint.description"
+
+        <ng-template matExpansionPanelContent>
+          <p>
+            <b>Addresse:</b>
+            {{slot.flyLocation.meetingPoint.name}},
+            {{slot.flyLocation.meetingPoint.address.street}},
+            {{slot.flyLocation.meetingPoint.address.zipCode}}
+            {{slot.flyLocation.meetingPoint.address.city | uppercase}},
+            {{slot.flyLocation.meetingPoint.address.country | titlecase}}
+          </p>
+          <google-map
+            height="250px"
+            width="100%"
+            [zoom]="16"
+            [center]="{lat: slot.flyLocation.meetingPoint.latitude, lng: slot.flyLocation.meetingPoint.longitude}"
+            [options]="options"
           >
-          </map-marker>
-        </google-map>
+            <map-marker
+              [position]="{lat: slot.flyLocation.meetingPoint.latitude, lng: slot.flyLocation.meetingPoint.longitude}"
+              [title]="slot.flyLocation.meetingPoint.name"
+              [label]="slot.flyLocation.meetingPoint.description"
+            >
+            </map-marker>
+          </google-map>
+        </ng-template>
       </mat-expansion-panel>
 
       <mat-expansion-panel>
@@ -79,8 +82,9 @@
             ~ {{slot.averageFlyDuration | duration}} minutes
           </mat-panel-description>
         </mat-expansion-panel-header>
-
-        <app-add-to-cart-fly-map [slot]="slot"></app-add-to-cart-fly-map>
+        <ng-template matExpansionPanelContent>
+          <app-add-to-cart-fly-map [slot]="slot"></app-add-to-cart-fly-map>
+        </ng-template>
       </mat-expansion-panel>
 
     </mat-accordion>
