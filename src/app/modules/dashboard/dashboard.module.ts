@@ -6,19 +6,21 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {PlanningModule} from "../planning/planning.module";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
   declarations: [
     DashboardComponent
   ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    PlanningModule,
-    MatProgressBarModule,
-    MatButtonModule,
-  ]
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        PlanningModule,
+        MatProgressBarModule,
+        MatButtonModule,
+        MatIconModule,
+    ]
 })
 export class DashboardModule {
 }

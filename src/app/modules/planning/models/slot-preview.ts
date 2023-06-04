@@ -7,5 +7,6 @@ export class SlotPreview {
     public endAt: string,
     public averageFlyDuration: string,
     public type: string,
+    public selected: boolean = true,
   ) {}
 }

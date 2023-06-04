@@ -19,12 +19,16 @@
             <mat-icon>info</mat-icon>
           </div>
           <span>
-                Vous pouvez en <strong>Ajouter des créneaux</strong> en cliquant sur le <strong>bouton réglage</strong> en haut à droite du planning.
+                Vous pouvez <strong>ajouter des créneaux</strong> en cliquant sur le <strong>bouton réglage</strong> en haut à droite du planning,
+                puis sur <strong>Déclarer vos disponibilités</strong>.
               </span>
         </div>
       </div>
       <div class="button">
-        <button mat-raised-button color="primary" (click)="addAvailability()">Ajouter des créneaux</button>
+        <button mat-raised-button color="primary" (click)="addAvailability()">
+          <mat-icon>event_available</mat-icon>
+          Déclarer vos disponibilités
+        </button>
       </div>
     </div>
   </div>

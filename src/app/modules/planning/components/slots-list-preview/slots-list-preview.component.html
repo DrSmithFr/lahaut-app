@@ -18,7 +18,12 @@
       </span>
     </a>
     <div class="center">
-      <mat-checkbox color="primary" checked="true"></mat-checkbox>
+      <mat-checkbox
+        color="primary"
+        checked="true"
+        [(ngModel)]="slot.selected"
+        [ngModelOptions]="{standalone: true}">
+      </mat-checkbox>
     </div>
   </div>
 </div>

@@ -29,6 +29,59 @@ h1.title {
     text-align: center;
   }
 
+  .slots-in-period-error {
+    background: #ffcece;
+
+    margin: 20px 0;
+    text-align: center;
+
+    padding: 20px;
+    border-radius: 5px;
+
+    .error {
+      padding: 0 20px;
+
+      color: #b64646;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .error-info {
+      margin-top: 20px;
+      padding: 0 20px;
+
+      color: #f44336;
+      text-align: left;
+      font-size: 12px;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+
+      .icon {
+        width: 34px;
+        height: 34px;
+        margin-right: 10px;
+      }
+    }
+
+    span.error-label {
+      color: #b64646;
+      font-weight: bold;
+    }
+
+    .error-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+
+      @include mobile-xs {
+        flex-direction: column;
+      }
+    }
+  }
+
   section {
     background: rgba(250, 250, 250, 0.7);
 

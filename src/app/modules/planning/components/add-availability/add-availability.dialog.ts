@@ -127,8 +127,6 @@ export class AddAvailabilityDialog {
       return;
     }
 
-    this.closeModal();
-
     this
       .dialog
       .open(
@@ -142,7 +140,11 @@ export class AddAvailabilityDialog {
             flyTypes,
           )
         }
-      );
+      )
+      .afterClosed()
+      .subscribe((added: boolean) => {
+        this.dialogRef.close(added);
+      });
   }
 
   // UX actions

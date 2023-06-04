@@ -94,7 +94,7 @@ export class PlanningComponent implements OnInit {
 
   goNextWeek(): void {
     const nextMonday = new Date(this.week.monday);
-    nextMonday.setDate(nextMonday.getDate() + 6);
+    nextMonday.setDate(nextMonday.getDate() + 7);
 
     this.selectedDate = nextMonday;
     this.week = new WeekModel(nextMonday);
@@ -104,7 +104,7 @@ export class PlanningComponent implements OnInit {
 
   goPreviousWeek(): void {
     const previousMonday = new Date(this.week.monday);
-    previousMonday.setDate(previousMonday.getDate() - 6);
+    previousMonday.setDate(previousMonday.getDate() - 7);
 
     this.selectedDate = previousMonday;
     this.week = new WeekModel(previousMonday);

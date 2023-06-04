@@ -6,6 +6,7 @@ import {flyTypePriced} from "../../models/fly-type-priced";
 import {SlotPreview} from "../../models/slot-preview";
 import {tap} from "rxjs/operators";
 import {SlotProposedModel} from "../../../../models/fly/slotProposedModel";
+import {HttpErrorResponse} from "@angular/common/http";
 
 export class AddAvailabilityConfirmData {
   constructor(
@@ -29,7 +30,12 @@ export class AddAvailabilityConfirmDialog implements OnInit {
 
   requesting = true;
   loading = false;
+
   planning: ProposedPlanning;
+
+  slotsInPeriod = true;
+  allowOverwrite = false;
+  wipePeriod = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: AddAvailabilityConfirmData,
@@ -132,6 +138,62 @@ export class AddAvailabilityConfirmDialog implements OnInit {
     return this.data.start.getMonth() === this.data.end.getMonth();
   }
 
+  // Checkbox management
+  isAllSelected(slots: Array<SlotPreview>): boolean {
+    for (const slot of slots) {
+      if (!slot.selected) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  isSomeSelected(slots: Array<SlotPreview>): boolean {
+    if (this.isAllSelected(slots)) {
+      return false;
+    }
+
+    return slots.some((slot) => slot.selected);
+  }
+
+  selectAll(selected:boolean, slots: Array<SlotPreview>) {
+    for (const slot of slots) {
+      slot.selected = selected;
+    }
+  }
+
+  getSelectedSlots(): Array<SlotPreview> {
+    const result = new Array<SlotPreview>();
+
+    for (const slots of this.planning.values()) {
+      for (const slot of slots) {
+        if (slot.selected) {
+          result.push(slot);
+        }
+      }
+    }
+
+    return result;
+  }
+
+  hasSelectedSlots() {
+    if (this.planning === undefined) {
+      return false;
+    }
+
+    const slots = this.getSelectedSlots();
+    return slots.length > 0;
+  }
+
+  isReadyToSubmit() {
+    if (this.slotsInPeriod) {
+      return this.allowOverwrite || this.wipePeriod;
+    }
+
+    return false;
+  }
+
   // Modal actions
   closeModal() {
     this.dialogRef.close(false);
@@ -140,9 +202,40 @@ export class AddAvailabilityConfirmDialog implements OnInit {
   onSubmit() {
     this.loading = true;
 
+    const slots = this.getSelectedSlots();
+
+    this
+      .apiService
+      .addSlotsForPeriod(
+        slots,
+        this.data.start,
+        this.data.end,
+        this.allowOverwrite,
+        this.wipePeriod,
+      )
+      .pipe(
+        tap(() => {
+          this.loading = false;
+        })
+      )
+      .subscribe({
+        next: () => {
+          this.dialogRef.close(true);
+        },
+        error: (err: HttpErrorResponse) => {
+          this
+            .snackBar
+            .open(
+              `[${err.status}] Une erreur est survenue lors de l'ajout des créneaux. Veuillez réessayer plus tard.`,
+              'Fermer',
+              {duration: 5000}
+            );
+        }
+      });
+
     setTimeout(() => {
       this.loading = false;
-      this.dialogRef.close(true);
+
     }, 2000);
   }
 }

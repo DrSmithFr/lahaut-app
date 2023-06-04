@@ -15,6 +15,7 @@ import {ConversationModel} from "../models/chat/ConversationModel";
 import {ConversationMessageModel} from "../models/chat/ConversationMessageModel";
 import {BookingModel} from "../models/fly/bookingModel";
 import {SlotProposedModel} from "../models/fly/slotProposedModel";
+import {SlotPreview} from "../modules/planning/models/slot-preview";
 
 // contain every api call to be easily fake using angular provider mechanism
 @Injectable(
@@ -186,6 +187,35 @@ export class ApiService {
     return this
       .http
       .delete<SlotDetailModel>(this.apiUrlFormUri(uri));
+  }
+
+  addSlotsForPeriod(
+    slots: Array<SlotPreview>,
+    start: Date,
+    end: Date,
+    allowOverwrite: boolean,
+    wipePeriod: boolean
+  ) {
+    const uri = '/slots/' + this.dateService.formatDate(start) + '-' + this.dateService.formatDate(end);
+    return this
+      .http
+      .put<SlotModel[]>(
+        this.apiUrlFormUri(uri),
+        {
+          overwrite: allowOverwrite,
+          wipe: wipePeriod,
+          slots: slots.map(slot => {
+            return {
+              price: slot.price,
+              flyLocation: slot.flyLocation,
+              startAt: slot.startAt,
+              endAt: slot.endAt,
+              averageFlyDuration: slot.averageFlyDuration,
+              type: slot.type,
+            };
+          })
+        }
+      );
   }
 
   checkBookingForPeriod(start: Date, end: Date) {

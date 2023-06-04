@@ -9,11 +9,38 @@
   <div *ngIf="planning !== undefined">
     <h2>{{data.location|flyLocation|uppercase}}</h2>
 
+    <div *ngIf="slotsInPeriod" class="slots-in-period-error">
+      <div class="error">
+        Des créneaux sont déjà présents dans cette période.
+      </div>
+
+      <div class="error-info">
+        <div class="icon">
+          <mat-icon>info</mat-icon>
+        </div>
+        <div>
+          Mettre à jour les créneaux existants vous permettra de modifier les prix des créneaux déjà présents.
+        </div>
+      </div>
+
+      <div class="error-actions">
+        <mat-checkbox color="warn" [(ngModel)]="allowOverwrite" (change)="wipePeriod = !$event.checked">
+          <span class="error-label">Mettre à jour les créneaux existants</span>
+        </mat-checkbox>
+        <mat-checkbox color="warn" [(ngModel)]="wipePeriod" (change)="allowOverwrite = !$event.checked">
+          <span class="error-label">Supprimer tous les créneaux existants</span>
+        </mat-checkbox>
+      </div>
+    </div>
+
     <section *ngFor="let hourPlanning of planning|keyvalue">
       <div class="header">
         <mat-checkbox
           color="primary"
-          checked="true">
+          checked="true"
+          [checked]="isAllSelected(hourPlanning.value)"
+          [indeterminate]="isSomeSelected(hourPlanning.value)"
+          (change)="selectAll($event.checked, hourPlanning.value)">
           <div class="time">{{hourPlanning.key}}</div>
         </mat-checkbox>
 
@@ -32,7 +59,7 @@
     mat-flat-button
     color="primary"
     [class.spinner]="loading"
-    [disabled]="loading"
+    [disabled]="loading || !hasSelectedSlots() || !isReadyToSubmit()"
     (click)="onSubmit()">
     Valider
   </button>
