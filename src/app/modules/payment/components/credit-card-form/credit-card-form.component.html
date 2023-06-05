@@ -2,6 +2,7 @@
   <div class="creditcard" [class.flipped]="cardFlipped" (click)="cardFlipped = !cardFlipped">
     <div class="front">
       <div id="ccsingle">
+        <img *ngIf="!cardType.images.logo" src="assets/payment/cb.svg" alt="credit card">
         <img *ngIf="cardType.images.logo" src="{{cardType.images.logo}}" alt="{{cardType.name}}">
       </div>
       <svg
