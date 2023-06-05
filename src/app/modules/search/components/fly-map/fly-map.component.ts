@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {PlaceModel, SlotDetailModel} from "../../../../models/fly/slotDetailModel";
 import {GoogleMap} from "@angular/google-maps";
 
@@ -8,6 +8,7 @@ import {GoogleMap} from "@angular/google-maps";
   styleUrls: ['./fly-map.component.scss']
 })
 export class FlyMapComponent implements AfterViewInit {
+  @ViewChild('container') container: ElementRef;
   @ViewChild(GoogleMap, {static: false}) map: GoogleMap
 
   @Input() slot: SlotDetailModel;
@@ -33,6 +34,7 @@ export class FlyMapComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.centerMapShowingAllMarkers();
+    this.slideToContent();
   }
 
   getLatLngLiteral(place: PlaceModel) {
@@ -49,5 +51,15 @@ export class FlyMapComponent implements AfterViewInit {
     bounds.extend(this.getLatLngLiteral(this.slot.flyLocation.landingPoint));
 
     this.map.fitBounds(bounds);
+  }
+
+  // UX actions
+  slideToContent() {
+    setTimeout(() => {
+      this
+        .container
+        .nativeElement
+        .scrollIntoView({behavior: 'smooth'});
+    }, 150);
   }
 }
