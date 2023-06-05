@@ -4,6 +4,7 @@ import {ApiService} from "../../../../services/api.service";
 import {SlotDetailModel} from "../../../../models/fly/slotDetailModel";
 import {FlyMapComponent} from "../fly-map/fly-map.component";
 import {FlyMeetingMapComponent} from "../fly-meeting-map/fly-meeting-map.component";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-add-to-cart-dialog',
@@ -11,6 +12,7 @@ import {FlyMeetingMapComponent} from "../fly-meeting-map/fly-meeting-map.compone
   styleUrls: ['./add-to-cart.dialog.scss']
 })
 export class AddToCartDialog implements OnInit {
+  loading = true;
   slot: SlotDetailModel;
 
   constructor(
@@ -21,7 +23,15 @@ export class AddToCartDialog implements OnInit {
   }
 
   ngOnInit() {
-    this.api.getSlot(this.data).subscribe(slot => {
+    this
+      .api
+      .getSlot(this.data)
+      .pipe(
+        tap(() => {
+          this.loading = false
+        })
+      )
+      .subscribe(slot => {
       this.slot = slot;
     });
   }

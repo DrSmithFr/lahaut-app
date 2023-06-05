@@ -1,7 +1,6 @@
-<div mat-dialog-content>
-  <mat-progress-bar mode="indeterminate" *ngIf="slot === undefined"></mat-progress-bar>
-
-  <div *ngIf="slot !== undefined">
+<div mat-dialog-content class="add-to-card">
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <div *ngIf="!loading">
 
     <div class="slot-info">
       <div class="date-wrapper">
@@ -39,98 +38,73 @@
       </div>
     </div>
 
-    <mat-accordion>
+    <div class="address">
+      <div class="label">
+        Lieu de rendez-vous:
+      </div>
+      <div class="address-content">
+        <div class="direction">
+          {{slot.flyLocation.meetingPoint.name}},<br>
+          {{slot.flyLocation.meetingPoint.address.street}},<br>
+          <b>
+            {{slot.flyLocation.meetingPoint.address.zipCode}}
+            {{slot.flyLocation.meetingPoint.address.city | uppercase}},
+            {{slot.flyLocation.meetingPoint.address.country | titlecase}}
+          </b>
+        </div>
+        <div class="action">
+          <button mat-icon-button (click)="openMeetingPointDialog()">
+            <mat-icon>map</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
 
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>Rendez-vous</mat-panel-title>
-          <mat-panel-description>
-            {{slot.flyLocation.meetingPoint.name}}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
+    <div class="address">
+      <div class="label">
+        Décollage:
+      </div>
+      <div class="address-content">
+        <div class="direction">
+          {{slot.flyLocation.takeOffPoint.name}},<br>
+          {{slot.flyLocation.takeOffPoint.address.street}},<br>
+          <b>
+            {{slot.flyLocation.takeOffPoint.address.zipCode}}
+            {{slot.flyLocation.takeOffPoint.address.city | uppercase}},
+            {{slot.flyLocation.takeOffPoint.address.country | titlecase}}
+          </b>
+        </div>
+        <div class="action">
+          <button mat-icon-button (click)="openFlyMapDialog()">
+            <mat-icon>flight_takeoff</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
 
-        <ng-template matExpansionPanelContent>
-          <div class="address">
-            <div class="label">
-              Addresse:
-            </div>
-            <div class="address-content">
-              <div class="direction">
-                {{slot.flyLocation.meetingPoint.name}},<br>
-                {{slot.flyLocation.meetingPoint.address.street}},<br>
-                <b>
-                  {{slot.flyLocation.meetingPoint.address.zipCode}}
-                  {{slot.flyLocation.meetingPoint.address.city | uppercase}},
-                  {{slot.flyLocation.meetingPoint.address.country | titlecase}}
-                </b>
-              </div>
-              <div class="action">
-                <button mat-icon-button (click)="openMeetingPointDialog()">
-                  <mat-icon>map</mat-icon>
-                </button>
-              </div>
-            </div>
-          </div>
-        </ng-template>
-      </mat-expansion-panel>
+    <div class="address">
+      <div class="label">
+        Atterrissage:
+      </div>
+      <div class="address-content">
+        <div class="direction">
+          {{slot.flyLocation.landingPoint.name}},<br>
+          {{slot.flyLocation.landingPoint.address.street}},<br>
+          <b>
+            {{slot.flyLocation.landingPoint.address.zipCode}}
+            {{slot.flyLocation.landingPoint.address.city | uppercase}},
+            {{slot.flyLocation.landingPoint.address.country | titlecase}}
+          </b>
+        </div>
+        <div class="action">
+          <button mat-icon-button (click)="openFlyMapDialog()">
+            <mat-icon>flight_land</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
 
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>Plan de vol</mat-panel-title>
-          <mat-panel-description>
-            ~ {{slot.averageFlyDuration | duration}} minutes
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <ng-template matExpansionPanelContent>
-          <div class="address">
-            <div class="label">
-              Décollage:
-            </div>
-            <div class="address-content">
-              <div class="direction">
-                {{slot.flyLocation.takeOffPoint.name}},<br>
-                {{slot.flyLocation.takeOffPoint.address.street}},<br>
-                <b>
-                  {{slot.flyLocation.takeOffPoint.address.zipCode}}
-                  {{slot.flyLocation.takeOffPoint.address.city | uppercase}},
-                  {{slot.flyLocation.takeOffPoint.address.country | titlecase}}
-                </b>
-              </div>
-              <div class="action">
-                <button mat-icon-button (click)="openFlyMapDialog()">
-                  <mat-icon>flight_takeoff</mat-icon>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="address">
-            <div class="label">
-              Atterrissage:
-            </div>
-            <div class="address-content">
-              <div class="direction">
-                {{slot.flyLocation.landingPoint.name}},<br>
-                {{slot.flyLocation.landingPoint.address.street}},<br>
-                <b>
-                  {{slot.flyLocation.landingPoint.address.zipCode}}
-                  {{slot.flyLocation.landingPoint.address.city | uppercase}},
-                  {{slot.flyLocation.landingPoint.address.country | titlecase}}
-                </b>
-              </div>
-              <div class="action">
-                <button mat-icon-button (click)="openFlyMapDialog()">
-                  <mat-icon>flight_land</mat-icon>
-                </button>
-              </div>
-            </div>
-          </div>
-        </ng-template>
-      </mat-expansion-panel>
-
-    </mat-accordion>
   </div>
-
 </div>
 
 <div mat-dialog-actions class="modal-buttons">
