@@ -1,26 +1,30 @@
-<google-map
-  height="250px"
-  width="100%"
-  [options]="mapOOptions">
+<h1 mat-dialog-title class="purple">Plan de vol</h1>
 
-  <map-marker
-    title="Décollage"
-    [position]="getLatLngLiteral(slot.flyLocation.takeOffPoint)"
-    [label]="slot.flyLocation.takeOffPoint.name"
-    [options]="markerOptions"
-  >
-  </map-marker>
+<div mat-dialog-content>
+  <google-map
+    height="60vh"
+    width="100%"
+    [options]="mapOOptions">
 
-  <map-marker
-    title="Atterrissage"
-    [position]="getLatLngLiteral(slot.flyLocation.landingPoint)"
-    [label]="slot.flyLocation.landingPoint.name"
-    [options]="markerOptions"
-  >
-  </map-marker>
+    <map-marker
+      title="Décollage"
+      [position]="getLatLngLiteral(slot.flyLocation.takeOffPoint)"
+      [label]="slot.flyLocation.takeOffPoint.name"
+      [options]="markerOptions"
+    >
+    </map-marker>
 
-  <map-polyline
-    [path]="[getLatLngLiteral(slot.flyLocation.takeOffPoint), getLatLngLiteral(slot.flyLocation.landingPoint)]"
-    [options]="polylineOptions"
-  ></map-polyline>
-</google-map>
+    <map-marker
+      title="Atterrissage"
+      [position]="getLatLngLiteral(slot.flyLocation.landingPoint)"
+      [label]="slot.flyLocation.landingPoint.name"
+      [options]="markerOptions"
+    >
+    </map-marker>
+
+    <map-polyline
+      [path]="[getLatLngLiteral(slot.flyLocation.takeOffPoint), getLatLngLiteral(slot.flyLocation.landingPoint)]"
+      [options]="polylineOptions"
+    ></map-polyline>
+  </google-map>
+</div>

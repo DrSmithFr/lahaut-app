@@ -1,6 +1,7 @@
-import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Inject, ViewChild} from '@angular/core';
 import {PlaceModel, SlotDetailModel} from "../../../../models/fly/slotDetailModel";
 import {GoogleMap} from "@angular/google-maps";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-add-to-cart-fly-map',
@@ -8,7 +9,6 @@ import {GoogleMap} from "@angular/google-maps";
   styleUrls: ['./fly-map.component.scss']
 })
 export class FlyMapComponent implements AfterViewInit {
-  @Input() slot: SlotDetailModel;
   @ViewChild(GoogleMap, {static: false}) map: GoogleMap
 
   mapOOptions: google.maps.MapOptions = {
@@ -29,6 +29,11 @@ export class FlyMapComponent implements AfterViewInit {
     strokeOpacity: 1.0,
     strokeWeight: 3,
   };
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public slot: SlotDetailModel,
+  ) {
+  }
 
   ngAfterViewInit() {
     this.centerMapShowingAllMarkers();

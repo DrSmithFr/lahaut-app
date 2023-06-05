@@ -112,6 +112,32 @@
   }
 }
 
+.address {
+  margin-top: 20px;
+
+  .label {
+    color: $purple;
+    font-size: 18px;
+    font-weight: bold;
+
+    margin-bottom: 3px;
+  }
+
+  .address-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .direction {
+      margin-left: 15px;
+    }
+
+    .action {
+      align-self: center;
+    }
+  }
+}
+
 .modal-buttons {
   display: flex;
   justify-content: space-between;

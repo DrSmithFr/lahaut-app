@@ -3,7 +3,7 @@
 
   <div *ngIf="slot !== undefined">
 
-    <div class="slot-info" *ngIf="slot !== undefined">
+    <div class="slot-info">
       <div class="date-wrapper">
         <span class="date">{{slot.startAt|date: 'dd MMMM YYYY'}}</span>
       </div>
@@ -50,15 +50,27 @@
         </mat-expansion-panel-header>
 
         <ng-template matExpansionPanelContent>
-          <app-fly-meeting-map [slot]="slot"></app-fly-meeting-map>
-          <p style="margin-top: 20px">
-            <b>Addresse:</b>
-            {{slot.flyLocation.meetingPoint.name}},
-            {{slot.flyLocation.meetingPoint.address.street}},
-            {{slot.flyLocation.meetingPoint.address.zipCode}}
-            {{slot.flyLocation.meetingPoint.address.city | uppercase}},
-            {{slot.flyLocation.meetingPoint.address.country | titlecase}}
-          </p>
+          <div class="address">
+            <div class="label">
+              Addresse:
+            </div>
+            <div class="address-content">
+              <div class="direction">
+                {{slot.flyLocation.meetingPoint.name}},<br>
+                {{slot.flyLocation.meetingPoint.address.street}},<br>
+                <b>
+                  {{slot.flyLocation.meetingPoint.address.zipCode}}
+                  {{slot.flyLocation.meetingPoint.address.city | uppercase}},
+                  {{slot.flyLocation.meetingPoint.address.country | titlecase}}
+                </b>
+              </div>
+              <div class="action">
+                <button mat-icon-button (click)="openMeetingPointDialog()">
+                  <mat-icon>map</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
         </ng-template>
       </mat-expansion-panel>
 
@@ -70,7 +82,49 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <ng-template matExpansionPanelContent>
-          <app-add-to-cart-fly-map [slot]="slot"></app-add-to-cart-fly-map>
+          <div class="address">
+            <div class="label">
+              Décollage:
+            </div>
+            <div class="address-content">
+              <div class="direction">
+                {{slot.flyLocation.takeOffPoint.name}},<br>
+                {{slot.flyLocation.takeOffPoint.address.street}},<br>
+                <b>
+                  {{slot.flyLocation.takeOffPoint.address.zipCode}}
+                  {{slot.flyLocation.takeOffPoint.address.city | uppercase}},
+                  {{slot.flyLocation.takeOffPoint.address.country | titlecase}}
+                </b>
+              </div>
+              <div class="action">
+                <button mat-icon-button (click)="openFlyMapDialog()">
+                  <mat-icon>flight_takeoff</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="address">
+            <div class="label">
+              Atterrissage:
+            </div>
+            <div class="address-content">
+              <div class="direction">
+                {{slot.flyLocation.landingPoint.name}},<br>
+                {{slot.flyLocation.landingPoint.address.street}},<br>
+                <b>
+                  {{slot.flyLocation.landingPoint.address.zipCode}}
+                  {{slot.flyLocation.landingPoint.address.city | uppercase}},
+                  {{slot.flyLocation.landingPoint.address.country | titlecase}}
+                </b>
+              </div>
+              <div class="action">
+                <button mat-icon-button (click)="openFlyMapDialog()">
+                  <mat-icon>flight_land</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
         </ng-template>
       </mat-expansion-panel>
 

@@ -1,14 +1,18 @@
-<google-map
-  height="250px"
-  width="100%"
-  [zoom]="16"
-  [center]="{lat: slot.flyLocation.meetingPoint.latitude, lng: slot.flyLocation.meetingPoint.longitude}"
-  [options]="options"
->
-  <map-marker
-    [position]="{lat: slot.flyLocation.meetingPoint.latitude, lng: slot.flyLocation.meetingPoint.longitude}"
-    [title]="slot.flyLocation.meetingPoint.name"
-    [label]="slot.flyLocation.meetingPoint.description"
+<h1 mat-dialog-title class="purple">Point de rendez-vous</h1>
+
+<div mat-dialog-content>
+  <google-map
+    height="60vh"
+    width="100%"
+    [zoom]="16"
+    [center]="{lat: slot.flyLocation.meetingPoint.latitude, lng: slot.flyLocation.meetingPoint.longitude}"
+    [options]="options"
   >
-  </map-marker>
-</google-map>
+    <map-marker
+      [position]="{lat: slot.flyLocation.meetingPoint.latitude, lng: slot.flyLocation.meetingPoint.longitude}"
+      [title]="slot.flyLocation.meetingPoint.name"
+      [label]="slot.flyLocation.meetingPoint.description"
+    >
+    </map-marker>
+  </google-map>
+</div>
