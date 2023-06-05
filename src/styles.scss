@@ -15,7 +15,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: $font-text; }
 
 // setting background image
-body {
+html {
   background-image: url(./assets/background.png);
 
   @include desktop {
