@@ -1,18 +1,19 @@
-<mat-progress-bar mode="indeterminate" *ngIf="slot === undefined"></mat-progress-bar>
-<div *ngIf="slot !== undefined">
-
-  <div class="slot-info">
+<div mat-dialog-title >
+  <div class="slot-info" *ngIf="slot !== undefined">
     <div class="date-wrapper">
       <span class="date">{{slot.startAt|date: 'dd MMMM YYYY'}}</span>
     </div>
     <span class="time">
-      <span class="start">{{slot.startAt|date: 'HH:mm'}}</span>
-      <span class="end">{{slot.endAt|date: 'HH:mm'}}</span>
-    </span>
+          <span class="start">{{slot.startAt|date: 'HH:mm'}}</span>
+          <span class="end">{{slot.endAt|date: 'HH:mm'}}</span>
+        </span>
   </div>
+</div>
 
-  <div mat-dialog-content>
+<div mat-dialog-content>
+  <mat-progress-bar mode="indeterminate" *ngIf="slot === undefined"></mat-progress-bar>
 
+  <div *ngIf="slot !== undefined">
     <div class="slot-card">
       <div class="monitor-profile">
         <img
@@ -23,13 +24,13 @@
           <div class="name">
             {{slot.monitor.identity.firstName | titlecase}} {{slot.monitor.identity.lastName | uppercase}}
           </div>
-            <span class="rank">
-            <mat-icon>star</mat-icon>
-            <mat-icon>star</mat-icon>
-            <mat-icon>star</mat-icon>
-            <mat-icon>star</mat-icon>
-            <mat-icon >star_outline</mat-icon>
-          </span>
+          <span class="rank">
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon>star_outline</mat-icon>
+            </span>
         </div>
       </div>
 
@@ -75,12 +76,14 @@
       </mat-expansion-panel>
 
     </mat-accordion>
+  </div>
 
-  </div>
-  <div mat-dialog-actions class="modal-buttons">
-    <button mat-button mat-dialog-close>Annuler</button>
-    <button mat-raised-button color="primary" cdkFocusInitial class="buy-button">
-      <mat-icon>shopping_cart</mat-icon> Réserver
-    </button>
-  </div>
+</div>
+
+<div mat-dialog-actions class="modal-buttons">
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-raised-button color="primary" cdkFocusInitial class="buy-button">
+    <mat-icon>shopping_cart</mat-icon>
+    Réserver
+  </button>
 </div>
