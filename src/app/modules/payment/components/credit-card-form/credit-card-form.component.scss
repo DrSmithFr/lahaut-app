@@ -3,23 +3,19 @@
 @import "colors";
 @import "fonts";
 
-.ccicon {
-  height: 38px;
-  position: absolute;
-  right: 6px;
-  top: calc(50% - 17px);
-  width: 60px;
+
+.payment-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @include mobile-all {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
-/* CREDIT CARD IMAGE STYLING */
-.preload * {
-  -webkit-transition: none !important;
-  -moz-transition: none !important;
-  -ms-transition: none !important;
-  -o-transition: none !important;
-}
-
-.container {
+.creditcard-container {
   width: 100%;
   max-width: 400px;
   max-height: 251px;
@@ -29,6 +25,22 @@
   @include mobile-all {
     width: 80%;
   }
+}
+
+/* CREDIT CARD IMAGE STYLING */
+.ccicon {
+  height: 38px;
+  position: absolute;
+  right: 6px;
+  top: calc(50% - 17px);
+  width: 60px;
+}
+
+.preload * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
 }
 
 #ccsingle {
@@ -300,4 +312,27 @@
 .creditcard.flipped {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
+}
+
+// payment form
+.payment-form-container {
+  width: 100%;
+
+  .dual-input {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .expiration {
+      margin-right: 5px;
+      width: calc(100% - 5px);
+    }
+
+    .cvc {
+      margin-left: 5px;
+      width: calc(100% - 5px);
+    }
+  }
 }

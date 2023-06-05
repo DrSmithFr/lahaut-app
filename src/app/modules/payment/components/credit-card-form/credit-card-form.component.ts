@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CreditCardModel} from "../../models/credit-card.model";
 import {FormBuilder, Validators} from "@angular/forms";
-import {CreditCardType, creditCardTypes} from "./credit-card-regex";
+import {CreditCardType, creditCardTypes} from "./credit-card-types";
 
 @Component({
   selector: 'app-credit-card-form',
@@ -80,7 +80,18 @@ export class CreditCardFormComponent implements OnInit {
     ];
 
     const randomNumber = Math.floor(Math.random() * testCards.length);
-    this.creditCardForm.value.cardNumber = testCards[randomNumber];
+
+    this.creditCardForm.setValue({
+      holderName: 'Bob Doe',
+      cardNumber: testCards[randomNumber],
+      expirationDate: '1225',
+      securityCode: '123',
+    })
+
+    setTimeout(() => {
+      // Let time for the form validator to update
+      this.creditCardForm.updateValueAndValidity()
+    }, 150);
 
     this.checkCardType();
   }
