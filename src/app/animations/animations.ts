@@ -32,7 +32,7 @@ export const slideIn = [
 export const slideOut = [
     query(
         ':enter, :leave',
-        style({position: 'fixed', width: '100%', height: '100vh'}),
+        style({position: 'fixed', width: '100%', height: '100dvh'}),
         {optional: true}
     ),
     group(
@@ -60,7 +60,7 @@ export const slideOut = [
 export const fallIn = [
     query(
         ':enter, :leave',
-        style({position: 'fixed', width: '100%', height: '100vh'}),
+        style({position: 'fixed', width: '100%', height: '100dvh'}),
         {optional: true}
     ),
     group(
