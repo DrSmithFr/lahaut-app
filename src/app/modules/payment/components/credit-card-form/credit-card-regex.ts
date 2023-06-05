@@ -13,7 +13,7 @@ export type CreditCardType = {
 export const creditCardTypes: CreditCardType[] = [
   {
     name: 'default',
-    mask: '0000 000 0000 0000',
+    mask: '0000 0000 0000 0000',
     regex: null,
     color: 'grey',
     images: {

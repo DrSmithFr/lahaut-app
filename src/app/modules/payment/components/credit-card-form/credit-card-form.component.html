@@ -29,7 +29,7 @@
               d="M750,431V193.2c-217.6-57.5-556.4-13.5-750,24.9V431c0,22.1,17.9,40,40,40h670C732.1,471,750,453.1,750,431z"/>
         </g>
         <text transform="matrix(1 0 0 1 60.106 345.0121)" id="svgnumber" class="st2 st3 st4" [class.selected]="cardNumberOnFocus">
-          {{creditCardForm.value.cardNumber || '0123 4567 8910 1112' |uppercase}}
+          {{creditCardForm.value.cardNumber || '0123 4567 8910 1112' |mask: cardType.mask}}
         </text>
         <text transform="matrix(1 0 0 1 65.1064 428.1723)" id="svgname" class="st2 st5 st6" [class.selected]="holderNameOnFocus">
           {{creditCardForm.value.holderName || 'John Doe' |uppercase}}
@@ -45,7 +45,7 @@
         </text>
         <g>
           <text transform="matrix(1 0 0 1 574.4219 433.8095)" id="svgexpire" class="st2 st5 st9" [class.selected]="expirationDateOnFocus">
-            {{creditCardForm.value.expirationDate || '01/23' |uppercase}}
+            {{creditCardForm.value.expirationDate || '01/23' |mask: '00/00'}}
           </text>
           <text transform="matrix(1 0 0 1 470.3848 417.0097)" class="st2 st10 st11">EXPIRE</text>
           <text transform="matrix(1 0 0 1 499.3848 435.6762)" class="st2 st10 st11">FIN</text>
@@ -165,6 +165,7 @@
         matInput
         required
         type="text"
+        [mask]="cardType.mask"
         formControlName="cardNumber"
         (change)="checkCardType()"
         (keydown)="checkCardType()"
@@ -183,6 +184,8 @@
         matInput
         required
         type="text"
+        [mask]="'M0/00'"
+        [leadZeroDateTime]="true"
         formControlName="expirationDate"
         (focusin)="expirationDateOnFocus = true"
         (focusout)="expirationDateOnFocus = false"
@@ -195,6 +198,7 @@
         matInput
         required
         type="text"
+        [mask]="'000'"
         formControlName="securityCode"
         (focusin)="cardFlipped = securityCodeOnFocus = true"
         (focusout)="cardFlipped = securityCodeOnFocus = false"

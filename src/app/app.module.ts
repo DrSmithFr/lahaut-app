@@ -31,6 +31,7 @@ import {GtagModule} from "angular-gtag";
 import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import fr from '@angular/common/locales/fr';
 import {registerLocaleData} from '@angular/common';
+import {NgxMaskModule} from "ngx-mask";
 
 registerLocaleData(fr);
 
@@ -87,6 +88,9 @@ registerLocaleData(fr);
 
     // Google Analytics
     GtagModule.forRoot({trackingId: 'UA-132202996-1', trackPageviews: true}),
+
+    // Init ngx-mask
+    NgxMaskModule.forRoot()
   ],
   exports: [
     HttpClientModule,
