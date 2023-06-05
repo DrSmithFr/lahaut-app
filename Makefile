@@ -20,6 +20,9 @@ prod:
 test:
 	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && ng test
 
+test_headless:
+	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && ng test --no-watch --browsers=ChromeHeadless --code-coverage
+
 lint:
 	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && ng lint
 
