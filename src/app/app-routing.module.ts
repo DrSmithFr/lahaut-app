@@ -48,6 +48,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
   },
   {
+    path: 'payment',
+    loadChildren: () => import('./modules/payment/payment.module').then(m => m.PaymentModule),
+  },
+  {
     path: 'home',
     component: HomeComponent,
     data: {
