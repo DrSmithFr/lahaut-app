@@ -34,7 +34,7 @@
 
       <div class="slot-price">
         <h1>{{slot.price|currency: 'EUR': 'symbol-narrow': '1.0-2'}}</h1>
-        <h2>{{slot.type|flyType|titlecase}}</h2>
+        <h2>{{slot.type|flyType}}</h2>
       </div>
     </div>
 
@@ -109,7 +109,7 @@
 
 <div mat-dialog-actions class="modal-buttons">
   <button mat-button mat-dialog-close>Annuler</button>
-  <button mat-raised-button color="primary" cdkFocusInitial class="buy-button">
+  <button mat-raised-button color="primary" class="buy-button">
     <mat-icon>shopping_cart</mat-icon>
     Réserver
   </button>

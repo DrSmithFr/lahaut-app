@@ -11,8 +11,8 @@ export class SlotDetailModel {
       takeOffPoint: PlaceModel,
       landingPoint: PlaceModel,
     },
-    public startAt: string,
-    public endAt: string,
+    public startAt: Date,
+    public endAt: Date,
     public averageFlyDuration: string,
     public type: string,
   ) {}
