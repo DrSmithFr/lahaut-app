@@ -1,1 +1,5 @@
-<p>cart works!</p>
+<mat-progress-bar mode="indeterminate" *ngIf="loading" class="top-loader"></mat-progress-bar>
+
+<div class="page-container" *ngIf="!loading">
+  Shopping cart
+</div>

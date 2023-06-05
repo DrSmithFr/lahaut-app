@@ -12,6 +12,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NgxMaskModule} from "ngx-mask";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {NgxMaskModule} from "ngx-mask";
     MatProgressSpinnerModule,
     ReactiveFormsModule,
     NgxMaskModule,
+    MatProgressBarModule,
   ]
 })
 export class ShoppingModule {
