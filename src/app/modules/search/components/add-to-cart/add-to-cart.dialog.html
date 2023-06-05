@@ -1,19 +1,18 @@
-<div mat-dialog-title >
-  <div class="slot-info" *ngIf="slot !== undefined">
-    <div class="date-wrapper">
-      <span class="date">{{slot.startAt|date: 'dd MMMM YYYY'}}</span>
-    </div>
-    <span class="time">
-          <span class="start">{{slot.startAt|date: 'HH:mm'}}</span>
-          <span class="end">{{slot.endAt|date: 'HH:mm'}}</span>
-        </span>
-  </div>
-</div>
-
 <div mat-dialog-content>
   <mat-progress-bar mode="indeterminate" *ngIf="slot === undefined"></mat-progress-bar>
 
   <div *ngIf="slot !== undefined">
+
+    <div class="slot-info" *ngIf="slot !== undefined">
+      <div class="date-wrapper">
+        <span class="date">{{slot.startAt|date: 'dd MMMM YYYY'}}</span>
+      </div>
+      <span class="time">
+          <span class="start">{{slot.startAt|date: 'HH:mm'}}</span>
+          <span class="end">{{slot.endAt|date: 'HH:mm'}}</span>
+        </span>
+    </div>
+
     <div class="slot-card">
       <div class="monitor-profile">
         <img
