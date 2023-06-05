@@ -1,8 +1,44 @@
-<h1 mat-dialog-title class="purple">Plan de vol</h1>
+<div class="fly-map">
 
-<div mat-dialog-content>
+  <div class="address">
+    <div class="address-take-off">
+      <div class="label">
+        Décollage:
+      </div>
+      <div class="direction">
+        {{slot.flyLocation.takeOffPoint.name}},<br>
+        {{slot.flyLocation.takeOffPoint.address.street}},<br>
+        <b>
+          {{slot.flyLocation.takeOffPoint.address.zipCode}}
+          {{slot.flyLocation.takeOffPoint.address.city | uppercase}},
+          {{slot.flyLocation.takeOffPoint.address.country | titlecase}}
+        </b>
+      </div>
+    </div>
+
+    <div class="address-landing">
+      <div class="label">
+        Atterrissage:
+      </div>
+      <div class="direction">
+        {{slot.flyLocation.landingPoint.name}},<br>
+        {{slot.flyLocation.landingPoint.address.street}},<br>
+        <b>
+          {{slot.flyLocation.landingPoint.address.zipCode}}
+          {{slot.flyLocation.landingPoint.address.city | uppercase}},
+          {{slot.flyLocation.landingPoint.address.country | titlecase}}
+        </b>
+      </div>
+    </div>
+  </div>
+
+  <div class="info">
+    Le plan de vol est donné <b>à titre indicatif</b>,
+    il sera déterminer par le pilote en fonction des <b>conditions météorologiques</b> et de la <b>direction du vent</b>.
+  </div>
+
   <google-map
-    height="60vh"
+    height="30vh"
     width="100%"
     [options]="mapOOptions">
 

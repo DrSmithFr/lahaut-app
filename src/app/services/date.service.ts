@@ -52,4 +52,20 @@ export class DateService {
 
     return `${this.formatDateTimeUTC(date, 'T')}-${timezoneString}`;
   }
+
+  makeDateFromString(str: string): Date {
+    const [dateStr, timeStr] = str.split(' ');
+    const [yearStr, monthStr, dayStr] = dateStr.split('-');
+    const [hoursStr, minutesStr, secondsStr] = timeStr.split(':');
+
+    const year = parseInt(yearStr || '0');
+    const month = parseInt(monthStr || '1') - 1;
+    const day = parseInt(dayStr || '0');
+
+    const hours = parseInt(hoursStr || '0');
+    const minutes = parseInt(minutesStr || '0');
+    const seconds = parseInt(secondsStr || '0');
+
+    return new Date(year, month, day, hours, minutes, seconds);
+  }
 }

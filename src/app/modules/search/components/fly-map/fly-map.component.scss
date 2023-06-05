@@ -3,3 +3,49 @@
 h1.purple {
   color: $purple;
 }
+
+.fly-map {
+  .info {
+    color: $border-dark;
+    font-size: 12px;
+    margin: 20px 0;
+  }
+
+  .address {
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .address-take-off {
+      .label {
+        color: $blue;
+        font-size: 18px;
+        font-weight: bold;
+
+        margin-bottom: 3px;
+      }
+
+      .direction {
+        margin-left: 10px;
+      }
+    }
+
+    .address-landing {
+      text-align: right;
+
+      .label {
+        color: $blue;
+        font-size: 18px;
+        font-weight: bold;
+
+        margin-bottom: 3px;
+      }
+
+      .direction {
+        margin-right: 10px;
+      }
+    }
+  }
+}

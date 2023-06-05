@@ -4,6 +4,19 @@
 @import "breakpoints";
 
 .add-to-card {
+  .info {
+    color: $border-dark;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .disclaimer {
+    color: $purple;
+    font-size: 12px;
+    margin-top: 30px;
+  }
+
   .slot-info {
     padding-bottom: 30px;
 
@@ -115,10 +128,10 @@
   }
 
   .address {
-    margin-top: 20px;
+    margin: 20px 0;
 
     .label {
-      color: $purple;
+      color: $blue;
       font-size: 18px;
       font-weight: bold;
 
@@ -135,6 +148,8 @@
       }
 
       .action {
+        display: flex;
+        flex-direction: column;
         align-self: center;
       }
     }

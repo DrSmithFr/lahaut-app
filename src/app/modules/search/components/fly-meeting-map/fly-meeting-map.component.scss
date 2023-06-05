@@ -1,5 +1,11 @@
 @import "colors";
 
-h1.purple {
-  color: $purple;
+.meeting-point {
+  padding: 0;
+}
+
+.meeting-point-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }

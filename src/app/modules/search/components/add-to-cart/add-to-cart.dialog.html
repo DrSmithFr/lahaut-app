@@ -4,14 +4,12 @@
 
     <div class="slot-info">
       <div class="date-wrapper">
-        <span class="date">{{getDateFromString(slot.startAt) |date: 'dd MMMM YYYY'}}</span>
+        <span class="date">{{slot.startAt|apiDate|date: 'd MMMM YYYY'}}</span>
       </div>
 
-      <p>Debug</p>
-
       <span class="time">
-          <span class="start">{{getDateFromString(slot.startAt) |date: 'HH:mm'}}</span>
-          <span class="end">{{getDateFromString(slot.endAt) |date: 'HH:mm'}}</span>
+          <span class="start">{{slot.startAt|apiDate|date: 'HH:mm'}}</span>
+          <span class="end">{{slot.endAt|apiDate|date: 'HH:mm'}}</span>
         </span>
     </div>
 
@@ -42,69 +40,54 @@
     </div>
 
     <div class="address">
-      <div class="label">
-        Lieu de rendez-vous:
-      </div>
+
       <div class="address-content">
-        <div class="direction">
-          {{slot.flyLocation.meetingPoint.name}},<br>
-          {{slot.flyLocation.meetingPoint.address.street}},<br>
-          <b>
-            {{slot.flyLocation.meetingPoint.address.zipCode}}
-            {{slot.flyLocation.meetingPoint.address.city | uppercase}},
-            {{slot.flyLocation.meetingPoint.address.country | titlecase}}
-          </b>
+        <div>
+          <div class="label">
+            Lieu de rendez-vous:
+          </div>
+          <div class="direction">
+            {{slot.flyLocation.meetingPoint.name}},<br>
+            {{slot.flyLocation.meetingPoint.address.street}},<br>
+            <b>
+              {{slot.flyLocation.meetingPoint.address.zipCode}}
+              {{slot.flyLocation.meetingPoint.address.city | uppercase}},
+              {{slot.flyLocation.meetingPoint.address.country | titlecase}}
+            </b>
+          </div>
         </div>
+
         <div class="action">
           <button mat-icon-button (click)="openMeetingPointDialog()">
-            <mat-icon>map</mat-icon>
+            <mat-icon>my_location</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            matTooltip="Vous serrez ramené au point de rendez-vous en voiture après le vol.">
+            <mat-icon>info</mat-icon>
           </button>
         </div>
       </div>
     </div>
 
-    <div class="address">
-      <div class="label">
-        Décollage:
-      </div>
-      <div class="address-content">
-        <div class="direction">
-          {{slot.flyLocation.takeOffPoint.name}},<br>
-          {{slot.flyLocation.takeOffPoint.address.street}},<br>
-          <b>
-            {{slot.flyLocation.takeOffPoint.address.zipCode}}
-            {{slot.flyLocation.takeOffPoint.address.city | uppercase}},
-            {{slot.flyLocation.takeOffPoint.address.country | titlecase}}
-          </b>
-        </div>
-        <div class="action">
-          <button mat-icon-button (click)="openFlyMapDialog()">
-            <mat-icon>flight_takeoff</mat-icon>
-          </button>
-        </div>
-      </div>
-    </div>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Plan de vol</mat-panel-title>
+          <mat-panel-description>
+            ~ {{slot.averageFlyDuration | duration}} minutes de vol
+          </mat-panel-description>
+        </mat-expansion-panel-header>
 
-    <div class="address">
-      <div class="label">
-        Atterrissage:
-      </div>
-      <div class="address-content">
-        <div class="direction">
-          {{slot.flyLocation.landingPoint.name}},<br>
-          {{slot.flyLocation.landingPoint.address.street}},<br>
-          <b>
-            {{slot.flyLocation.landingPoint.address.zipCode}}
-            {{slot.flyLocation.landingPoint.address.city | uppercase}},
-            {{slot.flyLocation.landingPoint.address.country | titlecase}}
-          </b>
-        </div>
-        <div class="action">
-          <button mat-icon-button (click)="openFlyMapDialog()">
-            <mat-icon>flight_land</mat-icon>
-          </button>
-        </div>
-      </div>
+        <ng-template matExpansionPanelContent>
+          <app-fly-map [slot]="slot"></app-fly-map>
+        </ng-template>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="disclaimer">
+      <b>Le pilote</b> se réserve le droit de <b>reporté ou annuler</b> le vol en cas de mauvaises conditions météorologiques,
+      Vous en serez informé par <b>SMS</b> et <b>email</b>.
     </div>
 
   </div>

@@ -29,6 +29,7 @@ import {SharedModule} from "../shared/shared.module";
 import {GoogleMapsModule} from '@angular/google-maps';
 import {FlyMapComponent} from './components/fly-map/fly-map.component';
 import {FlyMeetingMapComponent} from './components/fly-meeting-map/fly-meeting-map.component'
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import {FlyMeetingMapComponent} from './components/fly-meeting-map/fly-meeting-m
     MatExpansionModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    MatTooltipModule,
   ]
 })
 export class SearchModule {
