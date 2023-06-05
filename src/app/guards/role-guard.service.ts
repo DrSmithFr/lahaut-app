@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {CanActivateFn} from '@angular/router';
+import {CanActivateFn, Router} from '@angular/router';
 import {AuthService} from "../services/auth.service";
 
 export enum Roles {
@@ -12,15 +12,27 @@ export enum Roles {
 @Injectable()
 export class RoleGuard {
 
-  static isConnected(state: boolean): CanActivateFn {
+  static isConnected(state: boolean, redirectTo: string|null = null): CanActivateFn {
     return () => {
-      return inject(AuthService).isLogged() === state;
+      const can = inject(AuthService).isLogged() === state;
+
+      if (!can && redirectTo !== null) {
+        inject(Router).navigateByUrl(redirectTo);
+      }
+
+      return can;
     };
   }
 
-  static forRoles(...roles: Roles[]): CanActivateFn {
+  static forRoles(roles: Roles[], redirectTo: string|null = null): CanActivateFn {
     return () => {
-      return inject(AuthService).isGranted(...roles);
+      const can = inject(AuthService).isGranted(...roles);
+
+      if (!can && redirectTo !== null) {
+        inject(Router).navigateByUrl(redirectTo);
+      }
+
+      return can;
     };
   }
 }

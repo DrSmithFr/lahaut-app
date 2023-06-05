@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PaymentComponent} from "./components/payment/payment.component";
 import {CartComponent} from "./components/cart/cart.component";
+import {RoleGuard, Roles} from "../../guards/role-guard.service";
 
 const routes: Routes = [
   {
@@ -9,7 +10,8 @@ const routes: Routes = [
     component: CartComponent,
   },
   {
-    path: '',
+    path: 'payment',
+    canActivate: [RoleGuard.forRoles([Roles.customer], '/shopping/cart')],
     component: PaymentComponent,
   },
 ];
@@ -18,5 +20,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PaymentRoutingModule {
+export class ShoppingRoutingModule {
 }

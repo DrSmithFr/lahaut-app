@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-import {PaymentRoutingModule} from './payment-routing.module';
+import {ShoppingRoutingModule} from './shopping-routing.module';
 import {CartComponent} from './components/cart/cart.component';
 import {PaymentComponent} from './components/payment/payment.component';
 import {CreditCardFormComponent} from "./components/credit-card-form/credit-card-form.component";
@@ -22,7 +22,7 @@ import {NgxMaskModule} from "ngx-mask";
   ],
   imports: [
     CommonModule,
-    PaymentRoutingModule,
+    ShoppingRoutingModule,
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
@@ -32,5 +32,5 @@ import {NgxMaskModule} from "ngx-mask";
     NgxMaskModule,
   ]
 })
-export class PaymentModule {
+export class ShoppingModule {
 }

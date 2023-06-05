@@ -37,19 +37,19 @@ const routes: Routes = [
   },
   {
     path: 'planning',
-    canActivate: [RoleGuard.forRoles(Roles.monitor)],
-    canActivateChild: [RoleGuard.forRoles(Roles.monitor)],
+    canActivate: [RoleGuard.forRoles([Roles.monitor])],
+    canActivateChild: [RoleGuard.forRoles([Roles.monitor])],
     loadChildren: () => import('./modules/planning/planning.module').then(m => m.PlanningModule),
   },
   {
     path: 'dashboard',
-    canActivate: [RoleGuard.forRoles(Roles.monitor)],
-    canActivateChild: [RoleGuard.forRoles(Roles.monitor)],
+    canActivate: [RoleGuard.forRoles([Roles.monitor])],
+    canActivateChild: [RoleGuard.forRoles([Roles.monitor])],
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
   },
   {
-    path: 'payment',
-    loadChildren: () => import('./modules/payment/payment.module').then(m => m.PaymentModule),
+    path: 'shopping',
+    loadChildren: () => import('./modules/shopping/shopping.module').then(m => m.ShoppingModule),
   },
   {
     path: 'home',
