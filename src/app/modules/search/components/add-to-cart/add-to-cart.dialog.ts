@@ -53,4 +53,11 @@ export class AddToCartDialog implements OnInit {
         data: this.slot,
       });
   }
+
+  getDateFromString(str: string): Date {
+    const [dateComponents, timeComponents] = str.split(' ');
+    const [month, day, year] = dateComponents.split('-');
+    const [hours, minutes] = timeComponents.split(':');
+    return new Date(+year, +month - 1, +day, +hours, +minutes, 0);
+  }
 }
