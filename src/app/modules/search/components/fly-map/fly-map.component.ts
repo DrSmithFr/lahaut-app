@@ -4,10 +4,10 @@ import {GoogleMap} from "@angular/google-maps";
 
 @Component({
   selector: 'app-add-to-cart-fly-map',
-  templateUrl: './add-to-cart-fly-map.component.html',
-  styleUrls: ['./add-to-cart-fly-map.component.scss']
+  templateUrl: './fly-map.component.html',
+  styleUrls: ['./fly-map.component.scss']
 })
-export class AddToCartFlyMapComponent implements AfterViewInit {
+export class FlyMapComponent implements AfterViewInit {
   @Input() slot: SlotDetailModel;
   @ViewChild(GoogleMap, {static: false}) map: GoogleMap
 
@@ -23,6 +23,7 @@ export class AddToCartFlyMapComponent implements AfterViewInit {
       fillColor: '#aa80d8',
     }
   }
+
   polylineOptions: google.maps.PolylineOptions = {
     strokeColor: '#aa80d8',
     strokeOpacity: 1.0,

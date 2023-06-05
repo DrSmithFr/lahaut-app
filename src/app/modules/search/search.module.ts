@@ -19,13 +19,16 @@ import {MatListModule} from "@angular/material/list";
 import {ResultCardComponent} from './components/result-card/result-card.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {SearchNextAvailabilityComponent} from './components/search-next-availability/search-next-availability.component';
+import {
+  SearchNextAvailabilityComponent
+} from './components/search-next-availability/search-next-availability.component';
 import {ResultRowComponent} from './components/result-row/result-row.component';
 import {AddToCartDialog} from './components/add-to-cart/add-to-cart.dialog';
 import {MatDialogModule} from "@angular/material/dialog";
 import {SharedModule} from "../shared/shared.module";
 import {GoogleMapsModule} from '@angular/google-maps';
-import { AddToCartFlyMapComponent } from './components/add-to-cart-fly-map/add-to-cart-fly-map.component'
+import {FlyMapComponent} from './components/fly-map/fly-map.component';
+import {FlyMeetingMapComponent} from './components/fly-meeting-map/fly-meeting-map.component'
 
 
 @NgModule({
@@ -37,7 +40,8 @@ import { AddToCartFlyMapComponent } from './components/add-to-cart-fly-map/add-t
     SearchNextAvailabilityComponent,
     ResultRowComponent,
     AddToCartDialog,
-    AddToCartFlyMapComponent,
+    FlyMapComponent,
+    FlyMeetingMapComponent,
   ],
   imports: [
     SharedModule,

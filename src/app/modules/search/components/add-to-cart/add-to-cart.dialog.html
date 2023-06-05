@@ -50,7 +50,8 @@
         </mat-expansion-panel-header>
 
         <ng-template matExpansionPanelContent>
-          <p>
+          <app-fly-meeting-map [slot]="slot"></app-fly-meeting-map>
+          <p style="margin-top: 20px">
             <b>Addresse:</b>
             {{slot.flyLocation.meetingPoint.name}},
             {{slot.flyLocation.meetingPoint.address.street}},
@@ -58,20 +59,6 @@
             {{slot.flyLocation.meetingPoint.address.city | uppercase}},
             {{slot.flyLocation.meetingPoint.address.country | titlecase}}
           </p>
-          <google-map
-            height="250px"
-            width="100%"
-            [zoom]="16"
-            [center]="{lat: slot.flyLocation.meetingPoint.latitude, lng: slot.flyLocation.meetingPoint.longitude}"
-            [options]="options"
-          >
-            <map-marker
-              [position]="{lat: slot.flyLocation.meetingPoint.latitude, lng: slot.flyLocation.meetingPoint.longitude}"
-              [title]="slot.flyLocation.meetingPoint.name"
-              [label]="slot.flyLocation.meetingPoint.description"
-            >
-            </map-marker>
-          </google-map>
         </ng-template>
       </mat-expansion-panel>
 

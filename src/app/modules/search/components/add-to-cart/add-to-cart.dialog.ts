@@ -11,11 +11,6 @@ import {SlotDetailModel} from "../../../../models/fly/slotDetailModel";
 export class AddToCartDialog implements OnInit {
   slot: SlotDetailModel;
 
-  center: google.maps.LatLngLiteral;
-  options: google.maps.MapOptions = {
-    disableDefaultUI: true,
-  };
-
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: number,
     private api: ApiService,

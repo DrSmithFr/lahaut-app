@@ -6,6 +6,6 @@ export const environment = {
   production: true,
   fake_api:   false,
   debug:      false,
-  url_api:    'https://lahaut.heystudent.fr/backend',
+  url_api:    'https://lahaut.heystudent.fr/backend'
 };
 
