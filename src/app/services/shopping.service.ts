@@ -43,4 +43,12 @@ export class ShoppingService {
 
     this.saveCart(cart);
   }
+
+  removeItem(item: CartItemModel) {
+    const cart = this.getCart() || new CartModel();
+
+    CartModel.removeItem(cart, item);
+
+    this.saveCart(cart);
+  }
 }

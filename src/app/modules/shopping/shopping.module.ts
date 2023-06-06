@@ -13,6 +13,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NgxMaskModule} from "ngx-mask";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     ReactiveFormsModule,
     NgxMaskModule,
     MatProgressBarModule,
+    SharedModule,
   ]
 })
 export class ShoppingModule {

@@ -1,0 +1,222 @@
+@use 'sass:map';
+@import "colors";
+@import "breakpoints";
+
+.shopping-card-page {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+  border-radius: 5px;
+
+  @include mobile-all() {
+    flex-direction: column;
+  }
+
+  .shopping-card-content {
+    background: rgba(250, 250, 250, 0.7);
+    padding: 40px;
+
+    height: 100%;
+    width: 100%;
+
+    @include mobile-all() {
+      padding: 20px;
+      width: auto;
+    }
+
+    header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 0px 20px 30px 20px;
+      border-bottom: 1px solid $border;
+
+      h1, h2 {
+        margin: 0;
+
+        font-size: 2rem;
+        font-weight: 500;
+
+        color: $gray-light;
+      }
+    }
+
+    table.shopping-cart-table {
+      padding: 40px;
+      width: 100%;
+
+      @include mobile-all() {
+        padding: 40px 20px;
+      }
+
+      @include mobile-xs() {
+        padding: 40px 0;
+      }
+
+      border-bottom: 1px solid $border;
+
+      tr.header {
+        color: $border-dark;
+        text-transform: uppercase;
+      }
+
+      th.reservation {
+        text-align: left;
+      }
+
+      .price {
+        font-weight: 500;
+      }
+
+      th.actions {
+        width: 64px;
+
+        button {
+          color: $border-dark;
+        }
+      }
+    }
+
+    .flight {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 20px 40px 20px 0;
+
+      @include mobile-xs() {
+        flex-direction: column;
+        justify-content: center;
+
+        background: #fff;
+        border: 3px solid $purple;
+
+        padding: 5px 0;
+        width: 150px;
+
+        margin: 10px auto;
+      }
+
+      .data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        text-align: center;
+      }
+
+      .type {
+        text-transform: uppercase;
+
+        font-size: 14px;
+        font-weight: 500;
+
+        color: $gray-light;
+
+        @include mobile-xs() {
+          line-height: 15px;
+          font-size: 12px;
+          color: #646464;
+        }
+      }
+
+      .duration {
+        font-size: 12px;
+        font-weight: 500;
+        color: $border-dark;
+      }
+
+      .monitor {
+        font-size: 14px;
+        font-weight: 500;
+        color: map.get($blue-palette, 300);
+      }
+
+      .date {
+        text-transform: uppercase;
+
+        font-size: 20px;
+        font-weight: 500;
+
+        color: $purple;
+      }
+
+      .flight-date {
+        .price {
+          display: none;
+        }
+
+        @include mobile-xs() {
+          flex-direction: column-reverse;
+          .monitor {
+            margin-top: 20px;
+            color: map.get($gray-palette, 300);
+          }
+
+          .date {
+            margin-top: 20px;
+            line-height: 15px;
+            font-size: 12px;
+            color: $blue;
+          }
+
+          .price {
+            display: flex;
+            line-height: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #aa80d8;
+          }
+        }
+      }
+
+
+
+      .time {
+        font-family: Roboto, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+
+        @include mobile-xs() {
+          flex-direction: row;
+
+          .end {
+            margin-left: 5px;
+          }
+        }
+
+        .start {
+          font-size: 20px;
+          color: #68cf3b;
+
+        }
+
+        .end {
+          color: #9b9b9b;
+        }
+      }
+    }
+
+    footer {
+      padding-top: 40px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @include mobile-xs() {
+        flex-direction: column;
+        justify-content: center;
+
+        .back-button {
+          display: none;
+        }
+      }
+    }
+  }
+}
