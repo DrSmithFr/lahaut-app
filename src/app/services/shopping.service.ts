@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {CartModel} from "../models/cart.model";
+import {CartItemModel, CartModel} from "../models/cart.model";
 import {BehaviorSubject} from "rxjs";
 import {LocalService} from "./local.service";
+import {SlotDetailModel} from "../models/fly/slotDetailModel";
 
 @Injectable({
   providedIn: 'root'
@@ -21,15 +22,25 @@ export class ShoppingService {
     });
   }
 
-  getCartObservable(): BehaviorSubject<CartModel | null> {
+  getCartSubject(): BehaviorSubject<CartModel | null> {
     return this.SHOPPING_CART;
   }
 
   getCart(): CartModel | null {
-    return this.getCartObservable().getValue();
+    return this.getCartSubject().getValue();
   }
 
   saveCart(cart: CartModel): void {
-    this.getCartObservable().next(cart);
+    console.debug('shopping cart saved:', cart);
+    this.getCartSubject().next(cart);
+  }
+
+  addToCart(slot: SlotDetailModel) {
+    const cart = this.getCart() || new CartModel();
+    const item = new CartItemModel(slot);
+
+    CartModel.addItems(cart, item);
+
+    this.saveCart(cart);
   }
 }

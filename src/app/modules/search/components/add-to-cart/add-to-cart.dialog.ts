@@ -1,9 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ApiService} from "../../../../services/api.service";
 import {SlotDetailModel} from "../../../../models/fly/slotDetailModel";
 import {FlyMeetingMapComponent} from "../fly-meeting-map/fly-meeting-map.component";
 import {tap} from "rxjs/operators";
+import {ShoppingService} from "../../../../services/shopping.service";
 
 @Component({
   selector: 'app-add-to-cart-dialog',
@@ -16,8 +17,10 @@ export class AddToCartDialog implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: number,
+    public dialogRef: MatDialogRef<AddToCartDialog>,
     private api: ApiService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private shoppingService: ShoppingService,
   ) {
   }
 
@@ -42,5 +45,10 @@ export class AddToCartDialog implements OnInit {
         width: '600px',
         data: this.slot,
       });
+  }
+
+  addToCart() {
+    this.shoppingService.addToCart(this.slot);
+    this.dialogRef.close(true);
   }
 }

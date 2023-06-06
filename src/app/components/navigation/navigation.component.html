@@ -2,7 +2,11 @@
   <mat-toolbar-row class="space-between">
 
     <div class="navigation-button"  *ngIf="showMenuButton">
-      <button mat-icon-button aria-label="Example icon-button with menu icon" (click)="toggleMenu()">
+      <button
+        mat-icon-button
+        aria-label="ouvrir/fermer la liste des conversations chat"
+        *ngIf="showMenuButton"
+        (click)="toggleMenu()">
         <mat-icon *ngIf="isMenuOpen">chevron_left</mat-icon>
         <mat-icon *ngIf="!isMenuOpen">menu</mat-icon>
       </button>
@@ -14,10 +18,20 @@
       </a>
     </div>
 
-    <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
-      <mat-icon *ngIf="getBadgeCount() === 0">menu</mat-icon>
-      <mat-icon *ngIf="getBadgeCount() !== 0" [matBadge]="getBadgeCount()">person</mat-icon>
-    </button>
+    <div>
+      <button
+        mat-icon-button
+        aria-label="voir le panier"
+        *ngIf="showShoppingCart"
+        (click)="displayShoppingCart()">
+        <mat-icon [matBadge]="shoppingCartCount">shopping_cart</mat-icon>
+      </button>
+      <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
+        <mat-icon *ngIf="getBadgeCount() === 0">menu</mat-icon>
+        <mat-icon *ngIf="getBadgeCount() !== 0" [matBadge]="getBadgeCount()">person</mat-icon>
+      </button>
+    </div>
+
     <mat-menu #menu="matMenu">
       <div *ngIf="!isLogged()">
         <button mat-menu-item routerLink="/login">

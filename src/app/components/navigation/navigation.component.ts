@@ -4,6 +4,9 @@ import {MatDialog} from "@angular/material/dialog";
 import {LogoutDialog} from "../logout-dialog/logout.dialog";
 import {Roles} from "../../guards/role-guard.service";
 import {NavigationService} from "../../services/navigation.service";
+import {ShoppingService} from "../../services/shopping.service";
+import {CartModel} from "../../models/cart.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navigation',
@@ -12,16 +15,21 @@ import {NavigationService} from "../../services/navigation.service";
 })
 export class NavigationComponent implements OnInit {
   showLogo = true;
-  showMenuButton = false;
 
+  showMenuButton = false;
   isMenuOpen = false;
 
-  public isLoggedCustomer = false;
-  public isLoggedMonitor = false;
+  isLoggedCustomer = false;
+  isLoggedMonitor = false;
+
+  showShoppingCart = false;
+  shoppingCartCount = 0;
 
   constructor(
     private auth: AuthService,
     private navigationService: NavigationService,
+    private shoppingService: ShoppingService,
+    private router: Router,
     public dialog: MatDialog
   ) {
   }
@@ -54,6 +62,14 @@ export class NavigationComponent implements OnInit {
       .isMenuOpenStateSubject()
       .subscribe((isOpened) => {
         this.isMenuOpen = isOpened;
+      });
+
+    this
+      .shoppingService
+      .getCartSubject()
+      .subscribe((cart) => {
+        this.showShoppingCart = cart !== null && !CartModel.isEmpty(cart);
+        this.shoppingCartCount = cart?.items?.length ?? 0;
       });
   }
 
@@ -91,5 +107,10 @@ export class NavigationComponent implements OnInit {
     this
       .navigationService
       .setMenuOpenState(this.isMenuOpen);
+  }
+
+  displayShoppingCart() {
+    console.log('displayShoppingCart', this.shoppingService.getCart());
+    this.router.navigate(['/shopping/cart']);
   }
 }
