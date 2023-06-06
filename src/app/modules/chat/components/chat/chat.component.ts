@@ -43,14 +43,14 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.isOpened = true;
 
         // updating navigation
-        this.navigationService.showMenuButton();
+        this.navigationService.setMenuButtonVisibility(true);
         this.navigationService.isMenuOpen.next(true);
       }
     });
   }
 
   ngOnDestroy() {
-    this.navigationService.hideMenuButton();
+    this.navigationService.setMenuButtonVisibility(false);
   }
 
   switchTo(room: ConversationModel) {
@@ -58,7 +58,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.isOpened = false;
 
     // updating navigation
-    this.navigationService.showMenuButton();
+    this.navigationService.setMenuButtonVisibility(true);
     this.navigationService.isMenuOpen.next(false);
   }
 }

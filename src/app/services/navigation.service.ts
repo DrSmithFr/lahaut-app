@@ -9,42 +9,50 @@ import {BehaviorSubject} from 'rxjs';
 export class NavigationService {
 
   public isNavigationVisible: BehaviorSubject<boolean>;
-
   public isLogoVisible: BehaviorSubject<boolean>;
-
   public isMenuButtonVisible: BehaviorSubject<boolean>;
   public isMenuOpen: BehaviorSubject<boolean>;
 
   constructor() {
     this.isNavigationVisible = new BehaviorSubject<boolean>(false);
-
     this.isLogoVisible = new BehaviorSubject<boolean>(true);
-
     this.isMenuButtonVisible = new BehaviorSubject<boolean>(false);
     this.isMenuOpen = new BehaviorSubject<boolean>(false);
   }
 
-  hide() {
-    this.isNavigationVisible.next(false);
+  // navigation visibility
+  isNavigationVisibleSubject() {
+    return this.isNavigationVisible;
   }
 
-  show() {
-    this.isNavigationVisible.next(true);
+  setNavigationVisibility(value: boolean) {
+    this.isNavigationVisibleSubject().next(value);
   }
 
-  hideLogo() {
-    this.isLogoVisible.next(false);
+  // logo visibility
+  isLogoVisibleSubject() {
+    return this.isLogoVisible;
   }
 
-  showLogo() {
-    this.isLogoVisible.next(true);
+  setLogoVisibility(value: boolean) {
+    this.isLogoVisibleSubject().next(value);
   }
 
-  showMenuButton() {
-    this.isMenuButtonVisible.next(true);
+  // menu button visibility
+  isMenuButtonVisibleSubject() {
+    return this.isMenuButtonVisible;
   }
 
-  hideMenuButton() {
-    this.isMenuButtonVisible.next(false);
+  setMenuButtonVisibility(value: boolean) {
+    this.isMenuButtonVisibleSubject().next(value);
+  }
+
+  // menu open state
+  isMenuOpenStateSubject() {
+    return this.isMenuOpen;
+  }
+
+  setMenuOpenState(value: boolean) {
+    this.isMenuOpenStateSubject().next(value);
   }
 }

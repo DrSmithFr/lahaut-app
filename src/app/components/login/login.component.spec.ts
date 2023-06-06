@@ -6,14 +6,12 @@ import {MatDialog} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AuthService} from "../../services/auth.service";
-import {StateService} from "../../services/state.service";
 import {GoogleAnalyticsService} from "../../services/google-analytics.service";
 import {MatFormFieldModule} from "@angular/material/form-field";
 
 describe('LoginComponent', () => {
   beforeEach(async () => {
     const AuthServiceMock = jasmine.createSpyObj('AuthService', ['isLogged', 'isCustomer', 'isMonitor']);
-    const StateServiceMock = jasmine.createSpyObj('StateService', ['']);
     const GoogleAnalyticsServiceMock = jasmine.createSpyObj('GoogleAnalyticsService', ['']);
 
     const MatDialogMock = jasmine.createSpyObj('MatDialog', ['open']);
@@ -30,7 +28,6 @@ describe('LoginComponent', () => {
       ],
       providers: [
         {provide: AuthService, useValue: AuthServiceMock},
-        {provide: StateService, useValue: StateServiceMock},
         {provide: GoogleAnalyticsService, useValue: GoogleAnalyticsServiceMock},
         {provide: MatSnackBar, useValue: MatSnackBarSpy},
         {provide: MatDialog, useValue: MatDialogMock},

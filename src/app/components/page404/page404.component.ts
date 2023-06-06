@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {StateService} from "../../services/state.service";
 import {Roles} from "../../guards/role-guard.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component(
   {
@@ -13,13 +13,16 @@ export class Page404Component implements OnInit {
   public isLoggedMonitor = false;
 
   constructor(
-    private stateService: StateService,
+    private authService: AuthService
   ) {
   }
 
   ngOnInit() {
-    this.stateService.LOGGED_USER.subscribe((user) => {
-      this.isLoggedMonitor = user?.roles.includes(Roles.monitor) ?? false;
-    });
+    this
+      .authService
+      .getUserSubject()
+      .subscribe((user) => {
+        this.isLoggedMonitor = user?.roles.includes(Roles.monitor) ?? false;
+      });
   }
 }

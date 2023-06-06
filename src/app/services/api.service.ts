@@ -1,11 +1,9 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
-import {StateService} from './state.service';
 import {HttpClient} from '@angular/common/http';
 import {TokenModel} from '../models/token.model';
 import {Observable} from 'rxjs';
 import {UserModel} from '../models/user.model';
-import {tap} from 'rxjs/operators';
 import {MessageModel} from "../models/message.model";
 import {SearchQuery} from "../modules/search/models/search-query";
 import {SlotModel} from "../models/fly/slotModel";
@@ -27,8 +25,7 @@ export class ApiService {
   readonly API_URL = environment.url_api;
 
   constructor(
-    protected state: StateService,
-    protected http: HttpClient,
+    private http: HttpClient,
     private dateService: DateService
   ) {
   }
@@ -44,12 +41,6 @@ export class ApiService {
       .post<TokenModel>(
         this.apiUrlFormUri('/public/login'),
         {username, password}
-      )
-      .pipe(
-        tap(tokens => {
-          // updating session with current token
-          this.state.TOKEN.next(tokens);
-        })
       );
   }
 
@@ -61,24 +52,13 @@ export class ApiService {
         {
           refresh_token: token,
         }
-      )
-      .pipe(
-        tap(data => {
-          this.state.TOKEN.next(data);
-        })
       );
   }
 
   getCurrentUser(): Observable<UserModel> {
     return this
       .http
-      .get<UserModel>(this.apiUrlFormUri('/user/information'))
-      .pipe(
-        tap(user => {
-          // updating session with current users information
-          this.state.LOGGED_USER.next(user);
-        }),
-      );
+      .get<UserModel>(this.apiUrlFormUri('/user/information'));
   }
 
   // Register

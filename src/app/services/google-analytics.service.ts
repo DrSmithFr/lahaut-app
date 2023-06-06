@@ -12,12 +12,14 @@ export class GoogleAnalyticsService {
   }
 
   event(action: string, params?: GtagEvent): void {
+    console.debug('gtag event:', action, params);
     this
       .gtag
       .event(action, params);
   }
 
   pageview(params: GtagPageview): void {
+    console.debug('gtag pageview:', params);
     this
       .gtag
       .pageview(params);

@@ -171,51 +171,10 @@ export class RegisterMonitorComponent implements OnInit {
         this.getPassword()?.value
       )
       .subscribe({
-        next: () => {
-          this
-            .gtag
-            .event(
-              "register",
-              {
-                event_category: "monitors",
-                event_label: 'New users ' + this.getUsername()?.value,
-                value: 'valid'
-              })
-
-          this
-            .auth
-            .connect(
-              this.getUsername()?.value,
-              this.getPassword()?.value
-            )
-            .subscribe(() => {
-              this
-                .gtag
-                .event(
-                  "login",
-                  {
-                    event_category: "monitors",
-                    event_label: 'Login of ' + this.getUsername()?.value,
-                    value: 'valid'
-                  })
-
-              this.router.navigateByUrl('/dashboard');
-            });
-        },
         error: (err: HttpErrorResponse) => {
-          this
-            .gtag
-            .event(
-              "register",
-              {
-                event_category: "monitors",
-                event_label: 'Subscription error for ' + this.getUsername()?.value,
-                value: 'error: ' + err.message
-              })
-
           this.showLoader = false;
           this.shaking = true;
-          this.snackBar.open('Une erreur est survenue');
+          this.snackBar.open(`[${err.status}] Une erreur est survenue lors de l'inscription`, 'OK');
         }
       });
   }

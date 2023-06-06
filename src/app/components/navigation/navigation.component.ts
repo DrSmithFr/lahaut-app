@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {LogoutDialog} from "../logout-dialog/logout.dialog";
-import {StateService} from "../../services/state.service";
 import {Roles} from "../../guards/role-guard.service";
 import {NavigationService} from "../../services/navigation.service";
 
@@ -22,29 +21,40 @@ export class NavigationComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private stateService: StateService,
     private navigationService: NavigationService,
     public dialog: MatDialog
   ) {
   }
 
   ngOnInit() {
-    this.stateService.LOGGED_USER.subscribe((user) => {
-      this.isLoggedCustomer = user?.roles.includes(Roles.customer) ?? false;
-      this.isLoggedMonitor = user?.roles.includes(Roles.monitor) ?? false;
-    });
+    this
+      .auth
+      .getUserSubject()
+      .subscribe((user) => {
+        this.isLoggedCustomer = user?.roles.includes(Roles.customer) ?? false;
+        this.isLoggedMonitor = user?.roles.includes(Roles.monitor) ?? false;
+      });
 
-    this.navigationService.isLogoVisible.subscribe((show) => {
-      this.showLogo = show;
-    });
+    this
+      .navigationService
+      .isLogoVisibleSubject()
+      .subscribe((show) => {
+        this.showLogo = show;
+      });
 
-    this.navigationService.isMenuButtonVisible.subscribe((show) => {
-      this.showMenuButton = show;
-    });
+    this
+      .navigationService
+      .isMenuButtonVisibleSubject()
+      .subscribe((show) => {
+        this.showMenuButton = show;
+      });
 
-    this.navigationService.isMenuOpen.subscribe((isOpened) => {
-      this.isMenuOpen = isOpened;
-    });
+    this
+      .navigationService
+      .isMenuOpenStateSubject()
+      .subscribe((isOpened) => {
+        this.isMenuOpen = isOpened;
+      });
   }
 
   openLogoutDialog() {
@@ -77,6 +87,9 @@ export class NavigationComponent implements OnInit {
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
-    this.navigationService.isMenuOpen.next(this.isMenuOpen);
+
+    this
+      .navigationService
+      .setMenuOpenState(this.isMenuOpen);
   }
 }

@@ -33,7 +33,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.navigationService.hideLogo();
+    this.navigationService.setLogoVisibility(false);
 
     this
       .route
@@ -56,7 +56,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.navigationService.showLogo();
+    this.navigationService.setLogoVisibility(true);
   }
 
   updateUrl(query: SearchQuery) {

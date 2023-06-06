@@ -2,12 +2,11 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {StateService} from '../../services/state.service';
 import {AuthService} from '../../services/auth.service';
 import {MatDialog} from '@angular/material/dialog';
-import {GoogleAnalyticsService} from '../../services/google-analytics.service';
 import {PasswordResetDialog} from "../password-reset/password-reset-dialog.component";
 import {PasswordResetRequestDialog} from "../password-reset-request/password-reset-request.dialog";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component(
   {
@@ -35,8 +34,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private auth: AuthService,
-    private state: StateService,
-    private gtag: GoogleAnalyticsService,
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
   ) {
@@ -100,48 +97,18 @@ export class LoginComponent implements OnInit {
         this.getPassword()?.value,
       )
       .subscribe({
-        next: (user) => {
-          this
-            .gtag
-            .event(
-              "login",
-              {
-                event_category: this.auth.isCustomer() ? "customers" : "monitors",
-                event_label: "Login of " + this.getUsername()?.value,
-                value: "valid"
-              })
-
-          if (this.auth.isCustomer()) {
-            this.router.navigateByUrl('search');
-          } else if (this.auth.isMonitor()) {
-            this.router.navigateByUrl('dashboard');
-          } else {
-            this.router.navigateByUrl('home');
-          }
-        },
-        error: error => {
+        error: (err: HttpErrorResponse) => {
           this.showLoader = false;
 
-          this
-            .gtag
-            .event(
-              "login",
-              {
-                event_category: "users",
-                event_label: 'Error' + error.status + ' for ' + this.getUsername()?.value,
-                value: error.status
-              })
-
-          if (error.status === 401) {
-            this.snackBar.open('Les identifiants de connexion sont incorrects');
+          if (err.status === 401) {
+            this.snackBar.open('Les identifiants de connexion sont incorrects', 'OK');
 
             this.passwordField.nativeElement.focus();
             this.getPassword()?.setValue('');
 
             this.shakeForm();
           } else {
-            console.error(error);
-            this.snackBar.open('Une erreur est survenue');
+            this.snackBar.open(`[${err.status}] Une erreur est survenue`, 'OK');
           }
         }
       });

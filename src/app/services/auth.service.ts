@@ -1,9 +1,13 @@
 import {Injectable} from '@angular/core';
-import {StateService} from './state.service';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, concatMap, Observable, throwError} from 'rxjs';
 import {ApiService} from './api.service';
 import {UserModel} from '../models/user.model';
 import {TokenModel} from "../models/token.model";
+import {LocalService} from "./local.service";
+import {tap} from "rxjs/operators";
+import {Router} from "@angular/router";
+import {GoogleAnalyticsService} from "./google-analytics.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable(
   {
@@ -12,59 +16,173 @@ import {TokenModel} from "../models/token.model";
 )
 export class AuthService {
 
+  TOKEN: BehaviorSubject<TokenModel | null>;
+  LOGGED_USER: BehaviorSubject<UserModel | null>;
+
   constructor(
     private api: ApiService,
-    private state: StateService
+    private router: Router,
+    private localService: LocalService,
+    private gtag: GoogleAnalyticsService,
   ) {
+    this.TOKEN = new BehaviorSubject<TokenModel | null>(
+      this.localService.getObject<TokenModel>('STATE_TOKEN') || null
+    );
+
+    this.LOGGED_USER = new BehaviorSubject<UserModel | null>(
+      this.localService.getObject<UserModel>('STATE_USER') || null
+    );
+
+    this.TOKEN.subscribe((token: TokenModel | null) => {
+      this.localService.setObject('STATE_TOKEN', token);
+    });
+
+    this.LOGGED_USER.subscribe((user: UserModel | null) => {
+      this.localService.setObject('STATE_USER', user);
+    });
+  }
+
+  // State management
+  getUserSubject(): BehaviorSubject<UserModel | null> {
+    return this.LOGGED_USER;
+  }
+
+  getTokenSubject(): BehaviorSubject<TokenModel | null> {
+    return this.TOKEN;
+  }
+
+  getUser(): UserModel | null {
+    return this.getUserSubject().getValue();
+  }
+
+  getToken(): TokenModel | null {
+    return this.getTokenSubject().getValue();
+  }
+
+  saveUser(user: UserModel | null): void {
+    console.debug('user saved', user);
+    this.getUserSubject().next(user);
+  }
+
+  saveToken(token: TokenModel | null): void {
+    console.debug('token saved', token);
+    this.getTokenSubject().next(token);
+  }
+
+  getRedirectUrlForUser() {
+    return this.isMonitor() ? '/dashboard' : '/search';
   }
 
   connect(login: string, password: string): Observable<UserModel> {
-    return new Observable(observer => {
-      this
-        .api
-        .login(login, password)
-        .subscribe({
-          next: () => {
+    console.time('connect: token');
+    return this
+      .api
+      .login(login, password)
+      .pipe(
+        // saving token in session
+        tap(tokens => {
+          console.timeEnd('connect: token');
+          this.saveToken(tokens);
+        }),
+        // getting current user information
+        concatMap(() => {
+          console.time('connect: user infos');
+          return this.api.getCurrentUser();
+        }),
+        // updating session with current users information
+        tap(user => {
+          console.timeEnd('connect: user infos');
+          this.saveUser(user);
+        }),
+        // tracking login event
+        tap({
+          next: (user) => {
             this
-              .api
-              .getCurrentUser()
-              .subscribe({
-                next: user => observer.next(user),
-                error: e => observer.error(e),
-              });
+              .gtag
+              .event(
+                "login",
+                {
+                  event_category: this.isMonitor() ? "monitors" : "customers",
+                  event_label: user.uuid,
+                  value: "valid"
+                })
           },
-          error: e => observer.error(e)
-        });
-    });
+          error: error => {
+            this
+              .gtag
+              .event(
+                "login",
+                {
+                  event_category: "users",
+                  event_label: 'Error' + error.status,
+                  value: error.status
+                })
+          }
+        }),
+        // redirecting after login
+        tap(() => {
+          const uri = this.getRedirectUrlForUser();
+          console.log('redirecting after login:', uri);
+          this.router.navigateByUrl(uri);
+        })
+      );
   }
 
   reconnect(): Observable<TokenModel> {
-    return new Observable(observer => {
-      const token = this.state.TOKEN.getValue();
+    const token = this.getToken();
 
-      if (null === token) {
-        observer.error('No token found');
-        observer.complete();
-        return;
-      }
+    if (null === token) {
+      return throwError(() => new Error('No token found'));
+    }
 
-      return this
-        .api
-        .reconnect(token.refresh_token)
-        .subscribe({
-          next: (token: TokenModel) => {
-            observer.next(token);
-            observer.complete();
-          },
-          error: e => observer.error(e)
-        });
-    });
+    console.time('reconnect')
+
+    return this
+      .api
+      .reconnect(token.refresh_token)
+      .pipe(
+        tap(data => {
+          console.timeEnd('reconnect')
+          this.saveToken(data);
+        })
+      )
   }
 
   registerCustomer(email: string, password: string) {
+    console.time('registerCustomer')
     return this
       .api
-      .registerCustomer(email, password);
+      .registerCustomer(email, password)
+      .pipe(
+        tap(() => {
+          console.timeEnd('registerCustomer')
+        }),
+        concatMap(() => this.connect(email, password)),
+        tap({
+          next: () => {
+            this
+              .gtag
+              .event(
+                "register",
+                {
+                  event_category: "customers",
+                  event_label: 'New customer ' + email,
+                  value: 'valid'
+                })
+          },
+          error: (err: HttpErrorResponse) => {
+            this
+              .gtag
+              .event(
+                "register",
+                {
+                  event_category: "customers",
+                  event_label: 'Subscription error for ' + email,
+                  value: 'error: ' + err.message
+                })
+          }
+        })
+      )
   }
 
   registerMonitor(
@@ -74,6 +192,8 @@ export class AuthService {
     email: string,
     password: string
   ) {
+    console.time('registerMonitor')
+
     return this
       .api
       .registerMonitor(
@@ -82,38 +202,73 @@ export class AuthService {
         phone,
         email,
         password
-      );
-  }
-
-  getUser(): UserModel | null {
-    return this.state.LOGGED_USER.getValue();
-  }
-
-  getToken(): TokenModel | null {
-    return this.state.TOKEN.getValue();
+      )
+      .pipe(
+        tap(() => {
+          console.timeEnd('registerMonitor')
+        }),
+        concatMap(() => this.connect(email, password)),
+        tap({
+          next: () => {
+            this
+              .gtag
+              .event(
+                "register",
+                {
+                  event_category: "customers",
+                  event_label: 'New customer ' + email,
+                  value: 'valid'
+                })
+          },
+          error: (err: HttpErrorResponse) => {
+            this
+              .gtag
+              .event(
+                "register",
+                {
+                  event_category: "customers",
+                  event_label: 'Subscription error for ' + email,
+                  value: 'error: ' + err.message
+                })
+          }
+        })
+      )
   }
 
   isLogged(): boolean {
-    return this.state.LOGGED_USER.getValue() !== null && this.state.TOKEN.getValue() !== null;
+    return this.getUser() !== null && this.getToken() !== null;
   }
 
-  clearSession() {
-    this.state.TOKEN.next(null);
-    this.state.LOGGED_USER.next(null);
+  disconnect() {
+    console.log('clearing session');
+    this.saveUser(null);
+    this.saveToken(null);
+
+    console.log('redirecting to home page');
+    this.router.navigate(['']);
   }
 
   isGranted(...roles: string[]) {
     const user = this.getUser();
 
     if (!user) {
+      console.warn('not logged');
+      return false;
+    }
+
+    if (roles.length === 0) {
+      console.warn('user roles empty');
       return false;
     }
 
     for (const role of roles) {
       if (!user.roles.includes(role)) {
+        console.warn('user not granted:', role)
         return false;
       }
     }
+
+    console.debug('user granted:', roles)
 
     return true;
   }

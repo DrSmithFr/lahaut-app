@@ -3,7 +3,6 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {catchError, Observable, switchMap, throwError} from 'rxjs';
 import {AuthService} from '../auth.service';
-import {StateService} from '../state.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ApiService} from "../api.service";
 
@@ -18,7 +17,6 @@ export class AuthInterceptorService implements HttpInterceptor {
     private router: Router,
     private apiService: ApiService,
     private authService: AuthService,
-    private stateService: StateService,
     private readonly snackBar: MatSnackBar,
   ) {
   }
@@ -78,7 +76,7 @@ export class AuthInterceptorService implements HttpInterceptor {
   }
 
   private updateAuthHeaders<T>(request: HttpRequest<T>): HttpRequest<T> {
-    const token = this.stateService.TOKEN.getValue();
+    const token = this.authService.getToken();
 
     if (null !== token && null !== token.token) {
       request = request.clone(
@@ -96,7 +94,7 @@ export class AuthInterceptorService implements HttpInterceptor {
   }
 
   private redirectToLogin(): void {
-    this.authService.clearSession();
+    this.authService.disconnect();
 
     this
       .snackBar

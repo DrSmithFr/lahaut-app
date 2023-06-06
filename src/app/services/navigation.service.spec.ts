@@ -19,7 +19,7 @@ describe('NavigationService', () => {
   });
 
   it('should dispatch navigation opening when calling .show()', (done) => {
-    service.show();
+    service.setNavigationVisibility(true);
     service.isNavigationVisible.subscribe((value) => {
       expect(value).toBeTrue();
       done();
@@ -27,7 +27,7 @@ describe('NavigationService', () => {
   });
 
   it('should dispatch navigation closing when calling .hide()', (done) => {
-    service.hide();
+    service.setNavigationVisibility(false);
     service.isNavigationVisible.subscribe((value) => {
       expect(value).toBeFalse();
       done();

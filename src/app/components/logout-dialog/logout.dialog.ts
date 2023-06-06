@@ -21,9 +21,10 @@ export class LogoutDialog {
 
   disconnect() {
     this.loading = true;
-    this.auth.clearSession();
-    this.router.navigate(['/search']);
+    this.auth.disconnect();
+
     this.snackBar.open('Vous êtes déconnecté', undefined, {duration: 2000});
+
     this.dialogRef.close();
   }
 

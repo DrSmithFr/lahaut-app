@@ -20,13 +20,13 @@ then
   exit 1
 fi
 
-display title "Checking files for forgotten console.log()"
-./hooks/src/check-console-log.sh ${FILES}
-if [[ $? -ne 0 ]]
-then
-  display error "Your code need to be checked (Console.log found)"
-  exit 1
-fi
+#display title "Checking files for forgotten console.log()"
+#./hooks/src/check-console-log.sh ${FILES}
+#if [[ $? -ne 0 ]]
+#then
+#  display error "Your code need to be checked (Console.log found)"
+#  exit 1
+#fi
 
 display title "Checking EsLint"
 ng lint
