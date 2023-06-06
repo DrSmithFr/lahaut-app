@@ -1,7 +1,7 @@
 <mat-toolbar class="toolbar" [ngClass]="{'fadeOut': false}">
   <mat-toolbar-row class="space-between">
 
-    <div class="navigation-button"  *ngIf="showMenuButton">
+    <div class="navigation-button"  *ngIf="showMenuButton || showPreviousButton">
       <button
         mat-icon-button
         aria-label="ouvrir/fermer la liste des conversations chat"
@@ -9,6 +9,14 @@
         (click)="toggleMenu()">
         <mat-icon *ngIf="isMenuOpen">chevron_left</mat-icon>
         <mat-icon *ngIf="!isMenuOpen">menu</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        aria-label="retour à la page précédente"
+        *ngIf="showPreviousButton"
+        (click)="goToPreviousPage()">
+        <mat-icon>chevron_left</mat-icon>
       </button>
     </div>
 
@@ -23,7 +31,7 @@
         mat-icon-button
         aria-label="voir le panier"
         *ngIf="showShoppingCart"
-        (click)="displayShoppingCart()">
+        (click)="goToShoppingCart()">
         <mat-icon [matBadge]="shoppingCartCount">shopping_cart</mat-icon>
       </button>
       <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">

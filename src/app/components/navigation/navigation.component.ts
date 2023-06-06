@@ -6,7 +6,7 @@ import {Roles} from "../../guards/role-guard.service";
 import {NavigationService} from "../../services/navigation.service";
 import {ShoppingService} from "../../services/shopping.service";
 import {CartModel} from "../../models/cart.model";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-navigation',
@@ -25,6 +25,10 @@ export class NavigationComponent implements OnInit {
   showShoppingCart = false;
   shoppingCartCount = 0;
 
+  showPreviousButton = false;
+  currentUrl = '';
+  previousUrl = '';
+
   constructor(
     private auth: AuthService,
     private navigationService: NavigationService,
@@ -32,6 +36,14 @@ export class NavigationComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog
   ) {
+    router
+      .events
+      .subscribe(event => {
+        if (event instanceof NavigationEnd) {
+          this.previousUrl = this.currentUrl;
+          this.currentUrl = event.url;
+        }
+      });
   }
 
   ngOnInit() {
@@ -71,6 +83,13 @@ export class NavigationComponent implements OnInit {
         this.showShoppingCart = cart !== null && !CartModel.isEmpty(cart);
         this.shoppingCartCount = cart?.items?.length ?? 0;
       });
+
+    this
+      .navigationService
+      .isPreviousButtonVisibleSubject()
+      .subscribe((show) => {
+        this.showPreviousButton = show;
+      });
   }
 
   openLogoutDialog() {
@@ -109,8 +128,12 @@ export class NavigationComponent implements OnInit {
       .setMenuOpenState(this.isMenuOpen);
   }
 
-  displayShoppingCart() {
+  goToShoppingCart() {
     console.log('displayShoppingCart', this.shoppingService.getCart());
     this.router.navigate(['/shopping/cart']);
+  }
+
+  goToPreviousPage() {
+    this.router.navigate([this.previousUrl]);
   }
 }
