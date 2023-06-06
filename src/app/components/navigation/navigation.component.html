@@ -1,4 +1,7 @@
 <mat-toolbar class="toolbar" [ngClass]="{'fadeOut': false}">
+  <!-- 'absorbs' the auto-focus behavior -->
+  <button mat-button style="height: 0; position: absolute;" aria-label="disable-auto-focus"></button>
+
   <mat-toolbar-row class="space-between">
 
     <div class="navigation-button"  *ngIf="showMenuButton || showPreviousButton">
@@ -30,7 +33,7 @@
       <button
         mat-icon-button
         aria-label="voir le panier"
-        *ngIf="showShoppingCart"
+        *ngIf="showShoppingCart && showShoppingCartButton"
         (click)="goToShoppingCart()">
         <mat-icon [matBadge]="shoppingCartCount">shopping_cart</mat-icon>
       </button>

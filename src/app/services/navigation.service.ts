@@ -16,6 +16,7 @@ export class NavigationService {
   public isMenuOpen: BehaviorSubject<boolean>;
 
   public isPreviousButtonVisible: BehaviorSubject<boolean>;
+  public isShoppingCartVisible: BehaviorSubject<boolean>;
 
   constructor() {
     this.isNavigationVisible = new BehaviorSubject<boolean>(false);
@@ -26,6 +27,7 @@ export class NavigationService {
     this.isMenuOpen = new BehaviorSubject<boolean>(false);
 
     this.isPreviousButtonVisible = new BehaviorSubject<boolean>(false);
+    this.isShoppingCartVisible = new BehaviorSubject<boolean>(true);
   }
 
   // navigation visibility
@@ -71,5 +73,14 @@ export class NavigationService {
 
   setPreviousButtonVisibility(value: boolean) {
     this.isPreviousButtonVisibleSubject().next(value);
+  }
+
+  // shopping cart visibility
+  isShoppingCartVisibleSubject() {
+    return this.isShoppingCartVisible;
+  }
+
+  setShoppingCartVisibility(value: boolean) {
+    this.isShoppingCartVisibleSubject().next(value);
   }
 }

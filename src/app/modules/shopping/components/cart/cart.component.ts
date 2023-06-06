@@ -17,6 +17,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navigationService.setPreviousButtonVisibility(true);
+    this.navigationService.setShoppingCartVisibility(false);
 
     setTimeout(() => {
       this.loading = false;
@@ -25,6 +26,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.navigationService.setPreviousButtonVisibility(false);
+    this.navigationService.setShoppingCartVisibility(true);
   }
 
 }

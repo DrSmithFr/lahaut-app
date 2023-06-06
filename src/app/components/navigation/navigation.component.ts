@@ -26,6 +26,7 @@ export class NavigationComponent implements OnInit {
   shoppingCartCount = 0;
 
   showPreviousButton = false;
+  showShoppingCartButton = true;
   currentUrl = '';
   previousUrl = '';
 
@@ -40,8 +41,14 @@ export class NavigationComponent implements OnInit {
       .events
       .subscribe(event => {
         if (event instanceof NavigationEnd) {
-          this.previousUrl = this.currentUrl;
-          this.currentUrl = event.url;
+          // Ignore shopping pages
+          if (!event.url.startsWith('/shopping')) {
+            this.previousUrl = this.currentUrl;
+            this.currentUrl = event.url;
+          }
+
+          console.log('NavigationEnd:', event.url);
+          console.log('PreviousPage:', this.previousUrl);
         }
       });
   }
@@ -90,6 +97,13 @@ export class NavigationComponent implements OnInit {
       .subscribe((show) => {
         this.showPreviousButton = show;
       });
+
+    this
+      .navigationService
+      .isShoppingCartVisibleSubject()
+      .subscribe((show) => {
+        this.showShoppingCartButton = show;
+      });
   }
 
   openLogoutDialog() {
@@ -134,6 +148,7 @@ export class NavigationComponent implements OnInit {
   }
 
   goToPreviousPage() {
-    this.router.navigate([this.previousUrl]);
+    console.log('goToPreviousPage', this.previousUrl);
+    this.router.navigateByUrl(this.previousUrl);
   }
 }
