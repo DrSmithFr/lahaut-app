@@ -14,39 +14,42 @@ import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule(
-  {
-    declarations: [
-      RegisterCustomerComponent,
-      MyCustomerAccountComponent,
-    ],
-    imports: [
-      CommonModule,
+    {
+        declarations: [
+            RegisterCustomerComponent,
+            MyCustomerAccountComponent,
+        ],
+        imports: [
+            CommonModule,
 
-      // routing
-      CustomerRoutingModule,
+            // routing
+            CustomerRoutingModule,
 
-      // importing reactive form
-      FormsModule,
-      ReactiveFormsModule,
+            // importing reactive form
+            FormsModule,
+            ReactiveFormsModule,
 
-      // users modules
-      MatInputModule,
-      MatButtonModule,
-      MatProgressSpinnerModule,
-      MatCheckboxModule,
-      MatDialogModule,
-      MatIconModule,
-      MatCardModule
-    ],
-    providers:    [
-      {
-        provide:  MAT_DIALOG_DEFAULT_OPTIONS,
-        useValue: {
-          hasBackdrop: true
-        }
-      }
-    ]
-  }
+            // users modules
+            MatInputModule,
+            MatButtonModule,
+            MatProgressSpinnerModule,
+            MatCheckboxModule,
+            MatDialogModule,
+            MatIconModule,
+            MatCardModule
+        ],
+        exports: [
+            RegisterCustomerComponent
+        ],
+        providers: [
+            {
+                provide: MAT_DIALOG_DEFAULT_OPTIONS,
+                useValue: {
+                    hasBackdrop: true
+                }
+            }
+        ]
+    }
 )
 export class CustomerModule {
 }

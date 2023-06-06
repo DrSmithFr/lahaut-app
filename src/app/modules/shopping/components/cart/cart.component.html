@@ -1,6 +1,4 @@
-<mat-progress-bar mode="indeterminate" *ngIf="loading" class="top-loader"></mat-progress-bar>
-
-<div class="page-container shopping-card-page" *ngIf="!loading">
+<div class="page-container shopping-card-page">
   <section class="shopping-card-content">
     <header>
       <h1>Panier</h1>
@@ -53,7 +51,7 @@
         <mat-icon>arrow_back</mat-icon>
         Retour à la liste des vols
       </button>
-      <button mat-raised-button class="pay-button" color="primary" *ngIf="cart && cart.items.length > 0">
+      <button mat-raised-button class="pay-button" color="primary" *ngIf="cart && cart.items.length > 0" (click)="checkout()">
         Réserver pour {{getTotal()|currency: 'EUR': 'symbol-narrow': '1.0-2'}}
         <mat-icon matSuffix>shopping_cart_checkout</mat-icon>
       </button>

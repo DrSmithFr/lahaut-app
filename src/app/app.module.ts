@@ -92,12 +92,13 @@ registerLocaleData(fr);
     // Init ngx-mask
     NgxMaskModule.forRoot()
   ],
-  exports: [
-    HttpClientModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatSnackBarModule
-  ],
+    exports: [
+        HttpClientModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatSnackBarModule,
+        LoginComponent
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

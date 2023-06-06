@@ -2,6 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NavigationService} from "../../../../services/navigation.service";
 import {ShoppingService} from "../../../../services/shopping.service";
 import {CartItemModel, CartModel} from "../../../../models/cart.model";
+import {Router} from "@angular/router";
+import {AuthService} from "../../../../services/auth.service";
 
 @Component({
   selector: 'app-cart',
@@ -10,12 +12,13 @@ import {CartItemModel, CartModel} from "../../../../models/cart.model";
 })
 export class CartComponent implements OnInit, OnDestroy {
 
-  loading = true;
   cart: CartModel|null;
 
   constructor(
     private navigationService: NavigationService,
-    private shoppingService: ShoppingService
+    private shoppingService: ShoppingService,
+    private router: Router,
+    private auth: AuthService
   ) {
     this.cart = this.shoppingService.getCart();
   }
@@ -23,10 +26,6 @@ export class CartComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.navigationService.setPreviousButtonVisibility(true);
     this.navigationService.setShoppingCartVisibility(false);
-
-    setTimeout(() => {
-      this.loading = false;
-    }, 1000);
   }
 
   ngOnDestroy() {
@@ -40,5 +39,9 @@ export class CartComponent implements OnInit, OnDestroy {
 
   getTotal() {
     return this.cart ? this.cart.items.reduce((acc, item) => acc + item.slot.price, 0) : 0;
+  }
+
+  checkout() {
+    this.router.navigate(['/shopping/payment']);
   }
 }
