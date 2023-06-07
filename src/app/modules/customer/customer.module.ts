@@ -9,47 +9,49 @@ import {CustomerRoutingModule} from './customer-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from "@angular/material/icon";
-import { MyCustomerAccountComponent } from './components/my-customer-account/my-customer-account.component';
+import {MyCustomerAccountComponent} from './components/my-customer-account/my-customer-account.component';
 import {MatCardModule} from "@angular/material/card";
+import {RegisterCustomerPage} from "./components/register-customer-page/register-customer.page";
 
 
 @NgModule(
-    {
-        declarations: [
-            RegisterCustomerComponent,
-            MyCustomerAccountComponent,
-        ],
-        imports: [
-            CommonModule,
+  {
+    declarations: [
+      RegisterCustomerComponent,
+      RegisterCustomerPage,
+      MyCustomerAccountComponent,
+    ],
+    imports: [
+      CommonModule,
 
-            // routing
-            CustomerRoutingModule,
+      // routing
+      CustomerRoutingModule,
 
-            // importing reactive form
-            FormsModule,
-            ReactiveFormsModule,
+      // importing reactive form
+      FormsModule,
+      ReactiveFormsModule,
 
-            // users modules
-            MatInputModule,
-            MatButtonModule,
-            MatProgressSpinnerModule,
-            MatCheckboxModule,
-            MatDialogModule,
-            MatIconModule,
-            MatCardModule
-        ],
-        exports: [
-            RegisterCustomerComponent
-        ],
-        providers: [
-            {
-                provide: MAT_DIALOG_DEFAULT_OPTIONS,
-                useValue: {
-                    hasBackdrop: true
-                }
-            }
-        ]
-    }
+      // users modules
+      MatInputModule,
+      MatButtonModule,
+      MatProgressSpinnerModule,
+      MatCheckboxModule,
+      MatDialogModule,
+      MatIconModule,
+      MatCardModule
+    ],
+    exports: [
+      RegisterCustomerComponent
+    ],
+    providers: [
+      {
+        provide: MAT_DIALOG_DEFAULT_OPTIONS,
+        useValue: {
+          hasBackdrop: true
+        }
+      }
+    ]
+  }
 )
 export class CustomerModule {
 }

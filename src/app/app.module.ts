@@ -19,19 +19,18 @@ import {HomeComponent} from "./components/home/home.component";
 import {NavigationComponent} from "./components/navigation/navigation.component";
 import {LogoutDialog} from "./components/logout-dialog/logout.dialog";
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
-import {LoginComponent} from "./components/login/login.component";
+import {LoginPage} from "./components/login/login.page";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import {PasswordResetDialog} from "./components/password-reset/password-reset-dialog.component";
-import {PasswordResetRequestDialog} from "./components/password-reset-request/password-reset-request.dialog";
 import {GtagModule} from "angular-gtag";
 import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import fr from '@angular/common/locales/fr';
 import {registerLocaleData} from '@angular/common';
 import {NgxMaskModule} from "ngx-mask";
+import {ConnectModule} from "./modules/connect/connect.module";
 
 registerLocaleData(fr);
 
@@ -42,14 +41,15 @@ registerLocaleData(fr);
     Page404Component,
     HomeComponent,
     NavigationComponent,
-    LoginComponent,
+    LoginPage,
     LogoutDialog,
-    PasswordResetRequestDialog,
-    PasswordResetDialog,
   ],
   imports: [
     // routing main module
     AppRoutingModule,
+
+    // Connect module
+    ConnectModule,
 
     // http client for api calls
     HttpClientModule,
@@ -90,15 +90,16 @@ registerLocaleData(fr);
     GtagModule.forRoot({trackingId: 'UA-132202996-1', trackPageviews: true}),
 
     // Init ngx-mask
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    ConnectModule
   ],
-    exports: [
-        HttpClientModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        MatSnackBarModule,
-        LoginComponent
-    ],
+  exports: [
+    HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    LoginPage
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

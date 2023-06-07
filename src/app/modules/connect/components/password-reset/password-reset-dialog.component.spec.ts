@@ -1,16 +1,18 @@
 import {TestBed} from '@angular/core/testing';
 
-import {PasswordResetRequestDialog} from './password-reset-request.dialog';
+import {PasswordResetDialog} from './password-reset-dialog.component';
 import {RouterTestingModule} from "@angular/router/testing";
 import {MatIconModule} from "@angular/material/icon";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
-import {ApiService} from "../../services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {ApiService} from "../../../../services/api.service";
 
-describe('PasswordResetRequestDialog', () => {
+describe('PasswordResetDialog', () => {
   beforeEach(async () => {
     const ApiServiceMock = jasmine.createSpyObj('ApiService', ['']);
+
+    const MatDialogMock = jasmine.createSpyObj('MatDialog', ['open']);
     const MatDialogRefMock = jasmine.createSpyObj('MatDialogRef', ['close']);
     const MatSnackBarSpy = jasmine.createSpyObj('MatSnackBar', ['open']);
 
@@ -22,11 +24,12 @@ describe('PasswordResetRequestDialog', () => {
         MatDialogModule
       ],
       declarations: [
-        PasswordResetRequestDialog,
+        PasswordResetDialog,
       ],
       providers: [
         {provide: ApiService, useValue: ApiServiceMock},
         {provide: MatSnackBar, useValue: MatSnackBarSpy},
+        {provide: MatDialog, useValue: MatDialogMock},
         {provide: MatDialogRef, useValue: MatDialogRefMock},
         {provide: MAT_DIALOG_DATA, useValue: {token: 'token'}},
 
@@ -35,7 +38,7 @@ describe('PasswordResetRequestDialog', () => {
   });
 
   it('should create', () => {
-    const fixture = TestBed.createComponent(PasswordResetRequestDialog);
+    const fixture = TestBed.createComponent(PasswordResetDialog);
     const component = fixture.componentInstance;
     expect(component).toBeDefined();
   });

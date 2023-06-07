@@ -1,12 +1,22 @@
-@import "colors";
-@import "breakpoints";
+@import "src/scss/default/colors";
+@import "src/scss/default/breakpoints";
 
-.register-form {
+.login-form {
   padding: 0 30px;
   padding-top: 30px;
 
   mat-icon {
     color: #777;
+  }
+
+  .forgot-password {
+    text-align: right;
+    margin: 12px 0;
+    a {
+      color: $light-purple;
+      font-size: 12px;
+      font-weight: bold;
+    }
   }
 
   @include mobile-all() {

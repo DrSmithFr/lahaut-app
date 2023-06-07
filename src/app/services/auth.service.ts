@@ -73,9 +73,9 @@ export class AuthService {
     return this.isMonitor() ? '/dashboard' : '/search';
   }
 
-  connect(login: string, password: string): Observable<UserModel> {
+  connect(login: string, password: string, autoRedirect = true): Observable<UserModel> {
     console.time('connect: token');
-    return this
+    const observable = this
       .api
       .login(login, password)
       .pipe(
@@ -119,13 +119,21 @@ export class AuthService {
                 })
           }
         }),
-        // redirecting after login
-        tap(() => {
-          const uri = this.getRedirectUrlForUser();
-          console.log('redirecting after login:', uri);
-          this.router.navigateByUrl(uri);
-        })
       );
+
+    if (autoRedirect) {
+      return observable
+        .pipe(
+          // redirecting after login
+          tap(() => {
+            const uri = this.getRedirectUrlForUser();
+            console.log('redirecting after login:', uri);
+            this.router.navigateByUrl(uri);
+          })
+        )
+    }
+
+    return observable;
   }
 
   reconnect(): Observable<TokenModel> {
@@ -148,7 +156,7 @@ export class AuthService {
       )
   }
 
-  registerCustomer(email: string, password: string) {
+  registerCustomer(email: string, password: string, autoRedirect = true) {
     console.time('registerCustomer')
     return this
       .api
@@ -157,7 +165,7 @@ export class AuthService {
         tap(() => {
           console.timeEnd('registerCustomer')
         }),
-        concatMap(() => this.connect(email, password)),
+        concatMap(() => this.connect(email, password, autoRedirect)),
         tap({
           next: () => {
             this

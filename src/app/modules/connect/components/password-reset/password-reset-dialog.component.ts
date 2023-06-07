@@ -3,7 +3,7 @@ import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angul
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Observable} from "rxjs";
-import {ApiService} from "../../services/api.service";
+import {ApiService} from "../../../../services/api.service";
 import {PasswordResetRequestDialog} from "../password-reset-request/password-reset-request.dialog";
 
 @Component(

@@ -1,21 +1,22 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AbstractControl, FormBuilder, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {AuthService} from '../../services/auth.service';
-import {MatDialog} from '@angular/material/dialog';
-import {PasswordResetDialog} from "../password-reset/password-reset-dialog.component";
-import {PasswordResetRequestDialog} from "../password-reset-request/password-reset-request.dialog";
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AuthService} from "../../../../services/auth.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatDialog} from "@angular/material/dialog";
 import {HttpErrorResponse} from "@angular/common/http";
+import {PasswordResetRequestDialog} from "../password-reset-request/password-reset-request.dialog";
+import {PasswordResetDialog} from "../password-reset/password-reset-dialog.component";
 
-@Component(
-  {
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
-  }
-)
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
 export class LoginComponent implements OnInit {
+  @Input() autoRedirect = true;
+  @Output() login = new EventEmitter<void>();
+
   @ViewChild('password') passwordField: ElementRef<HTMLInputElement>;
 
   hidePassword = true;
@@ -95,10 +96,18 @@ export class LoginComponent implements OnInit {
       .connect(
         this.getUsername()?.value,
         this.getPassword()?.value,
+        this.autoRedirect
       )
       .subscribe({
+        next: () => {
+          this.showLoader = false;
+          this.login.emit();
+        },
         error: (err: HttpErrorResponse) => {
           this.showLoader = false;
+          this.shakeForm();
+
+          console.log(err);
 
           if (err.status === 401) {
             this.snackBar.open('Les identifiants de connexion sont incorrects', 'OK');

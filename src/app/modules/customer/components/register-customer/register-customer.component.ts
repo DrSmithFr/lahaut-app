@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
 import {AuthService} from '../../../../services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -16,6 +16,8 @@ import {HttpErrorResponse} from "@angular/common/http";
   }
 )
 export class RegisterCustomerComponent implements OnInit {
+  @Input() autoRedirect = true;
+  @Output() registration = new EventEmitter<void>();
 
   showLoader = false;
   shaking = false;
@@ -136,9 +138,14 @@ export class RegisterCustomerComponent implements OnInit {
       .auth
       .registerCustomer(
         this.getUsername()?.value,
-        this.getPassword()?.value
+        this.getPassword()?.value,
+        this.autoRedirect
       )
       .subscribe({
+        next: () => {
+          this.showLoader = false;
+          this.registration.emit();
+        },
         error: (err: HttpErrorResponse) => {
           this.showLoader = false;
           this.shaking = true;

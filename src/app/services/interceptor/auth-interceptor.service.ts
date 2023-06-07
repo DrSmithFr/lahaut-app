@@ -30,7 +30,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     }
 
     // if public api call, do nothing
-    if (request.url.startsWith(apiUrl + '.public')) {
+    if (request.url.startsWith(apiUrl + '/public')) {
       return next.handle(request);
     }
 
