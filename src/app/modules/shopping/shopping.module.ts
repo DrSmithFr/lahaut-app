@@ -16,6 +16,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {SharedModule} from "../shared/shared.module";
 import {QuickConnectComponent} from './components/quick-connect/quick-connect.component';
 import {CustomerModule} from "../customer/customer.module";
+import {ConnectModule} from "../connect/connect.module";
+import {MatTabsModule} from "@angular/material/tabs";
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import {CustomerModule} from "../customer/customer.module";
     MatProgressBarModule,
     SharedModule,
     CustomerModule,
+    ConnectModule,
+    MatTabsModule,
   ]
 })
 export class ShoppingModule {

@@ -1,4 +1,12 @@
-<div class="page-container">
-  <h1>Quick-Connect</h1>
-  <app-register-customer></app-register-customer>
+<div class="page-container quick-connect-page">
+  <h1>Compte Client</h1>
+
+  <mat-tab-group>
+    <mat-tab label="Se connecter">
+      <app-login (login)="onConnect()" [autoRedirect]="false"></app-login>
+    </mat-tab>
+    <mat-tab label="Créér un compte">
+      <app-register-customer (registration)="onConnect()" [autoRedirect]="false"></app-register-customer>
+    </mat-tab>
+  </mat-tab-group>
 </div>
