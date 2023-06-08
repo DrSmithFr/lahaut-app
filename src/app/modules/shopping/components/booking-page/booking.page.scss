@@ -79,6 +79,14 @@
           color: $border-dark;
         }
       }
+
+      th.status {
+        width: 64px;
+
+        mat-icon {
+          color: $border-dark;
+        }
+      }
     }
 
     .flight {
@@ -202,8 +210,12 @@
       }
     }
 
+    .pre-book-disclaimer {
+      margin-top: 40px;
+    }
+
     footer {
-      padding-top: 40px;
+      padding-top: 30px;
 
       display: flex;
       justify-content: space-between;

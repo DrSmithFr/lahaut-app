@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {ShoppingRoutingModule} from './shopping-routing.module';
-import {CartComponent} from './components/cart/cart.component';
+import {CartPage} from './components/cart-page/cart.page';
 import {PaymentComponent} from './components/payment/payment.component';
 import {CreditCardFormComponent} from "./components/credit-card-form/credit-card-form.component";
 import {MatButtonModule} from "@angular/material/button";
@@ -18,14 +18,16 @@ import {QuickConnectComponent} from './components/quick-connect/quick-connect.co
 import {CustomerModule} from "../customer/customer.module";
 import {ConnectModule} from "../connect/connect.module";
 import {MatTabsModule} from "@angular/material/tabs";
+import {BookingPage} from "./components/booking-page/booking.page";
 
 
 @NgModule({
   declarations: [
-    CartComponent,
+    CartPage,
+    QuickConnectComponent,
+    BookingPage,
     PaymentComponent,
-    CreditCardFormComponent,
-    QuickConnectComponent
+    CreditCardFormComponent
   ],
   imports: [
     CommonModule,

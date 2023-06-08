@@ -3,24 +3,32 @@ import {NavigationService} from "../../../../services/navigation.service";
 import {ShoppingService} from "../../../../services/shopping.service";
 import {CartItemModel, CartModel} from "../../../../models/cart.model";
 import {Router} from "@angular/router";
-import {AuthService} from "../../../../services/auth.service";
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  selector: 'app-booking',
+  templateUrl: './booking.page.html',
+  styleUrls: ['./booking.page.scss']
 })
-export class CartComponent implements OnInit, OnDestroy {
+export class BookingPage implements OnInit, OnDestroy {
 
-  cart: CartModel|null;
+  cart: CartModel | null = null;
 
   constructor(
     private navigationService: NavigationService,
     private shoppingService: ShoppingService,
     private router: Router,
-    private auth: AuthService
   ) {
-    this.cart = this.shoppingService.getCart();
+    this
+      .shoppingService
+      .getCartSubject()
+      .subscribe((cart: CartModel | null) => {
+        this.cart = cart;
+
+        if (cart?.items.length === 0) {
+          this.shoppingService.saveCart(null);
+          this.router.navigate(['/']);
+        }
+      });
   }
 
   ngOnInit() {

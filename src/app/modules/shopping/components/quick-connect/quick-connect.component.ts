@@ -22,6 +22,6 @@ export class QuickConnectComponent {
       this.snackBar.open('Impossible d\'effectuer une réservation avec un compte moniteur', 'OK');
     }
 
-    this.router.navigateByUrl('/shopping/payment');
+    this.router.navigateByUrl('/shopping/booking');
   }
 }

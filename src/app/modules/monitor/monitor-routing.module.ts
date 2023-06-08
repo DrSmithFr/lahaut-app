@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {RegisterMonitorComponent} from './components/register-monitor/register-monitor.component';
 import {MyMonitorAccountComponent} from "./components/my-monitor-account/my-monitor-account.component";
-import {AuthGuard} from "../../guards/auth-guard.service";
+import {AuthGuard} from "../../guards/auth.guard";
 
 const routes: Routes = [
   {

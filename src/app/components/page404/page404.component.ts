@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Roles} from "../../guards/auth-guard.service";
+import {Roles} from "../../guards/auth.guard";
 import {AuthService} from "../../services/auth.service";
 
 @Component(

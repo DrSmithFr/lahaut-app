@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./components/home/home.component";
 import {Page404Component} from "./components/page404/page404.component";
 import {LoginPage} from "./components/login/login.page";
-import {AuthGuard, Roles} from "./guards/auth-guard.service";
+import {AuthGuard, Roles} from "./guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -57,8 +57,8 @@ const routes: Routes = [
   },
   {
     path: 'shopping',
-    canActivate: [AuthGuard.IsDisconnectedOrHasRoles([Roles.customer], '/dashboard')],
-    canActivateChild: [AuthGuard.IsDisconnectedOrHasRoles([Roles.customer], '/dashboard')],
+    canActivate: [AuthGuard.IsDisconnectedOrHasRoles([Roles.customer], '/')],
+    canActivateChild: [AuthGuard.IsDisconnectedOrHasRoles([Roles.customer], '/')],
     loadChildren: () => import('./modules/shopping/shopping.module').then(m => m.ShoppingModule),
   },
   {

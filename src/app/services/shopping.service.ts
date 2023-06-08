@@ -30,7 +30,7 @@ export class ShoppingService {
     return this.getCartSubject().getValue();
   }
 
-  saveCart(cart: CartModel): void {
+  saveCart(cart: CartModel|null): void {
     console.debug('shopping cart saved:', cart);
     this.getCartSubject().next(cart);
   }

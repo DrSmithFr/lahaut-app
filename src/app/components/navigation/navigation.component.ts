@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {LogoutDialog} from "../logout-dialog/logout.dialog";
-import {Roles} from "../../guards/auth-guard.service";
+import {Roles} from "../../guards/auth.guard";
 import {NavigationService} from "../../services/navigation.service";
 import {ShoppingService} from "../../services/shopping.service";
 import {CartModel} from "../../models/cart.model";

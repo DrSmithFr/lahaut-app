@@ -6,6 +6,8 @@ import {PhoneInputComponent} from './components/phone-input/phone-input.componen
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { FlyLocationPipe } from './pipes/fly-location.pipe';
 import { ApiDatePipe } from './pipes/api-date.pipe';
+import { InfoComponent } from './components/info/info.component';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -14,18 +16,21 @@ import { ApiDatePipe } from './pipes/api-date.pipe';
     TimeAgoPipe,
     FlyLocationPipe,
     ApiDatePipe,
+    InfoComponent,
   ],
-  imports: [
-    CommonModule,
-    PhoneInputComponent
-  ],
+    imports: [
+        CommonModule,
+        PhoneInputComponent,
+        MatIconModule
+    ],
   exports: [
     DurationPipe,
     FlyTypePipe,
     PhoneInputComponent,
     TimeAgoPipe,
     FlyLocationPipe,
-    ApiDatePipe
+    ApiDatePipe,
+    InfoComponent
   ]
 })
 export class SharedModule {

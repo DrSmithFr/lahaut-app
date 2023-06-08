@@ -2,17 +2,24 @@
   <section class="shopping-card-content">
     <header>
       <h1>Panier</h1>
-      <h2 *ngIf="cart && cart.items.length === 1">1 Vol</h2>
-      <h2 *ngIf="cart && cart.items.length > 1">{{cart.items.length}} Vols</h2>
+      <h2 *ngIf="cart">
+        {{getTotal()|currency: 'EUR': 'symbol-narrow': '1.0-2'}}
+      </h2>
     </header>
 
     <table class="shopping-cart-table" *ngIf="cart">
       <tr class="header">
+        <th class="status"></th>
         <th class="reservation">Reservation</th>
         <th class="price hide-on-small-mobile">Prix</th>
         <th class="actions"></th>
       </tr>
       <tr *ngFor="let item of cart.items">
+        <th class="status">
+          <mat-icon>check_circle</mat-icon>
+          <mat-icon>cancel</mat-icon>
+          <mat-icon>sync</mat-icon>
+        </th>
         <td>
           <div class="flight">
             <div class="data">
@@ -46,13 +53,21 @@
       </tr>
     </table>
 
+    <div class="pre-book-disclaimer">
+      <app-info>
+        Après votre connexion les vols seront <b>bloqués pour vous</b> pendant <b>15 minutes</b> afin de vous laisser le
+        temps de <b>finaliser votre réservation</b>.
+      </app-info>
+    </div>
+
     <footer>
       <button mat-button class="back-button" color="primary" routerLink="/search">
         <mat-icon>arrow_back</mat-icon>
         Retour à la liste des vols
       </button>
-      <button mat-raised-button class="pay-button" color="primary" *ngIf="cart && cart.items.length > 0" (click)="checkout()">
-        Réserver pour {{getTotal()|currency: 'EUR': 'symbol-narrow': '1.0-2'}}
+      <button mat-raised-button class="pay-button" color="primary" *ngIf="cart && cart.items.length > 0"
+              (click)="checkout()">
+        Pré-Réservation
         <mat-icon matSuffix>shopping_cart_checkout</mat-icon>
       </button>
     </footer>

@@ -1,0 +1,26 @@
+@import "colors";
+@import "breakpoints";
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  .icon {
+    text-align: center;
+    width: 64px;
+
+    @include mobile-xs() {
+      width: 40px;
+    }
+  }
+
+  .gray {
+    color: $border-dark;
+  }
+
+  .disclaimer {
+    color: $border-dark;
+  }
+}
