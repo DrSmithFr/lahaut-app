@@ -13,7 +13,7 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <app-result-card [monitors]="slot.monitors"></app-result-card>
+    <app-result-card [monitors]="slot.monitors" (addToCart)="openAddToCart($event)"></app-result-card>
   </mat-expansion-panel>
 </div>
 

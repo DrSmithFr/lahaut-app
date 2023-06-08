@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {SearchResult} from "../../models/search-result";
 
 @Component({
@@ -8,6 +8,8 @@ import {SearchResult} from "../../models/search-result";
 })
 export class ResultRowComponent {
   @Input() slot: SearchResult;
+  @Output() addToCart = new EventEmitter<number>();
+
   @ViewChild('container') container: ElementRef;
 
   slideToContent() {
@@ -17,5 +19,9 @@ export class ResultRowComponent {
         .nativeElement
         .scrollIntoView({behavior: 'smooth'});
     }, 150);
+  }
+
+  openAddToCart(key: number) {
+    this.addToCart.emit(key);
   }
 }

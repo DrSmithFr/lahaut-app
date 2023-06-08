@@ -98,6 +98,7 @@
   <button mat-button mat-dialog-close>Annuler</button>
   <button mat-raised-button color="primary" class="buy-button" (click)="addToCart()">
     <mat-icon>shopping_cart</mat-icon>
-    Réserver
+    <span *ngIf="lastToCart">Réserver</span>
+    <span *ngIf="!lastToCart">Ajouter au panier</span>
   </button>
 </div>

@@ -7,12 +7,13 @@ export class CartModel {
     this.items = [];
   }
 
-  static addItems(cart: CartModel, item: CartItemModel) {
+  static addItems(cart: CartModel, item: CartItemModel): boolean {
     if (CartModel.IsItemInCart(cart, item)) {
-      return;
+      return false;
     }
 
     cart.items.push(item);
+    return true;
   }
 
   static removeItem(cart: CartModel, item: CartItemModel) {

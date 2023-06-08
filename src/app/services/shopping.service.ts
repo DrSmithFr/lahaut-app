@@ -39,9 +39,11 @@ export class ShoppingService {
     const cart = this.getCart() || new CartModel();
     const item = new CartItemModel(slot);
 
-    CartModel.addItems(cart, item);
+    const added = CartModel.addItems(cart, item);
 
     this.saveCart(cart);
+
+    return added;
   }
 
   removeItem(item: CartItemModel) {

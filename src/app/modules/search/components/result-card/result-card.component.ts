@@ -1,6 +1,4 @@
-import {Component, Input} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {AddToCartDialog} from "../add-to-cart/add-to-cart.dialog";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {SearchMonitorPriceResult} from "../../models/search-monitor-price-result";
 
 @Component({
@@ -11,19 +9,9 @@ import {SearchMonitorPriceResult} from "../../models/search-monitor-price-result
 export class ResultCardComponent {
 
   @Input() public monitors: Map<number, SearchMonitorPriceResult>;
-
-  constructor(
-    public dialog: MatDialog
-  ) {
-  }
+  @Output() addToCart = new EventEmitter<number>();
 
   openAddToCart(key: number) {
-    this.dialog.open(
-      AddToCartDialog,
-      {
-        width: '600px',
-        data: key
-      }
-    );
+    this.addToCart.emit(key);
   }
 }
