@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PaymentComponent} from "./components/payment/payment.component";
 import {CartComponent} from "./components/cart/cart.component";
-import {RoleGuard} from "../../guards/role-guard.service";
+import {AuthGuard} from "../../guards/auth-guard.service";
 import {QuickConnectComponent} from "./components/quick-connect/quick-connect.component";
 
 const routes: Routes = [
@@ -12,12 +12,12 @@ const routes: Routes = [
   },
   {
     path: 'connect',
-    canActivate: [RoleGuard.isConnected(false, '/shopping/payment')],
+    canActivate: [AuthGuard.isConnected(false, '/shopping/payment')],
     component: QuickConnectComponent,
   },
   {
     path: 'payment',
-    canActivate: [RoleGuard.isConnected(true, '/shopping/connect')],
+    canActivate: [AuthGuard.isConnected(true, '/shopping/connect')],
     component: PaymentComponent,
   },
 ];

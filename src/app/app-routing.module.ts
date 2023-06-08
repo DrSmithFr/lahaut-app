@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./components/home/home.component";
 import {Page404Component} from "./components/page404/page404.component";
 import {LoginPage} from "./components/login/login.page";
-import {RoleGuard, Roles} from "./guards/role-guard.service";
+import {AuthGuard, Roles} from "./guards/auth-guard.service";
 
 const routes: Routes = [
   {
@@ -18,6 +18,8 @@ const routes: Routes = [
     data: {
       animation: 'disconnected'
     },
+    canActivate: [AuthGuard.hasRoles([Roles.monitor], '/')],
+    canActivateChild: [AuthGuard.hasRoles([Roles.monitor], '/')],
     loadChildren: () => import('./modules/monitor/monitor.module').then(m => m.MonitorModule),
   },
   {
@@ -25,30 +27,38 @@ const routes: Routes = [
     data: {
       animation: 'disconnected'
     },
+    canActivate: [AuthGuard.hasRoles([Roles.customer], '/')],
+    canActivateChild: [AuthGuard.hasRoles([Roles.customer], '/')],
     loadChildren: () => import('./modules/customer/customer.module').then(m => m.CustomerModule),
   },
   {
     path: 'chat',
+    canActivate: [AuthGuard.isConnected(true, '/')],
+    canActivateChild: [AuthGuard.isConnected(true, '/')],
     loadChildren: () => import('./modules/chat/chat.module').then(m => m.ChatModule),
   },
   {
     path: 'search',
+    canActivate: [AuthGuard.IsDisconnectedOrHasRoles([Roles.customer], '/dashboard')],
+    canActivateChild: [AuthGuard.IsDisconnectedOrHasRoles([Roles.customer], '/dashboard')],
     loadChildren: () => import('./modules/search/search.module').then(m => m.SearchModule),
   },
   {
     path: 'planning',
-    canActivate: [RoleGuard.forRoles([Roles.monitor])],
-    canActivateChild: [RoleGuard.forRoles([Roles.monitor])],
+    canActivate: [AuthGuard.hasRoles([Roles.monitor])],
+    canActivateChild: [AuthGuard.hasRoles([Roles.monitor])],
     loadChildren: () => import('./modules/planning/planning.module').then(m => m.PlanningModule),
   },
   {
     path: 'dashboard',
-    canActivate: [RoleGuard.forRoles([Roles.monitor])],
-    canActivateChild: [RoleGuard.forRoles([Roles.monitor])],
+    canActivate: [AuthGuard.hasRoles([Roles.monitor])],
+    canActivateChild: [AuthGuard.hasRoles([Roles.monitor])],
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
   },
   {
     path: 'shopping',
+    canActivate: [AuthGuard.IsDisconnectedOrHasRoles([Roles.customer], '/dashboard')],
+    canActivateChild: [AuthGuard.IsDisconnectedOrHasRoles([Roles.customer], '/dashboard')],
     loadChildren: () => import('./modules/shopping/shopping.module').then(m => m.ShoppingModule),
   },
   {

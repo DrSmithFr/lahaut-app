@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {ChatComponent} from "./components/chat/chat.component";
-import {RoleGuard} from "../../guards/role-guard.service";
+import {AuthGuard} from "../../guards/auth-guard.service";
 
 const routes: Routes = [
   {
     path: '',
-    canActivate: [RoleGuard.isConnected(true)],
+    canActivate: [AuthGuard.isConnected(true)],
     component: ChatComponent,
   },
 ];

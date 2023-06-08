@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {LogoutDialog} from "../logout-dialog/logout.dialog";
-import {Roles} from "../../guards/role-guard.service";
+import {Roles} from "../../guards/auth-guard.service";
 import {NavigationService} from "../../services/navigation.service";
 import {ShoppingService} from "../../services/shopping.service";
 import {CartModel} from "../../models/cart.model";
@@ -14,13 +14,14 @@ import {NavigationEnd, Router} from "@angular/router";
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
+  isLogged = false;
+  isCustomer = false;
+  isMonitor = false;
+
   showLogo = true;
 
   showMenuButton = false;
   isMenuOpen = false;
-
-  isLoggedCustomer = false;
-  isLoggedMonitor = false;
 
   showShoppingCart = false;
   shoppingCartCount = 0;
@@ -58,8 +59,9 @@ export class NavigationComponent implements OnInit {
       .auth
       .getUserSubject()
       .subscribe((user) => {
-        this.isLoggedCustomer = user?.roles.includes(Roles.customer) ?? false;
-        this.isLoggedMonitor = user?.roles.includes(Roles.monitor) ?? false;
+        this.isCustomer = user?.roles.includes(Roles.customer) ?? false;
+        this.isMonitor = user?.roles.includes(Roles.monitor) ?? false;
+        this.isLogged = user !== null;
       });
 
     this
@@ -110,16 +112,12 @@ export class NavigationComponent implements OnInit {
     this.dialog.open(LogoutDialog);
   }
 
-  isLogged() {
-    return this.isLoggedCustomer || this.isLoggedMonitor;
-  }
-
   getBadgeCount() {
-    if (this.isLoggedCustomer) {
+    if (this.isCustomer) {
       return this.getBadgeCountForBooking() + this.getBadgeCountForMessage();
     }
 
-    if (this.isLoggedMonitor) {
+    if (this.isMonitor) {
       return this.getBadgeCountForMessage() + 1;
     }
 
@@ -127,11 +125,11 @@ export class NavigationComponent implements OnInit {
   }
 
   getBadgeCountForMessage() {
-    return this.isLogged() ? 12 : 0;
+    return this.isLogged ? 12 : 0;
   }
 
   getBadgeCountForBooking() {
-    return this.isLogged() ? 1 : 0;
+    return this.isLogged ? 1 : 0;
   }
 
   toggleMenu() {

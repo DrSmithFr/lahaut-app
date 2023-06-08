@@ -33,7 +33,7 @@
       <button
         mat-icon-button
         aria-label="voir le panier"
-        *ngIf="showShoppingCart && showShoppingCartButton"
+        *ngIf="showShoppingCart && showShoppingCartButton && !isMonitor"
         (click)="goToShoppingCart()">
         <mat-icon [matBadge]="shoppingCartCount">shopping_cart</mat-icon>
       </button>
@@ -44,7 +44,7 @@
     </div>
 
     <mat-menu #menu="matMenu">
-      <div *ngIf="!isLogged()">
+      <div *ngIf="!isLogged">
         <button mat-menu-item routerLink="/login">
           <mat-icon>login</mat-icon>
           <span>Connexion</span>
@@ -57,7 +57,7 @@
 
       <!-- Customer -->
 
-      <div *ngIf="isLoggedCustomer">
+      <div *ngIf="isCustomer">
         <button mat-menu-item routerLink="/chat">
           <mat-icon *ngIf="getBadgeCountForMessage() === 0">chat</mat-icon>
           <mat-icon *ngIf="getBadgeCountForMessage() !== 0" [matBadge]="getBadgeCountForMessage()">chat</mat-icon>
@@ -81,7 +81,7 @@
 
       <!-- Monitor -->
 
-      <div *ngIf="isLoggedMonitor">
+      <div *ngIf="isMonitor">
         <button mat-menu-item routerLink="/dashboard">
           <mat-icon>dashboard</mat-icon>
           <span>Tableau de bord</span>
