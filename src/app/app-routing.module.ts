@@ -18,8 +18,6 @@ const routes: Routes = [
     data: {
       animation: 'disconnected'
     },
-    canActivate: [AuthGuard.hasRoles([Roles.monitor], '/')],
-    canActivateChild: [AuthGuard.hasRoles([Roles.monitor], '/')],
     loadChildren: () => import('./modules/monitor/monitor.module').then(m => m.MonitorModule),
   },
   {
@@ -27,8 +25,6 @@ const routes: Routes = [
     data: {
       animation: 'disconnected'
     },
-    canActivate: [AuthGuard.hasRoles([Roles.customer], '/')],
-    canActivateChild: [AuthGuard.hasRoles([Roles.customer], '/')],
     loadChildren: () => import('./modules/customer/customer.module').then(m => m.CustomerModule),
   },
   {
