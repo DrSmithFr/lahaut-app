@@ -5,16 +5,16 @@
 // toolbar
 .logo {
   padding: 0 14px;
-  width: 200px;
+  height: calc(#{$toolbar-desktop} - 10px);
 
   @include tablet() {
     width: auto;
-    height: 50px;
+    height: calc(#{$toolbar-tablet} - 15px);
   }
 
   @include mobile-all() {
     width: auto;
-    height: 30px;
+    height: calc(#{$toolbar-mobile} - 15px);
   }
 }
 

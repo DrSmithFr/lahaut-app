@@ -7,6 +7,7 @@ import {NavigationService} from "../../services/navigation.service";
 import {ShoppingService} from "../../services/shopping.service";
 import {CartModel} from "../../models/cart.model";
 import {NavigationEnd, Router} from "@angular/router";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-navigation',
@@ -14,6 +15,8 @@ import {NavigationEnd, Router} from "@angular/router";
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
+  logoUrl = environment.logo.small;
+
   isLogged = false;
   isCustomer = false;
   isMonitor = false;

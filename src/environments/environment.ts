@@ -6,6 +6,10 @@ export const environment = {
   production: false,
   fake_api:   true,
   debug:      true,
-  url_api:    'https://ms-base'
+  url_api:    'https://ms-base',
+  logo: {
+    small: 'assets/logo.png',
+    large: 'assets/logo_large.png',
+  }
 };
 

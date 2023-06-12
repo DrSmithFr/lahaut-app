@@ -6,6 +6,7 @@ import {DateService} from "../../../../services/date.service";
 import {Search} from "../../models/search";
 import {SearchService} from "../../../../services/search.service";
 import {NavigationService} from "../../../../services/navigation.service";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-search',
@@ -14,6 +15,8 @@ import {NavigationService} from "../../../../services/navigation.service";
 })
 export class SearchComponent implements OnInit, OnDestroy {
   @ViewChild('container') container: ElementRef;
+
+  logoUrl = environment.logo.large;
 
   searched = false;
   loading = false;
