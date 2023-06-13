@@ -4,6 +4,7 @@ export class SearchResult {
   constructor(
     public monitors: Map<number, SearchMonitorPriceResult>,
     public flyLocation: string,
+    public flyType: string,
     public startAt: string,
     public endAt: string,
     public averageFlyDuration: string,

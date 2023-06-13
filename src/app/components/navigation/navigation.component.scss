@@ -1,6 +1,9 @@
+@use "sass:map";
+
 @import "colors";
 @import "breakpoints";
 @import "toolbar";
+@import "theme";
 
 // toolbar
 .logo {
@@ -23,10 +26,11 @@
 }
 
 .toolbar {
-  background-color: $white;
-  border-bottom: 1px solid $border;
-
-  color: #333;
+  @include theme-light() {
+    background-color: map-get($gray, 0);
+    border-bottom: 1px solid map-get($gray, 100);
+    color: #333;
+  }
 
   z-index: 10;
 

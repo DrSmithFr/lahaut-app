@@ -168,7 +168,7 @@
 }
 
 #cardfront .st2.selected {
-  fill: map.get($purple-palette, 200);
+  fill: map.get($purple, 200);
 }
 
 #cardfront .st3 {
@@ -244,7 +244,7 @@
 }
 
 #cardback .st6.selected {
-  fill: map.get($purple-palette, 900);
+  fill: map.get($purple, 900);
   stroke-width: 1px;
 }
 

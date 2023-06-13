@@ -24,7 +24,7 @@
   .login-header {
     text-align: center;
     h1 {
-      color: $blue;
+      color: map-get($blue, 500);
       font-size: 20px;
       font-weight: bold;
       margin-bottom: 0;
@@ -42,7 +42,7 @@
   }
 
   a.forgot-password {
-    color: $light-purple;
+    color: map-get($purple, 200);
     font-size: 12px;
     font-weight: bold;
   }

@@ -17,13 +17,13 @@
     h1 {
       margin: 0;
 
-      color: $blue;
+      color: map-get($blue, 500);
       font-size: 2.5rem;
       font-weight: 500;
     }
 
     button {
-      color: $blue
+      color: map-get($blue, 500)
     }
   }
 
@@ -41,13 +41,13 @@
       h2 {
         margin: 0;
 
-        color: $purple;
+        color: map-get($purple, 500);;
         font-size: 1.5rem;
         font-weight: 500;
       }
 
       button {
-        color: $purple
+        color: map-get($purple, 500);
       }
     }
 
@@ -79,9 +79,9 @@
         text-align: center;
 
         border-radius: 50%;
-        border: 2px solid map.get($gray-palette, 200);
+        border: 2px solid map.get($gray, 200);
 
-        color: map.get($gray-palette, 200);
+        color: map.get($gray, 200);
 
         font-size: 1rem;
         font-weight: bold;
@@ -89,7 +89,7 @@
       }
 
       .day-name {
-        color: map.get($gray-palette, 200);
+        color: map.get($gray, 200);
         font-size: 1rem;
         font-weight: 500;
 
@@ -112,35 +112,35 @@
 
       &.selected, &:hover {
         .day-number {
-          border-color: $purple;
-          color: $purple;
+          border-color: map-get($purple, 500);;
+          color: map-get($purple, 500);;
         }
 
         .day-name {
-          color: $purple;
+          color: map-get($purple, 500);;
         }
       }
 
       &.today {
         .day-number {
-          background: $blue;
-          border-color: map.get($blue-palette, 200);
-          color: $white;
+          background: map-get($blue, 500);
+          border-color: map.get($blue, 200);
+          color: map-get($gray, 0);
         }
 
         .day-name {
-          color: $blue;
+          color: map-get($blue, 500);
         }
 
         &:hover, &.selected {
           .day-number {
-            background: $purple;
-            border-color: map.get($purple-palette, 200);
-            color: $white;
+            background: map-get($purple, 500);;
+            border-color: map.get($purple, 200);
+            color: map-get($gray, 0);
           }
 
           .day-name {
-            color: $purple;
+            color: map-get($purple, 500);;
           }
         }
       }

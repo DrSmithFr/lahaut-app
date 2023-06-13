@@ -1,10 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {DurationPipe} from './pipes/duration.pipe';
-import {FlyTypePipe} from './pipes/fly-type.pipe';
 import {PhoneInputComponent} from './components/phone-input/phone-input.component';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
-import { FlyLocationPipe } from './pipes/fly-location.pipe';
 import { ApiDatePipe } from './pipes/api-date.pipe';
 import { InfoComponent } from './components/info/info.component';
 import {MatIconModule} from "@angular/material/icon";
@@ -12,9 +10,7 @@ import {MatIconModule} from "@angular/material/icon";
 @NgModule({
   declarations: [
     DurationPipe,
-    FlyTypePipe,
     TimeAgoPipe,
-    FlyLocationPipe,
     ApiDatePipe,
     InfoComponent,
   ],
@@ -25,10 +21,8 @@ import {MatIconModule} from "@angular/material/icon";
     ],
   exports: [
     DurationPipe,
-    FlyTypePipe,
     PhoneInputComponent,
     TimeAgoPipe,
-    FlyLocationPipe,
     ApiDatePipe,
     InfoComponent
   ]

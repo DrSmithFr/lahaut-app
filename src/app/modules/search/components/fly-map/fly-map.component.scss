@@ -1,12 +1,12 @@
 @import "colors";
 
 h1.purple {
-  color: $purple;
+  color: map-get($purple, 500);;
 }
 
 .fly-map {
   .info {
-    color: $border-dark;
+    color: map-get($gray, 200);
     font-size: 12px;
     margin: 20px 0;
   }
@@ -20,7 +20,7 @@ h1.purple {
 
     .address-take-off {
       .label {
-        color: $blue;
+        color: map-get($blue, 500);
         font-size: 18px;
         font-weight: bold;
 
@@ -36,7 +36,7 @@ h1.purple {
       text-align: right;
 
       .label {
-        color: $blue;
+        color: map-get($blue, 500);
         font-size: 18px;
         font-weight: bold;
 

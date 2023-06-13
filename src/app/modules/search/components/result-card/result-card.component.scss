@@ -15,8 +15,8 @@
 .monitor-card {
   background: #fff;
 
-  border: 3px solid $gray-light;
-  color: $gray-light;
+  border: 3px solid map-get($gray, 400);
+  color: map-get($gray, 400);
 
   height: 150px;
   width: 120px;
@@ -40,13 +40,13 @@
       text-align: center;
       font-size: 18px;
 
-      color: map.get($gray-palette, 300);
+      color: map.get($gray, 300);
     }
   }
 
   .price {
     font-size: 30px;
-    color: map.get($purple-palette, 500);
+    color: map.get($purple, 500);
 
     font-weight: bold;
   }
@@ -67,18 +67,18 @@
 }
 
 .monitor-card:hover {
-  border: 3px solid map.get($purple-palette, 500);
-  color: map.get($purple-palette, 500);
+  border: 3px solid map.get($purple, 500);
+  color: map.get($purple, 500);
 
   .rank .material-icons {
-    color: map.get($purple-palette, 500);
+    color: map.get($purple, 500);
   }
 
   .price {
-    color: map.get($purple-palette, 900);
+    color: map.get($purple, 900);
   }
 
   .name {
-    color: map.get($purple-palette, 900);
+    color: map.get($purple, 900);
   }
 }

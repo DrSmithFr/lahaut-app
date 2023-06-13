@@ -10,8 +10,8 @@
         <div class="input1">
           <mat-form-field appearance="fill">
             <mat-label>Lieu</mat-label>
-            <mat-select formControlName="location" (selectionChange)="trySubmit()">
-              <mat-option *ngFor="let type of flyLocations|keyvalue" [value]="type.key">{{type.value}}</mat-option>
+            <mat-select formControlName="location" (selectionChange)="onLocationChange($event.value)">
+              <mat-option *ngFor="let location of flyLocations" [value]="location.identifier">{{location.name}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -19,7 +19,7 @@
           <mat-form-field appearance="fill">
             <mat-label>Type de vol</mat-label>
             <mat-select formControlName="flyType" (selectionChange)="trySubmit()">
-              <mat-option *ngFor="let type of flyTypes|keyvalue" [value]="type.key">{{type.value}}</mat-option>
+              <mat-option *ngFor="let type of flyTypes" [value]="type.identifier">{{type.name}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>

@@ -1,7 +1,7 @@
 @import "colors";
 
 h1.title {
-  color: $blue;
+  color: map-get($blue, 500);
 
   font-size: 20px;
   font-weight: bold;

@@ -17,10 +17,10 @@
   }
 
   .gray {
-    color: $border-dark;
+    color: map-get($gray, 200);
   }
 
   .disclaimer {
-    color: $border-dark;
+    color: map-get($gray, 200);
   }
 }

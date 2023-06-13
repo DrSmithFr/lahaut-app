@@ -7,7 +7,6 @@
 <div mat-dialog-content class="content">
   <mat-progress-bar mode="indeterminate" *ngIf="planning === undefined || loading"></mat-progress-bar>
   <div *ngIf="planning !== undefined">
-    <h2>{{data.location|flyLocation|uppercase}}</h2>
 
     <div *ngIf="slotsInPeriod" class="slots-in-period-error">
       <div class="error">

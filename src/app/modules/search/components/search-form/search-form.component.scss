@@ -1,18 +1,29 @@
 @import "breakpoints";
+@import "colors";
+@import "theme";
 
 .light-card {
-  background: rgba(255, 255, 255, 0.7);
   box-shadow: none;
+
+  @include theme-light() {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  @include theme-dark() {
+    background: rgba(66, 66, 66, 0.7);
+  }
 }
 
 .search-form-grid {
   .title h1 {
     font-size: 2.5rem;
     font-weight: lighter;
-
     line-height: 1.5em;
-
     text-transform: uppercase;
+
+    @include theme-dark() {
+      color: map-get($gray, 200);
+    }
   }
 }
 

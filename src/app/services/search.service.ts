@@ -17,7 +17,8 @@ export class SearchService {
       if (!results.has(key)) {
         const slotResult = new SearchResult(
           new Map<number, SearchMonitorPriceResult>(),
-          slot.flyLocation.uuid,
+          slot.flyType.flyLocation.identifier,
+          slot.flyType.identifier,
           slot.startAt,
           slot.endAt,
           slot.averageFlyDuration,
@@ -54,6 +55,6 @@ export class SearchService {
   }
 
   public getSlotUniqIdentifier(slot: SlotModel): string {
-    return `${slot.flyLocation.uuid}-${slot.startAt}-${slot.endAt}-${slot.averageFlyDuration}-${slot.type}`;
+    return `${slot.flyType.flyLocation.identifier}-${slot.startAt}-${slot.endAt}-${slot.averageFlyDuration}-${slot.type}`;
   }
 }

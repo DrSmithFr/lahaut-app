@@ -8,8 +8,14 @@ export const environment = {
   debug:      true,
   url_api:    'https://ms-base',
   logo: {
-    small: 'assets/logo.png',
-    large: 'assets/logo_large.png',
+    light: {
+      small: 'assets/logo.png',
+      large: 'assets/logo_large.png',
+    },
+    dark: {
+      small: 'assets/logo_dark.png',
+      large: 'assets/logo_large_dark.png',
+    }
   }
 };
 

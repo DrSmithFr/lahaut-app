@@ -1,4 +1,6 @@
 import {MonitorModel} from "../monitor.model";
+import {FlyTypeModel} from "./FlyTypeModel";
+import {FlyLocationModel} from "./FlyLocationModel";
 
 export class SlotDetailModel {
   constructor(
@@ -6,15 +8,11 @@ export class SlotDetailModel {
 
     public price: number,
     public monitor: MonitorModel,
-    public flyLocation: {
-      meetingPoint: PlaceModel,
-      takeOffPoint: PlaceModel,
-      landingPoint: PlaceModel,
-    },
+    public flyLocation: FlyLocationModel,
+    public flyType: FlyTypeModel,
     public startAt: string,
     public endAt: string,
     public averageFlyDuration: string,
-    public type: string,
   ) {}
 }
 export class PlaceModel {

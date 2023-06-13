@@ -15,7 +15,7 @@ import {environment} from "../../../environments/environment";
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-  logoUrl = environment.logo.small;
+  logoUrl = environment.logo;
 
   isLogged = false;
   isCustomer = false;

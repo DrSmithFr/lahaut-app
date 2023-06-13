@@ -8,8 +8,14 @@ export const environment = {
   debug:      false,
   url_api:    'https://lahaut.heystudent.fr/backend',
   logo: {
-    small: 'assets/logo_new.png',
-    large: 'assets/logo_large_new.png',
+    light: {
+      small: 'assets/logo_new.png',
+      large: 'assets/logo_large_new.png',
+    },
+    dark: {
+      small: 'assets/logo_new.png',
+      large: 'assets/logo_large_new.png',
+    }
   }
 };
 

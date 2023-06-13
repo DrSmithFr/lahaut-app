@@ -3,7 +3,7 @@
 @import "breakpoints";
 
 h1.title {
-  color: $blue;
+  color: map-get($blue, 500);
 
   font-size: 20px;
   font-weight: bold;
@@ -20,7 +20,7 @@ h1.title {
   padding-bottom: 0;
 
   h2 {
-    color: $purple;
+    color: map-get($purple, 500);;
 
     font-size: 18px;
     font-weight: bold;
@@ -98,13 +98,13 @@ h1.title {
       margin-bottom: 10px;
 
       .time {
-        color: $gray-light;
+        color: map-get($gray, 400);
         font-size: 16px;
         font-weight: 500;
       }
 
       .label {
-        color: $border-dark;
+        color: map-get($gray, 200);
         line-height: 20px;
 
         font-size: 14px;

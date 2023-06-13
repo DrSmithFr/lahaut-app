@@ -1,28 +1,42 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {AbstractControl, FormBuilder, ValidationErrors, Validators} from "@angular/forms";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AbstractControl, FormBuilder, FormControl, ValidationErrors, Validators} from "@angular/forms";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {flyLocation, flyType} from "../../../../../environments/fly-location";
 import {flyTypePriced} from "../../models/fly-type-priced";
 import {
   AddAvailabilityConfirmData,
   AddAvailabilityConfirmDialog
 } from "../add-availability-confirm/add-availability-confirm.dialog";
+import {ApiService} from "../../../../services/api.service";
+import {tap} from "rxjs/operators";
+import {FlyLocationModel} from "../../../../models/fly/FlyLocationModel";
 
 @Component({
   selector: 'app-add-availability',
   templateUrl: './add-availability.dialog.html',
   styleUrls: ['./add-availability.dialog.scss']
 })
-export class AddAvailabilityDialog {
+export class AddAvailabilityDialog implements OnInit {
   @ViewChild('container') container: ElementRef;
 
-  flyLocations = flyLocation;
-  flyTypes: Array<flyTypePriced>;
+  flyLocations: FlyLocationModel[] = [];
+  flyTypes: Array<flyTypePriced> = [];
 
   paramForm = this.fb.group({
-    location: ['', [Validators.required]],
-    start: ['', [Validators.required]],
-    end: ['', [Validators.required, this.endOlderThanStart.bind(this)]],
+    location: new FormControl<string | null>(
+      {
+        value: '',
+        disabled: true,
+      },
+      [Validators.required]
+    ),
+    start: new FormControl<Date | null>(
+      null,
+      [Validators.required]
+    ),
+    end: new FormControl<Date | null>(
+      null,
+      [Validators.required, this.endOlderThanStart.bind(this)]
+    ),
   });
 
   loading = false;
@@ -31,21 +45,68 @@ export class AddAvailabilityDialog {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddAvailabilityDialog>,
     public dialog: MatDialog,
+    public api: ApiService,
   ) {
+  }
+
+  ngOnInit() {
+    this
+      .loadFlyLocations()
+      .subscribe();
+  }
+
+  loadFlyLocations() {
+    return this
+      .api
+      .getFlyLocations()
+      .pipe(
+        tap((locations) => {
+          this.flyLocations = locations;
+          this.getLocationFormControl()?.enable();
+        })
+      );
+  }
+
+  loadFlyTypes(location: string) {
     this.flyTypes = [];
 
-    for (const [key, value] of flyType) {
-      this.flyTypes.push({
-        type: key,
-        label: value,
-        selected: false,
-        price: null,
-      });
+    return this
+      .api
+      .getFlyType(location)
+      .pipe(
+        tap((types) => {
+          for (const type of types) {
+            this.flyTypes.push({
+              type: type.identifier,
+              label: type.name,
+              selected: false,
+              price: null,
+            });
+          }
+        })
+      );
+  }
+
+  onLocationChange(location: string) {
+    if (location === '') {
+      return;
     }
+
+    this
+      .loadFlyTypes(location)
+      .subscribe();
   }
 
   // Form fields
-  getEnd(): AbstractControl | null {
+  getLocationFormControl(): AbstractControl | null {
+    return this.paramForm.get('location');
+  }
+
+  getStartFormControl(): AbstractControl | null {
+    return this.paramForm.get('start');
+  }
+
+  getEndFormControl(): AbstractControl | null {
     return this.paramForm.get('end');
   }
 
@@ -65,13 +126,13 @@ export class AddAvailabilityDialog {
       return null;
     }
 
-    const start: string | null = this.paramForm.value.start ?? null;
+    const start: Date | null = this.getStartFormControl()?.value;
 
     if (start === null) {
       return null;
     }
 
-    if (new Date(start) > new Date(control.value)) {
+    if (start > new Date(control.value)) {
       return {
         ['invalid_period']: 'end older than start'
       };
@@ -117,9 +178,10 @@ export class AddAvailabilityDialog {
 
     this.loading = true;
 
-    const location: string | null = this.paramForm.value.location ?? null;
-    const start: string | null = this.paramForm.value.start ?? null;
-    const end: string | null = this.paramForm.value.end ?? null;
+    const location = this.getLocationFormControl()?.value;
+    const start = this.getStartFormControl()?.value;
+    const end = this.getEndFormControl()?.value;
+
     const flyTypes = this.flyTypes.filter(flyType => flyType.selected);
 
     if (location === null || start === null || end === null || flyTypes.length === 0) {
@@ -143,7 +205,11 @@ export class AddAvailabilityDialog {
       )
       .afterClosed()
       .subscribe((added: boolean) => {
-        this.dialogRef.close(added);
+        if (added) {
+          this.dialogRef.close(added);
+        } else {
+          this.loading = false;
+        }
       });
   }
 

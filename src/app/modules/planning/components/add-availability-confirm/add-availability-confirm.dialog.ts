@@ -7,6 +7,7 @@ import {SlotPreview} from "../../models/slot-preview";
 import {tap} from "rxjs/operators";
 import {SlotProposedModel} from "../../../../models/fly/slotProposedModel";
 import {HttpErrorResponse} from "@angular/common/http";
+import {concat} from "rxjs";
 
 export class AddAvailabilityConfirmData {
   constructor(
@@ -46,33 +47,45 @@ export class AddAvailabilityConfirmDialog implements OnInit {
   }
 
   ngOnInit(): void {
-    this
+    concat(
+      this.loadSlotsInPeriod(),
+      this.loadProposedSlots(),
+    ).subscribe(() => {
+      this.requesting = false;
+    });
+  }
+
+  private loadSlotsInPeriod() {
+    return this
+      .apiService
+      .getSlotsInPeriod(this.data.start, this.data.end)
+      .pipe(
+        tap(slots => {
+          this.slotsInPeriod = slots.length > 0;
+        }),
+      )
+  }
+
+  private loadProposedSlots() {
+    return this
       .apiService
       .getSlotProposedForLocation(this.data.location)
       .pipe(
-        tap(() => {
-          this.requesting = false
-        }),
-      )
-      .subscribe({
-        next: (allProposedSlots) => {
+        tap(proposedSlots => {
           const activeTypes = this.data.flyTypes.map((flyType) => {
             return flyType.type;
           });
 
-          const proposedSlots = allProposedSlots.filter((slot) => {
-            return activeTypes.includes(slot.type);
+          const activeProposedSlots = proposedSlots.filter((slot) => {
+            return activeTypes.includes(slot.flyType.identifier);
           });
 
           const priceMap = this.getPriceMap();
-          const previewSlots = this.transformSlotProposedToPreview(proposedSlots, priceMap);
+          const previewSlots = this.transformSlotProposedToPreview(activeProposedSlots, priceMap);
 
           this.planning = this.transformSlotProposedToPlanning(previewSlots);
-        },
-        error: (error) => {
-
-        }
-      });
+        }),
+      )
   }
 
   // Planning generation
@@ -92,12 +105,11 @@ export class AddAvailabilityConfirmDialog implements OnInit {
     for (const slot of proposedSlots) {
       previewSlots.push(
         new SlotPreview(
-          prices.get(slot.type) ?? 0,
-          slot.flyLocation.uuid,
+          prices.get(slot.flyType.identifier) ?? 0,
+          slot.flyType,
           slot.startAt,
           slot.endAt,
           slot.averageFlyDuration,
-          slot.type,
         )
       );
     }
@@ -183,6 +195,7 @@ export class AddAvailabilityConfirmDialog implements OnInit {
     }
 
     const slots = this.getSelectedSlots();
+
     return slots.length > 0;
   }
 
@@ -191,7 +204,7 @@ export class AddAvailabilityConfirmDialog implements OnInit {
       return this.allowOverwrite || this.wipePeriod;
     }
 
-    return false;
+    return true;
   }
 
   // Modal actions

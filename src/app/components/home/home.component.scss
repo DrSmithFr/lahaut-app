@@ -1,5 +1,7 @@
-@import "src/scss/default/colors";
-@import "src/scss/default/breakpoints";
+@use "sass:map";
+
+@import "colors";
+@import "breakpoints";
 
 .showcase-content {
   position: relative;
@@ -46,7 +48,7 @@
     }
 
     &.purple {
-      color: $purple;
+      color: map-get($purple, 500);;
     }
 
     &.blue {

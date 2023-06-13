@@ -1,11 +1,19 @@
 @use 'sass:map';
 
 @import "colors";
+@import "theme";
 
 .result-row {
   margin: 10px 0;
-  background: rgba(250, 250, 250, 0.7);
   box-shadow: none;
+
+  @include theme-light() {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  @include theme-dark() {
+    background: rgba(66, 66, 66, 0.7);
+  }
 
   .mat-expansion-panel-header-title {
     .time {
@@ -20,7 +28,7 @@
 
       .end {
         align-self: center;
-        color: $border-dark;
+        color: map-get($gray, 200);
       }
     }
 
@@ -32,19 +40,19 @@
   }
 
   &.mat-expanded {
-    background: map.get($purple-palette, 100);
+    background: map.get($purple, 100);
 
     .mat-expansion-panel-header-title {
       .start {
-        color: map.get($purple-palette, 900) !important;
+        color: map.get($purple, 900) !important;
       }
       .end {
-        color: $gray-light !important;
+        color: map-get($gray, 400) !important;
       }
     }
 
     .mat-expansion-panel-header-description {
-      color: map.get($purple-palette, 700);
+      color: map.get($purple, 700);
     }
   }
 }

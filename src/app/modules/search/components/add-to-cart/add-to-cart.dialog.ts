@@ -38,13 +38,12 @@ export class AddToCartDialog implements OnInit {
       .api
       .getSlot(this.data.slot)
       .pipe(
-        tap(() => {
+        tap(slot => {
           this.loading = false
+          this.slot = slot;
         })
       )
-      .subscribe(slot => {
-        this.slot = slot;
-      });
+      .subscribe();
   }
 
   openMeetingPointDialog() {

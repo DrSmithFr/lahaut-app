@@ -1,71 +1,6 @@
 @use '@angular/material' as mat;
 
-// define palettes
-$palette-purple: (
-  50 : #f9f6fc,
-  100 : #f0eaf7,
-  200 : #e7dcf2,
-  300 : #ddcded,
-  400 : #d5c3e9,
-  500 : #ceb8e5,
-  600 : #c9b1e2,
-  700 : #c2a8de,
-  800 : #bca0da,
-  900 : #b091d3,
-  A100 : #ffffff,
-  A200 : #ffffff,
-  A400 : #ffffff,
-  A700 : #f5ebff,
-  contrast: (
-    50 : #000000,
-    100 : #000000,
-    200 : #000000,
-    300 : #000000,
-    400 : #000000,
-    500 : #000000,
-    600 : #000000,
-    700 : #000000,
-    800 : #000000,
-    900 : #000000,
-    A100 : #000000,
-    A200 : #000000,
-    A400 : #000000,
-    A700 : #000000,
-  )
-);
-
-$palette-blue: (
-  50 : #f3fdfc,
-  100 : #e1f9f8,
-  200 : #cdf5f3,
-  300 : #b9f1ee,
-  400 : #aaeeeb,
-  500 : #9bebe7,
-  600 : #93e9e4,
-  700 : #89e5e0,
-  800 : #7fe2dd,
-  900 : #6dddd7,
-  A100 : #ffffff,
-  A200 : #ffffff,
-  A400 : #eefffe,
-  A700 : #d4fffd,
-  contrast: (
-    50 : #000000,
-    100 : #000000,
-    200 : #000000,
-    300 : #000000,
-    400 : #000000,
-    500 : #000000,
-    600 : #000000,
-    700 : #000000,
-    800 : #000000,
-    900 : #000000,
-    A100 : #000000,
-    A200 : #000000,
-    A400 : #000000,
-    A700 : #000000,
-  )
-);
+@import "colors";
 
 // resetting everything
 * *:before, *:after {
@@ -81,36 +16,36 @@ $palette-blue: (
 // Define a light theme
 $light-theme: mat.define-light-theme((
   color: (
-    primary: mat.define-palette($palette-purple),
-    accent: mat.define-palette($palette-blue),
+    primary: mat.define-palette($purple),
+    accent: mat.define-palette($blue),
+    warn: mat.define-palette($gray),
   ),
 ));
 
 // Define a dark theme
 $dark-theme: mat.define-dark-theme((
   color: (
-    primary: mat.define-palette(mat.$pink-palette),
-    accent: mat.define-palette(mat.$blue-grey-palette),
+    primary: mat.define-palette($purple),
+    accent: mat.define-palette($blue),
+    warn: mat.define-palette($gray),
   ),
   // Only include `typography` and `density` in the default dark theme.
   typography: mat.define-typography-config(),
   density: 0,
 ));
 
+// Apply the light theme by default
+@include mat.all-component-themes($light-theme);
+
+
 // Apply the light theme only when the users prefers light themes.
 @media (prefers-color-scheme: dark) {
   // Use the `-color` mixins to only apply color styles without reapplying the same
   // typography and density styles.
-  @include mat.core-color($dark-theme);
-  @include mat.button-color($dark-theme);
+  @include mat.all-component-colors($dark-theme);
 }
 
-// Apply the light theme by default
-@include mat.core-color($light-theme);
-@include mat.button-color($light-theme);
-
 /* You can add global styles to this file, and also import other style files */
-
 html, body {
   margin: 0;
   padding: 0;

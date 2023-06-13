@@ -2,7 +2,10 @@
 
 <div class="page-container search-container">
   <section>
-    <img src="{{logoUrl}}" alt="logo: LaHaut - Parapente">
+    <picture>
+      <source srcset="{{logoUrl.dark.large}}" media="(prefers-color-scheme: dark)">
+      <img class="logo" src="{{logoUrl.light.large}}" alt="Logo">
+    </picture>
     <div class="search-form-slider">
       <app-search-form [urlParamQuery]="urlParamQuery" (query)="requestResults($event)"></app-search-form>
     </div>

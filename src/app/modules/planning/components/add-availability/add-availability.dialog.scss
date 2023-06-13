@@ -3,7 +3,7 @@
 @import "breakpoints";
 
 h1.title {
-  color: $blue;
+  color: map-get($blue, 500);
 
   font-size: 20px;
   font-weight: bold;
@@ -20,7 +20,7 @@ h1.title {
 
   section {
     h2 {
-      color: $purple;
+      color: map-get($purple, 500);;
 
       font-size: 18px;
       font-weight: bold;
@@ -50,14 +50,14 @@ h1.title {
 
         h3 {
           margin: 0;
-          color: map.get($blue-palette, 400);
+          color: map.get($blue, 400);
           line-height: 16px;
           font-weight: 500;
         }
 
         p {
           margin: 0;
-          color: $border-dark;
+          color: map-get($gray, 200);
         }
       }
     }

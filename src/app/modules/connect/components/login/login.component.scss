@@ -1,5 +1,7 @@
-@import "src/scss/default/colors";
-@import "src/scss/default/breakpoints";
+@use "sass:map";
+
+@import "colors";
+@import "breakpoints";
 
 .login-form {
   padding: 0 30px;
@@ -13,7 +15,7 @@
     text-align: right;
     margin: 12px 0;
     a {
-      color: $light-purple;
+      color: map-get($purple, 200);
       font-size: 12px;
       font-weight: bold;
     }

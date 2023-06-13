@@ -2,7 +2,7 @@
   <div *ngFor="let slot of slots|keyvalue">
     <a class="slot-card">
       <span class="type">
-        {{slot.value.type|flyType}}<br>
+        {{slot.value.flyType.name}}<br>
         #{{slot.value.id}}
       </span>
 

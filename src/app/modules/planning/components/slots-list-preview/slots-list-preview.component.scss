@@ -1,5 +1,7 @@
 @use 'sass:map';
+
 @import "colors";
+@import "theme";
 
 .slot-card-container {
   display: inline-flex;
@@ -11,10 +13,15 @@
 }
 
 .slot-card {
-  background: #fff;
+  background: map-get($gray, 0);
+  border: 3px solid map-get($gray, 400);
+  color: map-get($gray, 400);
 
-  border: 3px solid $gray-light;
-  color: $gray-light;
+  @include theme-dark() {
+    background: map-get($gray, 400);
+    border: 3px solid map-get($gray, 900);
+    color: map-get($gray, 900);
+  }
 
   height: 150px;
   width: 120px;
@@ -40,9 +47,7 @@
 
     font-size: 12px;
 
-    color: map.get($gray-palette, 300);
-
-
+    color: map.get($gray, 300);
   }
 
   .time {
@@ -57,7 +62,7 @@
 
     .end {
       align-self: center;
-      color: $border-dark;
+      color: map-get($gray, 200);
     }
   }
 
@@ -68,7 +73,7 @@
     font-size: 18px;
     font-weight: bold;
 
-    color: map.get($purple-palette, 500);
+    color: map.get($purple, 500);
   }
 
   .identity {

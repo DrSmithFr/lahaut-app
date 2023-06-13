@@ -3,15 +3,6 @@
 <div mat-dialog-content class="content">
   <form [formGroup]="paramForm" (ngSubmit)="onSubmit()">
     <section>
-      <h2>Lieu de vol</h2>
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Lieu</mat-label>
-        <mat-select formControlName="location">
-          <mat-option *ngFor="let type of flyLocations|keyvalue" [value]="type.key">{{type.value}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </section>
-    <section>
       <h2>Période</h2>
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Date debut</mat-label>
@@ -34,12 +25,23 @@
         <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
         <mat-datepicker #pickerEnd></mat-datepicker>
 
-        <mat-error *ngIf="getEnd()?.errors?.['invalid_period']">
+        <mat-error *ngIf="getEndFormControl()?.errors?.['invalid_period']">
           La période est invalide.
         </mat-error>
       </mat-form-field>
     </section>
+
     <section>
+      <h2>Lieu de vol</h2>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Lieu</mat-label>
+        <mat-select formControlName="location" (selectionChange)="onLocationChange($event.value)">
+          <mat-option *ngFor="let location of flyLocations" [value]="location.identifier">{{location.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+
+    <section *ngIf="flyTypes.length > 0">
       <h2>Type de vol</h2>
       <ul class="fly-type-list" #container>
         <li *ngFor="let type of flyTypes">

@@ -16,7 +16,7 @@ import {environment} from "../../../../../environments/environment";
 export class SearchComponent implements OnInit, OnDestroy {
   @ViewChild('container') container: ElementRef;
 
-  logoUrl = environment.logo.large;
+  logoUrl = environment.logo;
 
   searched = false;
   loading = false;
