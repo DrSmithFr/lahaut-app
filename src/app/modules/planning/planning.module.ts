@@ -28,6 +28,7 @@ import {AddAvailabilityConfirmDialog} from './components/add-availability-confir
 import {SlotsListPreviewComponent} from './components/slots-list-preview/slots-list-preview.component';
 import {PlanningResultComponent} from './components/planning-result/planning-result.component';
 import {MatOptionModule} from "@angular/material/core";
+import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule({
@@ -42,26 +43,27 @@ import {MatOptionModule} from "@angular/material/core";
     SlotsListPreviewComponent,
     PlanningResultComponent
   ],
-  imports: [
-    CommonModule,
-    PlanningRoutingModule,
-    MatIconModule,
-    MatButtonModule,
-    MatExpansionModule,
-    MatProgressBarModule,
-    SharedModule,
-    MatDialogModule,
-    MatMenuModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSlideToggleModule,
-    MatCheckboxModule,
-    MatOptionModule,
-    MatSelectModule
-  ],
+    imports: [
+        CommonModule,
+        PlanningRoutingModule,
+        MatIconModule,
+        MatButtonModule,
+        MatExpansionModule,
+        MatProgressBarModule,
+        SharedModule,
+        MatDialogModule,
+        MatMenuModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSlideToggleModule,
+        MatCheckboxModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatCardModule
+    ],
   exports: [
     PlanningResultComponent,
     RemovePeriodAvailabilityDialog,

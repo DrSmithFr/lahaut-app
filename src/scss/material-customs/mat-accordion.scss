@@ -25,7 +25,7 @@
 
       span {
         font-size: 16px;
-        color: var(--base-400);
+        color: var(--text);
       }
 
       .start {
@@ -36,10 +36,19 @@
       .end {
         align-self: center;
         font-size: 14px;
-        color: var(--base-200);
+        color: var(--text-light);
       }
     }
+  }
 
+  .mat-expansion-panel-header {
+    font-family: var(--font-title);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .mat-expansion-panel-header-description, .mat-expansion-indicator:after {
+    color: var(--text-light);
   }
 
   .mat-expansion-panel-header-description {

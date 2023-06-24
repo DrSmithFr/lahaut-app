@@ -3,7 +3,7 @@
     <app-planning-row [result]="result.value" (requestPlanningRefresh)="refresh()"></app-planning-row>
   </div>
 
-  <div *ngIf="results.size === 0" class="empty">
+  <mat-card *ngIf="results.size === 0" class="empty">
     <div>
       <img src="assets/illustration/undraw_calendar.svg" alt="Aucune disponibilité">
     </div>
@@ -19,9 +19,9 @@
             <mat-icon>info</mat-icon>
           </div>
           <span>
-                Vous pouvez <strong>ajouter des créneaux</strong> en cliquant sur le <strong>bouton réglage</strong> en haut à droite du planning,
-                puis sur <strong>Déclarer vos disponibilités</strong>.
-              </span>
+              Vous pouvez <strong>ajouter des créneaux</strong> en cliquant sur le <strong>bouton réglage</strong> en haut à droite du planning,
+              puis sur <strong>Déclarer vos disponibilités</strong>.
+            </span>
         </div>
       </div>
       <div class="button">
@@ -31,5 +31,6 @@
         </button>
       </div>
     </div>
-  </div>
+  </mat-card>
+
 </mat-accordion>
