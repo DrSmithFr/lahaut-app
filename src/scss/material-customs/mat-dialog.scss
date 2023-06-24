@@ -5,3 +5,8 @@
     font-weight: var(--mdc-dialog-supporting-text-weight, 500);
     letter-spacing: var(--mdc-dialog-supporting-text-tracking, 1px);
 }
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background: var(--background) !important;
+  backdrop-filter: blur(10px);
+}
