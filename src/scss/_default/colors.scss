@@ -13,6 +13,23 @@ $light-disabled-text: rgba(white, 0.5);
 $light-dividers: rgba(white, 0.12);
 $light-focused: rgba(white, 0.12);
 
+$contrast: (
+  50: $dark-primary-text,
+  100: $dark-primary-text,
+  200: $dark-primary-text,
+  300: $dark-primary-text,
+  400: $dark-primary-text,
+  500: $light-primary-text,
+  600: $light-primary-text,
+  700: $light-primary-text,
+  800: $light-primary-text,
+  900: $light-primary-text,
+  A100: $dark-primary-text,
+  A200: $light-primary-text,
+  A400: $light-primary-text,
+  A700: $light-primary-text,
+);
+
 
 $primary: (
   50 : #f5f0fa,
@@ -29,22 +46,7 @@ $primary: (
   A200 : #f3ebff,
   A400 : #d5b8ff,
   A700 : #c69eff,
-  contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $dark-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $dark-primary-text,
-    A200: $light-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
-  )
+  contrast: $contrast
 );
 
 $accent: (
@@ -62,22 +64,7 @@ $accent: (
   A200 : #ffffff,
   A400 : #eefffe,
   A700 : #d4fffd,
-  contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $dark-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $dark-primary-text,
-    A200: $light-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
-  )
+  contrast: $contrast
 );
 
 $warn: (
@@ -95,22 +82,7 @@ $warn: (
   A200: #ff5252,
   A400: #ff1744,
   A700: #d50000,
-  contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $dark-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $dark-primary-text,
-    A200: $light-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
-  )
+  contrast: $contrast
 );
 
 // -------------------- BASE COLOR --------------------
@@ -129,20 +101,5 @@ $base: (
   A200 : #e04040,
   A400 : #ec0000,
   A700 : #d30000,
-  contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $dark-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $dark-primary-text,
-    A200: $light-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
-  )
+  contrast: $contrast
 );

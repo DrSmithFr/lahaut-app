@@ -1,4 +1,5 @@
 @import "animations";
+@import "theme";
 
 .mat-accordion.airy {
   .mat-expansion-panel {
@@ -8,6 +9,11 @@
     background: var(--background-transparent);
 
     @include fade-in();
+  }
+
+  .mat-expansion-panel-header.mat-expanded:focus,
+  .mat-expansion-panel-header.mat-expanded:hover {
+    background: transparent;
   }
 
   // Show Time as Title
@@ -41,8 +47,12 @@
     justify-content: flex-end;
   }
 
+  .mat-expansion-panel-header-description {
+    color: var(--text-light);
+  }
+
   .mat-expansion-panel.mat-expanded {
-    background: var(--primary-100);
+    background: var(---background-primary);
 
     .mat-expansion-panel-header-title {
       span {
@@ -65,10 +75,6 @@
 
   .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
     background: transparent;
-  }
-
-  .mat-expansion-panel .mat-expansion-panel-header-description {
-    color: var(--base-200);
   }
 
   // error management

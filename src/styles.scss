@@ -18,9 +18,37 @@
 
 // color palettes CSS varibales helpers
 :root {
+  // colors
+  --green: #68cf3b;
+
   // fonts
   --font-text: #{$font-text};
   --font-title: #{$font-title};
+}
+
+// Themes Light/Dark
+:root {
+  --primary: #{map-get($primary, 500)};
+  --accent: #{map-get($accent, 500)};
+  --base: #{map-get($base, 500)};
+
+  --background: #fff;
+  --background-transparent: #{rgba(#fff, 0.7)};
+
+  --background-dark: #dadada;
+  --background-dark-transparent: rgba(250, 250, 250, .7);
+
+  ---background-primary: #{rgba(map-get($primary, 500), 0.7)};
+  ---background-accent: #{rgba(map-get($accent, 500), 0.7)};
+  ---background-warn: #{rgba(map-get($warn, 500), 0.7)};
+
+  --text-light: #{map-get($base, 200)};
+  --text: #{map-get($base, 500)};
+  --text-dark: #{map-get($base, 800)};
+
+  --border-light: #{map-get($base, 50)};
+  --border: #{map-get($base, 100)};
+  --border-dark: #{map-get($base, 200)};
 
   --primary-50: #{map-get($primary, 50)};
   --primary-100: #{map-get($primary, 100)};
@@ -67,59 +95,64 @@
   --base-900: #{map-get($base, 900)};
 }
 
-// Themes
-:root {
+[data-theme="dark"] {
   // colors
+  --green: #68cf3b;
+
   --primary: #{map-get($primary, 500)};
   --accent: #{map-get($accent, 500)};
   --base: #{map-get($base, 500)};
 
-  --background: #fff;
-  --background-transparent: #{rgba(#fff, 0.7)};
+  --background: #{rgba(map-get($base, 500), 0.7)};
+  --background-transparent: #{rgba(map-get($base, 900), 0.7)};
 
-  --background-dark: #dadada;
-  --background-dark-transparent: rgba(250,250,250,.7);
-
-  --green: #68cf3b;
+  --background-dark: #666;
+  --background-dark-transparent: #{rgba(#666,.7)};
 
   ---background-primary: #{rgba(map-get($primary, 500), 0.7)};
   ---background-accent: #{rgba(map-get($accent, 500), 0.7)};
   ---background-warn: #{rgba(map-get($warn, 500), 0.7)};
-  ---background-base: #{rgba(map-get($base, 500), 0.7)};
 
-  --text-light: #{map-get($base, 200)};
-  --text: #{map-get($base, 500)};
-  --text-dark: #{map-get($base, 800)};
-
-  --border-light: #{map-get($base, 50)};
-  --border: #{map-get($base, 100)};
-  --border-dark: #{map-get($base, 200)};
-}
-
-[data-theme="dark"] {
-  // colors
-  --primary: #{map-get($primary, 500)};
-  --accent: #{map-get($accent, 500)};
-  --base: #{map-get($base, 500)};
-
-  --background: #000;
-  --background-transparent: #{rgba(#000, 0.7)};
-  --background-dark: #666;
-
-  --green: #55a632;
-
-  ---background-primary: #{rgba(map-get($primary, 900), 0.7)};
-  ---background-accent: #{rgba(map-get($accent, 900), 0.7)};
-  ---background-warn: #{rgba(map-get($warn, 900), 0.7)};
-  ---background-base: #{rgba(map-get($base, 900), 0.7)};
-
-  --text-light: #{map-get($base, 50)};
-  --text: #{map-get($base, 100)};
-  --text-dark: #{map-get($base, 200)};
+  --text-light: #{map-get($base, 100)};
+  --text: #{map-get($base, 200)};
+  --text-dark: #{map-get($base, 300)};
 
   --border-light: #{map-get($base, 500)};
   --border: #{map-get($base, 700)};
   --border-dark: #{map-get($base, 900)};
+
+  --primary-50: #{map-get($primary, 900)};
+  --primary-100: #{map-get($primary, 800)};
+  --primary-200: #{map-get($primary, 700)};
+  --primary-300: #{map-get($primary, 600)};
+  --primary-400: #{map-get($primary, 500)};
+  --primary-500: #{map-get($primary, 400)};
+  --primary-600: #{map-get($primary, 300)};
+  --primary-700: #{map-get($primary, 200)};
+  --primary-800: #{map-get($primary, 100)};
+  --primary-900: #{map-get($primary, 50)};
+
+  --warn-50: #{map-get($warn, 900)};
+  --warn-100: #{map-get($warn, 800)};
+  --warn-200: #{map-get($warn, 700)};
+  --warn-300: #{map-get($warn, 600)};
+  --warn-400: #{map-get($warn, 500)};
+  --warn-500: #{map-get($warn, 400)};
+  --warn-600: #{map-get($warn, 300)};
+  --warn-700: #{map-get($warn, 200)};
+  --warn-800: #{map-get($warn, 100)};
+  --warn-900: #{map-get($warn, 50)};
+
+  --base-50: #{map-get($base, 900)};
+  --base-100: #{map-get($base, 800)};
+  --base-200: #{map-get($base, 700)};
+  --base-300: #{map-get($base, 600)};
+  --base-400: #{map-get($base, 500)};
+  --base-500: #{map-get($base, 400)};
+  --base-600: #{map-get($base, 300)};
+  --base-700: #{map-get($base, 200)};
+  --base-800: #{map-get($base, 100)};
+  --base-900: #{map-get($base, 50)};
 }
 
 // import material styles
@@ -155,10 +188,11 @@ html, body {
 }
 
 body {
-  margin: 0; font-family: $font-text;
+  margin: 0;
+  font-family: $font-text;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: $font-title;
   font-weight: 500;
 
@@ -193,8 +227,7 @@ div, p, a,
   line-height: 20px;
 }
 
-h1, h2, h3, h4, h5, .title, .mat-card-title
-{
+h1, h2, h3, h4, h5, .title, .mat-card-title {
   font-family: var(--font-title);
 }
 
