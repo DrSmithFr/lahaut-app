@@ -28,7 +28,7 @@
 
       .end {
         align-self: center;
-        color: map-get($gray, 200);
+        color: map-get($base, 200);
       }
     }
 
@@ -40,19 +40,19 @@
   }
 
   &.mat-expanded {
-    background: map.get($purple, 100);
+    background: map.get($primary, 100);
 
     .mat-expansion-panel-header-title {
       .start {
-        color: map.get($purple, 900) !important;
+        color: map.get($primary, 900) !important;
       }
       .end {
-        color: map-get($gray, 400) !important;
+        color: map-get($base, 400) !important;
       }
     }
 
     .mat-expansion-panel-header-description {
-      color: map.get($purple, 700);
+      color: map.get($primary, 700);
     }
   }
 }

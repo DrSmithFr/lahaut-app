@@ -22,7 +22,7 @@
     text-transform: uppercase;
 
     @include theme-dark() {
-      color: map-get($gray, 200);
+      color: map-get($base, 200);
     }
   }
 }

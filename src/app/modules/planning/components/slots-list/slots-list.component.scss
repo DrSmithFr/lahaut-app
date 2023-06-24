@@ -14,13 +14,13 @@
 
 .slot-card {
   background: #fff;
-  border: 3px solid map-get($gray, 400);
-  color: map-get($gray, 400);
+  border: 3px solid map-get($base, 400);
+  color: map-get($base, 400);
 
   @include theme-dark() {
-    background: map-get($gray, 400);
-    border: 3px solid map-get($gray, 900);
-    color: map-get($gray, 900);
+    background: map-get($base, 400);
+    border: 3px solid map-get($base, 900);
+    color: map-get($base, 900);
   }
 
   height: 150px;
@@ -47,10 +47,10 @@
 
     font-size: 12px;
 
-    color: map.get($gray, 300);
+    color: map.get($base, 300);
 
     @include theme-dark() {
-      color: map.get($gray, 50);
+      color: map.get($base, 50);
     }
   }
 
@@ -66,10 +66,10 @@
 
     .end {
       align-self: center;
-      color: map-get($gray, 200);
+      color: map-get($base, 200);
 
       @include theme-dark() {
-        color: map.get($gray, 100);
+        color: map.get($base, 100);
       }
     }
   }
@@ -81,7 +81,7 @@
     font-size: 18px;
     font-weight: bold;
 
-    color: map.get($purple, 500);
+    color: map.get($primary, 500);
   }
 
   .identity {

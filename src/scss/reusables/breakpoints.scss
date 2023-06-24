@@ -1,0 +1,55 @@
+.only-small-mobile {
+  display: none;
+
+  @include mobile-xs {
+    display: block;
+  }
+}
+
+.only-mobile {
+  display: none;
+
+  @include mobile-all {
+    display: block;
+  }
+}
+
+.only-tablet {
+  display: none;
+
+  @include tablet {
+    display: block;
+  }
+}
+
+.only-desktop {
+  display: none;
+
+  @include desktop {
+    display: block;
+  }
+}
+
+.hide-on-small-mobile {
+  @include mobile-xs {
+    display: none;
+  }
+}
+
+.hide-on-mobile {
+  @include mobile-all {
+    display: none;
+  }
+}
+
+.hide-on-tablet {
+  @include tablet {
+    display: none;
+  }
+}
+
+.hide-on-desktop {
+  @include desktop {
+    display: none;
+  }
+}

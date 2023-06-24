@@ -19,14 +19,14 @@
   padding-top: 30px;
 
   mat-icon {
-    color: map-get($gray, 300);
+    color: map-get($base, 300);
   }
 
   .login-header {
     text-align: center;
 
     h1 {
-      color: map-get($blue, 500);
+      color: map-get($accent, 500);
       font-size: 20px;
       font-weight: bold;
       margin-bottom: 0;
@@ -44,7 +44,7 @@
   }
 
   a.forgot-password {
-    color: map-get($purple, 200);
+    color: map-get($primary, 200);
     font-size: 12px;
     font-weight: bold;
   }

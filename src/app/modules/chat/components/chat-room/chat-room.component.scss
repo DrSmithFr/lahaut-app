@@ -28,7 +28,7 @@ $input-size: 60px;
 
     span.message-time {
       margin: 10px 0 0 15px;
-      color: map-get($gray, 200);
+      color: map-get($base, 200);
 
       font-size: 10px;
       text-transform: uppercase;
@@ -56,7 +56,7 @@ $input-size: 60px;
 
     span.message {
       margin: 0 10px 0 auto;
-      background: map-get($purple, 500);;
+      background: map-get($primary, 500);;
     }
   }
 }

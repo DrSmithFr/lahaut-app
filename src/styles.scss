@@ -1,65 +1,74 @@
 @use "sass:map";
 
+// Normalize CSS
+@import 'normalize.css';
+
 // Google Fonts
 @import url(https://fonts.googleapis.com/css?family=Roboto:400italic,700italic,400,700);
 @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,200);
 @import url(https://fonts.googleapis.com/css2?family=Rock+Salt);
 @import url(https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600&display=swap);
 
-// Variables
-@import "scss/grid";
+// Importing variables
 @import "breakpoints";
 @import "colors";
 @import "fonts";
 @import "theme";
 
-// reset styles
-html, body { height: 100%; }
-body { margin: 0; font-family: $font-text; }
+// CSS variables
+:root {
+  --primary: map-get($primary, 500);
+  --accent: map-get($accent, 500);
+  --base: map-get($base, 500);
 
-// setting background image
-html {
-  background-image: url(./assets/background.png);
+  --light: map-get($base, 0);
+  --dark: map-get($base, 900);
 
-  @include desktop {
-    background-image: url(./assets/background-short.png);
-  }
+  --border: map-get($base, 100);
+  --border-dark: map-get($base, 200);
 
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-color: map-get($gray, 0);
+  // material palettes
+  --primary-50: map-get($primary, 50);
+  --primary-100: map-get($primary, 100);
+  --primary-200: map-get($primary, 200);
+  --primary-300: map-get($primary, 300);
+  --primary-400: map-get($primary, 400);
+  --primary-500: map-get($primary, 500);
+  --primary-600: map-get($primary, 600);
+  --primary-700: map-get($primary, 700);
+  --primary-800: map-get($primary, 800);
+  --primary-900: map-get($primary, 900);
 
-  background-position: 0 200%;
-  animation: animatedBackground 0.75s linear 0.1s forwards;
+  --accent-50: map-get($accent, 50);
+  --accent-100: map-get($accent, 100);
+  --accent-200: map-get($accent, 200);
+  --accent-300: map-get($accent, 300);
+  --accent-400: map-get($accent, 400);
+  --accent-500: map-get($accent, 500);
+  --accent-600: map-get($accent, 600);
+  --accent-700: map-get($accent, 700);
+  --accent-800: map-get($accent, 800);
+  --accent-900: map-get($accent, 900);
+
+  // base palettes
+  --base-50: map-get($base, 50);
+  --base-100: map-get($base, 100);
+  --base-200: map-get($base, 200);
+  --base-300: map-get($base, 300);
+  --base-400: map-get($base, 400);
+  --base-500: map-get($base, 500);
+  --base-600: map-get($base, 600);
+  --base-700: map-get($base, 700);
+  --base-800: map-get($base, 800);
+  --base-900: map-get($base, 900);
 }
 
-@include theme-dark() {
-  background-color: map-get($gray, 900)
-}
-
-// page-container
-.page-container {
-  max-width: 800px;
-  margin: 0 auto;
-
-  padding: 20px;
-}
-
-@keyframes animatedBackground {
-  from {
-    background-position: 0 200%;
-  }
-  to {
-    background-position: bottom;
-  }
-}
-
-// import custom material styles
+// import material styles
 @import "scss/material";
+@import "scss/material-customs/_all";
+@import "scss/reusables/_all";
 
-// helpers
-// helpers
+// imperative styles
 .center {
   text-align: center;
 }
@@ -76,143 +85,29 @@ html {
   width: 100%;
 }
 
-.marge {
-  margin: 10px;
+// Base styles
+html, body {
+  height: 100%;
 }
 
-.hide {
-  display: none;
+body {
+  margin: 0; font-family: $font-text;
 }
 
-.top-space {
-  margin-top: 100px;
+h1,h2,h3,h4,h5,h6 {
+  font-family: $font-title;
+  font-weight: 400;
+  margin: 0;
 
-  @include tablet {
-    margin-top: 80px;
+  .primary {
+    color: map-get($primary, 500);
   }
 
-  @include mobile-all {
-    margin-top: 50px;
-  }
-}
-
-.alpha {
-  color: map-get($gray, 0);
-}
-
-.gray {
-  color: map-get($gray, 200);
-}
-
-// breakpoint helper
-.only-small-mobile {
-  display: none;
-
-  @include mobile-xs {
-    display: block;
-  }
-}
-
-.only-mobile {
-  display: none;
-
-  @include mobile-all {
-    display: block;
-  }
-}
-
-.only-tablet {
-  display: none;
-
-  @include tablet {
-    display: block;
-  }
-}
-
-.only-desktop {
-  display: none;
-
-  @include desktop {
-    display: block;
-  }
-}
-
-.hide-on-small-mobile {
-  @include mobile-xs {
-    display: none;
-  }
-}
-
-.hide-on-mobile {
-  @include mobile-all {
-    display: none;
-  }
-}
-
-.hide-on-tablet {
-  @include tablet {
-    display: none;
-  }
-}
-
-.hide-on-desktop {
-  @include desktop {
-    display: none;
-  }
-}
-
-// avoid selection on app
-@include tablet-and-desktop() {
-  * {
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  .secondary {
+    color: map-get($base, 500);
   }
 
-  input {
-    -webkit-user-select: auto !important;
-    -khtml-user-select: auto !important;
-    -moz-user-select: auto !important;
-    -ms-user-select: auto !important;
-    user-select: auto !important;
+  .gray {
+    color: map-get($base, 300);
   }
-}
-
-// mat-stepper
-.mat-step-header .mat-step-icon-selected,
-.mat-step-header .mat-step-icon-state-done,
-.mat-step-header .mat-step-icon-state-edit {
-  background-color: #aa80d8 !important;
-}
-
-.mat-stepper-horizontal, .mat-stepper-vertical {
-  background-color: transparent !important;
-}
-
-// button spinner
-@keyframes spinner {
-  to {transform: rotate(360deg);}
-}
-
-.spinner:before {
-  content: '';
-  box-sizing: border-box;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
-  margin-left: -10px;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-  border-top-color: map-get($purple, 500);;
-  animation: spinner .8s linear infinite;
-}
-
-// mat-drawer
-.mat-drawer-container {
-  background: transparent;
 }

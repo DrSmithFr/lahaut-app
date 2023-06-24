@@ -23,13 +23,13 @@
         font-size: 16px;
 
         @include theme-light() {
-          color: map-get($gray, 400);
+          color: map-get($base, 400);
         }
       }
 
       .end {
         align-self: center;
-        color: map-get($gray, 200);
+        color: map-get($base, 200);
 
         .mat-icon, .material-icons{
           font-size: 18px !important;
@@ -47,31 +47,31 @@
   }
 
   &.mat-expanded {
-    background: map.get($purple, 100);
+    background: map.get($primary, 100);
 
     @include theme-dark() {
-      background: map.get($purple, 900);
+      background: map.get($primary, 900);
     }
 
     .mat-expansion-panel-header-title {
       .start {
-        color: map.get($purple, 600) !important;
+        color: map.get($primary, 600) !important;
 
         @include theme-dark() {
-          color: map.get($purple, 100) !important;
+          color: map.get($primary, 100) !important;
         }
       }
 
       .end {
-        color: map-get($gray, 400) !important;
+        color: map-get($base, 400) !important;
       }
     }
 
     .mat-expansion-panel-header-description {
-      color: map.get($purple, 700);
+      color: map.get($primary, 700);
 
       @include theme-dark() {
-        color: map.get($purple, 200);
+        color: map.get($primary, 200);
       }
     }
   }
@@ -103,7 +103,7 @@ h2 {
 
 // error management
 .mat-expansion-panel .mat-expansion-panel-header-description {
-  color: map-get($gray, 200);
+  color: map-get($base, 200);
 }
 
 .mat-expansion-panel.error {

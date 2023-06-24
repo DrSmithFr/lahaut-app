@@ -27,8 +27,8 @@
 
 .toolbar {
   @include theme-light() {
-    background-color: map-get($gray, 0);
-    border-bottom: 1px solid map-get($gray, 100);
+    background-color: var(--background);
+    border-bottom: 1px solid map-get($base, 100);
     color: #333;
   }
 

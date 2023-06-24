@@ -6,7 +6,7 @@
   h1 {
     margin: 20px;
 
-    color: map-get($blue, 500);
+    color: map-get($accent, 500);
     font-size: 1.5rem;
 
     text-transform: uppercase;
@@ -35,22 +35,22 @@
           font-size: 20px;
           font-weight: 500;
 
-          color: map-get($purple, 500);;
+          color: map-get($primary, 500);;
         }
 
         .last-message {
           font-size: 12px;
-          color: map-get($gray, 200);
+          color: map-get($base, 200);
         }
       }
     }
 
     &.active, &:hover {
       cursor: pointer;
-      background: map.get($purple, 100);
+      background: map.get($primary, 100);
 
       .last-message {
-        color: map-get($gray, 400);
+        color: map-get($base, 400);
       }
     }
   }
