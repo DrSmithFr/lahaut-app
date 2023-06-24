@@ -5,14 +5,14 @@
 
 .add-to-card {
   .info {
-    color: map-get($base, 200);
+    color: var(--base-200);
     font-size: 12px;
     text-align: center;
     margin-bottom: 10px;
   }
 
   .disclaimer {
-    color: map-get($primary, 500);;
+    color: var(--primary);
     font-size: 12px;
     margin-top: 30px;
   }
@@ -66,7 +66,7 @@
     h1 {
       font-size: 40px;
       font-weight: 500;
-      color: map-get($primary, 500);;
+      color: var(--primary);
 
       margin-bottom: 0;
     }
@@ -131,7 +131,7 @@
     margin: 20px 0;
 
     .label {
-      color: map-get($accent, 500);
+      color: var(--accent);
       font-size: 18px;
       font-weight: bold;
 

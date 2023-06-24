@@ -28,7 +28,7 @@
 
       .end {
         align-self: center;
-        color: map-get($base, 200);
+        color: var(--base-200);
       }
     }
 
@@ -47,7 +47,7 @@
         color: map.get($primary, 900) !important;
       }
       .end {
-        color: map-get($base, 400) !important;
+        color: var(--base-400) !important;
       }
     }
 

@@ -23,13 +23,13 @@
         font-size: 16px;
 
         @include theme-light() {
-          color: map-get($base, 400);
+          color: var(--base-400);
         }
       }
 
       .end {
         align-self: center;
-        color: map-get($base, 200);
+        color: var(--base-200);
 
         .mat-icon, .material-icons{
           font-size: 18px !important;
@@ -63,7 +63,7 @@
       }
 
       .end {
-        color: map-get($base, 400) !important;
+        color: var(--base-400) !important;
       }
     }
 
@@ -103,7 +103,7 @@ h2 {
 
 // error management
 .mat-expansion-panel .mat-expansion-panel-header-description {
-  color: map-get($base, 200);
+  color: var(--base-200);
 }
 
 .mat-expansion-panel.error {

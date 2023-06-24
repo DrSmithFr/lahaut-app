@@ -17,13 +17,13 @@
     h1 {
       margin: 0;
 
-      color: map-get($accent, 500);
+      color: var(--accent);
       font-size: 2.5rem;
       font-weight: 500;
     }
 
     button {
-      color: map-get($accent, 500)
+      color: var(--accent)
     }
   }
 
@@ -41,13 +41,13 @@
       h2 {
         margin: 0;
 
-        color: map-get($primary, 500);;
+        color: var(--primary);
         font-size: 1.5rem;
         font-weight: 500;
       }
 
       button {
-        color: map-get($primary, 500);
+        color: var(--primary);
       }
     }
 
@@ -112,35 +112,35 @@
 
       &.selected, &:hover {
         .day-number {
-          border-color: map-get($primary, 500);;
-          color: map-get($primary, 500);;
+          border-color: var(--primary);
+          color: var(--primary);
         }
 
         .day-name {
-          color: map-get($primary, 500);;
+          color: var(--primary);
         }
       }
 
       &.today {
         .day-number {
-          background: map-get($accent, 500);
+          background: var(--accent);
           border-color: map.get($accent, 200);
           color: var(--background);
         }
 
         .day-name {
-          color: map-get($accent, 500);
+          color: var(--accent);
         }
 
         &:hover, &.selected {
           .day-number {
-            background: map-get($primary, 500);;
+            background: var(--primary);
             border-color: map.get($primary, 200);
             color: var(--background);
           }
 
           .day-name {
-            color: map-get($primary, 500);;
+            color: var(--primary);
           }
         }
       }

@@ -1,7 +1,7 @@
 @import "colors";
 
 h1.title {
-  color: map-get($accent, 500);
+  color: var(--accent);
 
   font-size: 20px;
   font-weight: bold;

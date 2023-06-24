@@ -1,0 +1,7 @@
+.mat-mdc-dialog-container .mdc-dialog__content {
+    font-family: var(--font-text);
+    line-height: var(--mdc-dialog-supporting-text-line-height, 14px);
+    font-size: var(--mdc-dialog-supporting-text-size, 14px);
+    font-weight: var(--mdc-dialog-supporting-text-weight, 500);
+    letter-spacing: var(--mdc-dialog-supporting-text-tracking, 1px);
+}

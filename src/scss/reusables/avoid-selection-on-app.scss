@@ -1,6 +1,6 @@
 @import "breakpoints";
 
-@include tablet-and-desktop() {
+@include mobile-and-tablet() {
   * {
     -webkit-user-select: none;
     -khtml-user-select: none;

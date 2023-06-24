@@ -1,0 +1,9 @@
+.mat-slider-track-background,
+.mat-slider:hover .mat-slider-track-background {
+  background: var(--background-dark);
+}
+
+.mat-slider-thumb {
+  background-color: var(--background) !important;
+  border-color: var(--border-dark) !important;
+}

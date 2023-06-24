@@ -15,7 +15,7 @@
     text-align: right;
     margin: 12px 0;
     a {
-      color: map-get($primary, 200);
+      color: var(--primary-200);
       font-size: 12px;
       font-weight: bold;
     }

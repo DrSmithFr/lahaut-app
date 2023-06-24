@@ -18,7 +18,7 @@ $light-theme: mat.define-light-theme((
   color: (
     primary: mat.define-palette($primary),
     accent: mat.define-palette($accent),
-    warn: mat.define-palette($base),
+    warn: mat.define-palette($warn),
   ),
 ));
 
@@ -27,7 +27,7 @@ $dark-theme: mat.define-dark-theme((
   color: (
     primary: mat.define-palette($primary),
     accent: mat.define-palette($accent),
-    warn: mat.define-palette($base),
+    warn: mat.define-palette($warn),
   ),
   // Only include `typography` and `density` in the default dark theme.
   typography: mat.define-typography-config(),
@@ -39,144 +39,8 @@ $dark-theme: mat.define-dark-theme((
 
 
 // Apply the light theme only when the users prefers light themes.
-html.dark {
+[data-theme="dark"] {
   // Use the `-color` mixins to only apply color styles without reapplying the same
   // typography and density styles.
   @include mat.all-component-colors($dark-theme);
-}
-
-/* You can add global styles to this file, and also import other style files */
-html, body {
-  margin: 0;
-  padding: 0;
-
-  height: 100%;
-}
-
-body {
-  font-family: $font-text;
-}
-
-mat-label {
-  font-family: $font-text;
-}
-
-.mat-button-wrapper, .mat-option-text {
-  font-family: $font-text;
-}
-
-h1, h2, h3, h4, h5, .title, mat-card-title {
-  font-family: $font-title;
-  font-weight: normal;
-}
-
-h1 {
-  font-size: 20px;
-}
-
-div, p, a, .text {
-  font-family: $font-text;
-}
-
-.center {
-  text-align: center;
-}
-
-.right {
-  text-align: right;
-}
-
-.left {
-  text-align: left;
-}
-
-.wrapper {
-  margin: 3%;
-}
-
-.full-width {
-  width: 100%;
-}
-
-.half-width {
-  width: 50%;
-}
-
-.mat-slider-track-background,
-.mat-slider:hover .mat-slider-track-background {
-  background: #eeeeee;
-}
-
-.mat-slider-thumb {
-  background-color: #ffffff !important;
-  border-color: rgba(0, 0, 0, 0.38) !important;
-}
-
-.mat-step-label {
-  font-family: $font-title;
-  font-size: 20px;
-  text-transform: capitalize;
-}
-
-.shadow {
-  box-shadow: 0 0 5px rgba(0, 0, 0, .3) !important;
-}
-
-hr {
-  border-color: 1px solid #eee;
-}
-
-.full {
-  width: 100%;
-}
-
-.mat-pseudo-checkbox-checked,
-.mat-pseudo-checkbox-indeterminate,
-.mat-accent .mat-pseudo-checkbox-checked,
-.mat-accent .mat-pseudo-checkbox-indeterminate {
-  background: #607d8b;
-}
-
-// TimePiker
-.timepicker {
-  --body-background-color: #fff;
-  --primary-font-family: $font-text;
-  --button-color: #607d8b;
-  --dial-active-color: #fff;
-  --dial-inactive-color: rgba(255, 255, 255, .5);
-  --dial-background-color: #607d8b;
-  --clock-face-time-active-color: #fff;
-  --clock-face-time-inactive-color: #6c6c6c;
-  --clock-face-inner-time-inactive-color: #929292;
-  --clock-face-time-disabled-color: #c5c5c5;
-  --clock-face-background-color: #f0f0f0;
-  --clock-hand-color: #607d8b;
-
-  .timepicker-dial__control:focus {
-    outline: none;
-  }
-}
-
-// material calendar
-
-.mat-calendar-body-cell-content {
-  border-radius: 0 !important;
-}
-
-
-// avoid selection on app
-* {
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-input {
-  -webkit-user-select: auto !important;
-  -khtml-user-select: auto !important;
-  -moz-user-select: auto !important;
-  -ms-user-select: auto !important;
-  user-select: auto !important;
 }

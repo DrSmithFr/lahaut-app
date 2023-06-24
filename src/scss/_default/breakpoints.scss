@@ -20,7 +20,7 @@ $desktop-break: 1200;
   @media screen and (min-width: #{$tablet-break}px) and (max-width: #{$desktop-break}px){ @content; }
 }
 
-@mixin tablet-and-desktop() {
+@mixin mobile-and-tablet() {
   @media screen and (max-width: #{$desktop-break}px) { @content; }
 }
 

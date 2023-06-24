@@ -17,50 +17,83 @@
 
 // CSS variables
 :root {
-  --primary: map-get($primary, 500);
-  --accent: map-get($accent, 500);
-  --base: map-get($base, 500);
+  // fonts
+  --font-text: #{$font-text};
+  --font-title: #{$font-title};
 
-  --light: map-get($base, 0);
-  --dark: map-get($base, 900);
+  // colors
+  --primary: #{map-get($primary, 500)};
+  --accent: #{map-get($accent, 500)};
+  --base: #{map-get($base, 500)};
 
-  --border: map-get($base, 100);
-  --border-dark: map-get($base, 200);
+  --background: #fff;
+  --background-dark: #f4f4f4;
 
-  // material palettes
-  --primary-50: map-get($primary, 50);
-  --primary-100: map-get($primary, 100);
-  --primary-200: map-get($primary, 200);
-  --primary-300: map-get($primary, 300);
-  --primary-400: map-get($primary, 400);
-  --primary-500: map-get($primary, 500);
-  --primary-600: map-get($primary, 600);
-  --primary-700: map-get($primary, 700);
-  --primary-800: map-get($primary, 800);
-  --primary-900: map-get($primary, 900);
+  ---background-primary: #{rgba(map-get($primary, 500), 0.7)};
+  ---background-accent: #{rgba(map-get($accent, 500), 0.7)};
+  ---background-warn: #{rgba(map-get($warn, 500), 0.7)};
+  ---background-base: #{rgba(map-get($base, 500), 0.7)};
 
-  --accent-50: map-get($accent, 50);
-  --accent-100: map-get($accent, 100);
-  --accent-200: map-get($accent, 200);
-  --accent-300: map-get($accent, 300);
-  --accent-400: map-get($accent, 400);
-  --accent-500: map-get($accent, 500);
-  --accent-600: map-get($accent, 600);
-  --accent-700: map-get($accent, 700);
-  --accent-800: map-get($accent, 800);
-  --accent-900: map-get($accent, 900);
+  --text-light: #{map-get($base, 200)};
+  --text: #{map-get($base, 500)};
+  --text-dark: #{map-get($base, 800)};
 
-  // base palettes
-  --base-50: map-get($base, 50);
-  --base-100: map-get($base, 100);
-  --base-200: map-get($base, 200);
-  --base-300: map-get($base, 300);
-  --base-400: map-get($base, 400);
-  --base-500: map-get($base, 500);
-  --base-600: map-get($base, 600);
-  --base-700: map-get($base, 700);
-  --base-800: map-get($base, 800);
-  --base-900: map-get($base, 900);
+  --border-light: #{map-get($base, 50)};
+  --border: #{map-get($base, 100)};
+  --border-dark: #{map-get($base, 200)};
+
+  // color palettes
+  --primary-50: #{map-get($primary, 50)};
+  --primary-100: #{map-get($primary, 100)};
+  --primary-200: #{map-get($primary, 200)};
+  --primary-300: #{map-get($primary, 300)};
+  --primary-400: #{map-get($primary, 400)};
+  --primary-500: #{map-get($primary, 500)};
+  --primary-600: #{map-get($primary, 600)};
+  --primary-700: #{map-get($primary, 700)};
+  --primary-800: #{map-get($primary, 800)};
+  --primary-900: #{map-get($primary, 900)};
+
+  --accent-50: #{map-get($accent, 50)};
+  --accent-100: #{map-get($accent, 100)};
+  --accent-200: #{map-get($accent, 200)};
+  --accent-300: #{map-get($accent, 300)};
+  --accent-400: #{map-get($accent, 400)};
+  --accent-500: #{map-get($accent, 500)};
+  --accent-600: #{map-get($accent, 600)};
+  --accent-700: #{map-get($accent, 700)};
+  --accent-800: #{map-get($accent, 800)};
+  --accent-900: #{map-get($accent, 900)};
+
+  --warn-50: #{map-get($warn, 50)};
+  --warn-100: #{map-get($warn, 100)};
+  --warn-200: #{map-get($warn, 200)};
+  --warn-300: #{map-get($warn, 300)};
+  --warn-400: #{map-get($warn, 400)};
+  --warn-500: #{map-get($warn, 500)};
+  --warn-600: #{map-get($warn, 600)};
+  --warn-700: #{map-get($warn, 700)};
+  --warn-800: #{map-get($warn, 800)};
+  --warn-900: #{map-get($warn, 900)};
+
+  --base-50: #{map-get($base, 50)};
+  --base-100: #{map-get($base, 100)};
+  --base-200: #{map-get($base, 200)};
+  --base-300: #{map-get($base, 300)};
+  --base-400: #{map-get($base, 400)};
+  --base-500: #{map-get($base, 500)};
+  --base-600: #{map-get($base, 600)};
+  --base-700: #{map-get($base, 700)};
+  --base-800: #{map-get($base, 800)};
+  --base-900: #{map-get($base, 900)};
+}
+
+[data-theme="dark"] {
+  --primary-color: #9A97F3;
+  --secondary-color: #818cab;
+  --font-color: #e1e1ff;
+  --bg-color: #161625;
+  --heading-color: #818cab;
 }
 
 // import material styles
@@ -85,6 +118,10 @@
   width: 100%;
 }
 
+.shadow {
+  box-shadow: 0 0 5px rgba(0, 0, 0, .3) !important;
+}
+
 // Base styles
 html, body {
   height: 100%;
@@ -96,18 +133,40 @@ body {
 
 h1,h2,h3,h4,h5,h6 {
   font-family: $font-title;
-  font-weight: 400;
-  margin: 0;
+  font-weight: 500;
+
+  .bold {
+    font-weight: 800;
+  }
 
   .primary {
-    color: map-get($primary, 500);
+    color: var(--primary);
   }
 
-  .secondary {
-    color: map-get($base, 500);
+  .accent {
+    color: var(--accent);
   }
 
-  .gray {
-    color: map-get($base, 300);
+  .base {
+    color: var(--base);
   }
+}
+
+body {
+  color: var(--text);
+  font-family: var(--font-text);
+}
+
+div, p, a,
+.text,
+.mat-label,
+.mat-button-wrapper, .mat-option-text {
+  font-family: var(--font-text);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+h1, h2, h3, h4, h5, .title, .mat-card-title
+{
+  font-family: var(--font-title);
 }
