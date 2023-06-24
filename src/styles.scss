@@ -30,12 +30,12 @@ html {
   background-attachment: fixed;
   background-color: map-get($gray, 0);
 
-  @include theme-dark() {
-    background-color: map-get($gray, 900)
-  }
-
   background-position: 0 200%;
   animation: animatedBackground 0.75s linear 0.1s forwards;
+}
+
+@include theme-dark() {
+  background-color: map-get($gray, 900)
 }
 
 // page-container
