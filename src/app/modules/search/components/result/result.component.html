@@ -1,4 +1,4 @@
-<mat-accordion *ngIf="search && search.results && search.results.size > 0">
+<mat-accordion class="airy" *ngIf="search && search.results && search.results.size > 0">
 
     <div *ngFor="let slot of search.results | keyvalue">
       <app-result-row [slot]="slot.value" (addToCart)="openAddToCart($event)"></app-result-row>

@@ -168,7 +168,7 @@
 }
 
 #cardfront .st2.selected {
-  fill: map.get($primary, 200);
+  fill: var(--primary-200);
 }
 
 #cardfront .st3 {
@@ -244,7 +244,7 @@
 }
 
 #cardback .st6.selected {
-  fill: map.get($primary, 900);
+  fill: var(--primary-900);
   stroke-width: 1px;
 }
 

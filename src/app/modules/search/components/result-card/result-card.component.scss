@@ -40,13 +40,13 @@
       text-align: center;
       font-size: 18px;
 
-      color: map.get($base, 300);
+      color: var(--base-300);
     }
   }
 
   .price {
     font-size: 30px;
-    color: map.get($primary, 500);
+    color: var(--primary);
 
     font-weight: bold;
   }
@@ -67,18 +67,18 @@
 }
 
 .monitor-card:hover {
-  border: 3px solid map.get($primary, 500);
-  color: map.get($primary, 500);
+  border: 3px solid var(--primary);
+  color: var(--primary);
 
   .rank .material-icons {
-    color: map.get($primary, 500);
+    color: var(--primary);
   }
 
   .price {
-    color: map.get($primary, 900);
+    color: var(--primary-900);
   }
 
   .name {
-    color: map.get($primary, 900);
+    color: var(--primary-900);
   }
 }

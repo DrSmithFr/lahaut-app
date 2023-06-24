@@ -8,6 +8,7 @@ import {ShoppingService} from "../../services/shopping.service";
 import {CartModel} from "../../models/cart.model";
 import {NavigationEnd, Router} from "@angular/router";
 import {environment} from "../../../environments/environment";
+import {ThemeService} from "../../services/theme.service";
 
 @Component({
   selector: 'app-navigation',
@@ -34,12 +35,15 @@ export class NavigationComponent implements OnInit {
   currentUrl = '';
   previousUrl = '';
 
+  isDarkMode = false;
+
   constructor(
     private auth: AuthService,
     private navigationService: NavigationService,
     private shoppingService: ShoppingService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private themeService: ThemeService
   ) {
     router
       .events
@@ -109,6 +113,13 @@ export class NavigationComponent implements OnInit {
       .subscribe((show) => {
         this.showShoppingCartButton = show;
       });
+
+    this
+      .themeService
+      .getDarkModeSubject()
+      .subscribe((isDark) => {
+        this.isDarkMode = isDark;
+      });
   }
 
   openLogoutDialog() {
@@ -151,5 +162,9 @@ export class NavigationComponent implements OnInit {
   goToPreviousPage() {
     console.log('goToPreviousPage', this.previousUrl);
     this.router.navigateByUrl(this.previousUrl);
+  }
+
+  setDarkMode(darkMode: boolean) {
+    this.themeService.setDarkMode(darkMode);
   }
 }

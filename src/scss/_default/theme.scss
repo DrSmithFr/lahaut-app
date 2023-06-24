@@ -3,5 +3,5 @@
 }
 
 @mixin theme-dark() {
-  html.dark { @content; }
+  [data-theme="dark"] { @content; }
 }

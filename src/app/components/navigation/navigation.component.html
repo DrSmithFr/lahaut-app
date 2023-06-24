@@ -115,6 +115,17 @@
         </button>
       </div>
 
+      <!-- Dark mode -->
+      <hr>
+      <button mat-menu-item (click)="setDarkMode(true)" *ngIf="!isDarkMode">
+        <mat-icon>dark_mode</mat-icon>
+        <span>Dark Mode</span>
+      </button>
+      <button mat-menu-item (click)="setDarkMode(false)" *ngIf="isDarkMode">
+        <mat-icon>light_mode</mat-icon>
+        <span>Light Mode</span>
+      </button>
+
     </mat-menu>
 
   </mat-toolbar-row>

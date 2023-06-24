@@ -4,10 +4,7 @@
 
 .light-card {
   box-shadow: none;
-
-  @include theme-light() {
-    background: rgba(255, 255, 255, 0.7);
-  }
+  background: var(--background-transparent);
 
   @include theme-dark() {
     background: rgba(66, 66, 66, 0.7);

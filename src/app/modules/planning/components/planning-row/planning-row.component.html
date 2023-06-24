@@ -8,7 +8,7 @@
     <mat-expansion-panel-header>
       <mat-panel-title>
           <span class="time">
-            <span class="start">{{result.startAt|slice:10}}</span>
+            <span>{{result.startAt|slice:10}}</span>
             <span class="end" *ngIf="error"><mat-icon>error</mat-icon></span>
             <span class="end" *ngIf="!error && booking">{{result.endAt|slice:10}}</span>
           </span>

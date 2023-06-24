@@ -10,39 +10,18 @@
 @import url(https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600&display=swap);
 
 // Importing variables
+@import "animations";
 @import "breakpoints";
 @import "colors";
 @import "fonts";
 @import "theme";
 
-// CSS variables
+// color palettes CSS varibales helpers
 :root {
   // fonts
   --font-text: #{$font-text};
   --font-title: #{$font-title};
 
-  // colors
-  --primary: #{map-get($primary, 500)};
-  --accent: #{map-get($accent, 500)};
-  --base: #{map-get($base, 500)};
-
-  --background: #fff;
-  --background-dark: #f4f4f4;
-
-  ---background-primary: #{rgba(map-get($primary, 500), 0.7)};
-  ---background-accent: #{rgba(map-get($accent, 500), 0.7)};
-  ---background-warn: #{rgba(map-get($warn, 500), 0.7)};
-  ---background-base: #{rgba(map-get($base, 500), 0.7)};
-
-  --text-light: #{map-get($base, 200)};
-  --text: #{map-get($base, 500)};
-  --text-dark: #{map-get($base, 800)};
-
-  --border-light: #{map-get($base, 50)};
-  --border: #{map-get($base, 100)};
-  --border-dark: #{map-get($base, 200)};
-
-  // color palettes
   --primary-50: #{map-get($primary, 50)};
   --primary-100: #{map-get($primary, 100)};
   --primary-200: #{map-get($primary, 200)};
@@ -88,18 +67,66 @@
   --base-900: #{map-get($base, 900)};
 }
 
+// Themes
+:root {
+  // colors
+  --primary: #{map-get($primary, 500)};
+  --accent: #{map-get($accent, 500)};
+  --base: #{map-get($base, 500)};
+
+  --background: #fff;
+  --background-transparent: #{rgba(#fff, 0.7)};
+
+  --background-dark: #dadada;
+  --background-dark-transparent: rgba(250,250,250,.7);
+
+  --green: #68cf3b;
+
+  ---background-primary: #{rgba(map-get($primary, 500), 0.7)};
+  ---background-accent: #{rgba(map-get($accent, 500), 0.7)};
+  ---background-warn: #{rgba(map-get($warn, 500), 0.7)};
+  ---background-base: #{rgba(map-get($base, 500), 0.7)};
+
+  --text-light: #{map-get($base, 200)};
+  --text: #{map-get($base, 500)};
+  --text-dark: #{map-get($base, 800)};
+
+  --border-light: #{map-get($base, 50)};
+  --border: #{map-get($base, 100)};
+  --border-dark: #{map-get($base, 200)};
+}
+
 [data-theme="dark"] {
-  --primary-color: #9A97F3;
-  --secondary-color: #818cab;
-  --font-color: #e1e1ff;
-  --bg-color: #161625;
-  --heading-color: #818cab;
+  // colors
+  --primary: #{map-get($primary, 500)};
+  --accent: #{map-get($accent, 500)};
+  --base: #{map-get($base, 500)};
+
+  --background: #000;
+  --background-transparent: #{rgba(#000, 0.7)};
+  --background-dark: #666;
+
+  --green: #55a632;
+
+  ---background-primary: #{rgba(map-get($primary, 900), 0.7)};
+  ---background-accent: #{rgba(map-get($accent, 900), 0.7)};
+  ---background-warn: #{rgba(map-get($warn, 900), 0.7)};
+  ---background-base: #{rgba(map-get($base, 900), 0.7)};
+
+  --text-light: #{map-get($base, 50)};
+  --text: #{map-get($base, 100)};
+  --text-dark: #{map-get($base, 200)};
+
+  --border-light: #{map-get($base, 500)};
+  --border: #{map-get($base, 700)};
+  --border-dark: #{map-get($base, 900)};
 }
 
 // import material styles
 @import "scss/material";
 @import "scss/material-customs/_all";
-@import "scss/reusables/_all";
+@import "scss/components/_all";
+@import "scss/fonctionals/_all";
 
 // imperative styles
 .center {
@@ -114,7 +141,7 @@
   text-align: left;
 }
 
-.full {
+.full-width {
   width: 100%;
 }
 
@@ -169,4 +196,20 @@ div, p, a,
 h1, h2, h3, h4, h5, .title, .mat-card-title
 {
   font-family: var(--font-title);
+}
+
+// Custom styles
+html {
+  background-image: url(/assets/background.png);
+
+  @include desktop {
+    background-image: url(/assets/background-short.png);
+  }
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: var(--background);
+
+  @include animation-background-raise();
 }

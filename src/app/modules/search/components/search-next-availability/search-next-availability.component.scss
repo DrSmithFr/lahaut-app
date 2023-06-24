@@ -2,7 +2,7 @@
   .container {
     margin: 20px 0;
     padding-bottom: 20px;
-    background: rgba(255, 255, 255, 0.7);
+    background: var(--background-transparent);
     border-radius: 5px;
   }
 
@@ -10,14 +10,14 @@
     margin: 20px 10px 0 20px;
     display: inline-block;
 
-    color: #6c6c6c;
+    color: var(--text);
   }
 
   h4 {
     margin: 0 10px 0 20px;
     display: inline-block;
 
-    color: #6c6c6c;
+    color: var(--text);
   }
 
   mat-spinner {

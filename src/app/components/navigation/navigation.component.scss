@@ -23,11 +23,9 @@
 }
 
 .toolbar {
-  @include theme-light() {
-    background-color: var(--background);
-    border-bottom: 1px solid var(--base-100);
-    color: var(--base-300);
-  }
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-dark);
 
   z-index: 10;
 

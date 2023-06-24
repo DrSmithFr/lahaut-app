@@ -50,7 +50,7 @@ h1.title {
 
         h3 {
           margin: 0;
-          color: map.get($accent, 400);
+          color: var(--accent-400);
           line-height: 16px;
           font-weight: 500;
         }

@@ -1,4 +1,4 @@
-<mat-accordion>
+<mat-accordion class="airy">
   <div *ngFor="let result of results | keyvalue">
     <app-planning-row [result]="result.value" (requestPlanningRefresh)="refresh()"></app-planning-row>
   </div>
