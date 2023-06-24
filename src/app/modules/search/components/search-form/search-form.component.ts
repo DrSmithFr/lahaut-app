@@ -28,7 +28,7 @@ export class SearchFormComponent implements OnInit {
         disabled: true,
       }, [Validators.required]),
       date: new FormControl<Date|null>(null, [Validators.required]),
-      person: new FormControl<number|null>(1, [Validators.required]),
+      person: new FormControl<string|null>("1", [Validators.required]),
     }
   );
 
@@ -47,6 +47,8 @@ export class SearchFormComponent implements OnInit {
     const date = this.urlParamQuery?.date ?? '';
     const person = this.urlParamQuery?.person ?? 1;
 
+    console.log('person', person);
+
     const obs = [];
 
     obs.push(this.loadFlyLocations());
@@ -62,7 +64,7 @@ export class SearchFormComponent implements OnInit {
           location,
           flyType,
           date,
-          person,
+          person: ''+person,
         });
 
       setTimeout(() => {
@@ -142,7 +144,7 @@ export class SearchFormComponent implements OnInit {
     const location = this.getLocationFormControl()?.value ?? null;
     const flyType = this.getFlyTypeFormControl()?.value ?? null;
     const date = this.getDateFormControl()?.value ?? null;
-    const person = this.getPersonFormControl()?.value ?? null;
+    const person = parseInt(this.getPersonFormControl()?.value ?? "0");
 
     if (!location || !flyType || date === null || person === null || person < 1) {
       console.error('Form is not valid');
