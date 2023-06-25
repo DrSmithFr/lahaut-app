@@ -7,6 +7,7 @@ import {Search} from "../../models/search";
 import {SearchService} from "../../../../services/search.service";
 import {NavigationService} from "../../../../services/navigation.service";
 import {environment} from "../../../../../environments/environment";
+import {ThemeService} from "../../../../services/theme.service";
 
 @Component({
   selector: 'app-search',
@@ -25,6 +26,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   currentQuery: SearchQuery;
   search: Search;
 
+  isDarkMode = false;
+
   constructor(
     private api: ApiService,
     private searchService: SearchService,
@@ -32,11 +35,19 @@ export class SearchComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private navigationService: NavigationService,
+    private themeService: ThemeService
   ) {
   }
 
   ngOnInit(): void {
     this.navigationService.setLogoVisibility(false);
+
+    this
+      .themeService
+      .getDarkModeSubject()
+      .subscribe((isDark) => {
+        this.isDarkMode = isDark;
+      });
 
     this
       .route

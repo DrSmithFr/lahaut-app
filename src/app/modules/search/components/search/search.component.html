@@ -2,10 +2,9 @@
 
 <div class="page-container search-container">
   <section>
-    <picture>
-      <source srcset="{{logoUrl.dark.large}}" media="(prefers-color-scheme: dark)">
-      <img class="logo" src="{{logoUrl.light.large}}" alt="Logo">
-    </picture>
+    <img class="logo" src="{{logoUrl.light.large}}" alt="Logo" *ngIf="!isDarkMode">
+    <img class="logo" src="{{logoUrl.dark.large}}" alt="Logo" *ngIf="isDarkMode">
+
     <div class="search-form-slider">
       <app-search-form [urlParamQuery]="urlParamQuery" (query)="requestResults($event)"></app-search-form>
     </div>

@@ -25,10 +25,8 @@
 
     <div>
       <a routerLink="/search" *ngIf="showLogo">
-        <picture>
-          <source srcset="{{logoUrl.dark.large}}" media="(prefers-color-scheme: dark)">
-          <img class="logo" src="{{logoUrl.light.large}}" alt="Logo">
-        </picture>
+        <img class="logo" src="{{logoUrl.light.large}}" alt="Logo" *ngIf="!isDarkMode">
+        <img class="logo" src="{{logoUrl.dark.large}}" alt="Logo" *ngIf="isDarkMode">
       </a>
     </div>
 
