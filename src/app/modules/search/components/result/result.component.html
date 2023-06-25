@@ -6,4 +6,8 @@
 
 </mat-accordion>
 
-<h2 *ngIf="search && search.results && search.results.size === 0">Aucun résultat pour votre recherche...</h2>
+<mat-card *ngIf="search && search.results && search.results.size === 0">
+  <app-info>
+    Aucun résultat pour votre recherche...
+  </app-info>
+</mat-card>
