@@ -39,10 +39,11 @@
       placeholder="Mot de passe"
       tabindex="2">
     <mat-icon matPrefix>key</mat-icon>
-    <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hidePassword">
-      <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
+    <mat-icon
+      matSuffix
+      (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'">
+      {{hidePassword ? 'visibility_off' : 'visibility'}}
+    </mat-icon>
     <mat-error *ngIf="hasError(getPassword())">
       Entre ton mot de passe !
     </mat-error>
@@ -60,10 +61,11 @@
       placeholder="Comfirmes ton mot de passe"
       tabindex="3">
     <mat-icon matPrefix>key</mat-icon>
-    <button mat-icon-button matSuffix (click)="hidePassword2 = !hidePassword2" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hidePassword2">
-      <mat-icon>{{hidePassword2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
+    <mat-icon
+      matSuffix
+      (click)="hidePassword2 = !hidePassword2" [attr.aria-label]="'Hide password'">
+      {{hidePassword2 ? 'visibility_off' : 'visibility'}}
+    </mat-icon>
     <mat-error *ngIf="hasError(getPassword2())">
           <span *ngIf="getPassword2()?.errors?.['required']">
             Comfirmes ton mot de passe !

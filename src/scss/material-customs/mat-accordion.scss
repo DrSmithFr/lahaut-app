@@ -8,7 +8,7 @@
     background: var(--background-transparent);
 
     @import "animations/fade-in";
-    @include fade-in();
+    @include fade-in(0.5s);
   }
 
   .mat-expansion-panel:hover {

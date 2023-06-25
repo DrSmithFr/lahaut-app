@@ -107,6 +107,9 @@
 @import "scss/components/_all";
 @import "scss/fonctionals/_all";
 
+// import animations keyframes
+@import "animations/_all_keyframes";
+
 // imperative styles
 .center {
   text-align: center;

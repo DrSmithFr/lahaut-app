@@ -1,7 +1,9 @@
-@mixin fade-in() {
+@mixin fade-in($time) {
   opacity: 0;
-  animation: fade-in 0.5s linear forwards;
+  animation: fade-in $time linear forwards;
+}
 
+@mixin fade-in-keyframes() {
   @keyframes fade-in {
     0% {
       opacity: 0;

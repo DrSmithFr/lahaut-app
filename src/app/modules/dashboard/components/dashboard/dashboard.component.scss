@@ -4,6 +4,9 @@
 .daily-planning {
   margin-top: 50px;
 
+  @import "animations/fade-in";
+  @include fade-in(0.5s);
+
   h1 {
     color: var(--accent);
 

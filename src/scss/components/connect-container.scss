@@ -12,6 +12,9 @@
 .connect-container {
   padding: 30px 30px 0;
 
+  @import "animations/fade-in";
+  @include fade-in(0.5s);
+
   @include mobile-xl() {
     max-width: 75%;
     margin: auto;

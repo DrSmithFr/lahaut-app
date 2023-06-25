@@ -8,6 +8,9 @@
   height: 100%;
   width: 100%;
 
+  @import "animations/fade-in";
+  @include fade-in(0.5s);
+
   @include mobile-all() {
     padding: 20px;
     width: auto;

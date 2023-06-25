@@ -4,6 +4,9 @@
 @import "breakpoints";
 
 .planning {
+  @import "animations/fade-in";
+  @include fade-in(0.5s);
+
   .planning-header {
 
   }

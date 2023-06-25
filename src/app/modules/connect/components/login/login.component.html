@@ -10,8 +10,7 @@
       autofocus
       type="text"
       formControlName="username"
-      autocomplete="email"
-      tabindex="1">
+      autocomplete="email">
     <mat-icon matPrefix>mail</mat-icon>
     <mat-error *ngIf="hasError(getUsername())">
       Entre ton email !
@@ -26,17 +25,13 @@
       #password
       [type]="hidePassword ? 'password' : 'text'"
       formControlName="password"
-      autocomplete="password"
-      tabindex="2">
+      autocomplete="password">
     <mat-icon matPrefix>key</mat-icon>
-    <button
-      mat-icon-button
+    <mat-icon
       matSuffix
-      tabindex="-1"
-      (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
-      [attr.aria-pressed]="hidePassword">
-      <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
+      (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'">
+      {{hidePassword ? 'visibility_off' : 'visibility'}}
+    </mat-icon>
     <mat-error *ngIf="hasError(getPassword())">
       Entre ton mot de passe !
     </mat-error>
@@ -48,8 +43,7 @@
       [disabled]="loginForm.invalid"
       mat-flat-button
       color="primary"
-      type="submit"
-      tabindex="3">
+      type="submit">
       Connexion
     </button>
     <mat-spinner
