@@ -9,12 +9,12 @@ export const environment = {
   url_api:    'https://ms-base',
   logo: {
     light: {
-      small: 'assets/logo.png',
-      large: 'assets/logo_large.png',
+      small: 'assets/corporate/logo/logo.png',
+      large: 'assets/corporate/logo/logo_large.png',
     },
     dark: {
-      small: 'assets/logo_dark.png',
-      large: 'assets/logo_large_dark.png',
+      small: 'assets/corporate/logo/logo_dark.png',
+      large: 'assets/corporate/logo/logo_large_dark.png',
     }
   }
 };

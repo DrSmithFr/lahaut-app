@@ -9,12 +9,12 @@ export const environment = {
   url_api:    'https://lahautparapente.fr/backend',
   logo: {
     light: {
-      small: 'assets/logo_new.png',
-      large: 'assets/logo_large_new.png',
+      small: 'assets/corporate/logo/logo_new.png',
+      large: 'assets/corporate/logo/logo_large_new.png',
     },
     dark: {
-      small: 'assets/logo_new.png',
-      large: 'assets/logo_large_new.png',
+      small: 'assets/corporate/logo/logo_new.png',
+      large: 'assets/corporate/logo/logo_large_new.png',
     }
   }
 };

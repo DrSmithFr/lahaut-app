@@ -1,33 +1,35 @@
-$mobile-break: 500;
-$tablet-break: 900;
-$desktop-break: 1200;
+@use "sass:map";
 
-
+$breakpoints: (
+  mobile: 500,
+  tablet: 900,
+  desktop: 1200,
+);
 
 @mixin mobile-xs {
-  @media screen and (max-width: #{$mobile-break}px) { @content; }
+  @media screen and (max-width: #{map.get($breakpoints, mobile)-1}px) { @content; }
 }
 
 @mixin mobile-xl {
-  @media screen and (min-width: #{$mobile-break}px) and (max-width: #{$tablet-break}px) { @content; }
+  @media screen and (min-width: #{map.get($breakpoints, mobile)}px) and (max-width: #{map.get($breakpoints, tablet)-1}px) { @content; }
 }
 
 @mixin mobile-all {
-  @media screen and (max-width: #{$tablet-break}px) { @content; }
+  @media screen and (max-width: #{map.get($breakpoints, tablet)-1}px) { @content; }
 }
 
 @mixin tablet {
-  @media screen and (min-width: #{$tablet-break}px) and (max-width: #{$desktop-break}px){ @content; }
+  @media screen and (min-width: #{map.get($breakpoints, tablet)}px) and (max-width: #{map.get($breakpoints, desktop)-1}px){ @content; }
 }
 
 @mixin mobile-and-tablet() {
-  @media screen and (max-width: #{$desktop-break}px) { @content; }
+  @media screen and (max-width: #{map.get($breakpoints, desktop)-1}px) { @content; }
 }
 
 @mixin desktop {
-  @media screen and (min-width: #{$desktop-break}px) { @content; }
+  @media screen and (min-width: #{map.get($breakpoints, desktop)}px) { @content; }
 }
 
 @mixin tablet-and-desktop() {
-  @media screen and (min-width: #{$tablet-break}px) { @content; }
+  @media screen and (min-width: #{map.get($breakpoints, tablet)}px) { @content; }
 }

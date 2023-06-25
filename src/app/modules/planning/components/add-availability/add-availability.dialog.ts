@@ -9,6 +9,7 @@ import {
 import {ApiService} from "../../../../services/api.service";
 import {tap} from "rxjs/operators";
 import {FlyLocationModel} from "../../../../models/fly/FlyLocationModel";
+import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
 
 @Component({
   selector: 'app-add-availability',
@@ -41,12 +42,27 @@ export class AddAvailabilityDialog implements OnInit {
 
   loading = false;
 
+  // Datepicker options
+  toucheUi = false;
+  autoOpen = false;
+
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddAvailabilityDialog>,
     public dialog: MatDialog,
     public api: ApiService,
+    private breakpointService: BreakpointService,
   ) {
+    this
+      .breakpointService
+      .getDeviceSubject()
+      .pipe(
+        tap((device) => {
+          this.toucheUi = device === Devices.smallMobile;
+          this.autoOpen = device === Devices.smallMobile || device === Devices.largeMobile || device === Devices.tablet;
+        })
+      )
+      .subscribe();
   }
 
   ngOnInit() {

@@ -70,7 +70,13 @@
               ],
               "outputHashing": "all",
               "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              "ngswConfigPath": "ngsw-config.json",
+              "optimization": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "buildOptimizer": true
             },
             "development": {
               "buildOptimizer": false,

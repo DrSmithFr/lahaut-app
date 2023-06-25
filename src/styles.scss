@@ -182,10 +182,10 @@ h1, h2, h3, h4, h5, .title, .mat-card-title {
 
 // Custom styles
 html {
-  background-image: url(/src/assets/app/background/background.png);
+  background-image: url(/assets/corporate/background/background.png);
 
   @include desktop {
-    background-image: url(/src/assets/app/background/background-short.png);
+    background-image: url(/assets/corporate/background/background-short.png);
   }
 
   background-size: contain;

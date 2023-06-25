@@ -6,6 +6,7 @@ import {FlyLocationModel} from "../../../../models/fly/FlyLocationModel";
 import {FlyTypeModel} from "../../../../models/fly/FlyTypeModel";
 import {tap} from "rxjs/operators";
 import {concat} from "rxjs";
+import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
 
 @Component({
   selector: 'app-search-form',
@@ -19,26 +20,41 @@ export class SearchFormComponent implements OnInit {
 
   searchForm = this.fb.group(
     {
-      location: new FormControl<string|null>({
+      location: new FormControl<string | null>({
         value: '',
         disabled: true,
       }, [Validators.required]),
-      flyType: new FormControl<string|null>({
+      flyType: new FormControl<string | null>({
         value: '',
         disabled: true,
       }, [Validators.required]),
-      date: new FormControl<Date|null>(null, [Validators.required]),
-      person: new FormControl<string|null>("1", [Validators.required]),
+      date: new FormControl<Date | null>(null, [Validators.required]),
+      person: new FormControl<string | null>("1", [Validators.required]),
     }
   );
 
   flyLocations: FlyLocationModel[];
   flyTypes: FlyTypeModel[];
 
+  // Datepicker options
+  toucheUi = false;
+  autoOpen = false;
+
   constructor(
     private fb: FormBuilder,
     private api: ApiService,
+    private breakpointService: BreakpointService,
   ) {
+    this
+      .breakpointService
+      .getDeviceSubject()
+      .pipe(
+        tap((device) => {
+          this.toucheUi = device === Devices.smallMobile;
+          this.autoOpen = device === Devices.smallMobile || device === Devices.largeMobile || device === Devices.tablet;
+        })
+      )
+      .subscribe();
   }
 
   ngOnInit(): void {
@@ -64,7 +80,7 @@ export class SearchFormComponent implements OnInit {
           location,
           flyType,
           date,
-          person: ''+person,
+          person: '' + person,
         });
 
       setTimeout(() => {

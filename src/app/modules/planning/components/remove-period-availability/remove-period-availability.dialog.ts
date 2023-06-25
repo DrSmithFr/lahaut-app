@@ -5,6 +5,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
 import {BookingModel} from "../../../../models/fly/bookingModel";
+import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-remove-period-availability',
@@ -25,13 +27,28 @@ export class RemovePeriodAvailabilityDialog {
   bookings: BookingModel[] | null = null;
   override = false;
 
+  // Datepicker options
+  toucheUi = false;
+  autoOpen = false;
+
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<RemovePeriodAvailabilityDialog>,
     private apiService: ApiService,
     private snackBar: MatSnackBar,
     private api: ApiService,
+    private breakpointService: BreakpointService,
   ) {
+    this
+      .breakpointService
+      .getDeviceSubject()
+      .pipe(
+        tap((device) => {
+          this.toucheUi = device === Devices.smallMobile;
+          this.autoOpen = device === Devices.smallMobile || device === Devices.largeMobile || device === Devices.tablet;
+        })
+      )
+      .subscribe();
   }
 
   closeModal() {

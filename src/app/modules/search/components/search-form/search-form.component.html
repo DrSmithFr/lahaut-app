@@ -26,9 +26,9 @@
         <div class="input3">
           <mat-form-field appearance="fill">
             <mat-label>Date</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="date" (dateChange)="trySubmit()" placeholder="mm/dd/yyyy">
+            <input matInput [matDatepicker]="picker" formControlName="date" (focus)="autoOpen && picker.open()" (dateChange)="trySubmit()" placeholder="mm/dd/yyyy">
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker #picker [touchUi]="toucheUi"></mat-datepicker>
           </mat-form-field>
         </div>
         <div class="input4">

@@ -14,9 +14,10 @@
         [matDatepicker]="pickerStart"
         (dateChange)="updateEndDate()"
         formControlName="start"
-        placeholder="mm/dd/yyyy">
+        placeholder="mm/dd/yyyy"
+        (focus)="autoOpen && pickerStart.open()">
       <mat-datepicker-toggle matIconSuffix [for]="pickerStart"></mat-datepicker-toggle>
-      <mat-datepicker #pickerStart></mat-datepicker>
+      <mat-datepicker #pickerStart [touchUi]="toucheUi"></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width" *ngIf="periodForm.value.dayOnly === false">
@@ -26,9 +27,10 @@
         [disabled]="validated"
         [matDatepicker]="pickerEnd"
         formControlName="end"
-        placeholder="mm/dd/yyyy">
+        placeholder="mm/dd/yyyy"
+        (focus)="autoOpen && pickerEnd.open()">
       <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
-      <mat-datepicker #pickerEnd></mat-datepicker>
+      <mat-datepicker #pickerEnd [touchUi]="toucheUi"></mat-datepicker>
 
       <mat-error *ngIf="getEnd()?.errors?.['invalid_period']">
         La période est invalide.
