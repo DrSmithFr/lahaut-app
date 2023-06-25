@@ -148,7 +148,7 @@ body {
 
 html, button, input, select, textarea {
   font-family: 'Montserrat', Helvetica, sans-serif;
-  color: #bbb;
+  color: var(--text);
 }
 
 h1 {
@@ -173,7 +173,7 @@ a.more-link {
   background-color: var(--primary);
   padding: 10px 15px;
   border-radius: 0;
-  color: #fff;
+  color: var(--background);
   display: inline-block;
   margin-right: 5px;
   margin-bottom: 5px;

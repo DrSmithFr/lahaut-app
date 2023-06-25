@@ -50,12 +50,12 @@
 
       .start {
         font-size: 20px;
-        color: #68cf3b;
+        color: var(--green);
       }
 
       .end {
         align-self: center;
-        color: #9b9b9b;
+        color: var(--text);
       }
     }
   }
