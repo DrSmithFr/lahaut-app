@@ -37,7 +37,7 @@
   border-radius: 999px;
   background: linear-gradient(140deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.07) 43%, transparent 44%, transparent 100%),
   linear-gradient(105deg, transparent 0%, transparent 40%, rgba(0, 0, 0, 0.06) 41%, rgba(0, 0, 0, 0.07) 76%, transparent 77%, transparent 100%),
-  linear-gradient(to right, var(--primary-200), var(--primary));
+  linear-gradient(to right, var(--primary-ligth), var(--primary));
 }
 
 .error-container > span.four:before,
@@ -55,7 +55,7 @@
   bottom: -43px;
   background: linear-gradient(128deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.07) 40%, transparent 41%, transparent 100%),
   linear-gradient(116deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.07) 50%, transparent 51%, transparent 100%),
-  linear-gradient(to top, var(--primary-200), var(--accent), var(--accent), var(--primary-200), var(--primary));
+  linear-gradient(to top, var(--primary-ligth), var(--accent), var(--accent), var(--primary-ligth), var(--primary));
 }
 
 .error-container > span.four:after {
@@ -64,7 +64,7 @@
   transform: rotate(-49.5deg);
   left: -18px;
   bottom: 36px;
-  background: linear-gradient(to right, var(--primary-200), var(--accent), var(--accent), var(--primary-200), var(--primary));
+  background: linear-gradient(to right, var(--primary-ligth), var(--accent), var(--accent), var(--primary-ligth), var(--primary));
 }
 
 .error-container > span.zero {
@@ -78,7 +78,7 @@
 
   border-radius: 999px;
   background: linear-gradient(-45deg, transparent 0%, rgba(0, 0, 0, 0.06) 50%, transparent 51%, transparent 100%),
-  linear-gradient(to top right, var(--primary-200), var(--accent), var(--accent), var(--primary-200), var(--primary));
+  linear-gradient(to top right, var(--primary-ligth), var(--accent), var(--accent), var(--primary-ligth), var(--primary));
   overflow: hidden;
   animation: bgshadow 5s infinite;
 }
@@ -106,7 +106,7 @@
   height: 70px;
   left: 43px;
   bottom: 43px;
-  background: var(--base-50);
+  background: var(--background-dark);
   box-shadow: -2px 2px 2px 0px rgba(0, 0, 0, 0.1);
 
   @include mobile-all() {

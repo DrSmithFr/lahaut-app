@@ -80,9 +80,9 @@
         text-align: center;
 
         border-radius: 50%;
-        border: 2px solid var(--base-200);
+        border: 2px solid var(--border-dark);
 
-        color: var(--base-200);
+        color: var(--text-light);
 
         font-size: 1rem;
         font-weight: bold;
@@ -90,7 +90,7 @@
       }
 
       .day-name {
-        color: var(--base-200);
+        color: var(--text-light);
         font-size: 1rem;
         font-weight: 500;
 
@@ -125,7 +125,7 @@
       &.today {
         .day-number {
           background: var(--accent);
-          border-color: var(--accent-200);
+          border-color: var(--accent-ligth);
           color: var(--background);
         }
 
@@ -136,7 +136,7 @@
         &:hover, &.selected {
           .day-number {
             background: var(--primary);
-            border-color: var(--primary-200);
+            border-color: var(--primary-ligth);
             color: var(--background);
           }
 

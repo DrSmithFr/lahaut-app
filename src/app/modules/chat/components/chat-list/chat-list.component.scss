@@ -36,17 +36,17 @@
 
         .last-message {
           font-size: 12px;
-          color: var(--base-200);
+          color: var(--text-light);
         }
       }
     }
 
     &.active, &:hover {
       cursor: pointer;
-      background: var(--primary-100);
+      background: var(--primary-ligth);
 
       .last-message {
-        color: var(--base-400);
+        color: var(--text);
       }
     }
   }

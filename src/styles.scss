@@ -28,10 +28,6 @@
 
 // Themes Light/Dark
 :root {
-  --primary: #{map-get($primary, 500)};
-  --accent: #{map-get($accent, 500)};
-  --base: #{map-get($base, 500)};
-
   --background: #fff;
   --background-transparent: #{rgba(#fff, 0.7)};
 
@@ -48,66 +44,34 @@
 
   --border-light: #{map-get($base, 50)};
   --border: #{map-get($base, 100)};
-  --border-dark: #{map-get($base, 200)};
+  --border-dark: #{map-get($base, 300)};
 
-  --primary-50: #{map-get($primary, 50)};
-  --primary-100: #{map-get($primary, 100)};
-  --primary-200: #{map-get($primary, 200)};
-  --primary-300: #{map-get($primary, 300)};
-  --primary-400: #{map-get($primary, 400)};
-  --primary-500: #{map-get($primary, 500)};
-  --primary-600: #{map-get($primary, 600)};
-  --primary-700: #{map-get($primary, 700)};
-  --primary-800: #{map-get($primary, 800)};
-  --primary-900: #{map-get($primary, 900)};
+  --primary-ligth: #{map-get($primary, 200)};
+  --primary: #{map-get($primary, 500)};
+  --primary-dark: #{map-get($primary, 900)};
 
-  --accent-50: #{map-get($accent, 50)};
-  --accent-100: #{map-get($accent, 100)};
-  --accent-200: #{map-get($accent, 200)};
-  --accent-300: #{map-get($accent, 300)};
-  --accent-400: #{map-get($accent, 400)};
-  --accent-500: #{map-get($accent, 500)};
-  --accent-600: #{map-get($accent, 600)};
-  --accent-700: #{map-get($accent, 700)};
-  --accent-800: #{map-get($accent, 800)};
-  --accent-900: #{map-get($accent, 900)};
+  --accent-ligth: #{map-get($accent, 200)};
+  --accent: #{map-get($accent, 500)};
+  --accent-dark: #{map-get($accent, 900)};
 
-  --warn-50: #{map-get($warn, 50)};
-  --warn-100: #{map-get($warn, 100)};
-  --warn-200: #{map-get($warn, 200)};
-  --warn-300: #{map-get($warn, 300)};
-  --warn-400: #{map-get($warn, 400)};
-  --warn-500: #{map-get($warn, 500)};
-  --warn-600: #{map-get($warn, 600)};
-  --warn-700: #{map-get($warn, 700)};
-  --warn-800: #{map-get($warn, 800)};
-  --warn-900: #{map-get($warn, 900)};
+  --warn-ligth: #{map-get($warn, 200)};
+  --warn: #{map-get($warn, 500)};
+  --warn-dark: #{map-get($warn, 900)};
 
-  --base-50: #{map-get($base, 50)};
-  --base-100: #{map-get($base, 100)};
-  --base-200: #{map-get($base, 200)};
-  --base-300: #{map-get($base, 300)};
-  --base-400: #{map-get($base, 400)};
-  --base-500: #{map-get($base, 500)};
-  --base-600: #{map-get($base, 600)};
-  --base-700: #{map-get($base, 700)};
-  --base-800: #{map-get($base, 800)};
-  --base-900: #{map-get($base, 900)};
+  --base-ligth: #{map-get($base, 200)};
+  --base: #{map-get($base, 500)};
+  --base-dark: #{map-get($base, 900)};
 }
 
 [data-theme="dark"] {
   // colors
   --green: #68cf3b;
 
-  --primary: #{map-get($primary, 500)};
-  --accent: #{map-get($accent, 500)};
-  --base: #{map-get($base, 500)};
+  --background: #{map-get($base, 900)};
+  --background-transparent: #{rgba(map-get($base, 800), 0.7)};
 
-  --background: #{rgba(map-get($base, 500), 0.7)};
-  --background-transparent: #{rgba(map-get($base, 900), 0.7)};
-
-  --background-dark: #666;
-  --background-dark-transparent: #{rgba(#666,.7)};
+  --background-dark: #{rgba(#666,.7)};
+  --background-dark-transparent: #{rgba(map-get($base, 900), 0.7)};
 
   ---background-primary: #{rgba(map-get($primary, 500), 0.7)};
   ---background-accent: #{rgba(map-get($accent, 500), 0.7)};
@@ -121,38 +85,21 @@
   --border: #{map-get($base, 700)};
   --border-dark: #{map-get($base, 900)};
 
-  --primary-50: #{map-get($primary, 900)};
-  --primary-100: #{map-get($primary, 800)};
-  --primary-200: #{map-get($primary, 700)};
-  --primary-300: #{map-get($primary, 600)};
-  --primary-400: #{map-get($primary, 500)};
-  --primary-500: #{map-get($primary, 400)};
-  --primary-600: #{map-get($primary, 300)};
-  --primary-700: #{map-get($primary, 200)};
-  --primary-800: #{map-get($primary, 100)};
-  --primary-900: #{map-get($primary, 50)};
+  --primary-ligth: #{map-get($primary, 900)};
+  --primary: #{map-get($primary, 500)};
+  --primary-dark: #{map-get($primary, 200)};
 
-  --warn-50: #{map-get($warn, 900)};
-  --warn-100: #{map-get($warn, 800)};
-  --warn-200: #{map-get($warn, 700)};
-  --warn-300: #{map-get($warn, 600)};
-  --warn-400: #{map-get($warn, 500)};
-  --warn-500: #{map-get($warn, 400)};
-  --warn-600: #{map-get($warn, 300)};
-  --warn-700: #{map-get($warn, 200)};
-  --warn-800: #{map-get($warn, 100)};
-  --warn-900: #{map-get($warn, 50)};
+  --accent-ligth: #{map-get($accent, 900)};
+  --accent: #{map-get($accent, 500)};
+  --accent-dark: #{map-get($accent, 200)};
 
-  --base-50: #{map-get($base, 900)};
-  --base-100: #{map-get($base, 800)};
-  --base-200: #{map-get($base, 700)};
-  --base-300: #{map-get($base, 600)};
-  --base-400: #{map-get($base, 500)};
-  --base-500: #{map-get($base, 400)};
-  --base-600: #{map-get($base, 300)};
-  --base-700: #{map-get($base, 200)};
-  --base-800: #{map-get($base, 100)};
-  --base-900: #{map-get($base, 50)};
+  --warn-ligth: #{map-get($warn, 900)};
+  --warn: #{map-get($warn, 500)};
+  --warn-dark: #{map-get($warn, 200)};
+
+  --base-ligth: #{map-get($base, 900)};
+  --base: #{map-get($base, 500)};
+  --base-dark: #{map-get($base, 200)};
 }
 
 // import material styles
@@ -225,16 +172,20 @@ div, p, a,
   line-height: 20px;
 }
 
+a:hover {
+  color: var(--primary);
+}
+
 h1, h2, h3, h4, h5, .title, .mat-card-title {
   font-family: var(--font-title);
 }
 
 // Custom styles
 html {
-  background-image: url(/assets/background.png);
+  background-image: url(/src/assets/app/background/background.png);
 
   @include desktop {
-    background-image: url(/assets/background-short.png);
+    background-image: url(/src/assets/app/background/background-short.png);
   }
 
   background-size: contain;

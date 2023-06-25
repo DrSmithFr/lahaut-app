@@ -62,8 +62,8 @@
 .creditcard svg#cardfront,
 .creditcard svg#cardback {
   width: 100%;
-  -webkit-box-shadow: 1px 5px 6px 0px white;
-  box-shadow: 1px 5px 6px 0px white;
+  -webkit-box-shadow: 1px 5px 6px 0 var(--background);
+  box-shadow: 1px 5px 6px 0 var(--background);
   border-radius: 22px;
 }
 
@@ -168,7 +168,7 @@
 }
 
 #cardfront .st2.selected {
-  fill: var(--primary-200);
+  fill: var(--primary-ligth);
 }
 
 #cardfront .st3 {
@@ -244,7 +244,7 @@
 }
 
 #cardback .st6.selected {
-  fill: var(--primary-900);
+  fill: var(--primary-dark);
   stroke-width: 1px;
 }
 

@@ -19,7 +19,7 @@
     text-transform: uppercase;
 
     @include theme-dark() {
-      color: var(--base-200);
+      color: var(--text);
     }
   }
 }

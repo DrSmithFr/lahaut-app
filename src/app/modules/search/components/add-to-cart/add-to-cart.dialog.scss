@@ -5,7 +5,7 @@
 
 .add-to-card {
   .info {
-    color: var(--base-200);
+    color: var(--text-light);
     font-size: 12px;
     text-align: center;
     margin-bottom: 10px;
@@ -35,7 +35,7 @@
       .date {
         font-size: 26px;
         font-weight: 500;
-        color: var(--primary-400);
+        color: var(--primary);
       }
     }
 
@@ -111,7 +111,7 @@
         text-align: center;
         font-size: 18px;
 
-        color: var(--base-300);
+        color: var(--text-light);
       }
 
       .mat-icon {

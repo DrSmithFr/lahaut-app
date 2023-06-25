@@ -65,20 +65,20 @@
 
     .mat-expansion-panel-header-title {
       span {
-        color: var(--primary-900);
+        color: var(--primary-dark);
       }
 
       .start {
-        color: var(--primary-900) !important;
+        color: var(--primary-dark) !important;
       }
 
       .end {
-        color: var(--base-400) !important;
+        color: var(--text) !important;
       }
     }
 
     .mat-expansion-panel-header-description {
-      color: var(--primary-700);
+      color: var(--primary-dark);
     }
   }
 

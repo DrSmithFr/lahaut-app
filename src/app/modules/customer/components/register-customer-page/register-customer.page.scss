@@ -19,7 +19,7 @@
   padding-top: 30px;
 
   mat-icon {
-    color: var(--base-300);
+    color: var(--text);
   }
 
   .login-header {
@@ -45,7 +45,7 @@
   }
 
   a.forgot-password {
-    color: var(--primary-200);
+    color: var(--primary-ligth);
     font-size: 12px;
     font-weight: bold;
   }
