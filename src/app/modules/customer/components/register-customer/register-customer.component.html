@@ -1,5 +1,4 @@
 <form
-  class="register-form"
   [ngClass]="{'shake-on-error form-error': shaking && hasErrorInForm()}"
   [formGroup]="registerForm"
   (ngSubmit)="onSubmit()">
@@ -76,21 +75,19 @@
   </mat-form-field>
 
 
-  <div class="row buttons">
-    <p class="button-container">
-      <button
-        *ngIf="!showLoader"
-        [disabled]="registerForm.invalid"
-        mat-flat-button
-        color="primary"
-        type="submit"
-        tabindex="4">
-        S'inscrire
-      </button>
-      <mat-spinner *ngIf="showLoader"
-                   diameter="37"
-                   style="margin: 0 auto">
-      </mat-spinner>
-    </p>
+  <div class="center">
+    <button
+      *ngIf="!showLoader"
+      [disabled]="registerForm.invalid"
+      mat-flat-button
+      color="primary"
+      type="submit"
+      tabindex="4">
+      S'inscrire
+    </button>
+    <mat-spinner *ngIf="showLoader"
+                 diameter="37"
+                 style="margin: 0 auto">
+    </mat-spinner>
   </div>
 </form>

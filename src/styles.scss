@@ -10,7 +10,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600&display=swap);
 
 // Importing variables
-@import "animations";
 @import "breakpoints";
 @import "colors";
 @import "fonts";
@@ -173,6 +172,7 @@ div, p, a,
 }
 
 a:hover {
+  cursor: pointer;
   color: var(--primary);
 }
 
@@ -193,5 +193,6 @@ html {
   background-attachment: fixed;
   background-color: var(--background);
 
-  @include animation-background-raise();
+  @import "animations/background-img-raise";
+  @include background-img-raise();
 }

@@ -1,0 +1,13 @@
+@mixin background-img-raise() {
+  background-position: 0 200%;
+  animation: background-raise 0.75s linear 0.1s forwards;
+
+  @keyframes background-raise {
+    from {
+      background-position: 0 200%;
+    }
+    to {
+      background-position: bottom;
+    }
+  }
+}
