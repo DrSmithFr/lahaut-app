@@ -7,8 +7,8 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {AuthService} from "../../../../services/auth.service";
-import {ApiService} from "../../../../services/api.service";
+import {AuthService} from "../../../api/services/auth.service";
+import {CallService} from "../../../api/services/call.service";
 import {GoogleAnalyticsService} from "../../../../services/google-analytics.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatStepperModule} from "@angular/material/stepper";
@@ -38,7 +38,7 @@ describe('RegisterMonitorComponent', () => {
       ],
       providers: [
         {provide: AuthService, useValue: AuthServiceMock},
-        {provide: ApiService, useValue: ApiServiceMock},
+        {provide: CallService, useValue: ApiServiceMock},
         {provide: GoogleAnalyticsService, useValue: GoogleAnalyticsServiceMock},
         {provide: MatSnackBar, useValue: MatSnackBarSpy},
 

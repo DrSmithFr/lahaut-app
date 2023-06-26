@@ -1,6 +1,6 @@
 import {PlaceModel} from "./slotDetailModel";
 
-export class FlyLocationModel {
+export class ActivityLocationModel {
   constructor(
     public uuid: string,
     public identifier: string,

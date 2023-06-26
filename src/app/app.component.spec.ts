@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SwPush, SwUpdate} from "@angular/service-worker";
 import {NavigationComponent} from "./components/navigation/navigation.component";
-import {AuthService} from "./services/auth.service";
+import {AuthService} from "./modules/api/services/auth.service";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";

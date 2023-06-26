@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {SlotModel} from "../../../../models/fly/slotModel";
-import {ApiService} from "../../../../services/api.service";
+import {SlotModel} from "../../../api/models/slotModel";
+import {CallService} from "../../../api/services/call.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -17,7 +17,7 @@ export class RemoveHourAvailabilityDialog implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Map<number, SlotModel>,
     public dialogRef: MatDialogRef<RemoveHourAvailabilityDialog>,
-    private apiService: ApiService,
+    private apiService: CallService,
     private snackBar: MatSnackBar,
   ) {
   }

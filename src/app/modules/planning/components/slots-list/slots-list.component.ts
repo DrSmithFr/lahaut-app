@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {SlotModel} from "../../../../models/fly/slotModel";
+import {SlotModel} from "../../../api/models/slotModel";
 
 @Component({
   selector: 'app-slots-list',

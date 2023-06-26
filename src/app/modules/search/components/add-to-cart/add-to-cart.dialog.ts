@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {ApiService} from "../../../../services/api.service";
-import {SlotDetailModel} from "../../../../models/fly/slotDetailModel";
+import {CallService} from "../../../api/services/call.service";
+import {SlotDetailModel} from "../../../api/models/slotDetailModel";
 import {FlyMeetingMapComponent} from "../fly-meeting-map/fly-meeting-map.component";
 import {tap} from "rxjs/operators";
 import {ShoppingService} from "../../../../services/shopping.service";
@@ -22,7 +22,7 @@ export class AddToCartDialog implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { slot: number, maxToCart: number },
     public dialogRef: MatDialogRef<AddToCartDialog>,
-    private api: ApiService,
+    private api: CallService,
     public dialog: MatDialog,
     private shoppingService: ShoppingService,
     private router: Router,

@@ -43,6 +43,8 @@ export class BreakpointService {
             this.currentBreakpoint = mediaQuery.desktop;
             this.currentDevice.next(Devices.desktop);
           }
+
+          console.debug('Breakpoints updated:', this.currentDevice)
         })
       )
       .subscribe();

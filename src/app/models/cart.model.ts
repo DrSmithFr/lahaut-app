@@ -1,4 +1,4 @@
-import {SlotDetailModel} from "./fly/slotDetailModel";
+import {SlotDetailModel} from "../modules/api/models/slotDetailModel";
 
 export class CartModel {
   items: Array<CartItemModel>;

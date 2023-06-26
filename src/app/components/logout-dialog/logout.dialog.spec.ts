@@ -3,7 +3,7 @@ import {TestBed} from '@angular/core/testing';
 import {LogoutDialog} from './logout.dialog';
 import {RouterTestingModule} from "@angular/router/testing";
 import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from "../../modules/api/services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 describe('LogoutDialog', () => {

@@ -35,7 +35,7 @@
 
       <div class="slot-price">
         <h1>{{slot.price|currency: 'EUR': 'symbol-narrow': '1.0-2'}}</h1>
-        <h2>{{slot.flyType.name|uppercase}}</h2>
+        <h2>{{slot.activityType.name|uppercase}}</h2>
       </div>
     </div>
 
@@ -47,12 +47,12 @@
             Lieu de rendez-vous:
           </div>
           <div class="direction">
-            {{slot.flyLocation.meetingPoint.name}},<br>
-            {{slot.flyLocation.meetingPoint.address.street}},<br>
+            {{slot.activityLocation.meetingPoint.name}},<br>
+            {{slot.activityLocation.meetingPoint.address.street}},<br>
             <b>
-              {{slot.flyLocation.meetingPoint.address.zipCode}}
-              {{slot.flyLocation.meetingPoint.address.city | uppercase}},
-              {{slot.flyLocation.meetingPoint.address.country | titlecase}}
+              {{slot.activityLocation.meetingPoint.address.zipCode}}
+              {{slot.activityLocation.meetingPoint.address.city | uppercase}},
+              {{slot.activityLocation.meetingPoint.address.country | titlecase}}
             </b>
           </div>
         </div>
@@ -75,7 +75,7 @@
         <mat-expansion-panel-header>
           <mat-panel-title>Plan de vol</mat-panel-title>
           <mat-panel-description>
-            ~ {{slot.averageFlyDuration | duration}} minutes de vol
+            ~ {{slot.averageActivityDuration | duration}} minutes de vol
           </mat-panel-description>
         </mat-expansion-panel-header>
 

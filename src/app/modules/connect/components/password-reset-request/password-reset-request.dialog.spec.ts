@@ -5,7 +5,7 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {MatIconModule} from "@angular/material/icon";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
-import {ApiService} from "../../../../services/api.service";
+import {CallService} from "../../../api/services/call.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 describe('PasswordResetRequestDialog', () => {
@@ -25,7 +25,7 @@ describe('PasswordResetRequestDialog', () => {
         PasswordResetRequestDialog,
       ],
       providers: [
-        {provide: ApiService, useValue: ApiServiceMock},
+        {provide: CallService, useValue: ApiServiceMock},
         {provide: MatSnackBar, useValue: MatSnackBarSpy},
         {provide: MatDialogRef, useValue: MatDialogRefMock},
         {provide: MAT_DIALOG_DATA, useValue: {token: 'token'}},

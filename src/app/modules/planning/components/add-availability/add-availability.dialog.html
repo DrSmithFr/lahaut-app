@@ -38,15 +38,15 @@
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Lieu</mat-label>
         <mat-select formControlName="location" (selectionChange)="onLocationChange($event.value)">
-          <mat-option *ngFor="let location of flyLocations" [value]="location.identifier">{{location.name}}</mat-option>
+          <mat-option *ngFor="let location of activityLocations" [value]="location.identifier">{{location.name}}</mat-option>
         </mat-select>
       </mat-form-field>
     </section>
 
-    <section *ngIf="flyTypes.length > 0">
+    <section *ngIf="activityTypes.length > 0">
       <h2>Type de vol</h2>
-      <ul class="fly-type-list" #container>
-        <li *ngFor="let type of flyTypes">
+      <ul class="activity-type-list" #container>
+        <li *ngFor="let type of activityTypes">
           <mat-checkbox
             color="primary"
             (click)="slideToContent()"
@@ -85,7 +85,7 @@
     mat-flat-button
     color="primary"
     [class.spinner]="loading"
-    [disabled]="loading || paramForm.invalid || flyTypeInvalid()"
+    [disabled]="loading || paramForm.invalid || activityTypeInvalid()"
     (click)="onSubmit()">
     Continuer
   </button>

@@ -1,21 +1,22 @@
 import {Injectable} from '@angular/core';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {TokenModel} from '../models/token.model';
+import {TokenModel} from '../../../models/token.model';
 import {Observable} from 'rxjs';
-import {UserModel} from '../models/user.model';
-import {MessageModel} from "../models/message.model";
-import {SearchQuery} from "../modules/search/models/search-query";
-import {SlotModel} from "../models/fly/slotModel";
+import {UserModel} from '../../../models/user.model';
+import {MessageModel} from "../../../models/message.model";
+import {SearchQuery} from "../../search/models/search-query";
+import {SlotModel} from "../models/slotModel";
 import {DateService} from "./date.service";
-import {SlotDetailModel} from "../models/fly/slotDetailModel";
-import {ConversationModel} from "../models/chat/ConversationModel";
-import {ConversationMessageModel} from "../models/chat/ConversationMessageModel";
-import {BookingModel} from "../models/fly/bookingModel";
-import {SlotProposedModel} from "../models/fly/slotProposedModel";
-import {SlotPreview} from "../modules/planning/models/slot-preview";
-import {FlyTypeModel} from "../models/fly/FlyTypeModel";
-import {FlyLocationModel} from "../models/fly/FlyLocationModel";
+import {SlotDetailModel} from "../models/slotDetailModel";
+import {ConversationModel} from "../models/ConversationModel";
+import {ConversationMessageModel} from "../models/ConversationMessageModel";
+import {BookingModel} from "../models/bookingModel";
+import {SlotProposedModel} from "../models/slotProposedModel";
+import {SlotPreview} from "../../planning/models/slot-preview";
+import {ActivityLocationModel} from "../models/ActivityLocationModel";
+import {ActivityTypeModel} from "../models/ActivityTypeModel";
+import {map} from "rxjs/operators";
 
 // contain every api call to be easily fake using angular provider mechanism
 @Injectable(
@@ -23,7 +24,7 @@ import {FlyLocationModel} from "../models/fly/FlyLocationModel";
     providedIn: 'root'
   }
 )
-export class ApiService {
+export class CallService {
   readonly API_URL = environment.url_api;
 
   constructor(
@@ -196,10 +197,10 @@ export class ApiService {
           slots: slots.map(slot => {
             return {
               price: slot.price,
-              flyType: slot.flyType.identifier,
+              activityType: slot.activityType.identifier,
               startAt: slot.startAt,
               endAt: slot.endAt,
-              averageFlyDuration: slot.averageFlyDuration,
+              averageActivityDuration: slot.averageActivityDuration,
             };
           })
         }
@@ -232,15 +233,40 @@ export class ApiService {
       .post<ConversationMessageModel>(this.apiUrlFormUri('/conversations/' + id), {content: message});
   }
 
-  getFlyLocations() {
+  getFlyLocations(): Observable<ActivityLocationModel[]> {
     return this
       .http
-      .get<FlyLocationModel[]>(this.apiUrlFormUri('/public/locations'));
+      .get<ActivityLocationModel[]>(this.apiUrlFormUri('/public/locations'))
+      .pipe(
+        map((locations: ActivityLocationModel[]) => {
+          return locations.map(location => {
+            return new ActivityLocationModel(
+              location.uuid,
+              location.identifier,
+              location.name,
+              location.meetingPoint,
+              location.takeOffPoint,
+              location.landingPoint,
+            )
+          })
+        })
+      );
   }
 
   getFlyType(location: string) {
     return this
       .http
-      .get<FlyTypeModel[]>(this.apiUrlFormUri('/public/locations/' + location + '/types'));
+      .get<ActivityTypeModel[]>(this.apiUrlFormUri('/public/locations/' + location + '/types'))
+      .pipe(
+        map(types => {
+          return types.map(type => {
+            return new ActivityTypeModel(
+              type.uuid,
+              type.identifier,
+              type.name,
+            )
+          })
+        })
+      );
   }
 }

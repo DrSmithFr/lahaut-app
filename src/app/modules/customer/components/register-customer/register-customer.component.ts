@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
-import {AuthService} from '../../../../services/auth.service';
+import {AuthService} from '../../../api/services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {ApiService} from '../../../../services/api.service';
+import {CallService} from '../../../api/services/call.service';
 import {Observable} from 'rxjs';
 import {GoogleAnalyticsService} from '../../../../services/google-analytics.service';
 import {HttpErrorResponse} from "@angular/common/http";
@@ -38,7 +38,7 @@ export class RegisterCustomerComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private auth: AuthService,
-    private api: ApiService,
+    private api: CallService,
     private gtag: GoogleAnalyticsService,
     private snackBar: MatSnackBar,
   ) {

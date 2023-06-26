@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from "../../modules/api/services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {LogoutDialog} from "../logout-dialog/logout.dialog";
 import {Roles} from "../../guards/auth.guard";

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from "../../modules/api/services/auth.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 

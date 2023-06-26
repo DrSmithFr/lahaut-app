@@ -3,13 +3,13 @@
     height="60vh"
     width="100%"
     [zoom]="16"
-    [center]="{lat: slot.flyLocation.meetingPoint.latitude, lng: slot.flyLocation.meetingPoint.longitude}"
+    [center]="{lat: slot.activityLocation.meetingPoint.latitude, lng: slot.activityLocation.meetingPoint.longitude}"
     [options]="options"
   >
     <map-marker
-      [position]="{lat: slot.flyLocation.meetingPoint.latitude, lng: slot.flyLocation.meetingPoint.longitude}"
-      [title]="slot.flyLocation.meetingPoint.name"
-      [label]="slot.flyLocation.meetingPoint.description"
+      [position]="{lat: slot.activityLocation.meetingPoint.latitude, lng: slot.activityLocation.meetingPoint.longitude}"
+      [title]="slot.activityLocation.meetingPoint.name"
+      [label]="slot.activityLocation.meetingPoint.description"
     >
     </map-marker>
   </google-map>

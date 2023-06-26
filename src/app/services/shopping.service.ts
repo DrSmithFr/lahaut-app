@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {CartItemModel, CartModel} from "../models/cart.model";
 import {BehaviorSubject} from "rxjs";
-import {LocalService} from "./local.service";
-import {SlotDetailModel} from "../models/fly/slotDetailModel";
+import {LocalService} from "../modules/api/services/local.service";
+import {SlotDetailModel} from "../modules/api/models/slotDetailModel";
 
 @Injectable({
   providedIn: 'root'

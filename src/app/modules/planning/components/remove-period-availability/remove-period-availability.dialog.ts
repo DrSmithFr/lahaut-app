@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
-import {ApiService} from "../../../../services/api.service";
+import {CallService} from "../../../api/services/call.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
-import {BookingModel} from "../../../../models/fly/bookingModel";
+import {BookingModel} from "../../../api/models/bookingModel";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
 import {tap} from "rxjs/operators";
 
@@ -34,9 +34,9 @@ export class RemovePeriodAvailabilityDialog {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<RemovePeriodAvailabilityDialog>,
-    private apiService: ApiService,
+    private apiService: CallService,
     private snackBar: MatSnackBar,
-    private api: ApiService,
+    private api: CallService,
     private breakpointService: BreakpointService,
   ) {
     this

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ConversationModel} from "../../../../models/chat/ConversationModel";
-import {AuthService} from "../../../../services/auth.service";
+import {ConversationModel} from "../../../api/models/ConversationModel";
+import {AuthService} from "../../../api/services/auth.service";
 import {UserModel} from "../../../../models/user.model";
 
 @Component({

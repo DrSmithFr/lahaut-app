@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {SearchQuery} from "../../models/search-query";
-import {ApiService} from "../../../../services/api.service";
-import {FlyLocationModel} from "../../../../models/fly/FlyLocationModel";
-import {FlyTypeModel} from "../../../../models/fly/FlyTypeModel";
+import {CallService} from "../../../api/services/call.service";
+import {ActivityLocationModel} from "../../../api/models/ActivityLocationModel";
+import {ActivityTypeModel} from "../../../api/models/ActivityTypeModel";
 import {tap} from "rxjs/operators";
 import {concat} from "rxjs";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
@@ -24,7 +24,7 @@ export class SearchFormComponent implements OnInit {
         value: '',
         disabled: true,
       }, [Validators.required]),
-      flyType: new FormControl<string | null>({
+      activityType: new FormControl<string | null>({
         value: '',
         disabled: true,
       }, [Validators.required]),
@@ -33,8 +33,8 @@ export class SearchFormComponent implements OnInit {
     }
   );
 
-  flyLocations: FlyLocationModel[];
-  flyTypes: FlyTypeModel[];
+  activityLocations: ActivityLocationModel[];
+  activityTypes: ActivityTypeModel[];
 
   // Datepicker options
   toucheUi = false;
@@ -42,7 +42,7 @@ export class SearchFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private api: ApiService,
+    private api: CallService,
     private breakpointService: BreakpointService,
   ) {
     this
@@ -59,7 +59,7 @@ export class SearchFormComponent implements OnInit {
 
   ngOnInit(): void {
     const location = this.urlParamQuery?.location ?? '';
-    const flyType = this.urlParamQuery?.type ?? '';
+    const activityType = this.urlParamQuery?.type ?? '';
     const date = this.urlParamQuery?.date ?? '';
     const person = this.urlParamQuery?.person ?? 1;
 
@@ -67,10 +67,10 @@ export class SearchFormComponent implements OnInit {
 
     const obs = [];
 
-    obs.push(this.loadFlyLocations());
+    obs.push(this.loadActivityLocations());
 
     if (location !== '') {
-      obs.push(this.loadFlyTypes(location));
+      obs.push(this.loadActivityTypes(location));
     }
 
     concat(...obs).subscribe(() => {
@@ -78,7 +78,7 @@ export class SearchFormComponent implements OnInit {
         .searchForm
         .patchValue({
           location,
-          flyType,
+          activityType,
           date,
           person: '' + person,
         });
@@ -89,29 +89,29 @@ export class SearchFormComponent implements OnInit {
     });
   }
 
-  loadFlyLocations() {
+  loadActivityLocations() {
     return this
       .api
       .getFlyLocations()
       .pipe(
         tap((locations) => {
-          this.flyLocations = locations;
+          this.activityLocations = locations;
           this.getLocationFormControl()?.enable();
         })
       );
   }
 
-  loadFlyTypes(location: string) {
-    this.getFlyTypeFormControl()?.setValue('');
-    this.getFlyTypeFormControl()?.disable();
+  loadActivityTypes(location: string) {
+    this.getActivityTypeFormControl()?.setValue('');
+    this.getActivityTypeFormControl()?.disable();
 
     return this
       .api
       .getFlyType(location)
       .pipe(
         tap((types) => {
-          this.flyTypes = types;
-          this.getFlyTypeFormControl()?.enable();
+          this.activityTypes = types;
+          this.getActivityTypeFormControl()?.enable();
         })
       )
   }
@@ -122,7 +122,7 @@ export class SearchFormComponent implements OnInit {
     }
 
     this
-      .loadFlyTypes(location)
+      .loadActivityTypes(location)
       .subscribe(() => {
         this.trySubmit();
       });
@@ -132,8 +132,8 @@ export class SearchFormComponent implements OnInit {
     return this.searchForm.get('location');
   }
 
-  getFlyTypeFormControl() {
-    return this.searchForm.get('flyType');
+  getActivityTypeFormControl() {
+    return this.searchForm.get('activityType');
   }
 
   getPersonFormControl() {
@@ -158,16 +158,16 @@ export class SearchFormComponent implements OnInit {
     }
 
     const location = this.getLocationFormControl()?.value ?? null;
-    const flyType = this.getFlyTypeFormControl()?.value ?? null;
+    const activityType = this.getActivityTypeFormControl()?.value ?? null;
     const date = this.getDateFormControl()?.value ?? null;
     const person = parseInt(this.getPersonFormControl()?.value ?? "0");
 
-    if (!location || !flyType || date === null || person === null || person < 1) {
+    if (!location || !activityType || date === null || person === null || person < 1) {
       console.error('Form is not valid');
       return;
     }
 
-    const query = new SearchQuery(location, flyType, date, person);
+    const query = new SearchQuery(location, activityType, date, person);
     this.query.emit(query);
   }
 }

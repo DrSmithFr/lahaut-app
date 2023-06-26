@@ -2,14 +2,14 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {PlanningService} from "../../../../services/planning.service";
 import {PlanningResult} from "../../models/planning-result";
 import {MatDialog} from "@angular/material/dialog";
-import {flyInList} from "../../../../animations/components-animations";
+import {activityInList} from "../../../../animations/components-animations";
 
 @Component({
   selector: 'app-planning-result',
   templateUrl: './planning-result.component.html',
   styleUrls: ['./planning-result.component.scss'],
   animations: [
-    flyInList.parent
+    activityInList.parent
   ]
 })
 export class PlanningResultComponent {

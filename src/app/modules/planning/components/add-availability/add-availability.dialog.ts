@@ -6,9 +6,9 @@ import {
   AddAvailabilityConfirmData,
   AddAvailabilityConfirmDialog
 } from "../add-availability-confirm/add-availability-confirm.dialog";
-import {ApiService} from "../../../../services/api.service";
+import {CallService} from "../../../api/services/call.service";
 import {tap} from "rxjs/operators";
-import {FlyLocationModel} from "../../../../models/fly/FlyLocationModel";
+import {ActivityLocationModel} from "../../../api/models/ActivityLocationModel";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
 
 @Component({
@@ -19,8 +19,8 @@ import {BreakpointService, Devices} from "../../../../services/breakpoint.servic
 export class AddAvailabilityDialog implements OnInit {
   @ViewChild('container') container: ElementRef;
 
-  flyLocations: FlyLocationModel[] = [];
-  flyTypes: Array<flyTypePriced> = [];
+  activityLocations: ActivityLocationModel[] = [];
+  activityTypes: Array<flyTypePriced> = [];
 
   paramForm = this.fb.group({
     location: new FormControl<string | null>(
@@ -50,7 +50,7 @@ export class AddAvailabilityDialog implements OnInit {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddAvailabilityDialog>,
     public dialog: MatDialog,
-    public api: ApiService,
+    public api: CallService,
     private breakpointService: BreakpointService,
   ) {
     this
@@ -67,24 +67,24 @@ export class AddAvailabilityDialog implements OnInit {
 
   ngOnInit() {
     this
-      .loadFlyLocations()
+      .loadActivityLocations()
       .subscribe();
   }
 
-  loadFlyLocations() {
+  loadActivityLocations() {
     return this
       .api
       .getFlyLocations()
       .pipe(
         tap((locations) => {
-          this.flyLocations = locations;
+          this.activityLocations = locations;
           this.getLocationFormControl()?.enable();
         })
       );
   }
 
   loadFlyTypes(location: string) {
-    this.flyTypes = [];
+    this.activityTypes = [];
 
     return this
       .api
@@ -92,7 +92,7 @@ export class AddAvailabilityDialog implements OnInit {
       .pipe(
         tap((types) => {
           for (const type of types) {
-            this.flyTypes.push({
+            this.activityTypes.push({
               type: type.identifier,
               label: type.name,
               selected: false,
@@ -157,14 +157,14 @@ export class AddAvailabilityDialog implements OnInit {
     return null;
   }
 
-  flyTypeValid(): boolean {
+  activityTypeValid(): boolean {
     let atLeastOneSelected = false;
     let AllValid = true;
 
-    for (const flyType of this.flyTypes) {
-      atLeastOneSelected = atLeastOneSelected || flyType.selected;
+    for (const activityType of this.activityTypes) {
+      atLeastOneSelected = atLeastOneSelected || activityType.selected;
 
-      if (flyType.selected && flyType.price === null) {
+      if (activityType.selected && activityType.price === null) {
         AllValid = false;
       }
     }
@@ -172,8 +172,8 @@ export class AddAvailabilityDialog implements OnInit {
     return AllValid && atLeastOneSelected;
   }
 
-  flyTypeInvalid(): boolean {
-    return !this.flyTypeValid();
+  activityTypeInvalid(): boolean {
+    return !this.activityTypeValid();
   }
 
   // Modal actions
@@ -187,7 +187,7 @@ export class AddAvailabilityDialog implements OnInit {
       return;
     }
 
-    if (!this.flyTypeValid()) {
+    if (!this.activityTypeValid()) {
       console.error('Fly type is not valid')
       return;
     }
@@ -198,9 +198,9 @@ export class AddAvailabilityDialog implements OnInit {
     const start = this.getStartFormControl()?.value;
     const end = this.getEndFormControl()?.value;
 
-    const flyTypes = this.flyTypes.filter(flyType => flyType.selected);
+    const activityTypes = this.activityTypes.filter(activityType => activityType.selected);
 
-    if (location === null || start === null || end === null || flyTypes.length === 0) {
+    if (location === null || start === null || end === null || activityTypes.length === 0) {
       console.error('Form values not valid')
       return;
     }
@@ -215,7 +215,7 @@ export class AddAvailabilityDialog implements OnInit {
             location,
             new Date(start),
             new Date(end),
-            flyTypes,
+            activityTypes,
           )
         }
       )

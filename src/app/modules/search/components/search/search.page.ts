@@ -1,20 +1,20 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {SearchQuery} from "../../models/search-query";
-import {ApiService} from "../../../../services/api.service";
+import {CallService} from "../../../api/services/call.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {DateService} from "../../../../services/date.service";
+import {DateService} from "../../../api/services/date.service";
 import {Search} from "../../models/search";
-import {SearchService} from "../../../../services/search.service";
+import {SearchService} from "../../services/search.service";
 import {NavigationService} from "../../../../services/navigation.service";
 import {environment} from "../../../../../environments/environment";
 import {ThemeService} from "../../../../services/theme.service";
 
 @Component({
   selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  templateUrl: './search.page.html',
+  styleUrls: ['./search.page.scss']
 })
-export class SearchComponent implements OnInit, OnDestroy {
+export class SearchPage implements OnInit, OnDestroy {
   @ViewChild('container') container: ElementRef;
 
   logoUrl = environment.logo;
@@ -29,7 +29,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   isDarkMode = false;
 
   constructor(
-    private api: ApiService,
+    private api: CallService,
     private searchService: SearchService,
     private dateService: DateService,
     private router: Router,
@@ -97,12 +97,13 @@ export class SearchComponent implements OnInit, OnDestroy {
       .findSlots(query)
       .subscribe(
         (slots) => {
-          this.searched = true;
-          this.loading = false;
-
           const results = this.searchService.transformSlotToSearchResult(query, slots);
-          this.search = new Search(query, results);
+          console.debug("search result: ", results)
 
+          this.search = new Search(query, results);
+          this.searched = true;
+
+          this.loading = false;
           this.scrollToResults();
         });
   }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Roles} from "../../guards/auth.guard";
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from "../../modules/api/services/auth.service";
 
 @Component(
   {

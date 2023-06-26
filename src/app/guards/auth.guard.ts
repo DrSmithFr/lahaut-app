@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {CanActivateFn, Router} from '@angular/router';
-import {AuthService} from "../services/auth.service";
+import {AuthService} from "../modules/api/services/auth.service";
 
 export enum Roles {
   customer = 'ROLE_CUSTOMER',

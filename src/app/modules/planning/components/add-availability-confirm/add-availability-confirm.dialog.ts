@@ -1,11 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ApiService} from "../../../../services/api.service";
+import {CallService} from "../../../api/services/call.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {flyTypePriced} from "../../models/fly-type-priced";
 import {SlotPreview} from "../../models/slot-preview";
 import {tap} from "rxjs/operators";
-import {SlotProposedModel} from "../../../../models/fly/slotProposedModel";
+import {SlotProposedModel} from "../../../api/models/slotProposedModel";
 import {HttpErrorResponse} from "@angular/common/http";
 import {concat} from "rxjs";
 
@@ -41,7 +41,7 @@ export class AddAvailabilityConfirmDialog implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: AddAvailabilityConfirmData,
     public dialogRef: MatDialogRef<AddAvailabilityConfirmDialog>,
-    private apiService: ApiService,
+    private apiService: CallService,
     private snackBar: MatSnackBar,
   ) {
   }
@@ -77,7 +77,7 @@ export class AddAvailabilityConfirmDialog implements OnInit {
           });
 
           const activeProposedSlots = proposedSlots.filter((slot) => {
-            return activeTypes.includes(slot.flyType.identifier);
+            return activeTypes.includes(slot.activityType.identifier);
           });
 
           const priceMap = this.getPriceMap();
@@ -92,8 +92,8 @@ export class AddAvailabilityConfirmDialog implements OnInit {
   private getPriceMap(): PriceMap {
     const priceMap = new Map<string, number>();
 
-    for (const flyType of this.data.flyTypes) {
-      priceMap.set(flyType.type, flyType.price ?? 0);
+    for (const activityType of this.data.flyTypes) {
+      priceMap.set(activityType.type, activityType.price ?? 0);
     }
 
     return priceMap;
@@ -105,11 +105,11 @@ export class AddAvailabilityConfirmDialog implements OnInit {
     for (const slot of proposedSlots) {
       previewSlots.push(
         new SlotPreview(
-          prices.get(slot.flyType.identifier) ?? 0,
-          slot.flyType,
+          prices.get(slot.activityType.identifier) ?? 0,
+          slot.activityType,
           slot.startAt,
           slot.endAt,
-          slot.averageFlyDuration,
+          slot.averageActivityDuration,
         )
       );
     }

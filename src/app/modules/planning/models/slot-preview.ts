@@ -1,12 +1,12 @@
-import {FlyTypeModel} from "../../../models/fly/FlyTypeModel";
+import {ActivityTypeModel} from "../../api/models/ActivityTypeModel";
 
 export class SlotPreview {
   constructor(
     public price: number,
-    public flyType: FlyTypeModel,
+    public activityType: ActivityTypeModel,
     public startAt: string,
     public endAt: string,
-    public averageFlyDuration: string,
+    public averageActivityDuration: string,
     public selected: boolean = true,
   ) {}
 }

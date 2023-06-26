@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
-import {PlaceModel, SlotDetailModel} from "../../../../models/fly/slotDetailModel";
+import {PlaceModel, SlotDetailModel} from "../../../api/models/slotDetailModel";
 import {GoogleMap} from "@angular/google-maps";
 
 @Component({
@@ -47,8 +47,8 @@ export class FlyMapComponent implements AfterViewInit {
   centerMapShowingAllMarkers() {
     const bounds = new google.maps.LatLngBounds();
 
-    bounds.extend(this.getLatLngLiteral(this.slot.flyLocation.takeOffPoint));
-    bounds.extend(this.getLatLngLiteral(this.slot.flyLocation.landingPoint));
+    bounds.extend(this.getLatLngLiteral(this.slot.activityLocation.takeOffPoint));
+    bounds.extend(this.getLatLngLiteral(this.slot.activityLocation.landingPoint));
 
     this.map.fitBounds(bounds);
   }

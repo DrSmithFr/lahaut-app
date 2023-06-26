@@ -1,17 +1,17 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {PlanningResult} from "../../models/planning-result";
-import {BookingModel} from "../../../../models/fly/bookingModel";
-import {SlotModel} from "../../../../models/fly/slotModel";
+import {BookingModel} from "../../../api/models/bookingModel";
+import {SlotModel} from "../../../api/models/slotModel";
 import {MatDialog} from "@angular/material/dialog";
 import {RemoveHourAvailabilityDialog} from "../remove-hour-availability/remove-hour-availability.dialog";
-import {flyInList} from "../../../../animations/components-animations";
+import {activityInList} from "../../../../animations/components-animations";
 
 @Component({
   selector: 'app-planning-row',
   templateUrl: './planning-row.component.html',
   styleUrls: ['./planning-row.component.scss'],
   animations: [
-    flyInList.children
+    activityInList.children
   ]
 })
 export class PlanningRowComponent implements OnInit {

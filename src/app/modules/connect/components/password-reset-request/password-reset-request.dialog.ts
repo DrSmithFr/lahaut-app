@@ -3,7 +3,7 @@ import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angul
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Observable} from "rxjs";
-import {ApiService} from "../../../../services/api.service";
+import {CallService} from "../../../api/services/call.service";
 
 @Component(
   {
@@ -20,7 +20,7 @@ export class PasswordResetRequestDialog {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { email: string },
     private fb: FormBuilder,
-    private api: ApiService,
+    private api: CallService,
     private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<PasswordResetRequestDialog>,
   ) {

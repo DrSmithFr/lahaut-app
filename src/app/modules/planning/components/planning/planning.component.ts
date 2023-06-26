@@ -1,10 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {WeekModel} from "../../../../models/week.model";
-import {ApiService} from "../../../../services/api.service";
+import {CallService} from "../../../api/services/call.service";
 import {PlanningService} from "../../../../services/planning.service";
 import {PlanningResult} from "../../models/planning-result";
 import {ActivatedRoute, Router} from "@angular/router";
-import {DateService} from "../../../../services/date.service";
+import {DateService} from "../../../api/services/date.service";
 import {MatDialog} from "@angular/material/dialog";
 
 @Component({
@@ -23,7 +23,7 @@ export class PlanningComponent implements OnInit {
   public results: Map<string, PlanningResult>;
 
   constructor(
-    private apiService: ApiService,
+    private apiService: CallService,
     private planningService: PlanningService,
     private dateService: DateService,
     private router: Router,

@@ -1,13 +1,13 @@
 import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {SearchResult} from "../../models/search-result";
-import {flyInList} from "../../../../animations/components-animations";
+import {activityInList} from "../../../../animations/components-animations";
 
 @Component({
   selector: 'app-result-row',
   templateUrl: './result-row.component.html',
   styleUrls: ['./result-row.component.scss'],
   animations: [
-    flyInList.children
+    activityInList.children
   ]
 })
 export class ResultRowComponent {

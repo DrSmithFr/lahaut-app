@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {SearchQuery} from "../modules/search/models/search-query";
-import {SlotModel} from "../models/fly/slotModel";
-import {SearchResult} from "../modules/search/models/search-result";
-import {SearchMonitorPriceResult} from "../modules/search/models/search-monitor-price-result";
+import {SearchQuery} from "../models/search-query";
+import {SlotModel} from "../../api/models/slotModel";
+import {SearchResult} from "../models/search-result";
+import {SearchMonitorPriceResult} from "../models/search-monitor-price-result";
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +17,11 @@ export class SearchService {
       if (!results.has(key)) {
         const slotResult = new SearchResult(
           new Map<number, SearchMonitorPriceResult>(),
-          slot.flyType.flyLocation.identifier,
-          slot.flyType.identifier,
+          slot.activityLocation.identifier,
+          slot.activityType.identifier,
           slot.startAt,
           slot.endAt,
-          slot.averageFlyDuration,
+          slot.averageActivityDuration,
           slot.type,
         );
 
@@ -55,6 +55,7 @@ export class SearchService {
   }
 
   public getSlotUniqIdentifier(slot: SlotModel): string {
-    return `${slot.flyType.flyLocation.identifier}-${slot.startAt}-${slot.endAt}-${slot.averageFlyDuration}-${slot.type}`;
+    console.log(slot);
+    return `${slot.activityType.identifier}-${slot.startAt}-${slot.endAt}-${slot.averageActivityDuration}-${slot.type}`;
   }
 }

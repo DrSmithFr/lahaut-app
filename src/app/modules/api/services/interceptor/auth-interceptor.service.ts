@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {catchError, Observable, switchMap, throwError} from 'rxjs';
 import {AuthService} from '../auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {ApiService} from "../api.service";
+import {CallService} from "../call.service";
 
 // handle API calls security token injection
 // handle session renewal (when getting 401)
@@ -15,7 +15,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   constructor(
     private router: Router,
-    private apiService: ApiService,
+    private apiService: CallService,
     private authService: AuthService,
     private readonly snackBar: MatSnackBar,
   ) {

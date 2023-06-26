@@ -1,4 +1,4 @@
-<div class="fly-map">
+<div class="activity-map">
 
   <div class="address" #container>
     <div class="address-take-off">
@@ -6,12 +6,12 @@
         Décollage:
       </div>
       <div class="direction">
-        {{slot.flyLocation.takeOffPoint.name}},<br>
-        {{slot.flyLocation.takeOffPoint.address.street}},<br>
+        {{slot.activityLocation.takeOffPoint.name}},<br>
+        {{slot.activityLocation.takeOffPoint.address.street}},<br>
         <b>
-          {{slot.flyLocation.takeOffPoint.address.zipCode}}
-          {{slot.flyLocation.takeOffPoint.address.city | uppercase}},
-          {{slot.flyLocation.takeOffPoint.address.country | titlecase}}
+          {{slot.activityLocation.takeOffPoint.address.zipCode}}
+          {{slot.activityLocation.takeOffPoint.address.city | uppercase}},
+          {{slot.activityLocation.takeOffPoint.address.country | titlecase}}
         </b>
       </div>
     </div>
@@ -21,12 +21,12 @@
         Atterrissage:
       </div>
       <div class="direction">
-        {{slot.flyLocation.landingPoint.name}},<br>
-        {{slot.flyLocation.landingPoint.address.street}},<br>
+        {{slot.activityLocation.landingPoint.name}},<br>
+        {{slot.activityLocation.landingPoint.address.street}},<br>
         <b>
-          {{slot.flyLocation.landingPoint.address.zipCode}}
-          {{slot.flyLocation.landingPoint.address.city | uppercase}},
-          {{slot.flyLocation.landingPoint.address.country | titlecase}}
+          {{slot.activityLocation.landingPoint.address.zipCode}}
+          {{slot.activityLocation.landingPoint.address.city | uppercase}},
+          {{slot.activityLocation.landingPoint.address.country | titlecase}}
         </b>
       </div>
     </div>
@@ -44,22 +44,22 @@
 
     <map-marker
       title="Décollage"
-      [position]="getLatLngLiteral(slot.flyLocation.takeOffPoint)"
-      [label]="slot.flyLocation.takeOffPoint.name"
+      [position]="getLatLngLiteral(slot.activityLocation.takeOffPoint)"
+      [label]="slot.activityLocation.takeOffPoint.name"
       [options]="markerOptions"
     >
     </map-marker>
 
     <map-marker
       title="Atterrissage"
-      [position]="getLatLngLiteral(slot.flyLocation.landingPoint)"
-      [label]="slot.flyLocation.landingPoint.name"
+      [position]="getLatLngLiteral(slot.activityLocation.landingPoint)"
+      [label]="slot.activityLocation.landingPoint.name"
       [options]="markerOptions"
     >
     </map-marker>
 
     <map-polyline
-      [path]="[getLatLngLiteral(slot.flyLocation.takeOffPoint), getLatLngLiteral(slot.flyLocation.landingPoint)]"
+      [path]="[getLatLngLiteral(slot.activityLocation.takeOffPoint), getLatLngLiteral(slot.activityLocation.landingPoint)]"
       [options]="polylineOptions"
     ></map-polyline>
   </google-map>

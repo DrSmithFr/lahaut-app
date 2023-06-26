@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {tap} from "rxjs/operators";
-import {ApiService} from "../../../../services/api.service";
+import {CallService} from "../../../api/services/call.service";
 import {PlanningService} from "../../../../services/planning.service";
 import {PlanningResult} from "../../../planning/models/planning-result";
 import {MatDialog} from "@angular/material/dialog";
@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   public results: Map<string, PlanningResult>;
 
   constructor(
-    private apiService: ApiService,
+    private apiService: CallService,
     private planningService: PlanningService,
     private dialog: MatDialog,
   ) {

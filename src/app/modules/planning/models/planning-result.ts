@@ -1,5 +1,5 @@
-import {SlotModel} from "../../../models/fly/slotModel";
-import {BookingModel} from "../../../models/fly/bookingModel";
+import {SlotModel} from "../../api/models/slotModel";
+import {BookingModel} from "../../api/models/bookingModel";
 
 export class PlanningResult {
   constructor(

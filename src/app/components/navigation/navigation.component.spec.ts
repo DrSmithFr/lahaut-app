@@ -5,7 +5,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatDialog} from "@angular/material/dialog";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from "../../modules/api/services/auth.service";
 
 describe('NavigationComponent', () => {
   beforeEach(async () => {

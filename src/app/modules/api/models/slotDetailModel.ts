@@ -1,6 +1,6 @@
-import {MonitorModel} from "../monitor.model";
-import {FlyTypeModel} from "./FlyTypeModel";
-import {FlyLocationModel} from "./FlyLocationModel";
+import {MonitorModel} from "../../../models/monitor.model";
+import {ActivityTypeModel} from "./ActivityTypeModel";
+import {ActivityLocationModel} from "./ActivityLocationModel";
 
 export class SlotDetailModel {
   constructor(
@@ -8,11 +8,11 @@ export class SlotDetailModel {
 
     public price: number,
     public monitor: MonitorModel,
-    public flyLocation: FlyLocationModel,
-    public flyType: FlyTypeModel,
+    public activityLocation: ActivityLocationModel,
+    public activityType: ActivityTypeModel,
     public startAt: string,
     public endAt: string,
-    public averageFlyDuration: string,
+    public averageActivityDuration: string,
   ) {}
 }
 export class PlaceModel {

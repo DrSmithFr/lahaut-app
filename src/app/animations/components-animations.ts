@@ -1,14 +1,14 @@
 import {animate, animateChild, keyframes, query, stagger, state, style, transition, trigger} from "@angular/animations";
 
-export const flyInList = {
+export const activityInList = {
   parent: trigger('list', [
     transition(':enter', [
-      query('@flyIn', [
+      query('@activityIn', [
         stagger(90, animateChild()),
       ]),
     ])
   ]),
-  children: trigger('flyIn', [
+  children: trigger('activityIn', [
     state('in', style({transform: 'translateX(0)'})),
     transition('void => in', [
       animate(600, keyframes([

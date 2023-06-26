@@ -2,14 +2,14 @@ import {Component, Input} from '@angular/core';
 import {Search} from "../../models/search";
 import {AddToCartDialog} from "../add-to-cart/add-to-cart.dialog";
 import {MatDialog} from "@angular/material/dialog";
-import {flyInList} from "../../../../animations/components-animations";
+import {activityInList} from "../../../../animations/components-animations";
 
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss'],
   animations: [
-    flyInList.parent
+    activityInList.parent
   ]
 })
 export class ResultComponent {
