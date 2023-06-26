@@ -24,8 +24,8 @@
           <td>
             <div class="flight">
               <div class="data">
-                <span class="type">{{item.slot.flyType.name|uppercase}}</span>
-                <span class="duration">{{item.slot.averageFlyDuration|duration}} min</span>
+                <span class="type">{{item.slot.activityType.name|uppercase}}</span>
+                <span class="duration">{{item.slot.averageActivityDuration|duration}} min</span>
               </div>
               <div class="data flight-date">
                 <span class="date">{{item.slot.startAt|apiDate|date: 'd MMMM'}}</span>

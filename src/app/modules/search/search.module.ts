@@ -5,7 +5,7 @@ import {SearchRoutingModule} from './search-routing.module';
 import {MatCardModule} from "@angular/material/card";
 import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {SearchPage} from "./components/search/search.page";
+import {SearchPage} from "./pages/search/search.page";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
