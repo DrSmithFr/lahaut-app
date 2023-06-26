@@ -4,11 +4,24 @@ import {BookingModel} from "../../../../models/fly/bookingModel";
 import {SlotModel} from "../../../../models/fly/slotModel";
 import {MatDialog} from "@angular/material/dialog";
 import {RemoveHourAvailabilityDialog} from "../remove-hour-availability/remove-hour-availability.dialog";
+import {animate, keyframes, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-planning-row',
   templateUrl: './planning-row.component.html',
-  styleUrls: ['./planning-row.component.scss']
+  styleUrls: ['./planning-row.component.scss'],
+  animations: [
+    trigger('flyIn', [
+      state('in', style({transform: 'translateX(0)'})),
+      transition('void => *', [
+        animate(1000, keyframes([
+          style({opacity: 0, transform: 'translateX(-100%)', offset: 0}),
+          style({opacity: 1, transform: 'translateX(15px)',  offset: 0.3}),
+          style({opacity: 1, transform: 'translateX(0)',     offset: 1.0})
+        ]))
+      ]),
+    ])
+  ]
 })
 export class PlanningRowComponent implements OnInit {
   @Input() result: PlanningResult;

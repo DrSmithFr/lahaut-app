@@ -1,5 +1,25 @@
 @import "theme";
 
+// Fixing animations
+// temporary fix for expansion panels until Angular Material Issue is fixed,
+// see https://github.com/angular/material2/issues/13870
+mat-accordion mat-expansion-panel {
+  mat-expansion-panel-header {
+    height: 40px; // height may be different for you
+  }
+  .mat-expansion-panel-content {
+    height: 0;
+  }
+  &.mat-expanded {
+    mat-expansion-panel-header {
+      height: 64px; // height may be different for you
+    }
+    .mat-expansion-panel-content {
+      height: auto;
+    }
+  }
+}
+
 .mat-accordion.airy {
   .mat-expansion-panel {
     margin: 10px 0;

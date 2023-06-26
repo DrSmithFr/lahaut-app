@@ -1,6 +1,7 @@
 <div #container>
   <mat-expansion-panel
     class="planning-row"
+    [@flyIn]="'in'"
     (opened)="slideToContent()"
     [class.error]="error"
     [class.pending]="booking && (booking.status === 'pending' || booking.status === 'paid')"

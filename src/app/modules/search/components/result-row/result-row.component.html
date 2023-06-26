@@ -1,5 +1,5 @@
 <div #container class="result-container">
-  <mat-expansion-panel class="result-row" (opened)="slideToContent()" >
+  <mat-expansion-panel class="result-row" (opened)="slideToContent()" [expanded]="false" [@flyIn]="'in'">
     <mat-expansion-panel-header>
       <mat-panel-title>
           <span class="time">
