@@ -1,0 +1,34 @@
+@import "toolbar";
+@import "breakpoints";
+
+.app-page {
+  width: 100dvw;
+  min-height: calc(100dvh - $toolbar-desktop);
+
+  @include tablet {
+    width: 100dvw;
+    min-height: calc(100dvh - $toolbar-tablet);
+  }
+
+  @include mobile-all {
+    width: 100dvw;
+    min-height: calc(100dvh - $toolbar-mobile);
+  }
+
+  &.ng-animating {
+    overflow: hidden;
+
+    margin-top: $toolbar-desktop;
+    height: calc(100dvh - $toolbar-desktop);
+
+    @include tablet {
+      margin-top: $toolbar-tablet;
+      height: calc(100dvh - $toolbar-tablet);
+    }
+
+    @include mobile-all {
+      margin-top: $toolbar-mobile;
+      height: calc(100dvh - $toolbar-mobile);
+    }
+  }
+}

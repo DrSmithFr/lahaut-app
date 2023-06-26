@@ -1,4 +1,6 @@
-<div class="page-container payment">
-  <h1>{{price|currency: 'EUR': 'symbol-narrow': '1.2-2'}}</h1>
-  <app-credit-card-form [price]="price" (paymentReady)="makePayment()"></app-credit-card-form>
+<div class="app-page">
+  <div class="page-container payment">
+    <h1>{{price|currency: 'EUR': 'symbol-narrow': '1.2-2'}}</h1>
+    <app-credit-card-form [price]="price" (paymentReady)="makePayment()"></app-credit-card-form>
+  </div>
 </div>

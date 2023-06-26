@@ -8,6 +8,9 @@ const routes: Routes = [
     path: '',
     canActivate: [AuthGuard.isConnected(true)],
     component: ChatComponent,
+    data: {
+      animation: 'chat'
+    }
   },
 ];
 

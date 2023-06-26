@@ -1,62 +1,65 @@
-<div class="page-container shopping-card-page">
-  <section class="shopping-card">
-    <header>
-      <h1>Réservation</h1>
-      <h2 *ngIf="cart">
-        {{getTotal()|currency: 'EUR': 'symbol-narrow': '1.0-2'}}
-      </h2>
-    </header>
+<div class="app-page">
+  <div class="page-container shopping-card-page">
+    <section class="shopping-card">
+      <header>
+        <h1>Réservation</h1>
+        <h2 *ngIf="cart">
+          {{getTotal()|currency: 'EUR': 'symbol-narrow': '1.0-2'}}
+        </h2>
+      </header>
 
-    <table class="shopping-cart-table" *ngIf="cart">
-      <tr class="header">
-        <th class="reservation">Reservation</th>
-        <th class="price hide-on-small-mobile">Prix</th>
-        <th class="actions"></th>
-      </tr>
-      <tr *ngFor="let item of cart.items">
-        <td>
-          <div class="flight">
-            <div class="data">
-              <span class="type">{{item.slot.flyType.name|uppercase}}</span>
-              <span class="duration">{{item.slot.averageFlyDuration|duration}} min</span>
-            </div>
-            <div class="data flight-date">
-              <span class="date">{{item.slot.startAt|apiDate|date: 'd MMMM'}}</span>
-              <span class="price">
+      <table class="shopping-cart-table" *ngIf="cart">
+        <tr class="header">
+          <th class="reservation">Reservation</th>
+          <th class="price hide-on-small-mobile">Prix</th>
+          <th class="actions"></th>
+        </tr>
+        <tr *ngFor="let item of cart.items">
+          <td>
+            <div class="flight">
+              <div class="data">
+                <span class="type">{{item.slot.flyType.name|uppercase}}</span>
+                <span class="duration">{{item.slot.averageFlyDuration|duration}} min</span>
+              </div>
+              <div class="data flight-date">
+                <span class="date">{{item.slot.startAt|apiDate|date: 'd MMMM'}}</span>
+                <span class="price">
                 {{item.slot.price|currency: 'EUR': 'symbol-narrow': '1.0-2'}}
               </span>
-              <span class="monitor">
+                <span class="monitor">
                 {{item.slot.monitor.identity.firstName|titlecase}}
-                {{item.slot.monitor.identity.lastName|titlecase}}
+                  {{item.slot.monitor.identity.lastName|titlecase}}
               </span>
+              </div>
+              <div class="data time">
+                <span class="start">{{item.slot.startAt|apiDate|date: 'HH:mm'}}</span>
+                <span class="end">{{item.slot.endAt|apiDate|date: 'HH:mm'}}</span>
+              </div>
             </div>
-            <div class="data time">
-              <span class="start">{{item.slot.startAt|apiDate|date: 'HH:mm'}}</span>
-              <span class="end">{{item.slot.endAt|apiDate|date: 'HH:mm'}}</span>
-            </div>
-          </div>
-        </td>
-        <td class="price center  hide-on-small-mobile">
-          {{item.slot.price|currency: 'EUR': 'symbol-narrow': '1.0-2'}}
-        </td>
-        <td class="actions center">
-          <button mat-icon-button (click)="removeItem(item)">
-            <mat-icon>delete_outlined</mat-icon>
-          </button>
-        </td>
-      </tr>
-    </table>
+          </td>
+          <td class="price center  hide-on-small-mobile">
+            {{item.slot.price|currency: 'EUR': 'symbol-narrow': '1.0-2'}}
+          </td>
+          <td class="actions center">
+            <button mat-icon-button (click)="removeItem(item)">
+              <mat-icon>delete_outlined</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </table>
 
-    <footer>
-      <button mat-button class="back-button" color="primary" routerLink="/search">
-        <mat-icon>arrow_back</mat-icon>
-        Retour à la liste des vols
-      </button>
-      <button mat-raised-button class="pay-button" color="primary" *ngIf="cart && cart.items.length > 0" (click)="checkout()">
-        Réservation
-        <mat-icon matSuffix>shopping_cart_checkout</mat-icon>
-      </button>
-    </footer>
+      <footer>
+        <button mat-button class="back-button" color="primary" routerLink="/search">
+          <mat-icon>arrow_back</mat-icon>
+          Retour à la liste des vols
+        </button>
+        <button mat-raised-button class="pay-button" color="primary" *ngIf="cart && cart.items.length > 0"
+                (click)="checkout()">
+          Réservation
+          <mat-icon matSuffix>shopping_cart_checkout</mat-icon>
+        </button>
+      </footer>
 
-  </section>
+    </section>
+  </div>
 </div>

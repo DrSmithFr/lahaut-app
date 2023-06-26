@@ -1,22 +1,24 @@
-<div class="connect-page">
-  <div class="connect-container">
-    <div class="connect-header">
-      <h1 class="connect-title">Inscription Client</h1>
+<div class="app-page">
+  <div class="connect-page">
+    <div class="connect-container">
+      <div class="connect-header">
+        <h1 class="connect-title">Inscription Client</h1>
+      </div>
+
+      <app-register-customer></app-register-customer>
+
+      <p class="right">
+        <a class="primary extra-link" routerLink="/login">Vous avez déjà un compte ?</a>
+      </p>
     </div>
-
-    <app-register-customer></app-register-customer>
-
-    <p class="right">
-      <a class="primary extra-link" routerLink="/login">Vous avez déjà un compte ?</a>
-    </p>
   </div>
-</div>
-<div class="connect-footer">
-  <button
-    mat-flat-button
-    color="accent"
-    routerLink="/monitor/register">
-    <mat-icon>verified</mat-icon>
-    Devenir moniteur
-  </button>
+  <div class="connect-footer">
+    <button
+      mat-flat-button
+      color="accent"
+      routerLink="/monitor/register">
+      <mat-icon>verified</mat-icon>
+      Devenir moniteur
+    </button>
+  </div>
 </div>

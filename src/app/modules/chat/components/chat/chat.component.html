@@ -1,4 +1,4 @@
-<mat-sidenav-container class="chat">
+<mat-sidenav-container class="app-page chat">
 
   <mat-sidenav [mode]="isMobile ? 'over' : 'side'" class="chat-sidenav" [opened]="isOpened">
     <app-chat-list
@@ -10,13 +10,14 @@
 
   <mat-sidenav-content>
     <app-chat-list *ngIf="isMobile && current === null"
-      [rooms]="rooms"
-      [current]="current"
-      (selected)="switchTo($event)">
+                   [rooms]="rooms"
+                   [current]="current"
+                   (selected)="switchTo($event)">
     </app-chat-list>
 
     <app-chat-room [room]="current" *ngIf="current !== null"></app-chat-room>
   </mat-sidenav-content>
 
 </mat-sidenav-container>
+
 

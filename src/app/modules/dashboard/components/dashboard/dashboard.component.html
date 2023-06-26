@@ -1,35 +1,37 @@
-<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-<div class="page-container">
+<div class="app-page">
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <div class="page-container">
 
-  <section class="daily-planning" *ngIf="!loading">
-    <h1>Aujourd'hui</h1>
+    <section class="daily-planning" *ngIf="!loading">
+      <h1>Aujourd'hui</h1>
 
-    <div class="controls">
-      <button
-        mat-stroked-button
-        color="primary"
-        (click)="removeAvailability()">
-        <mat-icon>event_busy</mat-icon>
-        Déclarer une absence
-      </button>
+      <div class="controls">
+        <button
+          mat-stroked-button
+          color="primary"
+          (click)="removeAvailability()">
+          <mat-icon>event_busy</mat-icon>
+          Déclarer une absence
+        </button>
 
-      <button
-        mat-button
-        class="hide-on-mobile"
-        color="primary"
-        routerLink="/planning">
-        <mat-icon>calendar_month</mat-icon>
-        Accéder au planning
-      </button>
+        <button
+          mat-button
+          class="hide-on-mobile"
+          color="primary"
+          routerLink="/planning">
+          <mat-icon>calendar_month</mat-icon>
+          Accéder au planning
+        </button>
 
-      <button
-        mat-stroked-button
-        color="primary"
-        (click)="addAvailability()">
-        <mat-icon>event_available</mat-icon>
-        Déclarer vos disponibilités
-      </button>
-    </div>
-    <app-planning-result [results]="results" (requestRefresh)="refreshPlanning()"></app-planning-result>
-  </section>
+        <button
+          mat-stroked-button
+          color="primary"
+          (click)="addAvailability()">
+          <mat-icon>event_available</mat-icon>
+          Déclarer vos disponibilités
+        </button>
+      </div>
+      <app-planning-result [results]="results" (requestRefresh)="refreshPlanning()"></app-planning-result>
+    </section>
+  </div>
 </div>

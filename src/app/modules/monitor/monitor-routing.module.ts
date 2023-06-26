@@ -17,6 +17,9 @@ const routes: Routes = [
     path: 'account',
     canActivate: [AuthGuard.isConnected(true)],
     component: MyMonitorAccountComponent,
+    data: {
+      animation: 'account',
+    }
   },
 ];
 

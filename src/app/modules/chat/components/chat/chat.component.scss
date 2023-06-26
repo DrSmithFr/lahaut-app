@@ -1,22 +1,11 @@
 @import "breakpoints";
 @import "toolbar";
 
-.chat {
-  height: calc(100dvh - $toolbar-desktop);
+.chat .chat-sidenav {
+  width: 400px;
 
-  @include tablet() {
-    height: calc(100dvh - $toolbar-tablet);
+  @include mobile-xs() {
+    width: 80%;
   }
 
-  @include mobile-all() {
-    height: calc(100dvh - $toolbar-mobile);
-  }
-
-  .chat-sidenav {
-    width: 400px;
-
-    @include mobile-xs() {
-      width: 80%;
-    }
-  }
 }

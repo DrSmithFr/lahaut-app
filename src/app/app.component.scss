@@ -5,21 +5,39 @@ $height: 100dvh;
 
 .app-wrapper {
   width: 100%;
-  height: $height;
+  height: 100dvh;
 }
 
-.app-page {
+.app-page-container {
   padding-top: $toolbar-desktop;
-  min-height: calc($height - $toolbar-desktop);
+  min-height: calc(100dvh - $toolbar-desktop);
 
   @include tablet {
     padding-top: $toolbar-tablet;
-    min-height: calc($height - $toolbar-tablet);
+    min-height: calc(100dvh - $toolbar-tablet);
   }
 
   @include mobile-all {
     padding-top: $toolbar-mobile;
-    min-height: calc($height - $toolbar-mobile);
+    min-height: calc(100dvh - $toolbar-mobile);
+  }
+}
+
+.app-router-wrapper {
+  position:  relative;
+  overflow:  hidden;
+  perspective:  1200px;
+  transform-style:  preserve-3d;
+
+  width:  100%;
+  min-height: calc(100dvh - $toolbar-desktop);
+
+  @include tablet {
+    min-height: calc(100dvh - $toolbar-tablet);
+  }
+
+  @include mobile-all {
+    min-height: calc(100dvh - $toolbar-mobile);
   }
 }
 
