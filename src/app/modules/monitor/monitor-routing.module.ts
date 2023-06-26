@@ -10,7 +10,7 @@ const routes: Routes = [
     canActivate: [AuthGuard.isConnected(false)],
     component: RegisterMonitorComponent,
     data: {
-      animation: 'register',
+      animation: 'registerMonitor',
     }
   },
   {

@@ -10,7 +10,7 @@ const routes: Routes = [
     canActivate: [AuthGuard.isConnected(false)],
     component: RegisterCustomerPage,
     data: {
-      animation: 'register',
+      animation: 'registerCustomer',
     }
   },
   {

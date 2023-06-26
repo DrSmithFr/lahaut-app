@@ -86,7 +86,7 @@ export const fallIn = [
     )
 ];
 
-export const popOut = [
+export const fallOut = [
     query(
         ':enter, :leave',
         style({position: 'fixed', width: '100%'}),

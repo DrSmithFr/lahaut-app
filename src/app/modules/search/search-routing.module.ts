@@ -6,6 +6,9 @@ const routes: Routes = [
   {
     path: '',
     component: SearchComponent,
+    data: {
+      animation: 'searchPage',
+    }
   },
 ];
 

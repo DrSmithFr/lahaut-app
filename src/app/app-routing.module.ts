@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from "./components/home/home.component";
 import {Page404Component} from "./components/page404/page404.component";
 import {LoginPage} from "./components/login/login.page";
 import {AuthGuard, Roles} from "./guards/auth.guard";
@@ -10,21 +9,15 @@ const routes: Routes = [
     path: 'login',
     component: LoginPage,
     data: {
-      animation: 'disconnected'
+      animation: 'login'
     },
   },
   {
     path: 'monitor',
-    data: {
-      animation: 'disconnected'
-    },
     loadChildren: () => import('./modules/monitor/monitor.module').then(m => m.MonitorModule),
   },
   {
     path: 'customer',
-    data: {
-      animation: 'disconnected'
-    },
     loadChildren: () => import('./modules/customer/customer.module').then(m => m.CustomerModule),
   },
   {
@@ -58,15 +51,11 @@ const routes: Routes = [
     loadChildren: () => import('./modules/shopping/shopping.module').then(m => m.ShoppingModule),
   },
   {
-    path: 'home',
-    component: HomeComponent,
-    data: {
-      animation: 'home'
-    }
-  },
-  {
     path: '404',
-    component: Page404Component
+    component: Page404Component,
+    data: {
+      animation: '404'
+    }
   },
   {
     path: '',

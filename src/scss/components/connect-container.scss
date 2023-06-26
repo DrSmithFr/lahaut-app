@@ -45,18 +45,9 @@
     margin: 10px auto;
   }
 
-  .forgot-password {
-    text-align: right;
-    margin: 12px 0;
-    a {
-      color: var(--primary-ligth);
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    a:hover,a:focus {
-      color: var(--primary);
-    }
+  a.extra-link {
+    font-size: 12px;
+    font-weight: bold;
   }
 }
 

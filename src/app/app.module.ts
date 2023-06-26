@@ -1,6 +1,5 @@
 import {isDevMode, LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
@@ -15,7 +14,6 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatBadgeModule} from "@angular/material/badge";
 import {AutoFocusDirective} from "./components/directives/auto-focus.directive";
 import {Page404Component} from "./components/page404/page404.component";
-import {HomeComponent} from "./components/home/home.component";
 import {NavigationComponent} from "./components/navigation/navigation.component";
 import {LogoutDialog} from "./components/logout-dialog/logout.dialog";
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
@@ -39,7 +37,6 @@ registerLocaleData(fr);
     AppComponent,
     AutoFocusDirective,
     Page404Component,
-    HomeComponent,
     NavigationComponent,
     LoginPage,
     LogoutDialog,

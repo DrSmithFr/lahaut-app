@@ -174,10 +174,38 @@ div, p, a,
   line-height: 20px;
 }
 
-a:hover {
-  cursor: pointer;
-  color: var(--primary);
+a {
+  color: var(--text);
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+    color: var(--text-dark);
+  }
+
+  &.primary {
+    color: var(--primary);
+    &:hover {
+      color: var(--primary-dark);
+    }
+  }
+
+  &.accent {
+    color: var(--accent);
+    &:hover {
+      color: var(--accent-dark);
+    }
+  }
+
+  &.warn {
+    color: var(--warn);
+    &:hover {
+      color: var(--warn-dark);
+    }
+  }
 }
+
+
 
 h1, h2, h3, h4, h5, .title, .mat-card-title {
   font-family: var(--font-title);

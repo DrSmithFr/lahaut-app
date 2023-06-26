@@ -4,7 +4,7 @@ import {SwPush, SwUpdate, VersionReadyEvent} from '@angular/service-worker';
 import {filter, map} from 'rxjs/operators';
 import {environment} from '../environments/environment';
 import {transition, trigger} from '@angular/animations';
-import {fadeIn} from './animations/animations';
+import {fadeIn, fallIn, fallOut, slideIn, slideOut} from './animations/animations';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {GoogleAnalyticsService} from "./services/google-analytics.service";
 
@@ -15,7 +15,23 @@ import {GoogleAnalyticsService} from "./services/google-analytics.service";
     styleUrls: ['./app.component.scss'],
     animations: [
       trigger('routeAnimations', [
-        transition('disconnected <=> connected', fadeIn),
+        // Customer registration
+        transition('registerCustomer => login', slideOut),
+        transition('login => registerCustomer', slideIn),
+
+        // Monitor registration
+        transition('registerCustomer => registerMonitor', fallOut),
+        transition('registerMonitor => registerCustomer', fallIn),
+
+        transition('searchPage => login, searchPage => registerCustomer', slideIn),
+        transition('login => searchPage, registerCustomer => searchPage, registerMonitor => searchPage', slideOut),
+
+        // Monitor dashboard
+        transition('dashboard => planning', slideIn),
+        transition('planning => dashboard', slideOut),
+
+
+        transition('* <=> *', fadeIn),
       ])
     ]
   }
