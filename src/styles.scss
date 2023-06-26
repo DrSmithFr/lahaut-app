@@ -1,7 +1,7 @@
 @use "sass:map";
 
 // Normalize CSS
-@import 'normalize.css';
+@import 'normalize.css/normalize.css';
 
 // Google Fonts
 @import url(https://fonts.googleapis.com/css?family=Roboto:400italic,700italic,400,700);
@@ -136,13 +136,9 @@
 }
 
 // Base styles
-html, body {
-  height: 100%;
-}
-
 body {
-  margin: 0;
-  font-family: $font-text;
+  color: var(--text);
+  font-family: var(--font-text);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -162,11 +158,6 @@ h1, h2, h3, h4, h5, h6 {
   .accent {
     color: var(--accent);
   }
-}
-
-body {
-  color: var(--text);
-  font-family: var(--font-text);
 }
 
 div, p, a,

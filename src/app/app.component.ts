@@ -23,8 +23,8 @@ import {GoogleAnalyticsService} from "./services/google-analytics.service";
         transition('registerCustomer => registerMonitor', fallOut),
         transition('registerMonitor => registerCustomer', fallIn),
 
-        transition('searchPage => login, searchPage => registerCustomer', slideIn),
-        transition('login => searchPage, registerCustomer => searchPage, registerMonitor => searchPage', slideOut),
+        transition('searchPage => login, searchPage => registerCustomer', slideOut),
+        transition('login => searchPage, registerCustomer => searchPage, registerMonitor => searchPage', slideIn),
 
         // Monitor dashboard
         transition('dashboard => planning', slideIn),

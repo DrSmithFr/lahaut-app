@@ -106,7 +106,7 @@
   height: 70px;
   left: 43px;
   bottom: 43px;
-  background: var(--background-dark);
+  background: var(--background);
   box-shadow: -2px 2px 2px 0px rgba(0, 0, 0, 0.1);
 
   @include mobile-all() {
@@ -139,11 +139,6 @@
 /* demo stuff */
 * {
   box-sizing: border-box;
-}
-
-body {
-  background-color: var(--background-dark);
-  margin-bottom: 50px;
 }
 
 html, button, input, select, textarea {
