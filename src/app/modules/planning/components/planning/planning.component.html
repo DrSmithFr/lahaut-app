@@ -52,7 +52,7 @@
     </div>
   </div>
 
-  <div class="agenda content" *ngIf="!loading">
+  <div class="agenda content" *ngIf="results">
     <app-planning-result [results]="results" (requestRefresh)="loadSlots()"></app-planning-result>
   </div>
 </div>
