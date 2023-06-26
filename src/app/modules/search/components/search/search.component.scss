@@ -1,19 +1,16 @@
-.search-container {
-  img {
-    max-width: 80%;
+img.logo {
+  max-width: 80%;
 
-    display: block;
-    margin: 0 auto;
+  display: block;
+  margin: 0 auto;
 
-    @import "animations/fade-in";
-    @include fade-in(1s);
-  }
+  @import "animations/fade-in";
+  @include fade-in(1s);
+}
 
-  overflow: hidden;
-  .search-form-slider {
-    @import "animations/slide-up";
-    @include slide-up();
-  }
+.search-form-slider {
+  @import "animations/slide-up";
+  @include slide-up();
 }
 
 
