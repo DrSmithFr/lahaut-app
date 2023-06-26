@@ -15,11 +15,17 @@ const routes: Routes = [
       ShoppingGuard.hasItemInCart('/')
     ],
     component: CartPage,
+    data: {
+      animation: 'cart'
+    }
   },
   {
     path: 'connect',
     canActivate: [AuthGuard.isConnected(false, '/shopping/payment')],
     component: QuickConnectComponent,
+    data: {
+      animation: 'quickConnect'
+    }
   },
   {
     path: 'booking',
@@ -28,11 +34,17 @@ const routes: Routes = [
       ShoppingGuard.hasItemInCart('/')
     ],
     component: BookingPage,
+    data: {
+      animation: 'booking'
+    }
   },
   {
     path: 'payment',
     canActivate: [AuthGuard.isConnected(true, '/shopping/connect')],
     component: PaymentComponent,
+    data: {
+      animation: 'payment'
+    }
   },
 ];
 

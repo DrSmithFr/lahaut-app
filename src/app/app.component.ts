@@ -30,6 +30,10 @@ import {GoogleAnalyticsService} from "./services/google-analytics.service";
         transition('dashboard => planning', slideIn),
         transition('planning => dashboard', slideOut),
 
+        // Booking tunnel
+        transition('searchPage => cart, cart => quickConnect, quickConnect => booking, booking => payment', slideIn),
+        transition('payment => booking, booking => quickConnect, quickConnect => cart, cart => searchPage', slideOut),
+
 
         transition('* <=> *', fadeIn),
       ])
