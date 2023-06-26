@@ -10,6 +10,8 @@ import {Router} from '@angular/router';
 )
 export class RegisterCustomerPage {
 
+  showOverlay = true;
+
   constructor(
     private router: Router,
   ) {
@@ -17,5 +19,9 @@ export class RegisterCustomerPage {
 
   onSuccess() {
     console.log('register success');
+  }
+
+  hideOverlay() {
+    this.showOverlay = false;
   }
 }

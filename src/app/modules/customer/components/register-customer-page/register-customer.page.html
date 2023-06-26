@@ -12,13 +12,15 @@
       </p>
     </div>
   </div>
-  <div class="connect-footer">
-    <button
-      mat-flat-button
-      color="accent"
-      routerLink="/monitor/register">
-      <mat-icon>verified</mat-icon>
-      Devenir moniteur
-    </button>
-  </div>
+</div>
+
+<div class="bottom-overlay" [class.hide]="!showOverlay">
+  <button
+    mat-flat-button
+    color="accent"
+    (click)="hideOverlay()"
+    routerLink="/monitor/register">
+    <mat-icon>verified</mat-icon>
+    Devenir moniteur
+  </button>
 </div>
