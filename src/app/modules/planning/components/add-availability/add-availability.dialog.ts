@@ -236,6 +236,6 @@ export class AddAvailabilityDialog implements OnInit {
         .container
         .nativeElement
         .scrollIntoView({behavior: 'smooth'});
-    }, 150);
+    }, 200);
   }
 }

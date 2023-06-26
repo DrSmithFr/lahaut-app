@@ -60,6 +60,6 @@ export class FlyMapComponent implements AfterViewInit {
         .container
         .nativeElement
         .scrollIntoView({behavior: 'smooth'});
-    }, 150);
+    }, 200);
   }
 }

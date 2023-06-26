@@ -4,7 +4,7 @@ import {SwPush, SwUpdate, VersionReadyEvent} from '@angular/service-worker';
 import {filter, map} from 'rxjs/operators';
 import {environment} from '../environments/environment';
 import {transition, trigger} from '@angular/animations';
-import {fadeIn, fallIn, fallOut, slideIn, slideOut} from './animations/animations';
+import {fadeIn, fallIn, fallOut, slideIn, slideOut} from './animations/router-transitions';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {GoogleAnalyticsService} from "./services/google-analytics.service";
 
