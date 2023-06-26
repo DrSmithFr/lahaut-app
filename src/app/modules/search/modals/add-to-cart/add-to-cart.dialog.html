@@ -1,0 +1,104 @@
+<div mat-dialog-content class="add-to-card">
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <div *ngIf="!loading">
+
+    <div class="slot-info">
+      <div class="date-wrapper">
+        <span class="date">{{slot.startAt|apiDate|date: 'd MMMM YYYY'}}</span>
+      </div>
+
+      <span class="time">
+        <span class="start">{{slot.startAt|apiDate|date: 'HH:mm'}}</span>
+        <span class="end">{{slot.endAt|apiDate|date: 'HH:mm'}}</span>
+      </span>
+    </div>
+
+    <div class="slot-card">
+      <div class="monitor-profile">
+        <img
+          src="../../../../../assets/illustration/undraw_profile_picture.svg"
+          alt="{{slot.monitor.identity.firstName | titlecase}} {{slot.monitor.identity.lastName | uppercase}}"
+        />
+        <div class="monitor-info">
+          <div class="name">
+            {{slot.monitor.identity.firstName | titlecase}} {{slot.monitor.identity.lastName | uppercase}}
+          </div>
+          <span class="rank">
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon>star_outline</mat-icon>
+            </span>
+        </div>
+      </div>
+
+      <div class="slot-price">
+        <h1>{{slot.price|currency: 'EUR': 'symbol-narrow': '1.0-2'}}</h1>
+        <h2>{{slot.activityType.name|uppercase}}</h2>
+      </div>
+    </div>
+
+    <div class="address">
+
+      <div class="address-content">
+        <div>
+          <div class="label">
+            Lieu de rendez-vous:
+          </div>
+          <div class="direction">
+            {{slot.activityLocation.meetingPoint.name}},<br>
+            {{slot.activityLocation.meetingPoint.address.street}},<br>
+            <b>
+              {{slot.activityLocation.meetingPoint.address.zipCode}}
+              {{slot.activityLocation.meetingPoint.address.city | uppercase}},
+              {{slot.activityLocation.meetingPoint.address.country | titlecase}}
+            </b>
+          </div>
+        </div>
+
+        <div class="action">
+          <button mat-icon-button (click)="openMeetingPointDialog()">
+            <mat-icon>my_location</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            matTooltip="Vous serrez ramené au point de rendez-vous en voiture après le vol.">
+            <mat-icon>info</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Plan de vol</mat-panel-title>
+          <mat-panel-description>
+            ~ {{slot.averageActivityDuration | duration}} minutes de vol
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <ng-template matExpansionPanelContent >
+          <app-fly-map [slot]="slot"></app-fly-map>
+        </ng-template>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="disclaimer">
+      <b>Le pilote</b> se réserve le droit de <b>reporté ou annuler</b> le vol en cas de mauvaises conditions météorologiques,
+      Vous en serez informé par <b>SMS</b> et <b>email</b>.
+    </div>
+
+  </div>
+</div>
+
+<div mat-dialog-actions class="modal-buttons">
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-raised-button color="primary" class="buy-button" (click)="addToCart()">
+    <mat-icon>shopping_cart</mat-icon>
+    <span *ngIf="lastToCart">Réserver</span>
+    <span *ngIf="!lastToCart">Ajouter au panier</span>
+  </button>
+</div>

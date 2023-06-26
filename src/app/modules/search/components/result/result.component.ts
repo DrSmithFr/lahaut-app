@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Search} from "../../models/search";
-import {AddToCartDialog} from "../add-to-cart/add-to-cart.dialog";
+import {AddToCartDialog} from "../../modals/add-to-cart/add-to-cart.dialog";
 import {MatDialog} from "@angular/material/dialog";
 import {activityInList} from "../../../../animations/components-animations";
 

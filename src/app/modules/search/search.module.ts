@@ -23,7 +23,7 @@ import {
   SearchNextAvailabilityComponent
 } from './components/search-next-availability/search-next-availability.component';
 import {ResultRowComponent} from './components/result-row/result-row.component';
-import {AddToCartDialog} from './components/add-to-cart/add-to-cart.dialog';
+import {AddToCartDialog} from './modals/add-to-cart/add-to-cart.dialog';
 import {MatDialogModule} from "@angular/material/dialog";
 import {SharedModule} from "../shared/shared.module";
 import {GoogleMapsModule} from '@angular/google-maps';

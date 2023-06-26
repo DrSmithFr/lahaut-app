@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {ShoppingRoutingModule} from './shopping-routing.module';
-import {CartPage} from './components/cart-page/cart.page';
-import {PaymentComponent} from './components/payment/payment.component';
+import {CartPage} from './pages/cart-page/cart.page';
+import {PaymentComponent} from './pages/payment/payment.component';
 import {CreditCardFormComponent} from "./components/credit-card-form/credit-card-form.component";
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -14,11 +14,11 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {NgxMaskModule} from "ngx-mask";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {SharedModule} from "../shared/shared.module";
-import {QuickConnectComponent} from './components/quick-connect/quick-connect.component';
+import {QuickConnectComponent} from './pages/quick-connect/quick-connect.component';
 import {CustomerModule} from "../customer/customer.module";
 import {ConnectModule} from "../connect/connect.module";
 import {MatTabsModule} from "@angular/material/tabs";
-import {BookingPage} from "./components/booking-page/booking.page";
+import {BookingPage} from "./pages/booking-page/booking.page";
 
 
 @NgModule({

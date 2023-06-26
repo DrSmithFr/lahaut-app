@@ -1,0 +1,167 @@
+@use 'sass:map';
+
+@import "../../../../../scss/_default/colors";
+@import "../../../../../scss/_default/breakpoints";
+
+.add-to-card {
+  .info {
+    color: var(--text-light);
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .disclaimer {
+    color: var(--primary);
+    font-size: 12px;
+    margin-top: 30px;
+  }
+
+  .slot-info {
+    padding-bottom: 30px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .date-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      margin: auto 0;
+
+      .date {
+        font-size: 26px;
+        font-weight: 500;
+        color: var(--primary);
+      }
+    }
+
+    .time {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      font-family: Roboto, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+
+      .start {
+        font-size: 20px;
+        color: var(--green);
+      }
+
+      .end {
+        align-self: center;
+        color: var(--text);
+      }
+    }
+  }
+
+  .slot-price {
+    text-align: center;
+
+    h1 {
+      font-size: 40px;
+      line-height: 40px;
+      font-weight: 500;
+      color: var(--primary);
+
+      margin-bottom: 0;
+    }
+  }
+
+  .slot-card {
+    margin-bottom: 29px;
+
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mobile-xs {
+      flex-direction: column-reverse;
+    }
+
+    .monitor-profile {
+      display: flex;
+      flex-direction: row;
+
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+      }
+
+      .monitor-info {
+        align-self: center;
+        text-align: center;
+        margin-left: 16px;
+      }
+    }
+
+    .rank {
+      .material-icons {
+        padding-top: 5px;
+
+        text-align: center;
+        font-size: 18px;
+
+        color: var(--text-light);
+      }
+
+      .mat-icon {
+        height: inherit;
+        width: inherit;
+      }
+    }
+
+    .price {
+      font-size: 30px;
+      color: var(--primary);
+
+      font-weight: bold;
+    }
+  }
+
+  .address {
+    margin: 20px 0;
+
+    .label {
+      color: var(--accent);
+      font-size: 18px;
+      font-weight: bold;
+
+      margin-bottom: 3px;
+    }
+
+    .address-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .direction {
+        margin-left: 15px;
+      }
+
+      .action {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+      }
+    }
+  }
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buy-button {
+  color: var(--background);
+}

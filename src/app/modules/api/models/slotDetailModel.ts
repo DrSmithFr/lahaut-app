@@ -1,4 +1,4 @@
-import {MonitorModel} from "../../../models/monitor.model";
+import {MonitorModel} from "./monitor.model";
 import {ActivityTypeModel} from "./ActivityTypeModel";
 import {ActivityLocationModel} from "./ActivityLocationModel";
 

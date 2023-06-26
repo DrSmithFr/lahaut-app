@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RegisterMonitorComponent} from './components/register-monitor/register-monitor.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -9,10 +8,11 @@ import {MonitorRoutingModule} from './monitor-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from "@angular/material/icon";
-import {MyMonitorAccountComponent} from './components/my-monitor-account/my-monitor-account.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatStepperModule} from "@angular/material/stepper";
 import {SharedModule} from "../shared/shared.module";
+import {RegisterMonitorComponent} from "./pages/register-monitor/register-monitor.component";
+import {MyMonitorAccountComponent} from "./pages/my-monitor-account/my-monitor-account.component";
 
 
 @NgModule(

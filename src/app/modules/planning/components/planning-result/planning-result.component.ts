@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {PlanningService} from "../../../../services/planning.service";
+import {PlanningService} from "../../services/planning.service";
 import {PlanningResult} from "../../models/planning-result";
 import {MatDialog} from "@angular/material/dialog";
 import {activityInList} from "../../../../animations/components-animations";

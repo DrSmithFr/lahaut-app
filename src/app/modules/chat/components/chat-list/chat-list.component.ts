@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ConversationModel} from "../../../api/models/ConversationModel";
 import {AuthService} from "../../../api/services/auth.service";
-import {UserModel} from "../../../../models/user.model";
+import {UserModel} from "../../../api/models/user.model";
 
 @Component({
   selector: 'app-chat-list',

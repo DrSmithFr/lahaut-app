@@ -9,9 +9,9 @@ import {CustomerRoutingModule} from './customer-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from "@angular/material/icon";
-import {MyCustomerAccountComponent} from './components/my-customer-account/my-customer-account.component';
+import {MyCustomerAccountComponent} from './pages/my-customer-account/my-customer-account.component';
 import {MatCardModule} from "@angular/material/card";
-import {RegisterCustomerPage} from "./components/register-customer-page/register-customer.page";
+import {RegisterCustomerPage} from "./pages/register-customer-page/register-customer.page";
 
 
 @NgModule(

@@ -1,0 +1,11 @@
+@import "../../../../../scss/_default/breakpoints";
+@import "../../../../../scss/_default/toolbar";
+
+.chat .chat-sidenav {
+  width: 400px;
+
+  @include mobile-xs() {
+    width: 80%;
+  }
+
+}

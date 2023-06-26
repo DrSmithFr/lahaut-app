@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../modules/api/services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
-import {LogoutDialog} from "../logout-dialog/logout.dialog";
-import {Roles} from "../../guards/auth.guard";
+import {LogoutDialog} from "../../dialogs/logout-dialog/logout.dialog";
+import {Roles} from "../../modules/api/guards/auth.guard";
 import {NavigationService} from "../../services/navigation.service";
-import {ShoppingService} from "../../services/shopping.service";
-import {CartModel} from "../../models/cart.model";
+import {ShoppingService} from "../../modules/shopping/services/shopping.service";
+import {CartModel} from "../../modules/shopping/models/cart.model";
 import {NavigationEnd, Router} from "@angular/router";
 import {environment} from "../../../environments/environment";
 import {ThemeService} from "../../services/theme.service";

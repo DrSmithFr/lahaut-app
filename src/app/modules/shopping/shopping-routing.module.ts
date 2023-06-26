@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {PaymentComponent} from "./components/payment/payment.component";
-import {AuthGuard} from "../../guards/auth.guard";
-import {QuickConnectComponent} from "./components/quick-connect/quick-connect.component";
-import {CartPage} from "./components/cart-page/cart.page";
-import {ShoppingGuard} from "../../guards/shopping.guard";
-import {BookingPage} from "./components/booking-page/booking.page";
+import {PaymentComponent} from "./pages/payment/payment.component";
+import {AuthGuard} from "../api/guards/auth.guard";
+import {QuickConnectComponent} from "./pages/quick-connect/quick-connect.component";
+import {CartPage} from "./pages/cart-page/cart.page";
+import {ShoppingGuard} from "./guards/shopping.guard";
+import {BookingPage} from "./pages/booking-page/booking.page";
 
 const routes: Routes = [
   {

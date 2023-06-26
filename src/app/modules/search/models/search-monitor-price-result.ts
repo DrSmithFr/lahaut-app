@@ -1,4 +1,4 @@
-import {MonitorModel} from "../../../models/monitor.model";
+import {MonitorModel} from "../../api/models/monitor.model";
 
 export class SearchMonitorPriceResult extends MonitorModel {
   constructor(

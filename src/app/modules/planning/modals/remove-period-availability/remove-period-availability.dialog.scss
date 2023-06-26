@@ -1,0 +1,62 @@
+@import "../../../../../scss/_default/colors";
+
+h1.title {
+  color: var(--accent);
+
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.content {
+  padding-bottom: 0;
+}
+
+.slots-list {
+  padding: 20px 0;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+div.illustration {
+  text-align: center;
+  padding-top: 20px;
+
+  img {
+    width: 50%;
+    min-width: 150px;
+  }
+}
+
+.booking-error {
+  color: #b64646;
+  background: #ffcece;
+
+  margin: 20px 0;
+
+  text-align: center;
+
+  .error {
+    padding: 20px 20px 0;
+  }
+}
+
+.booking-ready {
+  color: #6eb76e;
+  background: #d7fdd7;
+
+  margin: 20px 0;
+
+  text-align: center;
+
+  .info {
+    padding: 20px 0;
+  }
+}

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, concatMap, Observable, throwError} from 'rxjs';
 import {CallService} from './call.service';
-import {UserModel} from '../../../models/user.model';
-import {TokenModel} from "../../../models/token.model";
+import {UserModel} from '../models/user.model';
+import {TokenModel} from "../models/token.model";
 import {LocalService} from "./local.service";
 import {tap} from "rxjs/operators";
 import {Router} from "@angular/router";

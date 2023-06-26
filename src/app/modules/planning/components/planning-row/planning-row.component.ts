@@ -3,7 +3,7 @@ import {PlanningResult} from "../../models/planning-result";
 import {BookingModel} from "../../../api/models/bookingModel";
 import {SlotModel} from "../../../api/models/slotModel";
 import {MatDialog} from "@angular/material/dialog";
-import {RemoveHourAvailabilityDialog} from "../remove-hour-availability/remove-hour-availability.dialog";
+import {RemoveHourAvailabilityDialog} from "../../modals/remove-hour-availability/remove-hour-availability.dialog";
 import {activityInList} from "../../../../animations/components-animations";
 
 @Component({
