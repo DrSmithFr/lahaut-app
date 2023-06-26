@@ -1,0 +1,20 @@
+@import "toolbar";
+@import "breakpoints";
+
+.top-loader {
+  position: fixed !important;
+  z-index: 1000;
+
+  left: 0;
+  right: 0;
+
+  top: $toolbar-desktop;
+
+  @include tablet {
+    top: $toolbar-tablet;
+  }
+
+  @include mobile-all {
+    top: $toolbar-mobile;
+  }
+}

@@ -1,4 +1,4 @@
 .mat-mdc-menu-panel {
-  background: var(--background-transparent) !important;
-  backdrop-filter: blur(10px);
+  background: var(--background-overlay) !important;
+  backdrop-filter: blur(var(--blur));
 }
