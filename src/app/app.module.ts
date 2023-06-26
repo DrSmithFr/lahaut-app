@@ -109,7 +109,9 @@ registerLocaleData(fr);
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
       useValue: {
-        hasBackdrop: true
+        hasBackdrop: true,
+        enterAnimationDuration: '300ms',
+        exitAnimationDuration: '150ms',
       }
     },
     {provide: LOCALE_ID, useValue: 'fr-FR'},
