@@ -28,7 +28,7 @@ export class ActivityService {
   getLocations(): Observable<LocationModel[]> {
     return this
       .http
-      .get<LocationModel[]>(this.url.urlFormUri('/public/locations'))
+      .get<LocationModel[]>(this.url.urlFormUri('/public/activities/locations'))
       .pipe(
         map((locations: LocationModel[]) => {
           return locations.map(location => {
@@ -48,7 +48,7 @@ export class ActivityService {
   getTypeByLocation(location: string) {
     return this
       .http
-      .get<TypeModel[]>(this.url.urlFormUri('/public/locations/' + location + '/types'))
+      .get<TypeModel[]>(this.url.urlFormUri('/public/activities/locations/' + location + '/types'))
       .pipe(
         map(types => {
           return types.map(type => {

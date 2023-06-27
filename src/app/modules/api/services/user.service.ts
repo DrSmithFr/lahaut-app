@@ -26,7 +26,7 @@ export class UserService {
     return this
       .http
       .post<TokenModel>(
-        this.url.urlFormUri('/public/login'),
+        this.url.urlFormUri('/auth/login'),
         {username, password}
       );
   }
@@ -36,7 +36,7 @@ export class UserService {
     return this
       .http
       .post<TokenModel>(
-        this.url.urlFormUri('/public/login/refresh'),
+        this.url.urlFormUri('/auth/login/refresh'),
         {
           refresh_token: token,
         }
@@ -53,14 +53,14 @@ export class UserService {
   checkAccountExist(email: string): Observable<MessageModel> {
     return this
       .http
-      .post<MessageModel>(this.url.urlFormUri('/public/register/available'), {username: email});
+      .post<MessageModel>(this.url.urlFormUri('/auth/register/available'), {username: email});
   }
 
   registerCustomer(username: string, password: string): Observable<UserModel> {
     return this
       .http
       .post<UserModel>(
-        this.url.urlFormUri('/public/register/customer'),
+        this.url.urlFormUri('/auth/register/customer'),
         {username, password}
       );
   }
@@ -75,7 +75,7 @@ export class UserService {
     return this
       .http
       .post<UserModel>(
-        this.url.urlFormUri('/public/register/monitor'),
+        this.url.urlFormUri('/auth/register/monitor'),
         {
           firstname,
           lastname,
@@ -90,19 +90,19 @@ export class UserService {
   resetPasswordRequest(email: string): Observable<MessageModel> {
     return this
       .http
-      .post<MessageModel>(this.url.urlFormUri('/public/reset_password'), {username: email});
+      .post<MessageModel>(this.url.urlFormUri('/auth/reset_password'), {username: email});
   }
 
   checkPasswordResetTokenValidity(token: string): Observable<MessageModel> {
     return this
       .http
-      .post<MessageModel>(this.url.urlFormUri('/public/reset_password/validity'), {token});
+      .post<MessageModel>(this.url.urlFormUri('/auth/reset_password/validity'), {token});
   }
 
   resetPassword(token: string, password: string): Observable<MessageModel> {
     return this
       .http
-      .patch<MessageModel>(this.url.urlFormUri('/public/reset_password'), {token, password});
+      .patch<MessageModel>(this.url.urlFormUri('/auth/reset_password'), {token, password});
   }
 
   // Account Management
