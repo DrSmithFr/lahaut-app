@@ -58,6 +58,8 @@ export class AddAvailabilityConfirmDialog implements OnInit {
   private loadSlotsInPeriod() {
     return this
       .apiService
+      .activities()
+      .slots()
       .getSlotsInPeriod(this.data.start, this.data.end)
       .pipe(
         tap(slots => {
@@ -69,6 +71,8 @@ export class AddAvailabilityConfirmDialog implements OnInit {
   private loadProposedSlots() {
     return this
       .apiService
+      .activities()
+      .slots()
       .getSlotProposedForLocation(this.data.location)
       .pipe(
         tap(proposedSlots => {
@@ -219,6 +223,8 @@ export class AddAvailabilityConfirmDialog implements OnInit {
 
     this
       .apiService
+      .activities()
+      .slots()
       .addSlotsForPeriod(
         slots,
         this.data.start,

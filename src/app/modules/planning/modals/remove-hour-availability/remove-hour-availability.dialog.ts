@@ -39,6 +39,8 @@ export class RemoveHourAvailabilityDialog implements OnInit {
 
     this
       .apiService
+      .activities()
+      .slots()
       .removeSlots(slotIds)
       .subscribe({
         next: () => {

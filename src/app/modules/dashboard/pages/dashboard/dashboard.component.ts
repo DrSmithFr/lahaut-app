@@ -29,6 +29,8 @@ export class DashboardComponent implements OnInit {
   refreshPlanning() {
     this
       .apiService
+      .activities()
+      .slots()
       .findCurrentMonitorSlots(new Date())
       .pipe(
         tap(() => {

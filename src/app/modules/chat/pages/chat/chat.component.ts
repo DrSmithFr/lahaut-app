@@ -18,7 +18,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   isOpened = false;
 
   constructor(
-    private apiService: ApiService,
+    private api: ApiService,
     private breakpointObserver: BreakpointObserver,
     private navigationService: NavigationService
   ) {
@@ -34,7 +34,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.isMobile = this.breakpointObserver.isMatched('(max-width: 800px)');
 
     // Get the list of conversations
-    this.apiService.getConversations().subscribe(rooms => {
+    this.api.chats().getConversations().subscribe(rooms => {
       this.rooms = rooms;
 
       // Only auto-open the first chat if we are not on mobile

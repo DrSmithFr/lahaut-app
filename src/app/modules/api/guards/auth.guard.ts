@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {CanActivateFn, Router} from '@angular/router';
-import {UserService} from "../services/user.service";
+import {AuthService} from "../services/auth.service";
 
 export enum Roles {
   customer = 'ROLE_CUSTOMER',
@@ -14,7 +14,7 @@ export class AuthGuard {
 
   static isConnected(state: boolean, redirectTo: string | null = null): CanActivateFn {
     return () => {
-      const can = inject(UserService).isLogged() === state;
+      const can = inject(AuthService).isLogged() === state;
 
       if (!can && redirectTo !== null) {
         return inject(Router).parseUrl(redirectTo);
@@ -26,7 +26,7 @@ export class AuthGuard {
 
   static hasRoles(roles: Roles[], redirectTo: string | null = null): CanActivateFn {
     return () => {
-      const can = inject(UserService).isGranted(...roles);
+      const can = inject(AuthService).isGranted(...roles);
 
       if (!can && redirectTo !== null) {
         return inject(Router).parseUrl(redirectTo);
@@ -38,7 +38,7 @@ export class AuthGuard {
 
   static IsDisconnectedOrHasRoles(roles: Roles[], redirectTo: string | null = null): CanActivateFn {
     return () => {
-      const can = !inject(UserService).isLogged() || inject(UserService).isGranted(...roles);
+      const can = !inject(AuthService).isLogged() || inject(AuthService).isGranted(...roles);
 
       if (!can && redirectTo !== null) {
         return inject(Router).parseUrl(redirectTo);

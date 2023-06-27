@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {ConversationModel} from "../../../api/models/chat/conversation.model";
-import {UserService} from "../../../api/services/user.service";
+import {AuthService} from "../../../api/services/auth.service";
 import {ConversationMessageModel} from "../../../api/models/chat/conversation-message.model";
 import {ApiService} from "../../../api/services/api.service";
 import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
@@ -17,7 +17,8 @@ export class ChatRoomComponent {
     this.getMessage()?.reset();
 
     this
-      .apiService
+      .api
+      .chats()
       .getMessages(room.id)
       .subscribe(messages => {
         this.messages = messages;
@@ -35,8 +36,8 @@ export class ChatRoomComponent {
 
   constructor(
     private fb: FormBuilder,
-    private apiService: ApiService,
-    private authService: UserService,
+    private api: ApiService,
+    private authService: AuthService,
     private snackBar: MatSnackBar,
   ) {
   }
@@ -62,7 +63,8 @@ export class ChatRoomComponent {
 
     this.sending = true;
 
-    this.apiService
+    this.api
+      .chats()
       .sendMessage(this.current.id, this.getMessage()?.value)
       .subscribe({
         next: message => {

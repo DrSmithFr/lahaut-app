@@ -74,7 +74,8 @@ export class AddAvailabilityDialog implements OnInit {
   loadActivityLocations() {
     return this
       .api
-      .getFlyLocations()
+      .activities()
+      .getLocations()
       .pipe(
         tap((locations) => {
           this.activityLocations = locations;
@@ -88,7 +89,8 @@ export class AddAvailabilityDialog implements OnInit {
 
     return this
       .api
-      .getFlyType(location)
+      .activities()
+      .getTypeByLocation(location)
       .pipe(
         tap((types) => {
           for (const type of types) {

@@ -68,6 +68,8 @@ export class RemovePeriodAvailabilityDialog {
 
     this
       .api
+      .activities()
+      .slots()
       .checkBookingForPeriod(start, end)
       .subscribe({
         next: (bookings) => {
@@ -115,6 +117,8 @@ export class RemovePeriodAvailabilityDialog {
 
     this
       .apiService
+      .activities()
+      .slots()
       .removeSlotsPeriod(new Date(start), new Date(end))
       .subscribe({
         next: () => {

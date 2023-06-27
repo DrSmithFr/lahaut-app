@@ -7,7 +7,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {UserService} from "../../../api/services/user.service";
+import {AuthService} from "../../../api/services/auth.service";
 import {GoogleAnalyticsService} from "../../../../services/google-analytics.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ApiService} from "../../../api/services/api.service";
@@ -32,7 +32,7 @@ describe('RegisterCustomerComponent', () => {
         RegisterCustomerComponent,
       ],
       providers: [
-        {provide: UserService, useValue: AuthServiceMock},
+        {provide: AuthService, useValue: AuthServiceMock},
         {provide: ApiService, useValue: ApiServiceMock},
         {provide: GoogleAnalyticsService, useValue: GoogleAnalyticsServiceMock},
         {provide: MatSnackBar, useValue: MatSnackBarSpy},

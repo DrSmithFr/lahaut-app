@@ -3,7 +3,7 @@ import {TestBed} from '@angular/core/testing';
 import {LogoutDialog} from './logout.dialog';
 import {RouterTestingModule} from "@angular/router/testing";
 import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
-import {UserService} from "../../modules/api/services/user.service";
+import {AuthService} from "../../modules/api/services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 describe('LogoutDialog', () => {
@@ -22,7 +22,7 @@ describe('LogoutDialog', () => {
       ],
       providers: [
         {provide: MatDialogRef, useValue: MatDialogRefMock},
-        {provide: UserService, useValue: AuthServiceMock},
+        {provide: AuthService, useValue: AuthServiceMock},
         {provide: MatSnackBar, useValue: MatSnackBarSpy},
 
       ]

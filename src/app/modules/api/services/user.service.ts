@@ -1,291 +1,117 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, concatMap, Observable, throwError} from 'rxjs';
-import {ApiService} from './api.service';
+import {HttpClient} from '@angular/common/http';
+import {TokenModel} from '../models/token.model';
+import {Observable} from 'rxjs';
 import {UserModel} from '../models/user.model';
-import {TokenModel} from "../models/token.model";
-import {LocalService} from "./utils/local.service";
-import {tap} from "rxjs/operators";
-import {Router} from "@angular/router";
-import {GoogleAnalyticsService} from "../../../services/google-analytics.service";
-import {HttpErrorResponse} from "@angular/common/http";
+import {MessageModel} from "../models/chat/message.model";
+import {DateService} from "./utils/date.service";
+import {UrlService} from "./utils/url.service";
 
+// contain every api call to be easily fake using angular provider mechanism
 @Injectable(
   {
     providedIn: 'root'
   }
 )
 export class UserService {
-
-  TOKEN: BehaviorSubject<TokenModel | null>;
-  LOGGED_USER: BehaviorSubject<UserModel | null>;
-
   constructor(
-    private api: ApiService,
-    private router: Router,
-    private localService: LocalService,
-    private gtag: GoogleAnalyticsService,
+    private http: HttpClient,
+    private dateService: DateService,
+    private url: UrlService,
   ) {
-    this.TOKEN = new BehaviorSubject<TokenModel | null>(
-      this.localService.getObject<TokenModel>('STATE_TOKEN') || null
-    );
-
-    this.LOGGED_USER = new BehaviorSubject<UserModel | null>(
-      this.localService.getObject<UserModel>('STATE_USER') || null
-    );
-
-    this.TOKEN.subscribe((token: TokenModel | null) => {
-      this.localService.setObject('STATE_TOKEN', token);
-    });
-
-    this.LOGGED_USER.subscribe((user: UserModel | null) => {
-      this.localService.setObject('STATE_USER', user);
-    });
   }
 
-  // State management
-  getUserSubject(): BehaviorSubject<UserModel | null> {
-    return this.LOGGED_USER;
-  }
-
-  getTokenSubject(): BehaviorSubject<TokenModel | null> {
-    return this.TOKEN;
-  }
-
-  getUser(): UserModel | null {
-    return this.getUserSubject().getValue();
-  }
-
-  getToken(): TokenModel | null {
-    return this.getTokenSubject().getValue();
-  }
-
-  saveUser(user: UserModel | null): void {
-    console.debug('user saved', user);
-    this.getUserSubject().next(user);
-  }
-
-  saveToken(token: TokenModel | null): void {
-    console.debug('token saved', token);
-    this.getTokenSubject().next(token);
-  }
-
-  getRedirectUrlForUser() {
-    return this.isMonitor() ? '/dashboard' : '/search';
-  }
-
-  connect(login: string, password: string, autoRedirect = true): Observable<UserModel> {
-    console.time('connect: token');
-    const observable = this
-      .api
-      .login(login, password)
-      .pipe(
-        // saving token in session
-        tap(tokens => {
-          console.timeEnd('connect: token');
-          this.saveToken(tokens);
-        }),
-        // getting current user information
-        concatMap(() => {
-          console.time('connect: user infos');
-          return this.api.getCurrentUser();
-        }),
-        // updating session with current users information
-        tap(user => {
-          console.timeEnd('connect: user infos');
-          this.saveUser(user);
-        }),
-        // tracking login event
-        tap({
-          next: (user) => {
-            this
-              .gtag
-              .event(
-                "login",
-                {
-                  event_category: this.isMonitor() ? "monitors" : "customers",
-                  event_label: user.uuid,
-                  value: "valid"
-                })
-          },
-          error: error => {
-            this
-              .gtag
-              .event(
-                "login",
-                {
-                  event_category: "users",
-                  event_label: 'Error' + error.status,
-                  value: error.status
-                })
-          }
-        }),
+  // Login
+  login(username: string, password: string): Observable<TokenModel> {
+    return this
+      .http
+      .post<TokenModel>(
+        this.url.urlFormUri('/public/login'),
+        {username, password}
       );
-
-    if (autoRedirect) {
-      return observable
-        .pipe(
-          // redirecting after login
-          tap(() => {
-            const uri = this.getRedirectUrlForUser();
-            console.log('redirecting after login:', uri);
-            this.router.navigateByUrl(uri);
-          })
-        )
-    }
-
-    return observable;
   }
 
-  reconnect(): Observable<TokenModel> {
-    const token = this.getToken();
-
-    if (null === token) {
-      return throwError(() => new Error('No token found'));
-    }
-
-    console.time('reconnect')
-
+  // Refresh token
+  reconnect(token: string): Observable<TokenModel> {
     return this
-      .api
-      .reconnect(token.refresh_token)
-      .pipe(
-        tap(data => {
-          console.timeEnd('reconnect')
-          this.saveToken(data);
-        })
-      )
+      .http
+      .post<TokenModel>(
+        this.url.urlFormUri('/public/login/refresh'),
+        {
+          refresh_token: token,
+        }
+      );
   }
 
-  registerCustomer(email: string, password: string, autoRedirect = true) {
-    console.time('registerCustomer')
+  getCurrentUser(): Observable<UserModel> {
     return this
-      .api
-      .registerCustomer(email, password)
-      .pipe(
-        tap(() => {
-          console.timeEnd('registerCustomer')
-        }),
-        concatMap(() => this.connect(email, password, autoRedirect)),
-        tap({
-          next: () => {
-            this
-              .gtag
-              .event(
-                "register",
-                {
-                  event_category: "customers",
-                  event_label: 'New customer ' + email,
-                  value: 'valid'
-                })
-          },
-          error: (err: HttpErrorResponse) => {
-            this
-              .gtag
-              .event(
-                "register",
-                {
-                  event_category: "customers",
-                  event_label: 'Subscription error for ' + email,
-                  value: 'error: ' + err.message
-                })
-          }
-        })
-      )
+      .http
+      .get<UserModel>(this.url.urlFormUri('/user/information'));
+  }
+
+  // Register
+  checkAccountExist(email: string): Observable<MessageModel> {
+    return this
+      .http
+      .post<MessageModel>(this.url.urlFormUri('/public/register/available'), {username: email});
+  }
+
+  registerCustomer(username: string, password: string): Observable<UserModel> {
+    return this
+      .http
+      .post<UserModel>(
+        this.url.urlFormUri('/public/register/customer'),
+        {username, password}
+      );
   }
 
   registerMonitor(
     firstname: string,
     lastname: string,
     phone: string,
-    email: string,
+    username: string,
     password: string
-  ) {
-    console.time('registerMonitor')
-
+  ): Observable<UserModel> {
     return this
-      .api
-      .registerMonitor(
-        firstname,
-        lastname,
-        phone,
-        email,
-        password
-      )
-      .pipe(
-        tap(() => {
-          console.timeEnd('registerMonitor')
-        }),
-        concatMap(() => this.connect(email, password)),
-        tap({
-          next: () => {
-            this
-              .gtag
-              .event(
-                "register",
-                {
-                  event_category: "customers",
-                  event_label: 'New customer ' + email,
-                  value: 'valid'
-                })
-          },
-          error: (err: HttpErrorResponse) => {
-            this
-              .gtag
-              .event(
-                "register",
-                {
-                  event_category: "customers",
-                  event_label: 'Subscription error for ' + email,
-                  value: 'error: ' + err.message
-                })
-          }
-        })
-      )
+      .http
+      .post<UserModel>(
+        this.url.urlFormUri('/public/register/monitor'),
+        {
+          firstname,
+          lastname,
+          phone,
+          username,
+          password
+        }
+      );
   }
 
-  isLogged(): boolean {
-    return this.getUser() !== null && this.getToken() !== null;
+  // Password Reset
+  resetPasswordRequest(email: string): Observable<MessageModel> {
+    return this
+      .http
+      .post<MessageModel>(this.url.urlFormUri('/public/reset_password'), {username: email});
   }
 
-  disconnect() {
-    console.log('clearing session');
-    this.saveUser(null);
-    this.saveToken(null);
-
-    console.log('redirecting to home page');
-    this.router.navigate(['']);
+  checkPasswordResetTokenValidity(token: string): Observable<MessageModel> {
+    return this
+      .http
+      .post<MessageModel>(this.url.urlFormUri('/public/reset_password/validity'), {token});
   }
 
-  isGranted(...roles: string[]) {
-    const user = this.getUser();
-
-    if (!user) {
-      console.warn('not logged');
-      return false;
-    }
-
-    if (roles.length === 0) {
-      console.warn('user roles empty');
-      return false;
-    }
-
-    for (const role of roles) {
-      if (!user.roles.includes(role)) {
-        console.warn('user not granted:', role)
-        return false;
-      }
-    }
-
-    console.debug('user granted:', roles)
-
-    return true;
+  resetPassword(token: string, password: string): Observable<MessageModel> {
+    return this
+      .http
+      .patch<MessageModel>(this.url.urlFormUri('/public/reset_password'), {token, password});
   }
 
-  isCustomer(): boolean {
-    return this.isGranted('ROLE_CUSTOMER');
-  }
-
-  isMonitor(): boolean {
-    return this.isGranted('ROLE_MONITOR');
+  // Account Management
+  updatePassword(token: string, oldPassword: string, newPassword: string): Observable<MessageModel> {
+    return this
+      .http
+      .patch<MessageModel>(
+        this.url.urlFormUri('/public/user/password_update'),
+        {oldPassword, newPassword},
+      );
   }
 }

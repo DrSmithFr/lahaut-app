@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Roles} from "../../modules/api/guards/auth.guard";
-import {UserService} from "../../modules/api/services/user.service";
+import {AuthService} from "../../modules/api/services/auth.service";
 
 @Component(
   {
@@ -13,7 +13,7 @@ export class Page404Component implements OnInit {
   public isLoggedMonitor = false;
 
   constructor(
-    private authService: UserService
+    private authService: AuthService
   ) {
   }
 

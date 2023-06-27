@@ -2,9 +2,9 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {catchError, Observable, switchMap, throwError} from 'rxjs';
-import {UserService} from '../user.service';
+import {AuthService} from '../auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {ApiService} from "../api.service";
+import {UrlService} from "../utils/url.service";
 
 // handle API calls security token injection
 // handle session renewal (when getting 401)
@@ -15,14 +15,14 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   constructor(
     private router: Router,
-    private apiService: ApiService,
-    private authService: UserService,
+    private urlService: UrlService,
+    private authService: AuthService,
     private readonly snackBar: MatSnackBar,
   ) {
   }
 
   intercept<T>(request: HttpRequest<T>, next: HttpHandler): Observable<HttpEvent<T>> {
-    const apiUrl = this.apiService.apiUrlFormUri('');
+    const apiUrl = this.urlService.urlFormUri('');
 
     // if not an api call, do nothing
     if (!request.url.startsWith(apiUrl)) {

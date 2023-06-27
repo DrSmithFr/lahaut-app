@@ -49,6 +49,7 @@ export class PasswordResetDialog implements OnInit {
     return new Observable<ValidationErrors | null>(subscriber => {
       this
         .api
+        .users()
         .checkPasswordResetTokenValidity(control.value)
         .subscribe({
           next: () => {
@@ -119,6 +120,7 @@ export class PasswordResetDialog implements OnInit {
 
     this
       .api
+      .users()
       .resetPassword(this.getToken()?.value, this.getPassword()?.value)
       .subscribe({
         next: () => {

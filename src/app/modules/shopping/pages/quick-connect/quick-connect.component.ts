@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
-import {UserService} from "../../../api/services/user.service";
+import {AuthService} from "../../../api/services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
@@ -12,7 +12,7 @@ export class QuickConnectComponent {
 
   constructor(
     private router: Router,
-    private auth: UserService,
+    private auth: AuthService,
     private snackBar: MatSnackBar,
   ) {
   }

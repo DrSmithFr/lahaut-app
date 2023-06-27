@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
-import {UserService} from '../../../api/services/user.service';
+import {AuthService} from '../../../api/services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ApiService} from '../../../api/services/api.service';
@@ -45,7 +45,7 @@ export class RegisterMonitorComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private auth: UserService,
+    private auth: AuthService,
     private api: ApiService,
     private gtag: GoogleAnalyticsService,
     private snackBar: MatSnackBar,
@@ -65,6 +65,7 @@ export class RegisterMonitorComponent implements OnInit {
     return new Observable<ValidationErrors | null>(subscriber => {
       this
         .api
+        .users()
         .checkAccountExist(control.value)
         .subscribe({
           next: () => {

@@ -61,7 +61,7 @@ export class SearchNextAvailabilityComponent implements OnInit {
       query.person,
     );
 
-    const slots = await firstValueFrom(this.api.findSlots(newQuery));
+    const slots = await firstValueFrom(this.api.activities().slots().findSlots(newQuery));
     const results = this.searchService.transformSlotToSearchResult(newQuery, slots);
 
     return new Search(newQuery, results);

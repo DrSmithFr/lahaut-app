@@ -94,6 +94,8 @@ export class SearchPage implements OnInit, OnDestroy {
 
     this
       .api
+      .activities()
+      .slots()
       .findSlots(query)
       .subscribe(
         (slots) => {

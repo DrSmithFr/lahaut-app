@@ -61,6 +61,8 @@ export class PlanningComponent implements OnInit {
     this.loading = true;
     this
       .apiService
+      .activities()
+      .slots()
       .findCurrentMonitorSlots(this.selectedDate)
       .subscribe(slots => {
         this.results = this.planningService.transformSlotToPlanningResult(slots);

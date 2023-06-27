@@ -37,6 +37,7 @@ export class PasswordResetRequestDialog {
     return new Observable<ValidationErrors | null>(subscriber => {
       this
         .api
+        .users()
         .checkAccountExist(control.value)
         .subscribe({
           next: () => {
@@ -86,6 +87,7 @@ export class PasswordResetRequestDialog {
 
     this
       .api
+      .users()
       .resetPasswordRequest(this.getUsername()?.value)
       .subscribe({
         next: () => {

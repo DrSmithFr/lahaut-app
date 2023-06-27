@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {UserService} from "../../../api/services/user.service";
+import {AuthService} from "../../../api/services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {LogoutDialog} from "../../../../dialogs/logout-dialog/logout.dialog";
 import {Roles} from "../../../api/guards/auth.guard";
@@ -41,7 +41,7 @@ export class NavigationComponent implements OnInit {
   isDarkMode = false;
 
   constructor(
-    private auth: UserService,
+    private auth: AuthService,
     private navigationService: NavigationService,
     private shoppingService: ShoppingService,
     private router: Router,

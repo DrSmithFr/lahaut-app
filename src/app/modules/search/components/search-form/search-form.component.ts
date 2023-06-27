@@ -92,7 +92,8 @@ export class SearchFormComponent implements OnInit {
   loadActivityLocations() {
     return this
       .api
-      .getFlyLocations()
+      .activities()
+      .getLocations()
       .pipe(
         tap((locations) => {
           this.activityLocations = locations;
@@ -107,7 +108,8 @@ export class SearchFormComponent implements OnInit {
 
     return this
       .api
-      .getFlyType(location)
+      .activities()
+      .getTypeByLocation(location)
       .pipe(
         tap((types) => {
           this.activityTypes = types;

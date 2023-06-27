@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ConversationModel} from "../../../api/models/chat/conversation.model";
-import {UserService} from "../../../api/services/user.service";
+import {AuthService} from "../../../api/services/auth.service";
 import {UserModel} from "../../../api/models/user.model";
 
 @Component({
@@ -14,7 +14,7 @@ export class ChatListComponent {
   @Output() selected = new EventEmitter<ConversationModel>();
 
   constructor(
-    private authService: UserService,
+    private authService: AuthService,
   ) {
   }
 

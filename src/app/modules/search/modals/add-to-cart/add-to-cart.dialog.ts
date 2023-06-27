@@ -36,6 +36,8 @@ export class AddToCartDialog implements OnInit {
   ngOnInit() {
     this
       .api
+      .activities()
+      .slots()
       .getSlot(this.data.slot)
       .pipe(
         tap(slot => {
