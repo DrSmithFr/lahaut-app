@@ -1,4 +1,4 @@
-<h1 mat-dialog-title class="title">
+<h1 mat-dialog-title>
   <span *ngIf="periodInSameYear() && periodInSameMonth()">{{data.start|date: 'd'}} au {{data.end|date: 'd MMMM'}}</span>
   <span *ngIf="periodInSameYear() && !periodInSameMonth()">{{data.start|date: 'd MMMM'}} au {{data.end|date: 'd MMMM'}}</span>
   <span *ngIf="!periodInSameYear()">{{data.start|date: 'd MMMM YYYY'}} au {{data.end|date: 'd MMMM YYYY'}}</span>

@@ -10,7 +10,7 @@ import {AuthInterceptorService} from "./modules/api/services/interceptor/auth-in
 import {AutoFocusDirective} from "./modules/shared/directives/auto-focus.directive";
 import {Page404Component} from "./pages/page404/page404.component";
 import {LogoutDialog} from "./dialogs/logout-dialog/logout.dialog";
-import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material/dialog";
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
 import {LoginPage} from "./pages/login/login.page";
 import {GtagModule} from "angular-gtag";
 import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
@@ -19,6 +19,7 @@ import {registerLocaleData} from '@angular/common';
 import {NgxMaskModule} from "ngx-mask";
 import {SharedModule} from "./modules/shared/shared.module";
 import {ConnectModule} from "./modules/connect/connect.module";
+import {MatButtonModule} from "@angular/material/button";
 
 registerLocaleData(fr);
 
@@ -36,6 +37,7 @@ registerLocaleData(fr);
 
     // shared module
     SharedModule,
+    ConnectModule,
 
     // http client for api calls
     HttpClientModule,
@@ -43,7 +45,11 @@ registerLocaleData(fr);
     // loading browser modules
     BrowserModule,
     BrowserAnimationsModule,
+
+    // material modules
     MatNativeDateModule,
+    MatDialogModule,
+    MatButtonModule,
 
     // PWA service worker (cache management)
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -58,7 +64,6 @@ registerLocaleData(fr);
 
     // Init ngx-mask
     NgxMaskModule.forRoot(),
-    ConnectModule,
   ],
   exports: [
     HttpClientModule,

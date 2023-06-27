@@ -10,3 +10,18 @@
   background: var(--background-overlay) !important;
   backdrop-filter: blur(var(--blur));
 }
+
+h1.mdc-dialog__title {
+  color: var(--accent) !important;
+  font-size: 20px !important;
+  line-height: 20px !important;
+  font-weight: bold !important;
+  padding: 0 24px 20px 24px !important;
+  margin-bottom: 0 !important;
+  text-transform: uppercase !important;
+}
+
+.mat-mdc-dialog-container .modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}

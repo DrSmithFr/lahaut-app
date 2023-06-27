@@ -1,6 +1,3 @@
-@use 'sass:map';
-
-@import "colors";
 @import "breakpoints";
 
 .add-to-card {
@@ -155,11 +152,6 @@
       }
     }
   }
-}
-
-.modal-buttons {
-  display: flex;
-  justify-content: space-between;
 }
 
 .buy-button {
