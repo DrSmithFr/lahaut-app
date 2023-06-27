@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {LoginComponent} from './pages/login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -11,6 +10,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {RouterLink} from "@angular/router";
 import {PasswordResetDialog} from "./modals/password-reset/password-reset-dialog.component";
 import {PasswordResetRequestDialog} from "./modals/password-reset-request/password-reset-request.dialog";
+import {LoginComponent} from "./components/login/login.component";
 
 @NgModule({
   declarations: [

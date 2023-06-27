@@ -15,7 +15,7 @@ start:
 	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && ng serve
 
 prod:
-	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && ng build --prod
+	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && ng build --production
 
 test:
 	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && ng test
