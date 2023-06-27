@@ -5,9 +5,12 @@
   background: var(--background-overlay);
   backdrop-filter: blur(var(--blur));
 
+  border-bottom: 1px solid var(--border-light);
+
   &.transparent {
     background: transparent;
     backdrop-filter: none;
+    border-bottom: none;
 
     .navigation-button {
       background: var(--background-overlay);
