@@ -55,7 +55,6 @@ export class SearchService {
   }
 
   public getSlotUniqIdentifier(slot: SlotModel): string {
-    console.log(slot);
     return `${slot.activityType.identifier}-${slot.startAt}-${slot.endAt}-${slot.averageActivityDuration}-${slot.type}`;
   }
 }
