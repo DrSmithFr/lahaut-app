@@ -45,22 +45,26 @@
     <map-marker
       title="Décollage"
       [position]="getLatLngLiteral(slot.activityLocation.takeOffPoint)"
-      [label]="slot.activityLocation.takeOffPoint.name"
-      [options]="markerOptions"
+      [options]="markerTakeOffOptions"
     >
     </map-marker>
 
     <map-marker
       title="Atterrissage"
       [position]="getLatLngLiteral(slot.activityLocation.landingPoint)"
-      [label]="slot.activityLocation.landingPoint.name"
-      [options]="markerOptions"
+      [options]="markerLandingOptions"
     >
     </map-marker>
 
     <map-polyline
       [path]="[getLatLngLiteral(slot.activityLocation.takeOffPoint), getLatLngLiteral(slot.activityLocation.landingPoint)]"
-      [options]="polylineOptions"
+      [options]="polyline1Options"
+
+    ></map-polyline>
+
+    <map-polyline
+      [path]="[getLatLngLiteral(slot.activityLocation.takeOffPoint), getLatLngLiteral(slot.activityLocation.landingPoint)]"
+      [options]="polyline2Options"
     ></map-polyline>
   </google-map>
 </div>

@@ -18,18 +18,39 @@ export class FlyMapComponent implements AfterViewInit {
     mapTypeId: 'terrain'
   }
 
-  markerOptions: google.maps.MarkerOptions = {
+  markerTakeOffOptions: google.maps.MarkerOptions = {
     draggable: false,
     icon: {
       path: google.maps.SymbolPath.CIRCLE,
+      fillOpacity: 1,
       fillColor: '#aa80d8',
+      strokeColor: '#aa80d8',
+      scale: 6,
     }
   }
 
-  polylineOptions: google.maps.PolylineOptions = {
+  markerLandingOptions: google.maps.MarkerOptions = {
+    draggable: false,
+    icon: {
+      path: google.maps.SymbolPath.CIRCLE,
+      fillOpacity: 1,
+      fillColor: '#9bebe7',
+      strokeColor: '#9bebe7',
+      scale: 6,
+    }
+  }
+
+  polyline1Options: google.maps.PolylineOptions = {
     strokeColor: '#aa80d8',
     strokeOpacity: 1.0,
+    strokeWeight: 10,
+  };
+
+  polyline2Options: google.maps.PolylineOptions = {
+    strokeColor: '#9bebe7',
+    strokeOpacity: 1.0,
     strokeWeight: 3,
+
   };
 
   ngAfterViewInit() {
