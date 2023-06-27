@@ -3,20 +3,10 @@ import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
 import {SwPush, SwUpdate, VersionReadyEvent} from '@angular/service-worker';
 import {filter, map} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
-import {transition, trigger} from '@angular/animations';
-import {
-  fadeIn,
-  fromBottomEasing,
-  fromTopEasing,
-  moveFromLeft,
-  moveFromRight,
-  rotateRoomToBottom,
-  rotateRoomToLeft,
-  rotateRoomToRight,
-  rotateRoomToTop
-} from '../../animations/router-transitions';
+import {trigger} from '@angular/animations';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {GoogleAnalyticsService} from "../../services/google-analytics.service";
+import {routeAnimations} from "../../route.animations";
 
 @Component(
   {
@@ -24,40 +14,7 @@ import {GoogleAnalyticsService} from "../../services/google-analytics.service";
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     animations: [
-      trigger('routeAnimations', [
-        // Customer registration
-        transition('searchPage => login, searchPage => registerCustomer', rotateRoomToLeft),
-        transition('login => searchPage, registerCustomer => searchPage, registerMonitor => searchPage', rotateRoomToRight),
-        transition('registerCustomer => login', moveFromLeft),
-        transition('login => registerCustomer', moveFromRight),
-
-        // Monitor registration
-        transition('registerCustomer => registerMonitor', fromBottomEasing),
-        transition('registerMonitor => registerCustomer', fromTopEasing),
-
-        // Monitor dashboard
-        transition('dashboard => planning', rotateRoomToBottom),
-        transition('planning => dashboard', rotateRoomToTop),
-
-        // Entering/Exiting the booking process
-        transition('searchPage => cart, searchPage => booking', rotateRoomToTop),
-        transition('payment => searchPage, booking => searchPage, quickConnect => searchPage, cart => searchPage', rotateRoomToBottom),
-
-        // Moving between booking steps
-        transition('cart => quickConnect, quickConnect => booking, booking => payment', moveFromRight),
-        transition('payment => booking, booking => quickConnect, quickConnect => cart', moveFromLeft),
-
-        // Entering/Exiting chat
-        transition('dashboard => chat, planning => chat, account => chat', rotateRoomToRight),
-        transition('chat => *', rotateRoomToLeft),
-
-        // Entering/Exiting account
-        transition('dashboard => account, planning => account, chat => account', rotateRoomToLeft),
-        transition('account => *', rotateRoomToRight),
-
-
-        transition('* <=> *', fadeIn),
-      ])
+      trigger('routeAnimations', routeAnimations)
     ]
   }
 )

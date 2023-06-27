@@ -3,32 +3,23 @@
 
 .app-page {
   width: 100dvw;
-  min-height: calc(100dvh - $toolbar-desktop);
 
-  @include tablet {
-    width: 100dvw;
-    min-height: calc(100dvh - $toolbar-tablet);
+  min-height: calc(100dvh - #{$toolbar-desktop});
+  margin-top: $toolbar-desktop;
+
+  @include tablet() {
+    min-height: calc(100dvh - #{$toolbar-tablet});
+    margin-top: $toolbar-tablet;
   }
 
-  @include mobile-all {
-    width: 100dvw;
-    min-height: calc(100dvh - $toolbar-mobile);
+  @include mobile-all() {
+    min-height: calc(100dvh - #{$toolbar-mobile});
+    margin-top: $toolbar-mobile;
   }
 
   &.ng-animating {
     overflow: hidden;
 
-    margin-top: $toolbar-desktop;
-    height: calc(100dvh - $toolbar-desktop);
-
-    @include tablet {
-      margin-top: $toolbar-tablet;
-      height: calc(100dvh - $toolbar-tablet);
-    }
-
-    @include mobile-all {
-      margin-top: $toolbar-mobile;
-      height: calc(100dvh - $toolbar-mobile);
-    }
+    height: 100dvh;
   }
 }
