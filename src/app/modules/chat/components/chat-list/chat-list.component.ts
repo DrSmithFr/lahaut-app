@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ConversationModel} from "../../../api/models/ConversationModel";
+import {ConversationModel} from "../../../api/models/chat/conversation.model";
 import {AuthService} from "../../../api/services/auth.service";
 import {UserModel} from "../../../api/models/user.model";
 

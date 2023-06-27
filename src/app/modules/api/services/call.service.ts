@@ -4,18 +4,18 @@ import {HttpClient} from '@angular/common/http';
 import {TokenModel} from '../models/token.model';
 import {Observable} from 'rxjs';
 import {UserModel} from '../models/user.model';
-import {MessageModel} from "../models/message.model";
+import {MessageModel} from "../models/chat/message.model";
 import {SearchQuery} from "../../search/models/search-query";
-import {SlotModel} from "../models/slotModel";
+import {SlotModel} from "../models/activity/slot.model";
 import {DateService} from "./date.service";
-import {SlotDetailModel} from "../models/slotDetailModel";
-import {ConversationModel} from "../models/ConversationModel";
-import {ConversationMessageModel} from "../models/ConversationMessageModel";
-import {BookingModel} from "../models/bookingModel";
-import {SlotProposedModel} from "../models/slotProposedModel";
+import {SlotDetailModel} from "../models/activity/slot-detail.model";
+import {ConversationModel} from "../models/chat/conversation.model";
+import {ConversationMessageModel} from "../models/chat/conversation-message.model";
+import {BookingModel} from "../models/activity/booking.model";
+import {SlotProposedModel} from "../models/activity/slot-proposed.model";
 import {SlotPreview} from "../../planning/models/slot-preview";
-import {ActivityLocationModel} from "../models/ActivityLocationModel";
-import {ActivityTypeModel} from "../models/ActivityTypeModel";
+import {LocationModel} from "../models/activity/location.model";
+import {TypeModel} from "../models/activity/type-model";
 import {map} from "rxjs/operators";
 
 // contain every api call to be easily fake using angular provider mechanism
@@ -233,14 +233,14 @@ export class CallService {
       .post<ConversationMessageModel>(this.apiUrlFormUri('/conversations/' + id), {content: message});
   }
 
-  getFlyLocations(): Observable<ActivityLocationModel[]> {
+  getFlyLocations(): Observable<LocationModel[]> {
     return this
       .http
-      .get<ActivityLocationModel[]>(this.apiUrlFormUri('/public/locations'))
+      .get<LocationModel[]>(this.apiUrlFormUri('/public/locations'))
       .pipe(
-        map((locations: ActivityLocationModel[]) => {
+        map((locations: LocationModel[]) => {
           return locations.map(location => {
-            return new ActivityLocationModel(
+            return new LocationModel(
               location.uuid,
               location.identifier,
               location.name,
@@ -256,11 +256,11 @@ export class CallService {
   getFlyType(location: string) {
     return this
       .http
-      .get<ActivityTypeModel[]>(this.apiUrlFormUri('/public/locations/' + location + '/types'))
+      .get<TypeModel[]>(this.apiUrlFormUri('/public/locations/' + location + '/types'))
       .pipe(
         map(types => {
           return types.map(type => {
-            return new ActivityTypeModel(
+            return new TypeModel(
               type.uuid,
               type.identifier,
               type.name,

@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {CallService} from "../../../api/services/call.service";
-import {SlotDetailModel} from "../../../api/models/slotDetailModel";
+import {SlotDetailModel} from "../../../api/models/activity/slot-detail.model";
 import {FlyMeetingMapComponent} from "../../components/fly-meeting-map/fly-meeting-map.component";
 import {tap} from "rxjs/operators";
 import {ShoppingService} from "../../../shopping/services/shopping.service";

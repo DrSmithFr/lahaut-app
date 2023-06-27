@@ -1,7 +1,7 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {PlanningResult} from "../../models/planning-result";
-import {BookingModel} from "../../../api/models/bookingModel";
-import {SlotModel} from "../../../api/models/slotModel";
+import {BookingModel} from "../../../api/models/activity/booking.model";
+import {SlotModel} from "../../../api/models/activity/slot.model";
 import {MatDialog} from "@angular/material/dialog";
 import {RemoveHourAvailabilityDialog} from "../../modals/remove-hour-availability/remove-hour-availability.dialog";
 import {activityInList} from "../../../../animations/components-animations";

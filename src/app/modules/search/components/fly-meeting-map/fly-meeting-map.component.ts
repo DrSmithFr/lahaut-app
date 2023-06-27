@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {SlotDetailModel} from "../../../api/models/slotDetailModel";
+import {SlotDetailModel} from "../../../api/models/activity/slot-detail.model";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
 @Component({

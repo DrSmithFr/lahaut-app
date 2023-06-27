@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {SearchQuery} from "../models/search-query";
-import {SlotModel} from "../../api/models/slotModel";
+import {SlotModel} from "../../api/models/activity/slot.model";
 import {SearchResult} from "../models/search-result";
 import {SearchMonitorPriceResult} from "../models/search-monitor-price-result";
 

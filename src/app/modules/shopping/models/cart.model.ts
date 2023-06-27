@@ -1,4 +1,4 @@
-import {SlotDetailModel} from "../../api/models/slotDetailModel";
+import {SlotDetailModel} from "../../api/models/activity/slot-detail.model";
 
 export class CartModel {
   items: Array<CartItemModel>;

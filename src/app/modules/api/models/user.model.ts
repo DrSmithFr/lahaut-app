@@ -16,3 +16,5 @@ export class UserIdentityModel {
   ) {
   }
 }
+
+export class MonitorModel extends UserModel {}

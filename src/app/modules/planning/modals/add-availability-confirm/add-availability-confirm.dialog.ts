@@ -5,7 +5,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {flyTypePriced} from "../../models/fly-type-priced";
 import {SlotPreview} from "../../models/slot-preview";
 import {tap} from "rxjs/operators";
-import {SlotProposedModel} from "../../../api/models/slotProposedModel";
+import {SlotProposedModel} from "../../../api/models/activity/slot-proposed.model";
 import {HttpErrorResponse} from "@angular/common/http";
 import {concat} from "rxjs";
 

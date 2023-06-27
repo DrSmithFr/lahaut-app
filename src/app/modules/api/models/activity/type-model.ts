@@ -1,4 +1,4 @@
-export class ActivityTypeModel {
+export class TypeModel {
   constructor(
     public uuid: string,
     public identifier: string,

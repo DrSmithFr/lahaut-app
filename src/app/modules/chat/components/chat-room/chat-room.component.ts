@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {ConversationModel} from "../../../api/models/ConversationModel";
+import {ConversationModel} from "../../../api/models/chat/conversation.model";
 import {AuthService} from "../../../api/services/auth.service";
-import {ConversationMessageModel} from "../../../api/models/ConversationMessageModel";
+import {ConversationMessageModel} from "../../../api/models/chat/conversation-message.model";
 import {CallService} from "../../../api/services/call.service";
 import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";

@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CallService} from "../../../api/services/call.service";
-import {ConversationModel} from "../../../api/models/ConversationModel";
+import {ConversationModel} from "../../../api/models/chat/conversation.model";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {NavigationService} from "../../../../services/navigation.service";
 

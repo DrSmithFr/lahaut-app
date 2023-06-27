@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
-import {PlaceModel, SlotDetailModel} from "../../../api/models/slotDetailModel";
+import {SlotDetailModel} from "../../../api/models/activity/slot-detail.model";
 import {GoogleMap} from "@angular/google-maps";
+import {PlaceModel} from "../../../api/models/activity/place/place.model";
 
 @Component({
   selector: 'app-fly-map',

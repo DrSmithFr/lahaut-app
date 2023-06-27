@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {SlotModel} from "../../../api/models/slotModel";
+import {SlotModel} from "../../../api/models/activity/slot.model";
 
 @Component({
   selector: 'app-slots-list',

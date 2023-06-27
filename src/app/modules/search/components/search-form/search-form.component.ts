@@ -2,8 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {SearchQuery} from "../../models/search-query";
 import {CallService} from "../../../api/services/call.service";
-import {ActivityLocationModel} from "../../../api/models/ActivityLocationModel";
-import {ActivityTypeModel} from "../../../api/models/ActivityTypeModel";
+import {LocationModel} from "../../../api/models/activity/location.model";
+import {TypeModel} from "../../../api/models/activity/type-model";
 import {tap} from "rxjs/operators";
 import {concat} from "rxjs";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
@@ -33,8 +33,8 @@ export class SearchFormComponent implements OnInit {
     }
   );
 
-  activityLocations: ActivityLocationModel[];
-  activityTypes: ActivityTypeModel[];
+  activityLocations: LocationModel[];
+  activityTypes: TypeModel[];
 
   // Datepicker options
   toucheUi = false;

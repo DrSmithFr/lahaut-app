@@ -1,9 +1,9 @@
-import {ActivityTypeModel} from "../../api/models/ActivityTypeModel";
+import {TypeModel} from "../../api/models/activity/type-model";
 
 export class SlotPreview {
   constructor(
     public price: number,
-    public activityType: ActivityTypeModel,
+    public activityType: TypeModel,
     public startAt: string,
     public endAt: string,
     public averageActivityDuration: string,

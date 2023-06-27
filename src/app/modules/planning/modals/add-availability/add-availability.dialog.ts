@@ -8,7 +8,7 @@ import {
 } from "../add-availability-confirm/add-availability-confirm.dialog";
 import {CallService} from "../../../api/services/call.service";
 import {tap} from "rxjs/operators";
-import {ActivityLocationModel} from "../../../api/models/ActivityLocationModel";
+import {LocationModel} from "../../../api/models/activity/location.model";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
 
 @Component({
@@ -19,7 +19,7 @@ import {BreakpointService, Devices} from "../../../../services/breakpoint.servic
 export class AddAvailabilityDialog implements OnInit {
   @ViewChild('container') container: ElementRef;
 
-  activityLocations: ActivityLocationModel[] = [];
+  activityLocations: LocationModel[] = [];
   activityTypes: Array<flyTypePriced> = [];
 
   paramForm = this.fb.group({

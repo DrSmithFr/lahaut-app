@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {SlotModel} from "../../../api/models/slotModel";
+import {SlotModel} from "../../../api/models/activity/slot.model";
 import {CallService} from "../../../api/services/call.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";

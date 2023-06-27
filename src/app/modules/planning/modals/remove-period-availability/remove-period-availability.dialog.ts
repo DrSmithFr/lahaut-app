@@ -4,7 +4,7 @@ import {CallService} from "../../../api/services/call.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
-import {BookingModel} from "../../../api/models/bookingModel";
+import {BookingModel} from "../../../api/models/activity/booking.model";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
 import {tap} from "rxjs/operators";
 

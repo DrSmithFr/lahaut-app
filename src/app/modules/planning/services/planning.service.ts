@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {SlotModel} from "../../api/models/slotModel";
+import {SlotModel} from "../../api/models/activity/slot.model";
 import {PlanningResult} from "../models/planning-result";
-import {BookingModel} from "../../api/models/bookingModel";
+import {BookingModel} from "../../api/models/activity/booking.model";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {AddAvailabilityDialog} from "../modals/add-availability/add-availability.dialog";
 import {
