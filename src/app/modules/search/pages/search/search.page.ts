@@ -1,8 +1,8 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {SearchQuery} from "../../models/search-query";
-import {CallService} from "../../../api/services/call.service";
+import {ApiService} from "../../../api/services/api.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {DateService} from "../../../api/services/date.service";
+import {DateService} from "../../../api/services/utils/date.service";
 import {Search} from "../../models/search";
 import {SearchService} from "../../services/search.service";
 import {NavigationService} from "../../../../services/navigation.service";
@@ -29,7 +29,7 @@ export class SearchPage implements OnInit, OnDestroy {
   isDarkMode = false;
 
   constructor(
-    private api: CallService,
+    private api: ApiService,
     private searchService: SearchService,
     private dateService: DateService,
     private router: Router,

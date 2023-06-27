@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
-import {AuthService} from '../../../api/services/auth.service';
+import {UserService} from '../../../api/services/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {CallService} from '../../../api/services/call.service';
+import {ApiService} from '../../../api/services/api.service';
 import {Observable} from 'rxjs';
 import {GoogleAnalyticsService} from '../../../../services/google-analytics.service';
 import {PhoneInputComponent, PhoneNumber} from "../../../shared/components/phone-input/phone-input.component";
@@ -45,8 +45,8 @@ export class RegisterMonitorComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private auth: AuthService,
-    private api: CallService,
+    private auth: UserService,
+    private api: ApiService,
     private gtag: GoogleAnalyticsService,
     private snackBar: MatSnackBar,
   ) {

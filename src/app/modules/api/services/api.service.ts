@@ -7,7 +7,7 @@ import {UserModel} from '../models/user.model';
 import {MessageModel} from "../models/chat/message.model";
 import {SearchQuery} from "../../search/models/search-query";
 import {SlotModel} from "../models/activity/slot.model";
-import {DateService} from "./date.service";
+import {DateService} from "./utils/date.service";
 import {SlotDetailModel} from "../models/activity/slot-detail.model";
 import {ConversationModel} from "../models/chat/conversation.model";
 import {ConversationMessageModel} from "../models/chat/conversation-message.model";
@@ -24,7 +24,7 @@ import {map} from "rxjs/operators";
     providedIn: 'root'
   }
 )
-export class CallService {
+export class ApiService {
   readonly API_URL = environment.url_api;
 
   constructor(

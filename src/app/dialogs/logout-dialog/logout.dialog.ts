@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
-import {AuthService} from "../../modules/api/services/auth.service";
+import {UserService} from "../../modules/api/services/user.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -14,7 +14,7 @@ export class LogoutDialog {
   constructor(
     public dialogRef: MatDialogRef<LogoutDialog>,
     private router: Router,
-    private auth: AuthService,
+    private auth: UserService,
     private snackBar: MatSnackBar,
   ) {
   }

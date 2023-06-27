@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, concatMap, Observable, throwError} from 'rxjs';
-import {CallService} from './call.service';
+import {ApiService} from './api.service';
 import {UserModel} from '../models/user.model';
 import {TokenModel} from "../models/token.model";
-import {LocalService} from "./local.service";
+import {LocalService} from "./utils/local.service";
 import {tap} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {GoogleAnalyticsService} from "../../../services/google-analytics.service";
@@ -14,13 +14,13 @@ import {HttpErrorResponse} from "@angular/common/http";
     providedIn: 'root'
   }
 )
-export class AuthService {
+export class UserService {
 
   TOKEN: BehaviorSubject<TokenModel | null>;
   LOGGED_USER: BehaviorSubject<UserModel | null>;
 
   constructor(
-    private api: CallService,
+    private api: ApiService,
     private router: Router,
     private localService: LocalService,
     private gtag: GoogleAnalyticsService,

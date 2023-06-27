@@ -3,7 +3,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {AppComponent} from './app.component';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SwPush, SwUpdate} from "@angular/service-worker";
-import {AuthService} from "../../modules/api/services/auth.service";
+import {UserService} from "../../modules/api/services/user.service";
 import {MatDialog} from "@angular/material/dialog";
 import {GoogleAnalyticsService} from "../../services/google-analytics.service";
 
@@ -28,7 +28,7 @@ describe('AppComponent', () => {
         {provide: SwPush, useValue: SwPushMock},
         {provide: SwUpdate, useValue: SwUpdateMock},
         {provide: MatDialog, useValue: MatDialogMock},
-        {provide: AuthService, useValue: AuthServiceMock},
+        {provide: UserService, useValue: AuthServiceMock},
         {provide: GoogleAnalyticsService, useValue: GoogleAnalyticsServiceMock}
       ]
     }).compileComponents();

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
-import {CallService} from "../../../api/services/call.service";
+import {ApiService} from "../../../api/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -34,9 +34,9 @@ export class RemovePeriodAvailabilityDialog {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<RemovePeriodAvailabilityDialog>,
-    private apiService: CallService,
+    private apiService: ApiService,
     private snackBar: MatSnackBar,
-    private api: CallService,
+    private api: ApiService,
     private breakpointService: BreakpointService,
   ) {
     this

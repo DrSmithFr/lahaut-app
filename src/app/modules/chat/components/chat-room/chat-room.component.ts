@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {ConversationModel} from "../../../api/models/chat/conversation.model";
-import {AuthService} from "../../../api/services/auth.service";
+import {UserService} from "../../../api/services/user.service";
 import {ConversationMessageModel} from "../../../api/models/chat/conversation-message.model";
-import {CallService} from "../../../api/services/call.service";
+import {ApiService} from "../../../api/services/api.service";
 import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -35,8 +35,8 @@ export class ChatRoomComponent {
 
   constructor(
     private fb: FormBuilder,
-    private apiService: CallService,
-    private authService: AuthService,
+    private apiService: ApiService,
+    private authService: UserService,
     private snackBar: MatSnackBar,
   ) {
   }

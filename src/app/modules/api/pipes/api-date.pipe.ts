@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {DateService} from "../services/date.service";
+import {DateService} from "../services/utils/date.service";
 
 @Pipe({
   name: 'apiDate'

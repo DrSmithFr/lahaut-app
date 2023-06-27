@@ -2,9 +2,9 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {catchError, Observable, switchMap, throwError} from 'rxjs';
-import {AuthService} from '../auth.service';
+import {UserService} from '../user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {CallService} from "../call.service";
+import {ApiService} from "../api.service";
 
 // handle API calls security token injection
 // handle session renewal (when getting 401)
@@ -15,8 +15,8 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   constructor(
     private router: Router,
-    private apiService: CallService,
-    private authService: AuthService,
+    private apiService: ApiService,
+    private authService: UserService,
     private readonly snackBar: MatSnackBar,
   ) {
   }

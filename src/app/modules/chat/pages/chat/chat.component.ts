@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CallService} from "../../../api/services/call.service";
+import {ApiService} from "../../../api/services/api.service";
 import {ConversationModel} from "../../../api/models/chat/conversation.model";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {NavigationService} from "../../../../services/navigation.service";
@@ -18,7 +18,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   isOpened = false;
 
   constructor(
-    private apiService: CallService,
+    private apiService: ApiService,
     private breakpointObserver: BreakpointObserver,
     private navigationService: NavigationService
   ) {

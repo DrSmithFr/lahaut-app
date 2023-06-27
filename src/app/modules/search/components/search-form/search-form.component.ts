@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {SearchQuery} from "../../models/search-query";
-import {CallService} from "../../../api/services/call.service";
+import {ApiService} from "../../../api/services/api.service";
 import {LocationModel} from "../../../api/models/activity/location.model";
 import {TypeModel} from "../../../api/models/activity/type-model";
 import {tap} from "rxjs/operators";
@@ -42,7 +42,7 @@ export class SearchFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private api: CallService,
+    private api: ApiService,
     private breakpointService: BreakpointService,
   ) {
     this

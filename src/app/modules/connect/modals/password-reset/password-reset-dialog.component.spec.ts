@@ -6,7 +6,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
-import {CallService} from "../../../api/services/call.service";
+import {ApiService} from "../../../api/services/api.service";
 
 describe('PasswordResetDialog', () => {
   beforeEach(async () => {
@@ -27,7 +27,7 @@ describe('PasswordResetDialog', () => {
         PasswordResetDialog,
       ],
       providers: [
-        {provide: CallService, useValue: ApiServiceMock},
+        {provide: ApiService, useValue: ApiServiceMock},
         {provide: MatSnackBar, useValue: MatSnackBarSpy},
         {provide: MatDialog, useValue: MatDialogMock},
         {provide: MatDialogRef, useValue: MatDialogRefMock},

@@ -6,7 +6,7 @@ import {
   AddAvailabilityConfirmData,
   AddAvailabilityConfirmDialog
 } from "../add-availability-confirm/add-availability-confirm.dialog";
-import {CallService} from "../../../api/services/call.service";
+import {ApiService} from "../../../api/services/api.service";
 import {tap} from "rxjs/operators";
 import {LocationModel} from "../../../api/models/activity/location.model";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
@@ -50,7 +50,7 @@ export class AddAvailabilityDialog implements OnInit {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddAvailabilityDialog>,
     public dialog: MatDialog,
-    public api: CallService,
+    public api: ApiService,
     private breakpointService: BreakpointService,
   ) {
     this

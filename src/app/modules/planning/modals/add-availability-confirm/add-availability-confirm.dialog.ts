@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {CallService} from "../../../api/services/call.service";
+import {ApiService} from "../../../api/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {flyTypePriced} from "../../models/fly-type-priced";
 import {SlotPreview} from "../../models/slot-preview";
@@ -41,7 +41,7 @@ export class AddAvailabilityConfirmDialog implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: AddAvailabilityConfirmData,
     public dialogRef: MatDialogRef<AddAvailabilityConfirmDialog>,
-    private apiService: CallService,
+    private apiService: ApiService,
     private snackBar: MatSnackBar,
   ) {
   }

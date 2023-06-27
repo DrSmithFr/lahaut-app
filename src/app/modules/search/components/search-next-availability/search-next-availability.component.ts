@@ -1,7 +1,7 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {SearchQuery} from "../../models/search-query";
 import {Search} from "../../models/search";
-import {CallService} from "../../../api/services/call.service";
+import {ApiService} from "../../../api/services/api.service";
 import {SearchService} from "../../services/search.service";
 import {firstValueFrom} from "rxjs";
 
@@ -17,7 +17,7 @@ export class SearchNextAvailabilityComponent implements OnInit {
   result: Search | null = null;
 
   constructor(
-    private api: CallService,
+    private api: ApiService,
     private searchService: SearchService,
   ) {
   }

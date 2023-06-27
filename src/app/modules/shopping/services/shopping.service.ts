@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {CartItemModel, CartModel} from "../models/cart.model";
 import {BehaviorSubject} from "rxjs";
-import {LocalService} from "../../api/services/local.service";
+import {LocalService} from "../../api/services/utils/local.service";
 import {SlotDetailModel} from "../../api/models/activity/slot-detail.model";
 
 @Injectable({
