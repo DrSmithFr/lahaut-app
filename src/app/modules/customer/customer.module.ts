@@ -12,6 +12,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MyCustomerAccountComponent} from './pages/my-customer-account/my-customer-account.component';
 import {MatCardModule} from "@angular/material/card";
 import {RegisterCustomerPage} from "./pages/register-customer-page/register-customer.page";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule(
@@ -21,25 +22,26 @@ import {RegisterCustomerPage} from "./pages/register-customer-page/register-cust
       RegisterCustomerPage,
       MyCustomerAccountComponent,
     ],
-    imports: [
-      CommonModule,
+      imports: [
+          CommonModule,
 
-      // routing
-      CustomerRoutingModule,
+          // routing
+          CustomerRoutingModule,
 
-      // importing reactive form
-      FormsModule,
-      ReactiveFormsModule,
+          // importing reactive form
+          FormsModule,
+          ReactiveFormsModule,
 
-      // users modules
-      MatInputModule,
-      MatButtonModule,
-      MatProgressSpinnerModule,
-      MatCheckboxModule,
-      MatDialogModule,
-      MatIconModule,
-      MatCardModule
-    ],
+          // users modules
+          MatInputModule,
+          MatButtonModule,
+          MatProgressSpinnerModule,
+          MatCheckboxModule,
+          MatDialogModule,
+          MatIconModule,
+          MatCardModule,
+          SharedModule
+      ],
     exports: [
       RegisterCustomerComponent
     ],

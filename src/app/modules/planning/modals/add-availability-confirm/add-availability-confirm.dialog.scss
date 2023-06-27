@@ -1,6 +1,6 @@
 @use "sass:map";
-@import "../../../../../scss/_default/colors";
-@import "../../../../../scss/_default/breakpoints";
+@import "colors";
+@import "breakpoints";
 
 h1.title {
   color: var(--accent);

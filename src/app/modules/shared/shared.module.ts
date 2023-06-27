@@ -6,6 +6,13 @@ import {TimeAgoPipe} from '../api/pipes/time-ago.pipe';
 import {ApiDatePipe} from '../api/pipes/api-date.pipe';
 import {InfoComponent} from './components/info/info.component';
 import {MatIconModule} from "@angular/material/icon";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatMenuModule} from "@angular/material/menu";
+import {NavigationComponent} from "./components/navigation/navigation.component";
+import {MatBadgeModule} from "@angular/material/badge";
+import {MatButtonModule} from "@angular/material/button";
+import {RouterLink} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -13,18 +20,27 @@ import {MatIconModule} from "@angular/material/icon";
     TimeAgoPipe,
     ApiDatePipe,
     InfoComponent,
+    NavigationComponent
   ],
   imports: [
     CommonModule,
     PhoneInputComponent,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatButtonModule,
+    RouterLink,
   ],
   exports: [
     DurationPipe,
     PhoneInputComponent,
     TimeAgoPipe,
     ApiDatePipe,
-    InfoComponent
+    InfoComponent,
+    NavigationComponent
   ]
 })
 export class SharedModule {

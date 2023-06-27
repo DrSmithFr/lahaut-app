@@ -1,4 +1,19 @@
 .mat-toolbar {
-  background: var(--background-overlay) !important;
+  padding: 0;
+  color: var(--text-dark);
+
+  background: var(--background-overlay);
   backdrop-filter: blur(var(--blur));
+
+  &.transparent {
+    background: transparent;
+    backdrop-filter: none;
+
+    .navigation-button {
+      background: var(--background-overlay);
+      backdrop-filter: blur(var(--blur));
+
+      border-radius: 10px;
+    }
+  }
 }

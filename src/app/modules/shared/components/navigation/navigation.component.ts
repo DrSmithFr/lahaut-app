@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../../modules/api/services/auth.service";
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AuthService} from "../../../api/services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
-import {LogoutDialog} from "../../dialogs/logout-dialog/logout.dialog";
-import {Roles} from "../../modules/api/guards/auth.guard";
-import {NavigationService} from "../../services/navigation.service";
-import {ShoppingService} from "../../modules/shopping/services/shopping.service";
-import {CartModel} from "../../modules/shopping/models/cart.model";
+import {LogoutDialog} from "../../../../dialogs/logout-dialog/logout.dialog";
+import {Roles} from "../../../api/guards/auth.guard";
+import {NavigationService} from "../../../../services/navigation.service";
+import {ShoppingService} from "../../../shopping/services/shopping.service";
+import {CartModel} from "../../../shopping/models/cart.model";
 import {NavigationEnd, Router} from "@angular/router";
-import {environment} from "../../../environments/environment";
-import {ThemeService} from "../../services/theme.service";
+import {environment} from "../../../../../environments/environment";
+import {ThemeService} from "../../../../services/theme.service";
 
 @Component({
   selector: 'app-navigation',
@@ -16,22 +16,25 @@ import {ThemeService} from "../../services/theme.service";
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
+  @ViewChild('navWrapper', {static: false}) navWrapper: ElementRef<HTMLInputElement>;
+
   logoUrl = environment.logo;
 
   isLogged = false;
   isCustomer = false;
   isMonitor = false;
 
-  showLogo = true;
-
-  showMenuButton = false;
-  isMenuOpen = false;
+  @Input() transparent = true;
+  @Input() sticky = true;
+  @Input() showLogo = true;
+  @Input() showMenuButton = false;
+  @Input() isMenuOpen = false;
+  @Input() showPreviousButton = false;
+  @Input() showShoppingCartButton = true;
 
   showShoppingCart = false;
   shoppingCartCount = 0;
 
-  showPreviousButton = false;
-  showShoppingCartButton = true;
   currentUrl = '';
   previousUrl = '';
 
@@ -45,6 +48,10 @@ export class NavigationComponent implements OnInit {
     public dialog: MatDialog,
     private themeService: ThemeService
   ) {
+    window.addEventListener('scroll', () => {
+      this.navWrapper.nativeElement.style.top = `${window.scrollY}px`;
+    });
+
     router
       .events
       .subscribe(event => {

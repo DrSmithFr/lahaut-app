@@ -1,7 +1,7 @@
 @use 'sass:map';
 
-@import "../../../../../scss/_default/colors";
-@import "../../../../../scss/_default/breakpoints";
+@import "colors";
+@import "breakpoints";
 
 .add-to-card {
   .info {

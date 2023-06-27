@@ -7,27 +7,17 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {AuthInterceptorService} from "./modules/api/services/interceptor/auth-interceptor.service";
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatIconModule} from "@angular/material/icon";
-import {MatButtonModule} from "@angular/material/button";
-import {MatMenuModule} from "@angular/material/menu";
-import {MatBadgeModule} from "@angular/material/badge";
-import {AutoFocusDirective} from "./components/directives/auto-focus.directive";
+import {AutoFocusDirective} from "./modules/shared/directives/auto-focus.directive";
 import {Page404Component} from "./pages/page404/page404.component";
-import {NavigationComponent} from "./components/navigation/navigation.component";
 import {LogoutDialog} from "./dialogs/logout-dialog/logout.dialog";
-import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
+import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material/dialog";
 import {LoginPage} from "./pages/login/login.page";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {MatInputModule} from "@angular/material/input";
-import {MatCheckboxModule} from "@angular/material/checkbox";
 import {GtagModule} from "angular-gtag";
 import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import fr from '@angular/common/locales/fr';
 import {registerLocaleData} from '@angular/common';
 import {NgxMaskModule} from "ngx-mask";
+import {SharedModule} from "./modules/shared/shared.module";
 import {ConnectModule} from "./modules/connect/connect.module";
 
 registerLocaleData(fr);
@@ -37,7 +27,6 @@ registerLocaleData(fr);
     AppComponent,
     AutoFocusDirective,
     Page404Component,
-    NavigationComponent,
     LoginPage,
     LogoutDialog,
   ],
@@ -45,8 +34,8 @@ registerLocaleData(fr);
     // routing main module
     AppRoutingModule,
 
-    // Connect module
-    ConnectModule,
+    // shared module
+    SharedModule,
 
     // http client for api calls
     HttpClientModule,
@@ -54,26 +43,7 @@ registerLocaleData(fr);
     // loading browser modules
     BrowserModule,
     BrowserAnimationsModule,
-
-    // importing reactive form
-    FormsModule,
-    ReactiveFormsModule,
-
-    // Date modules
     MatNativeDateModule,
-
-    // Material modules
-    MatInputModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatBadgeModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatProgressSpinnerModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatIconModule,
-    MatToolbarModule,
 
     // PWA service worker (cache management)
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -88,14 +58,14 @@ registerLocaleData(fr);
 
     // Init ngx-mask
     NgxMaskModule.forRoot(),
-    ConnectModule
+    ConnectModule,
   ],
   exports: [
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    LoginPage
+    LoginPage,
   ],
   providers: [
     {

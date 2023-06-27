@@ -1,0 +1,68 @@
+@import "breakpoints";
+@import "toolbar";
+@import "theme";
+
+@mixin toolbar-height {
+  height: $toolbar-desktop;
+
+  @include tablet() {
+    height: $toolbar-tablet;
+  }
+
+  @include mobile-all() {
+    height: $toolbar-mobile;
+  }
+}
+
+// Toolbar Height definitions
+.mat-toolbar-row {
+  @include toolbar-height;
+}
+
+.toolbar-page-spacer {
+  @include toolbar-height;
+}
+
+.logo {
+  padding: 0 14px;
+  height: calc(#{$toolbar-desktop} - 10px);
+
+  @include tablet() {
+    width: auto;
+    height: calc(#{$toolbar-tablet} - 15px);
+  }
+
+  @include mobile-all() {
+    width: auto;
+    height: calc(#{$toolbar-mobile} - 15px);
+  }
+}
+
+// Sticky toolbar
+.toolbar-wrapper {
+  width: 100%;
+  z-index: 10;
+
+  &.sticky {
+    position: fixed;
+    top: 0;
+  }
+
+}
+
+// Styles for the navigation component
+.toolbar {
+  .row {
+    width: auto;
+  }
+
+  &.fadeOut {
+    opacity: 0;
+    transition: all 3s ease-in-out;
+  }
+}
+
+.space-between{
+  display: flex;
+  justify-content: space-between;
+}

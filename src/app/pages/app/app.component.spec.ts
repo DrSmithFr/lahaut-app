@@ -1,14 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import {TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {AppComponent} from './app.component';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SwPush, SwUpdate} from "@angular/service-worker";
-import {NavigationComponent} from "../../components/navigation/navigation.component";
 import {AuthService} from "../../modules/api/services/auth.service";
-import {MatDialog, MatDialogModule} from "@angular/material/dialog";
-import {MatIconModule} from "@angular/material/icon";
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatMenuModule} from "@angular/material/menu";
+import {MatDialog} from "@angular/material/dialog";
 import {GoogleAnalyticsService} from "../../services/google-analytics.service";
 
 describe('AppComponent', () => {
@@ -23,22 +19,17 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        MatToolbarModule,
-        MatDialogModule,
-        MatMenuModule,
-        MatIconModule,
       ],
       declarations: [
         AppComponent,
-        NavigationComponent
       ],
       providers: [
-        { provide: MatSnackBar, useValue: matSnackBarSpy },
-        { provide: SwPush, useValue: SwPushMock },
-        { provide: SwUpdate, useValue: SwUpdateMock },
-        { provide: MatDialog, useValue: MatDialogMock },
-        { provide: AuthService, useValue: AuthServiceMock },
-        { provide: GoogleAnalyticsService, useValue: GoogleAnalyticsServiceMock}
+        {provide: MatSnackBar, useValue: matSnackBarSpy},
+        {provide: SwPush, useValue: SwPushMock},
+        {provide: SwUpdate, useValue: SwUpdateMock},
+        {provide: MatDialog, useValue: MatDialogMock},
+        {provide: AuthService, useValue: AuthServiceMock},
+        {provide: GoogleAnalyticsService, useValue: GoogleAnalyticsServiceMock}
       ]
     }).compileComponents();
   });

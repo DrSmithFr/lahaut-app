@@ -8,21 +8,6 @@ $height: 100dvh;
   height: 100dvh;
 }
 
-.app-page-container {
-  padding-top: $toolbar-desktop;
-  min-height: calc(100dvh - $toolbar-desktop);
-
-  @include tablet {
-    padding-top: $toolbar-tablet;
-    min-height: calc(100dvh - $toolbar-tablet);
-  }
-
-  @include mobile-all {
-    padding-top: $toolbar-mobile;
-    min-height: calc(100dvh - $toolbar-mobile);
-  }
-}
-
 .app-router-wrapper {
   position:  relative;
   overflow:  hidden;
@@ -30,14 +15,6 @@ $height: 100dvh;
   transform-style:  preserve-3d;
 
   width:  100%;
-  min-height: calc(100dvh - $toolbar-desktop);
-
-  @include tablet {
-    min-height: calc(100dvh - $toolbar-tablet);
-  }
-
-  @include mobile-all {
-    min-height: calc(100dvh - $toolbar-mobile);
-  }
+  min-height: 100dvh;
 }
 
