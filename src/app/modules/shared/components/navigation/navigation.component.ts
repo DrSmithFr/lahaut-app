@@ -48,10 +48,6 @@ export class NavigationComponent implements OnInit {
     public dialog: MatDialog,
     private themeService: ThemeService
   ) {
-    window.addEventListener('scroll', () => {
-      this.navWrapper.nativeElement.style.top = `${window.scrollY}px`;
-    });
-
     router
       .events
       .subscribe(event => {

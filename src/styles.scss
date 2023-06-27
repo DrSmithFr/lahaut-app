@@ -136,6 +136,10 @@
 }
 
 // Base styles
+html, body {
+  width: 100%;
+}
+
 body {
   color: var(--text);
   font-family: var(--font-text);

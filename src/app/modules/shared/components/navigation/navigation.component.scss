@@ -16,6 +16,7 @@
 
 // Toolbar Height definitions
 .mat-toolbar-row {
+  padding: 0 10px;
   @include toolbar-height;
 }
 
@@ -40,14 +41,13 @@
 
 // Sticky toolbar
 .toolbar-wrapper {
-  width: 100%;
   z-index: 10;
+  min-width: 100%;
 
   &.sticky {
     position: fixed;
     top: 0;
   }
-
 }
 
 // Styles for the navigation component

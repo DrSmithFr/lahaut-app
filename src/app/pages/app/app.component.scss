@@ -9,12 +9,19 @@ $height: 100dvh;
 }
 
 .app-router-wrapper {
-  position:  relative;
-  overflow:  hidden;
-  perspective:  1200px;
-  transform-style:  preserve-3d;
-
-  width:  100%;
+  width: 100%;
   min-height: 100dvh;
+
+  overflow-x: hidden;
+
+  &.ng-animating {
+    position:  relative;
+    overflow:  hidden;
+    perspective:  1200px;
+    transform-style:  preserve-3d;
+
+    width:  100%;
+    min-height: 100dvh;
+  }
 }
 

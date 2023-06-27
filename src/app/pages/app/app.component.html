@@ -1,8 +1,6 @@
 <div class="app-wrapper">
-  <div class="app-page-container">
-    <div class="app-router-wrapper" [@routeAnimations]="prepareRoute(outlet)">
-      <router-outlet #outlet="outlet"></router-outlet>
-    </div>
+  <div class="app-router-wrapper" [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
   </div>
 </div>
 
