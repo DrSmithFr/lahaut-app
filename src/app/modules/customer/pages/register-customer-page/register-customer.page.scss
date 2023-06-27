@@ -1,6 +1,9 @@
 .bottom-overlay {
-  position: relative;
-  top: -100px;
+  position: fixed;
+
+  bottom: 0;
+  right: 0;
+  left: 0;
 
   max-width: 250px;
   margin: 0 auto;
