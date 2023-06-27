@@ -3,146 +3,142 @@
 .planning {
   @import "animations/fade-in";
   @include fade-in(0.5s);
+}
 
-  .planning-header {
+.planning-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
+  h1 {
+    margin: 0;
+
+    color: var(--accent);
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+    font-weight: 500;
   }
 
-  .planning-menu {
+  button {
+    color: var(--accent)
+  }
+}
+
+.planning-navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  .week-selector {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
-    h1 {
+    h2 {
       margin: 0;
 
-      color: var(--accent);
-      font-size: 2.5rem;
-      line-height: 2.5rem;
+      color: var(--primary);
+      font-size: 1.5rem;
       font-weight: 500;
     }
 
     button {
-      color: var(--accent)
+      color: var(--primary);
     }
   }
 
-  .planning-navigation {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+  button {
+    text-align: center;
+  }
+}
 
-    .week-selector {
+.day-picker {
+  margin: 32px 0;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .day {
+    width: 70px;
+    text-decoration: none;
+
+    .day-number {
+      width: 32px;
+      height: 32px;
+
+      margin: 0 auto;
+
       display: flex;
-      justify-content: center;
       align-items: center;
-
-      h2 {
-        margin: 0;
-
-        color: var(--primary);
-        font-size: 1.5rem;
-        font-weight: 500;
-      }
-
-      button {
-        color: var(--primary);
-      }
-    }
-
-    button {
+      justify-content: center;
       text-align: center;
+
+      border-radius: 50%;
+      border: 2px solid var(--border-dark);
+
+      color: var(--text-light);
+
+      font-size: 1rem;
+      font-weight: bold;
+      font-family: monospace;
     }
-  }
 
-  .day-picker {
-    margin: 32px 0;
+    .day-name {
+      color: var(--text-light);
+      font-size: 1rem;
+      font-weight: 500;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+      text-align: center;
 
-    .day {
-      width: 70px;
-      text-decoration: none;
+      &.short {
+        display: none;
+      }
 
+      @include mobile-all {
+        &.short {
+          display: block;
+        }
+
+        &.long {
+          display: none;
+        }
+      }
+    }
+
+    &.selected, &:hover {
       .day-number {
-        width: 32px;
-        height: 32px;
-
-        margin: 0 auto;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-
-        border-radius: 50%;
-        border: 2px solid var(--border-dark);
-
-        color: var(--text-light);
-
-        font-size: 1rem;
-        font-weight: bold;
-        font-family: monospace;
+        border-color: var(--primary);
+        color: var(--primary);
       }
 
       .day-name {
-        color: var(--text-light);
-        font-size: 1rem;
-        font-weight: 500;
+        color: var(--primary);
+      }
+    }
 
-        text-align: center;
-
-        &.short {
-          display: none;
-        }
-
-        @include mobile-all {
-          &.short {
-            display: block;
-          }
-
-          &.long {
-            display: none;
-          }
-        }
+    &.today {
+      .day-number {
+        background: var(--accent);
+        border-color: var(--accent-ligth);
+        color: var(--background);
       }
 
-      &.selected, &:hover {
-        .day-number {
-          border-color: var(--primary);
-          color: var(--primary);
-        }
-
-        .day-name {
-          color: var(--primary);
-        }
+      .day-name {
+        color: var(--accent);
       }
 
-      &.today {
+      &:hover, &.selected {
         .day-number {
-          background: var(--accent);
-          border-color: var(--accent-ligth);
+          background: var(--primary);
+          border-color: var(--primary-ligth);
           color: var(--background);
         }
 
         .day-name {
-          color: var(--accent);
-        }
-
-        &:hover, &.selected {
-          .day-number {
-            background: var(--primary);
-            border-color: var(--primary-ligth);
-            color: var(--background);
-          }
-
-          .day-name {
-            color: var(--primary);
-          }
+          color: var(--primary);
         }
       }
     }
