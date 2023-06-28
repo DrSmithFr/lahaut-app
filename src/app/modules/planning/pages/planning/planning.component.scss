@@ -122,7 +122,7 @@
     &.today {
       .day-number {
         background: var(--accent);
-        border-color: var(--accent-ligth);
+        border-color: var(--accent-light);
         color: var(--background);
       }
 
@@ -133,7 +133,7 @@
       &:hover, &.selected {
         .day-number {
           background: var(--primary);
-          border-color: var(--primary-ligth);
+          border-color: var(--primary-light);
           color: var(--background);
         }
 

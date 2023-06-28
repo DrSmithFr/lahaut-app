@@ -9,8 +9,6 @@
 
 </mat-accordion>
 
-<mat-card *ngIf="search && search.results && search.results.size === 0">
-  <app-info>
-    Aucun résultat pour votre recherche...
-  </app-info>
-</mat-card>
+<app-info type="warning" *ngIf="search && search.results && search.results.size === 0">
+  Aucun résultat pour votre recherche...
+</app-info>

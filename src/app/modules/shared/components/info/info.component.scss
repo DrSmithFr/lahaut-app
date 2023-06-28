@@ -1,12 +1,16 @@
 @import "breakpoints";
 
 .info {
+  padding: 20px;
+}
+
+.info-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 
-  .icon {
+  .icon-container {
     text-align: center;
     width: 64px;
 
@@ -15,11 +19,69 @@
     }
   }
 
-  .base {
-    color: var(--text-light);
+  mat-spinner {
+    display: inline-block;
+
+    height: 15px;
+    width: 15px;
   }
 
   .disclaimer {
-    color: var(--text);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .info-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
 }
+
+.color-info {
+  .disclaimer,
+  .icon {
+    color: var(--text-light);
+  }
+}
+
+.color-warning {
+  .disclaimer,
+  .icon {
+    color: var(--primary);
+  }
+}
+
+
+.color-error {
+  .disclaimer,
+  .icon {
+    color: var(--warn-dark);
+  }
+}
+
+.color-pending {
+  .disclaimer {
+    color: var(--text-light);
+  }
+
+  .icon {
+    color: var(--text-light);
+  }
+}
+
+.color-success {
+  .disclaimer,
+  .icon,
+  p,
+  h1,h2,h3,h4,h5,h6 {
+    color: var(--primary);
+  }
+}
+
+

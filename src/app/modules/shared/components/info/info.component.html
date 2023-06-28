@@ -1,10 +1,15 @@
-<div class="info">
-  <div>
-    <div class="icon">
-      <mat-icon class="base">info</mat-icon>
+<mat-card class="info color-{{type}}">
+  <div class="info-container">
+    <div class="icon-container">
+      <mat-icon class="icon">{{MatIconMap[type]}}_outlined</mat-icon>
+    </div>
+    <div class="disclaimer" [class.pending]="type === 'pending'">
+      <div class="container info-content">
+        <ng-content></ng-content>
+      </div>
+      <div class="container">
+        <mat-spinner style="height: 15px; width: 15px" *ngIf="type === 'pending'"></mat-spinner>
+      </div>
     </div>
   </div>
-  <div class="disclaimer">
-    <ng-content></ng-content>
-  </div>
-</div>
+</mat-card>

@@ -3,7 +3,7 @@ import {SearchQuery} from "../../models/search-query";
 import {Search} from "../../models/search";
 import {ApiService} from "../../../api/services/api.service";
 import {SearchService} from "../../services/search.service";
-import {firstValueFrom} from "rxjs";
+import {firstValueFrom, from, Observable} from "rxjs";
 
 @Component({
   selector: 'app-search-next-availability',
@@ -25,14 +25,20 @@ export class SearchNextAvailabilityComponent implements OnInit {
   ngOnInit(): void {
     this.searching = true;
 
-    this.searchNextTwoWeek(this.query).then(search => {
-      this.result = search;
-      this.searching = false;
+    this
+      .getsearchNextTwoWeek(this.query)
+      .subscribe(search => {
+        this.result = search;
+        this.searching = false;
 
-      if (search !== null) {
-        this.scrollToResults();
-      }
-    });
+        if (search !== null) {
+          this.scrollToResults();
+        }
+      });
+  }
+
+  getsearchNextTwoWeek(query: SearchQuery): Observable<Search | null> {
+    return from(this.searchNextTwoWeek(query));
   }
 
   async searchNextTwoWeek(query: SearchQuery): Promise<Search | null> {

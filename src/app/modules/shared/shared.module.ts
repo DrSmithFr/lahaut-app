@@ -13,6 +13,8 @@ import {NavigationComponent} from "./components/navigation/navigation.component"
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
+import {MatCardModule} from "@angular/material/card";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import {RouterLink} from "@angular/router";
     MatBadgeModule,
     MatButtonModule,
     RouterLink,
+    MatCardModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     DurationPipe,
