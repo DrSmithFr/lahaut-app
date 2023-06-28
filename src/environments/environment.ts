@@ -7,6 +7,8 @@ export const environment = {
   fake_api:   true,
   debug:      true,
   url_api:    'https://ms-base',
+  locale:     'fr-FR',
+  locales:    ['fr-FR', 'en-EN', 'es-ES'],
   logo: {
     light: {
       small: 'assets/corporate/logo/logo.png',
@@ -16,6 +18,9 @@ export const environment = {
       small: 'assets/corporate/logo/logo_dark.png',
       large: 'assets/corporate/logo/logo_large_dark.png',
     }
+  },
+  google: {
+    analytics: 'UA-132202996-1',
   }
 };
 

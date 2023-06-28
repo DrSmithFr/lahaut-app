@@ -3,7 +3,7 @@
   [formGroup]="loginForm"
   (ngSubmit)="onSubmit()">
   <mat-form-field class="full-width">
-    <mat-label>Email</mat-label>
+    <mat-label i18n="email|login form email field">Email</mat-label>
     <input
       matInput
       required
@@ -12,13 +12,13 @@
       formControlName="username"
       autocomplete="email">
     <mat-icon matPrefix>mail</mat-icon>
-    <mat-error *ngIf="hasError(getUsername())">
+    <mat-error *ngIf="hasError(getUsername())" i18n>
       Entre ton email !
     </mat-error>
   </mat-form-field>
 
   <mat-form-field class="full-width password-field">
-    <mat-label>Mot de passe</mat-label>
+    <mat-label i18n>Mot de passe</mat-label>
     <input
       matInput
       required
@@ -32,7 +32,7 @@
       (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'">
       {{hidePassword ? 'visibility_off' : 'visibility'}}
     </mat-icon>
-    <mat-error *ngIf="hasError(getPassword())">
+    <mat-error *ngIf="hasError(getPassword())" i18n>
       Entre ton mot de passe !
     </mat-error>
   </mat-form-field>
@@ -43,7 +43,8 @@
       [disabled]="loginForm.invalid"
       mat-flat-button
       color="primary"
-      type="submit">
+      type="submit"
+      i18n>
       Connexion
     </button>
     <mat-spinner
@@ -54,6 +55,6 @@
   </div>
 
   <p class="right">
-    <a class="primary extra-link" (click)="openPasswordResetRequestDialog()">Mot de passe oublié ?</a>
+    <a class="primary extra-link" (click)="openPasswordResetRequestDialog()" i18n>Mot de passe oublié ?</a>
   </p>
 </form>

@@ -7,6 +7,8 @@ export const environment = {
   fake_api:   false,
   debug:      false,
   url_api:    'https://lahautparapente.fr/backend',
+  locale:     'fr-FR',
+  locales:    ['fr-FR', 'en-EN', 'es-ES'],
   logo: {
     light: {
       small: 'assets/corporate/logo/logo_new.png',
@@ -16,6 +18,9 @@ export const environment = {
       small: 'assets/corporate/logo/logo_new.png',
       large: 'assets/corporate/logo/logo_large_new.png',
     }
+  },
+  google: {
+    analytics: 'UA-132202996-1',
   }
 };
 

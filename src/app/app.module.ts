@@ -20,6 +20,7 @@ import {NgxMaskModule} from "ngx-mask";
 import {SharedModule} from "./modules/shared/shared.module";
 import {ConnectModule} from "./modules/connect/connect.module";
 import {MatButtonModule} from "@angular/material/button";
+import {environment} from "../environments/environment";
 
 registerLocaleData(fr);
 
@@ -55,12 +56,12 @@ registerLocaleData(fr);
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      // or after 5 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:5000'
     }),
 
     // Google Analytics
-    GtagModule.forRoot({trackingId: 'UA-132202996-1', trackPageviews: true}),
+    GtagModule.forRoot({trackingId: environment.google.analytics, trackPageviews: true}),
 
     // Init ngx-mask
     NgxMaskModule.forRoot(),
@@ -86,8 +87,8 @@ registerLocaleData(fr);
         exitAnimationDuration: '150ms',
       }
     },
-    {provide: LOCALE_ID, useValue: 'fr-FR'},
-    {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'}
+    {provide: LOCALE_ID, useValue: environment.locale},
+    {provide: MAT_DATE_LOCALE, useValue: environment.locale}
   ],
   bootstrap: [AppComponent]
 })
