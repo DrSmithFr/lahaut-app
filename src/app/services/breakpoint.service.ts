@@ -5,10 +5,10 @@ import {mediaQuery} from "../../environments/breakpoints";
 import {BehaviorSubject} from "rxjs";
 
 export enum Devices {
-  smallMobile,
-  largeMobile,
-  tablet,
-  desktop,
+  smallMobile = 'smallMobile',
+  largeMobile = 'largeMobile',
+  tablet = 'tablet',
+  desktop = 'desktop'
 }
 
 @Injectable({

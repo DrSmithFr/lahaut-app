@@ -8,7 +8,7 @@
         <h1 class="connect-title">Nouveau Moniteur</h1>
       </div>
 
-      <mat-stepper orientation="vertical" [linear]="false" #stepper>
+      <mat-stepper [orientation]="stepperOrientation" [linear]="true" #stepper>
         <mat-step [stepControl]="identityForm">
           <form [formGroup]="identityForm">
             <ng-template matStepLabel>Identité</ng-template>
@@ -20,16 +20,14 @@
               <mat-label>Nom</mat-label>
               <input matInput placeholder="Nom" formControlName="lastname" required>
             </mat-form-field>
-            <div class="row buttons">
-              <p class="button-container">
-                <button
-                  [disabled]="identityForm.invalid"
-                  mat-flat-button
-                  color="primary"
-                  matStepperNext>
-                  Continuer
-                </button>
-              </p>
+            <div class="buttons right">
+              <button
+                [disabled]="identityForm.invalid"
+                mat-flat-button
+                color="primary"
+                matStepperNext>
+                Continuer
+              </button>
             </div>
           </form>
         </mat-step>
@@ -64,17 +62,22 @@
               <app-phone-input formControlName="phone"></app-phone-input>
               <mat-icon matPrefix>phone</mat-icon>
             </mat-form-field>
-            <div class="row buttons">
-              <p class="button-container">
-                <button
-                  [disabled]="contactForm.invalid"
-                  mat-flat-button
-                  color="primary"
-                  matStepperNext>
-                  Continuer
-                </button>
-              </p>
+
+            <div class="buttons">
+              <button
+                mat-stroked-button
+                matStepperPrevious>
+                précédent
+              </button>
+              <button
+                [disabled]="contactForm.invalid"
+                mat-flat-button
+                color="primary"
+                matStepperNext>
+                Continuer
+              </button>
             </div>
+
           </form>
         </mat-step>
         <mat-step [stepControl]="passwordForm">
@@ -134,22 +137,22 @@
               </mat-error>
             </mat-form-field>
 
-            <div class="row buttons">
-              <p class="button-container">
-                <button
-                  *ngIf="!showLoader"
-                  [disabled]="identityForm.invalid || contactForm.invalid || passwordForm.invalid"
-                  mat-flat-button
-                  color="primary"
-                  type="submit">
-                  S'inscrire
-                </button>
-                <mat-spinner *ngIf="showLoader"
-                             diameter="37"
-                             style="margin: 0 auto">
-                </mat-spinner>
-              </p>
+            <div class="buttons">
+              <button
+                mat-stroked-button
+                matStepperPrevious>
+                précédent
+              </button>
+              <button
+                [disabled]="contactForm.invalid || showLoader"
+                [class.spinner]="showLoader"
+                mat-flat-button
+                color="primary"
+                matStepperNext>
+                Continuer
+              </button>
             </div>
+
           </form>
         </mat-step>
       </mat-stepper>

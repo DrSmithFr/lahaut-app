@@ -8,6 +8,8 @@ import {Observable} from 'rxjs';
 import {GoogleAnalyticsService} from '../../../../services/google-analytics.service';
 import {PhoneInputComponent, PhoneNumber} from "../../../shared/components/phone-input/phone-input.component";
 import {HttpErrorResponse} from "@angular/common/http";
+import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
+import {StepperOrientation} from "@angular/cdk/stepper";
 
 @Component(
   {
@@ -17,6 +19,8 @@ import {HttpErrorResponse} from "@angular/common/http";
   }
 )
 export class RegisterMonitorComponent implements OnInit {
+
+  stepperOrientation: StepperOrientation = 'horizontal';
 
   hidePassword = true;
   hidePassword2 = true;
@@ -49,7 +53,19 @@ export class RegisterMonitorComponent implements OnInit {
     private api: ApiService,
     private gtag: GoogleAnalyticsService,
     private snackBar: MatSnackBar,
+    private breakpointService: BreakpointService,
   ) {
+    this
+      .breakpointService
+      .getDeviceSubject()
+      .subscribe(device => {
+        console.log(device);
+        if (device === Devices.smallMobile || device === Devices.largeMobile) {
+          this.stepperOrientation = 'vertical';
+        } else {
+          this.stepperOrientation = 'horizontal';
+        }
+      });
   }
 
   ngOnInit(): void {

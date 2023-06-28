@@ -45,6 +45,12 @@ const routes: Routes = [
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
   },
   {
+    path: 'onboarding',
+    canActivate: [AuthGuard.hasRoles([Roles.monitor])],
+    canActivateChild: [AuthGuard.hasRoles([Roles.monitor])],
+    loadChildren: () => import('./modules/onboarding/onboarding.module').then(m => m.OnboardingModule),
+  },
+  {
     path: 'shopping',
     canActivate: [AuthGuard.IsDisconnectedOrHasRoles([Roles.customer], '/')],
     canActivateChild: [AuthGuard.IsDisconnectedOrHasRoles([Roles.customer], '/')],
