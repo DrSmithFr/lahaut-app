@@ -5,7 +5,7 @@
   </p>
 </app-info>
 
-<app-info type="pending" icon="thunderstorm" class="bottom-bar" *ngIf="serverError && !updateAvailable" style="margin-top: 40px">
+<app-info type="pending" icon="thunderstorm" class="bottom-bar" *ngIf="!waitingForUpdate && serverError && !updateAvailable" style="margin-top: 40px">
   <p>
     <b>Les serveurs sont en cours de mise à jour.</b><br>
     <i>veuillez réessayer dans quelques minutes.</i>
