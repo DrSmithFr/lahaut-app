@@ -9,6 +9,10 @@ export const environment = {
   url_api:    'https://ms-base',
   locale:     'fr-FR',
   locales:    ['fr-FR', 'en-EN', 'es-ES'],
+  theme: {
+    light: '#fff',
+    dark: '#0c0c0c'
+  },
   logo: {
     light: {
       small: 'assets/corporate/logo/logo.png',
