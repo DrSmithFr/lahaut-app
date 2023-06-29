@@ -7,13 +7,14 @@ import {MatDialog} from "@angular/material/dialog";
 import {HttpErrorResponse} from "@angular/common/http";
 import {PasswordResetRequestDialog} from "../../modals/password-reset-request/password-reset-request.dialog";
 import {PasswordResetDialog} from "../../modals/password-reset/password-reset-dialog.component";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends UnsubscribeOnDestroyComponent implements OnInit {
   @Input() autoRedirect = true;
   @Output() login = new EventEmitter<void>();
 
@@ -38,19 +39,25 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
   ) {
+    super();
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-        if (params['username'] !== undefined) {
-          this.getUsername()?.setValue(params['username']);
-        }
+    this.unsubscribeOnDestroy(
+      this
+        .route
+        .queryParams
+        .subscribe(params => {
+            if (params['username'] !== undefined) {
+              this.getUsername()?.setValue(params['username']);
+            }
 
-        if (params['token'] !== undefined) {
-          this.openPasswordResetDialog(params['token']);
-        }
-      }
-    )
+            if (params['token'] !== undefined) {
+              this.openPasswordResetDialog(params['token']);
+            }
+          }
+        )
+    );
   }
 
   getUsername(): AbstractControl | null {
@@ -91,7 +98,7 @@ export class LoginComponent implements OnInit {
     this.shaking = false;
     this.showLoader = true;
 
-    this
+    const s = this
       .auth
       .connect(
         this.getUsername()?.value,
@@ -121,6 +128,8 @@ export class LoginComponent implements OnInit {
           }
         }
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 
   shakeForm() {

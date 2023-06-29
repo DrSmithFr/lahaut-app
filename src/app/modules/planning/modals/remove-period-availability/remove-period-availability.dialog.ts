@@ -7,13 +7,14 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {BookingModel} from "../../../api/models/activity/booking.model";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
 import {tap} from "rxjs/operators";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-remove-period-availability',
   templateUrl: './remove-period-availability.dialog.html',
   styleUrls: ['./remove-period-availability.dialog.scss']
 })
-export class RemovePeriodAvailabilityDialog {
+export class RemovePeriodAvailabilityDialog extends UnsubscribeOnDestroyComponent {
 
   periodForm = this.fb.group({
     dayOnly: [true, [Validators.required]],
@@ -39,7 +40,9 @@ export class RemovePeriodAvailabilityDialog {
     private api: ApiService,
     private breakpointService: BreakpointService,
   ) {
-    this
+    super();
+
+    const s = this
       .breakpointService
       .getDeviceSubject()
       .pipe(
@@ -49,6 +52,8 @@ export class RemovePeriodAvailabilityDialog {
         })
       )
       .subscribe();
+
+    this.unsubscribeOnDestroy(s);
   }
 
   closeModal() {
@@ -66,7 +71,7 @@ export class RemovePeriodAvailabilityDialog {
     const start = new Date(this.getStart()?.value)
     const end = new Date(this.getEnd()?.value)
 
-    this
+    const s = this
       .api
       .activities()
       .slots()
@@ -89,6 +94,8 @@ export class RemovePeriodAvailabilityDialog {
             );
         }
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 
   canSubmit(): boolean {
@@ -115,7 +122,7 @@ export class RemovePeriodAvailabilityDialog {
       return;
     }
 
-    this
+    const s = this
       .apiService
       .activities()
       .slots()
@@ -136,6 +143,8 @@ export class RemovePeriodAvailabilityDialog {
             );
         }
       })
+
+    this.unsubscribeOnDestroy(s);
   }
 
   updateEndDate() {

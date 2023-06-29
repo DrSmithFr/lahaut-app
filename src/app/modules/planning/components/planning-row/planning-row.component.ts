@@ -5,6 +5,7 @@ import {SlotModel} from "../../../api/models/activity/slot.model";
 import {MatDialog} from "@angular/material/dialog";
 import {RemoveHourAvailabilityDialog} from "../../modals/remove-hour-availability/remove-hour-availability.dialog";
 import {activityInList} from "../../../../animations/components-animations";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-planning-row',
@@ -14,7 +15,7 @@ import {activityInList} from "../../../../animations/components-animations";
     activityInList.children
   ]
 })
-export class PlanningRowComponent implements OnInit {
+export class PlanningRowComponent extends UnsubscribeOnDestroyComponent implements OnInit {
   @Input() result: PlanningResult;
   @Output() requestPlanningRefresh = new EventEmitter<boolean>();
   @ViewChild('container') container: ElementRef;
@@ -25,6 +26,7 @@ export class PlanningRowComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
   ) {
+    super();
   }
 
   ngOnInit(): void {
@@ -51,7 +53,7 @@ export class PlanningRowComponent implements OnInit {
   }
 
   removeAvailability(slots: Map<number, SlotModel>) {
-    this
+    const s = this
       .dialog
       .open(
         RemoveHourAvailabilityDialog,
@@ -66,5 +68,7 @@ export class PlanningRowComponent implements OnInit {
           this.requestPlanningRefresh.emit(true);
         }
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 }

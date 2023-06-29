@@ -4,13 +4,14 @@ import {ApiService} from "../../../api/services/api.service";
 import {PlanningService} from "../../../planning/services/planning.service";
 import {PlanningResult} from "../../../planning/models/planning-result";
 import {MatDialog} from "@angular/material/dialog";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent extends UnsubscribeOnDestroyComponent implements OnInit {
   public loading = true;
   public results: Map<string, PlanningResult>;
 
@@ -19,7 +20,7 @@ export class DashboardComponent implements OnInit {
     private planningService: PlanningService,
     private dialog: MatDialog,
   ) {
-
+    super();
   }
 
   ngOnInit() {
@@ -27,7 +28,7 @@ export class DashboardComponent implements OnInit {
   }
 
   refreshPlanning() {
-    this
+    const s = this
       .apiService
       .activities()
       .slots()
@@ -41,10 +42,12 @@ export class DashboardComponent implements OnInit {
         this.results = this.planningService.transformSlotToPlanningResult(slots);
         this.loading = false;
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 
   removeAvailability() {
-    this
+    const s = this
       .planningService
       .openRemoveAvailabilityDialog(this.dialog)
       .afterClosed()
@@ -53,10 +56,12 @@ export class DashboardComponent implements OnInit {
           this.refreshPlanning();
         }
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 
   addAvailability() {
-    this
+    const s = this
       .planningService
       .openAddAvailabilityDialog(this.dialog)
       .afterClosed()
@@ -65,5 +70,7 @@ export class DashboardComponent implements OnInit {
           this.refreshPlanning();
         }
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 }

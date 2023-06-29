@@ -5,6 +5,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog
 import {Observable} from "rxjs";
 import {ApiService} from "../../../api/services/api.service";
 import {PasswordResetRequestDialog} from "../password-reset-request/password-reset-request.dialog";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component(
   {
@@ -13,7 +14,7 @@ import {PasswordResetRequestDialog} from "../password-reset-request/password-res
     styleUrls: ['./password-reset-dialog.component.scss']
   }
 )
-export class PasswordResetDialog implements OnInit {
+export class PasswordResetDialog extends UnsubscribeOnDestroyComponent implements OnInit {
   @ViewChild('password') passwordField: ElementRef<HTMLInputElement>;
 
   form = this.fb.group(
@@ -35,6 +36,7 @@ export class PasswordResetDialog implements OnInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<PasswordResetDialog>,
   ) {
+    super();
     this.getToken()?.setValue(data.token);
   }
 
@@ -47,7 +49,7 @@ export class PasswordResetDialog implements OnInit {
 
   validateResetToken(control: AbstractControl): Observable<ValidationErrors | null> {
     return new Observable<ValidationErrors | null>(subscriber => {
-      this
+      const s = this
         .api
         .users()
         .checkPasswordResetTokenValidity(control.value)
@@ -61,6 +63,8 @@ export class PasswordResetDialog implements OnInit {
             subscriber.complete();
           },
         });
+
+      this.unsubscribeOnDestroy(s);
     });
   }
 
@@ -132,7 +136,8 @@ export class PasswordResetDialog implements OnInit {
           this.snackBar.open('Une erreur est survenue lors de la réinitialisation de votre mot de passe', 'Close', {duration: 5000});
           this.dialogRef.close();
         }
-      });
+      })
+      .unsubscribe();
   }
 
   openRequestResetPasswordDialog() {

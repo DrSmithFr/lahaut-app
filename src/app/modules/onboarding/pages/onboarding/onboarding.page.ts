@@ -2,13 +2,14 @@ import {Component} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
 import {StepperOrientation} from "@angular/cdk/stepper";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-onboarding',
   templateUrl: './onboarding.page.html',
   styleUrls: ['./onboarding.page.scss']
 })
-export class OnboardingPage {
+export class OnboardingPage extends UnsubscribeOnDestroyComponent {
   stepperOrientation: StepperOrientation = 'horizontal';
 
   firstFormGroup = this.fb.group({
@@ -22,7 +23,9 @@ export class OnboardingPage {
     private fb: FormBuilder,
     private breakpointService: BreakpointService,
   ) {
-    this
+    super();
+
+    const s =this
       .breakpointService
       .getDeviceSubject()
       .subscribe(device => {
@@ -33,5 +36,7 @@ export class OnboardingPage {
           this.stepperOrientation = 'horizontal';
         }
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 }

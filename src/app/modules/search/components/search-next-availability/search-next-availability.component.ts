@@ -28,7 +28,7 @@ export class SearchNextAvailabilityComponent extends UnsubscribeOnDestroyCompone
     this.searching = true;
 
     const s = this
-      .getsearchNextTwoWeek(this.query)
+      .getSearchNextTwoWeek(this.query)
       .subscribe(search => {
         this.result = search;
         this.searching = false;
@@ -41,7 +41,7 @@ export class SearchNextAvailabilityComponent extends UnsubscribeOnDestroyCompone
     this.unsubscribeOnDestroy(s);
   }
 
-  getsearchNextTwoWeek(query: SearchQuery): Observable<Search | null> {
+  getSearchNextTwoWeek(query: SearchQuery): Observable<Search | null> {
     return from(this.searchNextTwoWeek(query));
   }
 

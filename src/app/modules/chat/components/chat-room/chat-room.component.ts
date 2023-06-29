@@ -5,24 +5,27 @@ import {ConversationMessageModel} from "../../../api/models/chat/conversation-me
 import {ApiService} from "../../../api/services/api.service";
 import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-chat-room',
   templateUrl: './chat-room.component.html',
   styleUrls: ['./chat-room.component.scss']
 })
-export class ChatRoomComponent {
+export class ChatRoomComponent extends UnsubscribeOnDestroyComponent {
   @Input() set room(room: ConversationModel) {
     this.current = room;
     this.getMessage()?.reset();
 
-    this
+    const s = this
       .api
       .chats()
       .getMessages(room.id)
       .subscribe(messages => {
         this.messages = messages;
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 
   current: ConversationModel | null = null;
@@ -40,6 +43,7 @@ export class ChatRoomComponent {
     private authService: AuthService,
     private snackBar: MatSnackBar,
   ) {
+    super();
   }
 
   isMessageMine(message: ConversationMessageModel) {
@@ -63,7 +67,7 @@ export class ChatRoomComponent {
 
     this.sending = true;
 
-    this.api
+    const s = this.api
       .chats()
       .sendMessage(this.current.id, this.getMessage()?.value)
       .subscribe({
@@ -83,6 +87,8 @@ export class ChatRoomComponent {
             );
         }
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 
   keyDownFunction(event: KeyboardEvent) {

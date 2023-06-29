@@ -9,6 +9,7 @@ import {GoogleAnalyticsService} from '../../../../services/google-analytics.serv
 import {HttpErrorResponse} from "@angular/common/http";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
 import {StepperOrientation} from "@angular/cdk/stepper";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component(
   {
@@ -17,7 +18,7 @@ import {StepperOrientation} from "@angular/cdk/stepper";
     styleUrls: ['./register-monitor.component.scss']
   }
 )
-export class RegisterMonitorComponent implements OnInit {
+export class RegisterMonitorComponent extends UnsubscribeOnDestroyComponent implements OnInit {
 
   stepperOrientation: StepperOrientation = 'horizontal';
 
@@ -54,7 +55,9 @@ export class RegisterMonitorComponent implements OnInit {
     private snackBar: MatSnackBar,
     private breakpointService: BreakpointService,
   ) {
-    this
+    super();
+
+    const s = this
       .breakpointService
       .getDeviceSubject()
       .subscribe(device => {
@@ -65,20 +68,27 @@ export class RegisterMonitorComponent implements OnInit {
           this.stepperOrientation = 'horizontal';
         }
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    const s = this
+      .route
+      .queryParams
+      .subscribe(params => {
         if (params['username'] !== undefined) {
           this.getUsername()?.setValue(params['username']);
         }
       }
     );
+
+    this.unsubscribeOnDestroy(s);
   }
 
   validateUsernameAvailable(control: AbstractControl): Observable<ValidationErrors | null> {
     return new Observable<ValidationErrors | null>(subscriber => {
-      this
+      const s = this
         .api
         .users()
         .checkAccountExist(control.value)
@@ -92,6 +102,8 @@ export class RegisterMonitorComponent implements OnInit {
             subscriber.complete();
           },
         });
+
+      this.unsubscribeOnDestroy(s);
     });
   }
 
@@ -177,7 +189,7 @@ export class RegisterMonitorComponent implements OnInit {
 
     this.showLoader = true;
 
-    this
+    const s = this
       .auth
       .registerMonitor(
         this.getFirstname()?.value,
@@ -193,6 +205,8 @@ export class RegisterMonitorComponent implements OnInit {
           this.snackBar.open(`[${err.status}] Une erreur est survenue lors de l'inscription`, 'OK');
         }
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 
 }

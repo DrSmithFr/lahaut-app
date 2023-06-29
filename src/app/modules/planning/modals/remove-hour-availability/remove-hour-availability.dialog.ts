@@ -4,13 +4,14 @@ import {SlotModel} from "../../../api/models/activity/slot.model";
 import {ApiService} from "../../../api/services/api.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-remove-hour-availability',
   templateUrl: './remove-hour-availability.dialog.html',
   styleUrls: ['./remove-hour-availability.dialog.scss']
 })
-export class RemoveHourAvailabilityDialog implements OnInit {
+export class RemoveHourAvailabilityDialog extends UnsubscribeOnDestroyComponent implements OnInit {
   slots: Map<number, SlotModel>;
   loading = false;
 
@@ -20,6 +21,7 @@ export class RemoveHourAvailabilityDialog implements OnInit {
     private apiService: ApiService,
     private snackBar: MatSnackBar,
   ) {
+    super();
   }
 
   ngOnInit() {
@@ -37,7 +39,7 @@ export class RemoveHourAvailabilityDialog implements OnInit {
       .from(this.slots.values())
       .map(slot => slot.id);
 
-    this
+    const s = this
       .apiService
       .activities()
       .slots()
@@ -58,5 +60,7 @@ export class RemoveHourAvailabilityDialog implements OnInit {
             );
         }
       })
+
+    this.unsubscribeOnDestroy(s);
   }
 }

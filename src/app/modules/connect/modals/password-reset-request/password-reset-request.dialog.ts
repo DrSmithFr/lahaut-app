@@ -4,6 +4,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Observable} from "rxjs";
 import {ApiService} from "../../../api/services/api.service";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component(
   {
@@ -12,7 +13,7 @@ import {ApiService} from "../../../api/services/api.service";
     styleUrls: ['./password-reset-request.dialog.scss']
   }
 )
-export class PasswordResetRequestDialog {
+export class PasswordResetRequestDialog extends UnsubscribeOnDestroyComponent {
   @ViewChild('password') passwordField: ElementRef<HTMLInputElement>;
 
   loading = false;
@@ -24,6 +25,7 @@ export class PasswordResetRequestDialog {
     private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<PasswordResetRequestDialog>,
   ) {
+    super();
     this.getUsername()?.setValue(data.email);
   }
 
@@ -35,7 +37,7 @@ export class PasswordResetRequestDialog {
 
   validateUsernameExist(control: AbstractControl): Observable<ValidationErrors | null> {
     return new Observable<ValidationErrors | null>(subscriber => {
-      this
+      const s = this
         .api
         .users()
         .checkAccountExist(control.value)
@@ -50,6 +52,8 @@ export class PasswordResetRequestDialog {
             subscriber.complete();
           },
         });
+
+      this.unsubscribeOnDestroy(s);
     });
   }
 
@@ -85,7 +89,7 @@ export class PasswordResetRequestDialog {
 
     this.loading = true;
 
-    this
+    const s = this
       .api
       .users()
       .resetPasswordRequest(this.getUsername()?.value)
@@ -99,6 +103,8 @@ export class PasswordResetRequestDialog {
           this.snackBar.open('Une erreur est survenue lors de la réinitialisation de votre mot de passe', 'Close', {duration: 5000});
         }
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 
   closeModal(): void {

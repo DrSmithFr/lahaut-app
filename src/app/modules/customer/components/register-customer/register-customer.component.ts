@@ -7,6 +7,7 @@ import {ApiService} from '../../../api/services/api.service';
 import {Observable} from 'rxjs';
 import {GoogleAnalyticsService} from '../../../../services/google-analytics.service';
 import {HttpErrorResponse} from "@angular/common/http";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component(
   {
@@ -15,7 +16,7 @@ import {HttpErrorResponse} from "@angular/common/http";
     styleUrls: ['./register-customer.component.scss']
   }
 )
-export class RegisterCustomerComponent implements OnInit {
+export class RegisterCustomerComponent extends UnsubscribeOnDestroyComponent implements OnInit {
   @Input() autoRedirect = true;
   @Output() registration = new EventEmitter<void>();
 
@@ -42,20 +43,26 @@ export class RegisterCustomerComponent implements OnInit {
     private gtag: GoogleAnalyticsService,
     private snackBar: MatSnackBar,
   ) {
+    super();
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-        if (params['username'] !== undefined) {
-          this.getUsername()?.setValue(params['username']);
+    const s = this
+      .route
+      .queryParams
+      .subscribe(params => {
+          if (params['username'] !== undefined) {
+            this.getUsername()?.setValue(params['username']);
+          }
         }
-      }
-    );
+      );
+
+    this.unsubscribeOnDestroy(s);
   }
 
   validateUsernameAvailable(control: AbstractControl): Observable<ValidationErrors | null> {
     return new Observable<ValidationErrors | null>(subscriber => {
-      this
+      const s = this
         .api
         .users()
         .checkAccountExist(control.value)
@@ -69,6 +76,8 @@ export class RegisterCustomerComponent implements OnInit {
             subscriber.complete();
           },
         });
+
+      this.unsubscribeOnDestroy(s);
     });
   }
 
@@ -152,7 +161,8 @@ export class RegisterCustomerComponent implements OnInit {
           this.shaking = true;
           this.snackBar.open(`[${err.status}] Une erreur est survenue lors de l'inscription`, 'OK');
         }
-      });
+      })
+      .unsubscribe();
   }
 
 }

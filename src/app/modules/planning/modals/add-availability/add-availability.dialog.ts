@@ -10,13 +10,14 @@ import {ApiService} from "../../../api/services/api.service";
 import {tap} from "rxjs/operators";
 import {LocationModel} from "../../../api/models/activity/location.model";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-add-availability',
   templateUrl: './add-availability.dialog.html',
   styleUrls: ['./add-availability.dialog.scss']
 })
-export class AddAvailabilityDialog implements OnInit {
+export class AddAvailabilityDialog extends UnsubscribeOnDestroyComponent implements OnInit {
   @ViewChild('container') container: ElementRef;
 
   activityLocations: LocationModel[] = [];
@@ -53,7 +54,9 @@ export class AddAvailabilityDialog implements OnInit {
     public api: ApiService,
     private breakpointService: BreakpointService,
   ) {
-    this
+    super();
+
+    const s = this
       .breakpointService
       .getDeviceSubject()
       .pipe(
@@ -63,12 +66,16 @@ export class AddAvailabilityDialog implements OnInit {
         })
       )
       .subscribe();
+
+    this.unsubscribeOnDestroy(s);
   }
 
   ngOnInit() {
-    this
-      .loadActivityLocations()
-      .subscribe();
+    this.unsubscribeOnDestroy(
+      this
+        .loadActivityLocations()
+        .subscribe()
+    );
   }
 
   loadActivityLocations() {
@@ -207,7 +214,7 @@ export class AddAvailabilityDialog implements OnInit {
       return;
     }
 
-    this
+    const s = this
       .dialog
       .open(
         AddAvailabilityConfirmDialog,
@@ -229,6 +236,8 @@ export class AddAvailabilityDialog implements OnInit {
           this.loading = false;
         }
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 
   // UX actions

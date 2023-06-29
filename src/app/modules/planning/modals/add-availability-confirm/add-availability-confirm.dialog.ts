@@ -8,6 +8,7 @@ import {tap} from "rxjs/operators";
 import {SlotProposedModel} from "../../../api/models/activity/slot-proposed.model";
 import {HttpErrorResponse} from "@angular/common/http";
 import {concat} from "rxjs";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 export class AddAvailabilityConfirmData {
   constructor(
@@ -27,7 +28,7 @@ type ProposedPlanning = Map<string, Array<SlotPreview>>;
   templateUrl: './add-availability-confirm.dialog.html',
   styleUrls: ['./add-availability-confirm.dialog.scss']
 })
-export class AddAvailabilityConfirmDialog implements OnInit {
+export class AddAvailabilityConfirmDialog extends UnsubscribeOnDestroyComponent implements OnInit {
 
   requesting = true;
   loading = false;
@@ -44,15 +45,18 @@ export class AddAvailabilityConfirmDialog implements OnInit {
     private apiService: ApiService,
     private snackBar: MatSnackBar,
   ) {
+    super();
   }
 
   ngOnInit(): void {
-    concat(
-      this.loadSlotsInPeriod(),
-      this.loadProposedSlots(),
-    ).subscribe(() => {
-      this.requesting = false;
-    });
+    this.unsubscribeOnDestroy(
+      concat(
+        this.loadSlotsInPeriod(),
+        this.loadProposedSlots(),
+      ).subscribe(() => {
+        this.requesting = false;
+      })
+    )
   }
 
   private loadSlotsInPeriod() {
@@ -221,7 +225,7 @@ export class AddAvailabilityConfirmDialog implements OnInit {
 
     const slots = this.getSelectedSlots();
 
-    this
+    const s  = this
       .apiService
       .activities()
       .slots()
@@ -251,6 +255,8 @@ export class AddAvailabilityConfirmDialog implements OnInit {
             );
         }
       });
+
+    this.unsubscribeOnDestroy(s);
 
     setTimeout(() => {
       this.loading = false;
