@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
-import {SwPush, SwUpdate, VersionReadyEvent} from '@angular/service-worker';
+import {SwPush, SwUpdate, VersionDetectedEvent, VersionReadyEvent} from '@angular/service-worker';
 import {filter, map, tap} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
 import {trigger} from '@angular/animations';
@@ -47,6 +47,16 @@ export class AppComponent implements OnInit {
 
     if (environment.production && this.swUpdate.isEnabled) {
       // PWA look for update
+      this
+        .swUpdate
+        .versionUpdates
+        .pipe(
+          filter((evt): evt is VersionDetectedEvent => evt.type === 'VERSION_DETECTED'),
+          tap(() => {
+            this.waitingForUpdate = true;
+          })
+        ).subscribe();
+
       this
         .swUpdate
         .versionUpdates
