@@ -269,18 +269,18 @@ export class AuthService {
     }
 
     if (roles.length === 0) {
-      console.warn('user roles empty');
+      console.warn('user roles empty', user);
       return false;
     }
 
     for (const role of roles) {
       if (!user.roles.includes(role)) {
-        console.warn('user not granted:', role)
+        console.warn('user not granted:', role, user)
         return false;
       }
     }
 
-    console.debug('user granted:', roles)
+    console.debug('user granted:', roles, user)
 
     return true;
   }

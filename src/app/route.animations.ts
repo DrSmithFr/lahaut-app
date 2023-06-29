@@ -5,6 +5,8 @@ import {
   fromTopEasing,
   moveFromLeft,
   moveFromRight,
+  rotateFlipToLeft,
+  rotateFlipToRight,
   rotateRoomToBottom,
   rotateRoomToLeft,
   rotateRoomToRight,
@@ -63,6 +65,11 @@ export const routeAnimations: AnimationTransitionMetadata[] = [
     rotateRoomToLeft
   ),
   transition('account => *', rotateRoomToRight),
+
+  // Entering/Exiting the administration
+  transition('admin-dashboard <=> admin-advanced', fadeIn),
+  multiTransition(['*'], ['admin-dashboard', 'admin-advanced'], rotateFlipToLeft),
+  multiTransition(['admin-advanced', 'admin-advanced'], ['*'], rotateFlipToRight),
 
   transition('* <=> *', fadeIn),
 ]

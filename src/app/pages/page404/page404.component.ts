@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Roles} from "../../modules/api/guards/auth.guard";
 import {AuthService} from "../../modules/api/services/auth.service";
-import {UnsubscribeOnDestroyComponent} from "../../modules/shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../modules/_shared/components/unsubscribe-on-destroy.component";
 
 @Component(
   {

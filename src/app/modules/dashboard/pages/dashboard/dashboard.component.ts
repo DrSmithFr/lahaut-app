@@ -4,7 +4,7 @@ import {ApiService} from "../../../api/services/api.service";
 import {PlanningService} from "../../../planning/services/planning.service";
 import {PlanningResult} from "../../../planning/models/planning-result";
 import {MatDialog} from "@angular/material/dialog";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-dashboard',

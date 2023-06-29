@@ -8,7 +8,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {PlanningRowComponent} from './components/planning-row/planning-row.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from "../_shared/shared.module";
 import {RemoveHourAvailabilityDialog} from './modals/remove-hour-availability/remove-hour-availability.dialog';
 import {MatDialogModule} from "@angular/material/dialog";
 import {SlotsListComponent} from './components/slots-list/slots-list.component';

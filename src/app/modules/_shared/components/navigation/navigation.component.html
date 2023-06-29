@@ -8,7 +8,7 @@
 
     <mat-toolbar-row class="space-between">
 
-      <div class="navigation-button"  *ngIf="showMenuButton || showPreviousButton">
+      <div class="navigation-button" *ngIf="showMenuButton || showPreviousButton">
         <button
           mat-icon-button
           aria-label="ouvrir/fermer la liste des conversations chat"
@@ -34,7 +34,7 @@
         </a>
       </div>
 
-      <div  class="navigation-button">
+      <div class="navigation-button">
         <button
           mat-icon-button
           aria-label="voir le panier"
@@ -79,10 +79,6 @@
             <mat-icon>person</mat-icon>
             <span>Mon compte</span>
           </button>
-          <button mat-menu-item (click)="openLogoutDialog()">
-            <mat-icon>logout</mat-icon>
-            <span>Se déconnecter</span>
-          </button>
         </div>
 
         <!-- Monitor -->
@@ -112,6 +108,25 @@
             <mat-icon>person</mat-icon>
             <span>Mon compte</span>
           </button>
+        </div>
+
+        <!-- Admin -->
+        <div *ngIf="isAdministrator">
+          <button mat-menu-item routerLink="/admin/">
+            <mat-icon>admin_panel_settings</mat-icon>
+            <span>Administration</span>
+          </button>
+        </div>
+
+        <div *ngIf="isSuperAdministrator" routerLink="/admin/advanced">
+          <button mat-menu-item routerLink="/admin/advanced">
+            <mat-icon>tune</mat-icon>
+            <span>BackOffice</span>
+          </button>
+        </div>
+
+        <!-- Logout -->
+        <div *ngIf="isLogged">
           <button mat-menu-item (click)="openLogoutDialog()">
             <mat-icon>logout</mat-icon>
             <span>Se déconnecter</span>

@@ -5,7 +5,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog
 import {Observable} from "rxjs";
 import {ApiService} from "../../../api/services/api.service";
 import {PasswordResetRequestDialog} from "../password-reset-request/password-reset-request.dialog";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component(
   {

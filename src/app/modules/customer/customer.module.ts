@@ -12,7 +12,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MyCustomerAccountComponent} from './pages/my-customer-account/my-customer-account.component';
 import {MatCardModule} from "@angular/material/card";
 import {RegisterCustomerPage} from "./pages/register-customer-page/register-customer.page";
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from "../_shared/shared.module";
 
 
 @NgModule(

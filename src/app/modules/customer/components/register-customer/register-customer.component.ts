@@ -7,7 +7,7 @@ import {ApiService} from '../../../api/services/api.service';
 import {Observable} from 'rxjs';
 import {GoogleAnalyticsService} from '../../../../services/google-analytics.service';
 import {HttpErrorResponse} from "@angular/common/http";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component(
   {

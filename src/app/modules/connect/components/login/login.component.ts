@@ -7,7 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {HttpErrorResponse} from "@angular/common/http";
 import {PasswordResetRequestDialog} from "../../modals/password-reset-request/password-reset-request.dialog";
 import {PasswordResetDialog} from "../../modals/password-reset/password-reset-dialog.component";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-login',

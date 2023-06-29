@@ -10,7 +10,7 @@ import {ApiService} from "../../../api/services/api.service";
 import {tap} from "rxjs/operators";
 import {LocationModel} from "../../../api/models/activity/location.model";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-add-availability',

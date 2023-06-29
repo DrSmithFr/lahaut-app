@@ -5,7 +5,7 @@ import {ConversationMessageModel} from "../../../api/models/chat/conversation-me
 import {ApiService} from "../../../api/services/api.service";
 import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-chat-room',

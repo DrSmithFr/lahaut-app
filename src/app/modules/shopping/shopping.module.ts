@@ -13,7 +13,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NgxMaskModule} from "ngx-mask";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from "../_shared/shared.module";
 import {QuickConnectComponent} from './pages/quick-connect/quick-connect.component';
 import {CustomerModule} from "../customer/customer.module";
 import {ConnectModule} from "../connect/connect.module";

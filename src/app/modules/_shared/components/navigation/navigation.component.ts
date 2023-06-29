@@ -24,6 +24,8 @@ export class NavigationComponent extends UnsubscribeOnDestroyComponent implement
   isLogged = false;
   isCustomer = false;
   isMonitor = false;
+  isAdministrator = false;
+  isSuperAdministrator = false;
 
   @Input() transparent = true;
   @Input() sticky = true;
@@ -77,6 +79,8 @@ export class NavigationComponent extends UnsubscribeOnDestroyComponent implement
         .subscribe((user) => {
           this.isCustomer = user?.roles.includes(Roles.customer) ?? false;
           this.isMonitor = user?.roles.includes(Roles.monitor) ?? false;
+          this.isAdministrator = user?.roles.includes(Roles.admin) ?? false;
+          this.isSuperAdministrator = user?.roles.includes(Roles.super_admin) ?? false;
           this.isLogged = user !== null;
         })
     );

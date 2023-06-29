@@ -25,7 +25,7 @@ import {
 import {ResultRowComponent} from './components/result-row/result-row.component';
 import {AddToCartDialog} from './modals/add-to-cart/add-to-cart.dialog';
 import {MatDialogModule} from "@angular/material/dialog";
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from "../_shared/shared.module";
 import {GoogleMapsModule} from '@angular/google-maps';
 import {FlyMapComponent} from './components/fly-map/fly-map.component';
 import {FlyMeetingMapComponent} from './components/fly-meeting-map/fly-meeting-map.component'

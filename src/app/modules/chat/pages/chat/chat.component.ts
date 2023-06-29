@@ -3,7 +3,7 @@ import {ApiService} from "../../../api/services/api.service";
 import {ConversationModel} from "../../../api/models/chat/conversation.model";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {NavigationService} from "../../../../services/navigation.service";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-chat',

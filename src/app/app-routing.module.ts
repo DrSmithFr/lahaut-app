@@ -13,6 +13,11 @@ const routes: Routes = [
     },
   },
   {
+    path: 'admin',
+    canActivateChild: [AuthGuard.hasOneOfRoles([Roles.admin, Roles.super_admin], '/')],
+    loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
+  },
+  {
     path: 'monitor',
     loadChildren: () => import('./modules/monitor/monitor.module').then(m => m.MonitorModule),
   },
@@ -28,8 +33,8 @@ const routes: Routes = [
   },
   {
     path: 'search',
-    canActivate: [AuthGuard.IsDisconnectedOrHasRoles([Roles.customer], '/dashboard')],
-    canActivateChild: [AuthGuard.IsDisconnectedOrHasRoles([Roles.customer], '/dashboard')],
+    canActivate: [AuthGuard.IsDisconnectedOrHasOneOfRoles([Roles.customer, Roles.admin, Roles.super_admin], '/dashboard')],
+    canActivateChild: [AuthGuard.IsDisconnectedOrHasOneOfRoles([Roles.customer, Roles.admin, Roles.super_admin], '/dashboard')],
     loadChildren: () => import('./modules/search/search.module').then(m => m.SearchModule),
   },
   {

@@ -36,6 +36,23 @@ export class AuthGuard {
     };
   }
 
+  static hasOneOfRoles(roles: Roles[], redirectTo: string | null = null): CanActivateFn {
+    return () => {
+
+      for (const role of roles) {
+        if (inject(AuthService).isGranted(role)) {
+          return true;
+        }
+      }
+
+      if (redirectTo !== null) {
+        return inject(Router).parseUrl(redirectTo);
+      }
+
+      return false;
+    };
+  }
+
   static IsDisconnectedOrHasRoles(roles: Roles[], redirectTo: string | null = null): CanActivateFn {
     return () => {
       const can = !inject(AuthService).isLogged() || inject(AuthService).isGranted(...roles);
@@ -45,6 +62,26 @@ export class AuthGuard {
       }
 
       return can;
+    };
+  }
+
+  static IsDisconnectedOrHasOneOfRoles(roles: Roles[], redirectTo: string | null = null): CanActivateFn {
+    return () => {
+      if (!inject(AuthService).isLogged()) {
+        return true;
+      }
+
+      for (const role of roles) {
+        if (inject(AuthService).isGranted(role)) {
+          return true;
+        }
+      }
+
+      if (redirectTo !== null) {
+        return inject(Router).parseUrl(redirectTo);
+      }
+
+      return false;
     };
   }
 }

@@ -5,7 +5,7 @@ import {SlotModel} from "../../../api/models/activity/slot.model";
 import {MatDialog} from "@angular/material/dialog";
 import {RemoveHourAvailabilityDialog} from "../../modals/remove-hour-availability/remove-hour-availability.dialog";
 import {activityInList} from "../../../../animations/components-animations";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-planning-row',

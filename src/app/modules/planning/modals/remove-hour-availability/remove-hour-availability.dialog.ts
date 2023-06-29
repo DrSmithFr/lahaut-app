@@ -4,7 +4,7 @@ import {SlotModel} from "../../../api/models/activity/slot.model";
 import {ApiService} from "../../../api/services/api.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-remove-hour-availability',

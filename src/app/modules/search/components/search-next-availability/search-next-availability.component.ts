@@ -4,7 +4,7 @@ import {Search} from "../../models/search";
 import {ApiService} from "../../../api/services/api.service";
 import {SearchService} from "../../services/search.service";
 import {firstValueFrom, from, Observable} from "rxjs";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-search-next-availability',

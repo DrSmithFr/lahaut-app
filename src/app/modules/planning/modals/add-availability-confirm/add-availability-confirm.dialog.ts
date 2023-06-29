@@ -8,7 +8,7 @@ import {tap} from "rxjs/operators";
 import {SlotProposedModel} from "../../../api/models/activity/slot-proposed.model";
 import {HttpErrorResponse} from "@angular/common/http";
 import {concat} from "rxjs";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 export class AddAvailabilityConfirmData {
   constructor(

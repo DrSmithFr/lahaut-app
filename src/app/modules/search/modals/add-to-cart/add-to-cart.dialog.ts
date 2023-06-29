@@ -7,7 +7,7 @@ import {tap} from "rxjs/operators";
 import {ShoppingService} from "../../../shopping/services/shopping.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-add-to-cart-dialog',

@@ -3,7 +3,7 @@ import {NavigationService} from "../../../../services/navigation.service";
 import {ShoppingService} from "../../services/shopping.service";
 import {CartItemModel, CartModel} from "../../models/cart.model";
 import {Router} from "@angular/router";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-cart',

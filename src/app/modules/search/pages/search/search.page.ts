@@ -8,7 +8,7 @@ import {SearchService} from "../../services/search.service";
 import {NavigationService} from "../../../../services/navigation.service";
 import {environment} from "../../../../../environments/environment";
 import {ThemeService} from "../../../../services/theme.service";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-search',

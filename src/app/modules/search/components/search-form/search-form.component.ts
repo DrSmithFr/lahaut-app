@@ -7,7 +7,7 @@ import {TypeModel} from "../../../api/models/activity/type-model";
 import {tap} from "rxjs/operators";
 import {concat} from "rxjs";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-search-form',

@@ -10,7 +10,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import { ChatRoomComponent } from './components/chat-room/chat-room.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from "../_shared/shared.module";
 import { ChatListComponent } from './components/chat-list/chat-list.component';
 
 

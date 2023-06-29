@@ -10,7 +10,7 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dia
 import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import {MatStepperModule} from "@angular/material/stepper";
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from "../_shared/shared.module";
 import {RegisterMonitorComponent} from "./pages/register-monitor/register-monitor.component";
 import {MyMonitorAccountComponent} from "./pages/my-monitor-account/my-monitor-account.component";
 import {NgxMaskModule} from "ngx-mask";

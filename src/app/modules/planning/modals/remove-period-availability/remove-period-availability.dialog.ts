@@ -7,7 +7,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {BookingModel} from "../../../api/models/activity/booking.model";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
 import {tap} from "rxjs/operators";
-import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
+import {UnsubscribeOnDestroyComponent} from "../../../_shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-remove-period-availability',
