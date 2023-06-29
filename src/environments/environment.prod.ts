@@ -8,7 +8,7 @@ export const environment = {
   debug:      false,
   api : {
     url: 'https://lahautparapente.fr/backend',
-    version: '1.0.1'
+    version: '1.0.0'
   },
   locale:     'fr-FR',
   locales:    ['fr-FR', 'en-EN', 'es-ES'],
