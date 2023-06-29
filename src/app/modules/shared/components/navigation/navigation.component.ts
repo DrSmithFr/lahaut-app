@@ -9,13 +9,14 @@ import {CartModel} from "../../../shopping/models/cart.model";
 import {NavigationEnd, Router} from "@angular/router";
 import {environment} from "../../../../../environments/environment";
 import {ThemeService} from "../../../../services/theme.service";
+import {UnsubscribeOnDestroyComponent} from "../unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent extends UnsubscribeOnDestroyComponent implements OnInit {
   @ViewChild('navWrapper', {static: false}) navWrapper: ElementRef<HTMLInputElement>;
 
   logoUrl = environment.logo;
@@ -48,7 +49,9 @@ export class NavigationComponent implements OnInit {
     public dialog: MatDialog,
     private themeService: ThemeService
   ) {
-    router
+    super();
+
+    const s = router
       .events
       .subscribe(event => {
         if (event instanceof NavigationEnd) {
@@ -62,67 +65,85 @@ export class NavigationComponent implements OnInit {
           console.log('PreviousPage:', this.previousUrl);
         }
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 
   ngOnInit() {
-    this
-      .auth
-      .getUserSubject()
-      .subscribe((user) => {
-        this.isCustomer = user?.roles.includes(Roles.customer) ?? false;
-        this.isMonitor = user?.roles.includes(Roles.monitor) ?? false;
-        this.isLogged = user !== null;
-      });
+    this.unsubscribeOnDestroy(
+      this
+        .auth
+        .getUserSubject()
+        .subscribe((user) => {
+          this.isCustomer = user?.roles.includes(Roles.customer) ?? false;
+          this.isMonitor = user?.roles.includes(Roles.monitor) ?? false;
+          this.isLogged = user !== null;
+        })
+    );
 
-    this
-      .navigationService
-      .isLogoVisibleSubject()
-      .subscribe((show) => {
-        this.showLogo = show;
-      });
+    this.unsubscribeOnDestroy(
+      this
+        .navigationService
+        .isLogoVisibleSubject()
+        .subscribe((show) => {
+          this.showLogo = show;
+        })
+    );
 
-    this
-      .navigationService
-      .isMenuButtonVisibleSubject()
-      .subscribe((show) => {
-        this.showMenuButton = show;
-      });
+    this.unsubscribeOnDestroy(
+      this
+        .navigationService
+        .isMenuButtonVisibleSubject()
+        .subscribe((show) => {
+          this.showMenuButton = show;
+        })
+    );
 
-    this
-      .navigationService
-      .isMenuOpenStateSubject()
-      .subscribe((isOpened) => {
-        this.isMenuOpen = isOpened;
-      });
+    this.unsubscribeOnDestroy(
+      this
+        .navigationService
+        .isMenuOpenStateSubject()
+        .subscribe((isOpened) => {
+          this.isMenuOpen = isOpened;
+        })
+    );
 
-    this
-      .shoppingService
-      .getCartSubject()
-      .subscribe((cart) => {
-        this.showShoppingCart = cart !== null && !CartModel.isEmpty(cart);
-        this.shoppingCartCount = cart?.items?.length ?? 0;
-      });
+    this.unsubscribeOnDestroy(
+      this
+        .shoppingService
+        .getCartSubject()
+        .subscribe((cart) => {
+          this.showShoppingCart = cart !== null && !CartModel.isEmpty(cart);
+          this.shoppingCartCount = cart?.items?.length ?? 0;
+        })
+    );
 
-    this
-      .navigationService
-      .isPreviousButtonVisibleSubject()
-      .subscribe((show) => {
-        this.showPreviousButton = show;
-      });
+    this.unsubscribeOnDestroy(
+      this
+        .navigationService
+        .isPreviousButtonVisibleSubject()
+        .subscribe((show) => {
+          this.showPreviousButton = show;
+        })
+    );
 
-    this
-      .navigationService
-      .isShoppingCartVisibleSubject()
-      .subscribe((show) => {
-        this.showShoppingCartButton = show;
-      });
+    this.unsubscribeOnDestroy(
+      this
+        .navigationService
+        .isShoppingCartVisibleSubject()
+        .subscribe((show) => {
+          this.showShoppingCartButton = show;
+        })
+    );
 
-    this
-      .themeService
-      .getDarkModeSubject()
-      .subscribe((isDark) => {
-        this.isDarkMode = isDark;
-      });
+    this.unsubscribeOnDestroy(
+      this
+        .themeService
+        .getDarkModeSubject()
+        .subscribe((isDark) => {
+          this.isDarkMode = isDark;
+        })
+    );
   }
 
   openLogoutDialog() {

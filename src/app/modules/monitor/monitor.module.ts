@@ -13,6 +13,7 @@ import {MatStepperModule} from "@angular/material/stepper";
 import {SharedModule} from "../shared/shared.module";
 import {RegisterMonitorComponent} from "./pages/register-monitor/register-monitor.component";
 import {MyMonitorAccountComponent} from "./pages/my-monitor-account/my-monitor-account.component";
+import {NgxMaskModule} from "ngx-mask";
 
 
 @NgModule(
@@ -21,27 +22,28 @@ import {MyMonitorAccountComponent} from "./pages/my-monitor-account/my-monitor-a
       RegisterMonitorComponent,
       MyMonitorAccountComponent,
     ],
-    imports: [
-      CommonModule,
+      imports: [
+          CommonModule,
 
-      // routing
-      MonitorRoutingModule,
+          // routing
+          MonitorRoutingModule,
 
-      // importing reactive form
-      FormsModule,
-      ReactiveFormsModule,
+          // importing reactive form
+          FormsModule,
+          ReactiveFormsModule,
 
-      // users modules
-      MatInputModule,
-      MatButtonModule,
-      MatProgressSpinnerModule,
-      MatCheckboxModule,
-      MatDialogModule,
-      MatIconModule,
-      MatCardModule,
-      MatStepperModule,
-      SharedModule,
-    ],
+          // users modules
+          MatInputModule,
+          MatButtonModule,
+          MatProgressSpinnerModule,
+          MatCheckboxModule,
+          MatDialogModule,
+          MatIconModule,
+          MatCardModule,
+          MatStepperModule,
+          SharedModule,
+          NgxMaskModule,
+      ],
     providers: [
       {
         provide: MAT_DIALOG_DEFAULT_OPTIONS,

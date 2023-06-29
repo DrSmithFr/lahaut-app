@@ -6,7 +6,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {ApiService} from '../../../api/services/api.service';
 import {Observable} from 'rxjs';
 import {GoogleAnalyticsService} from '../../../../services/google-analytics.service';
-import {PhoneInputComponent, PhoneNumber} from "../../../shared/components/phone-input/phone-input.component";
 import {HttpErrorResponse} from "@angular/common/http";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
 import {StepperOrientation} from "@angular/cdk/stepper";
@@ -35,7 +34,7 @@ export class RegisterMonitorComponent implements OnInit {
 
   contactForm = this.fb.group({
     username: ['', [Validators.required, Validators.email], this.validateUsernameAvailable.bind(this)],
-    phone: [new PhoneNumber('33', '', '', '', '', ''), [PhoneInputComponent.validator]],
+    phone: ['+33 ', Validators.required],
   });
 
   passwordForm = this.fb.group(
@@ -183,7 +182,7 @@ export class RegisterMonitorComponent implements OnInit {
       .registerMonitor(
         this.getFirstname()?.value,
         this.getLastname()?.value,
-        this.getPhone()?.value.toString(),
+        "+" + this.getPhone()?.value.toString(),
         this.getUsername()?.value,
         this.getPassword()?.value
       )

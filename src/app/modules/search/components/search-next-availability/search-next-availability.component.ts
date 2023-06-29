@@ -4,13 +4,14 @@ import {Search} from "../../models/search";
 import {ApiService} from "../../../api/services/api.service";
 import {SearchService} from "../../services/search.service";
 import {firstValueFrom, from, Observable} from "rxjs";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-search-next-availability',
   templateUrl: './search-next-availability.component.html',
   styleUrls: ['./search-next-availability.component.scss']
 })
-export class SearchNextAvailabilityComponent implements OnInit {
+export class SearchNextAvailabilityComponent extends UnsubscribeOnDestroyComponent implements OnInit {
   @Input() query: SearchQuery;
   @ViewChild('container') container: ElementRef;
   searching = true;
@@ -20,12 +21,13 @@ export class SearchNextAvailabilityComponent implements OnInit {
     private api: ApiService,
     private searchService: SearchService,
   ) {
+    super();
   }
 
   ngOnInit(): void {
     this.searching = true;
 
-    this
+    const s = this
       .getsearchNextTwoWeek(this.query)
       .subscribe(search => {
         this.result = search;
@@ -35,6 +37,8 @@ export class SearchNextAvailabilityComponent implements OnInit {
           this.scrollToResults();
         }
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 
   getsearchNextTwoWeek(query: SearchQuery): Observable<Search | null> {

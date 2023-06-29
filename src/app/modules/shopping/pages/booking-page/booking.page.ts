@@ -3,13 +3,14 @@ import {NavigationService} from "../../../../services/navigation.service";
 import {ShoppingService} from "../../services/shopping.service";
 import {CartItemModel, CartModel} from "../../models/cart.model";
 import {Router} from "@angular/router";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.page.html',
   styleUrls: ['./booking.page.scss']
 })
-export class BookingPage implements OnInit, OnDestroy {
+export class BookingPage extends UnsubscribeOnDestroyComponent implements OnInit, OnDestroy {
 
   cart: CartModel | null = null;
 
@@ -18,7 +19,9 @@ export class BookingPage implements OnInit, OnDestroy {
     private shoppingService: ShoppingService,
     private router: Router,
   ) {
-    this
+    super();
+
+    const s = this
       .shoppingService
       .getCartSubject()
       .subscribe((cart: CartModel | null) => {
@@ -29,6 +32,8 @@ export class BookingPage implements OnInit, OnDestroy {
           this.router.navigate(['/']);
         }
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 
   ngOnInit() {
@@ -36,9 +41,10 @@ export class BookingPage implements OnInit, OnDestroy {
     this.navigationService.setShoppingCartVisibility(false);
   }
 
-  ngOnDestroy() {
+  override ngOnDestroy() {
     this.navigationService.setPreviousButtonVisibility(false);
     this.navigationService.setShoppingCartVisibility(true);
+    super.ngOnDestroy();
   }
 
   removeItem(item: CartItemModel) {

@@ -7,13 +7,14 @@ import {tap} from "rxjs/operators";
 import {ShoppingService} from "../../../shopping/services/shopping.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-add-to-cart-dialog',
   templateUrl: './add-to-cart.dialog.html',
   styleUrls: ['./add-to-cart.dialog.scss']
 })
-export class AddToCartDialog implements OnInit {
+export class AddToCartDialog extends UnsubscribeOnDestroyComponent implements OnInit {
   loading = true;
   slot: SlotDetailModel;
 
@@ -28,13 +29,14 @@ export class AddToCartDialog implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar,
   ) {
-    const cart = this.shoppingService.getCart();
+    super();
 
+    const cart = this.shoppingService.getCart();
     this.lastToCart = (cart?.items?.length ?? 0) + 1 >= data.maxToCart;
   }
 
   ngOnInit() {
-    this
+    const s = this
       .api
       .activities()
       .slots()
@@ -46,6 +48,8 @@ export class AddToCartDialog implements OnInit {
         })
       )
       .subscribe();
+
+    this.unsubscribeOnDestroy(s);
   }
 
   openMeetingPointDialog() {

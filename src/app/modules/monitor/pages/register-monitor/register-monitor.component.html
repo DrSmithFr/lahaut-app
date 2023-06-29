@@ -8,7 +8,7 @@
         <h1 class="connect-title">Nouveau Moniteur</h1>
       </div>
 
-      <mat-stepper [orientation]="stepperOrientation" [linear]="true" #stepper>
+      <mat-stepper [orientation]="stepperOrientation" [linear]="false" #stepper>
         <mat-step [stepControl]="identityForm">
           <form [formGroup]="identityForm">
             <ng-template matStepLabel>Identité</ng-template>
@@ -31,7 +31,7 @@
             </div>
           </form>
         </mat-step>
-        <mat-step [stepControl]="contactForm">
+        <mat-step [stepControl]="contactForm" >
           <form [formGroup]="contactForm">
             <ng-template matStepLabel>Contact</ng-template>
             <mat-form-field class="full-width">
@@ -59,7 +59,13 @@
             </mat-form-field>
             <mat-form-field class="full-width">
               <mat-label>Mobile</mat-label>
-              <app-phone-input formControlName="phone"></app-phone-input>
+              <input
+                [specialCharacters]="['+', ' ']"
+                mask="+00 0 00 00 00 00"
+                formControlName="phone"
+                matInput
+                required
+                type="text">
               <mat-icon matPrefix>phone</mat-icon>
             </mat-form-field>
 

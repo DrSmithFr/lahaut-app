@@ -217,12 +217,13 @@ html {
   .app-page::before {
     content: " ";
 
+    top: 0;
     position: fixed;
 
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100dvw;
+    height: 100dvh;
+
+    overflow: hidden;
 
     background-image: url(assets/corporate/background/background.png);
 

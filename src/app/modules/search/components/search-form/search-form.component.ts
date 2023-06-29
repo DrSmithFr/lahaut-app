@@ -7,13 +7,14 @@ import {TypeModel} from "../../../api/models/activity/type-model";
 import {tap} from "rxjs/operators";
 import {concat} from "rxjs";
 import {BreakpointService, Devices} from "../../../../services/breakpoint.service";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.scss']
 })
-export class SearchFormComponent implements OnInit {
+export class SearchFormComponent extends UnsubscribeOnDestroyComponent implements OnInit {
   @Input() urlParamQuery: SearchQuery;
 
   @Output() query = new EventEmitter<SearchQuery>();
@@ -45,7 +46,9 @@ export class SearchFormComponent implements OnInit {
     private api: ApiService,
     private breakpointService: BreakpointService,
   ) {
-    this
+    super();
+
+    const s = this
       .breakpointService
       .getDeviceSubject()
       .pipe(
@@ -55,6 +58,8 @@ export class SearchFormComponent implements OnInit {
         })
       )
       .subscribe();
+
+    this.unsubscribeOnDestroy(s);
   }
 
   ngOnInit(): void {
@@ -123,11 +128,13 @@ export class SearchFormComponent implements OnInit {
       return;
     }
 
-    this
+    const s = this
       .loadActivityTypes(location)
       .subscribe(() => {
         this.trySubmit();
       });
+
+    this.unsubscribeOnDestroy(s);
   }
 
   getLocationFormControl() {

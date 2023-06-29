@@ -8,13 +8,14 @@ import {SearchService} from "../../services/search.service";
 import {NavigationService} from "../../../../services/navigation.service";
 import {environment} from "../../../../../environments/environment";
 import {ThemeService} from "../../../../services/theme.service";
+import {UnsubscribeOnDestroyComponent} from "../../../shared/components/unsubscribe-on-destroy.component";
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.page.html',
   styleUrls: ['./search.page.scss']
 })
-export class SearchPage implements OnInit, OnDestroy {
+export class SearchPage extends UnsubscribeOnDestroyComponent implements OnInit, OnDestroy {
   @ViewChild('container') container: ElementRef;
 
   logoUrl = environment.logo;
@@ -37,17 +38,20 @@ export class SearchPage implements OnInit, OnDestroy {
     private navigationService: NavigationService,
     private themeService: ThemeService
   ) {
+    super();
   }
 
   ngOnInit(): void {
     this.navigationService.setLogoVisibility(false);
 
-    this
-      .themeService
-      .getDarkModeSubject()
-      .subscribe((isDark) => {
-        this.isDarkMode = isDark;
-      });
+    this.unsubscribeOnDestroy(
+      this
+        .themeService
+        .getDarkModeSubject()
+        .subscribe((isDark) => {
+          this.isDarkMode = isDark;
+        })
+    );
 
     this
       .route
@@ -69,8 +73,9 @@ export class SearchPage implements OnInit, OnDestroy {
       }).unsubscribe()
   }
 
-  ngOnDestroy() {
+  override ngOnDestroy() {
     this.navigationService.setLogoVisibility(true);
+    super.ngOnDestroy();
   }
 
   updateUrl(query: SearchQuery) {
@@ -92,7 +97,7 @@ export class SearchPage implements OnInit, OnDestroy {
     this.currentQuery = query;
     this.updateUrl(query);
 
-    this
+    const s = this
       .api
       .activities()
       .slots()
@@ -108,6 +113,8 @@ export class SearchPage implements OnInit, OnDestroy {
           this.loading = false;
           this.scrollToResults();
         });
+
+    this.unsubscribeOnDestroy(s);
   }
 
   public scrollToResults() {
