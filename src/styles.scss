@@ -214,7 +214,7 @@ h1, h2, h3, h4, h5, .title, .mat-card-title {
 html {
   background-color: var(--background);
 
-  &::before {
+  .app-page::before {
     content: " ";
 
     position: fixed;
@@ -234,7 +234,9 @@ html {
     background-repeat: no-repeat;
     background-attachment: fixed;
 
-    @import "animations/background-img-raise";
-    @include background-img-raise();
+    background-position: bottom;
+
+    //@import "animations/background-img-raise";
+    //@include background-img-raise();
   }
 }
