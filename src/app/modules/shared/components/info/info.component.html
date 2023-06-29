@@ -1,7 +1,7 @@
 <mat-card class="info color-{{type}}">
   <div class="info-container">
     <div class="icon-container">
-      <mat-icon class="icon">{{MatIconMap[type]}}_outlined</mat-icon>
+      <mat-icon class="icon">{{icon ?? MatIconMap[type]}}_outlined</mat-icon>
     </div>
     <div class="disclaimer" [class.pending]="type === 'pending'">
       <div class="container info-content">

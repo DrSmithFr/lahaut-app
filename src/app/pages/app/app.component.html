@@ -1,6 +1,26 @@
+<app-info type="pending" icon="system_update" class="bottom-bar" *ngIf="waitingForUpdate && !updateAvailable && !serverError" style="margin-top: 40px">
+  <p>
+    <b>Votre application n'est pas à jour.</b><br>
+    <i>téléchargement de la dernière version.</i>
+  </p>
+</app-info>
+
+<app-info type="pending" icon="thunderstorm" class="bottom-bar" *ngIf="serverError && !updateAvailable" style="margin-top: 40px">
+  <p>
+    <b>Les serveurs sont en cours de mise à jour.</b><br>
+    <i>veuillez réessayer dans quelques minutes.</i>
+  </p>
+</app-info>
+
+<app-info type="success" icon="security_update_good" class="bottom-bar" *ngIf="updateAvailable" style="margin-top: 40px">
+  <p>Une nouvelle version de l'application est disponible.</p>
+  <button mat-stroked-button (click)="refresh()" color="primary">
+    Mettre à jour
+  </button>
+</app-info>
+
 <div class="app-wrapper">
   <div class="app-router-wrapper" [@routeAnimations]="prepareRoute(outlet)">
     <router-outlet #outlet="outlet"></router-outlet>
   </div>
 </div>
-

@@ -6,7 +6,10 @@ export const environment = {
   production: true,
   fake_api:   false,
   debug:      false,
-  url_api:    'https://lahautparapente.fr/backend',
+  api : {
+    url: 'https://lahautparapente.fr/backend',
+    version: '1.0.1'
+  },
   locale:     'fr-FR',
   locales:    ['fr-FR', 'en-EN', 'es-ES'],
   theme: {

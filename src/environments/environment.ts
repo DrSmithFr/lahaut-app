@@ -6,9 +6,12 @@ export const environment = {
   production: false,
   fake_api:   true,
   debug:      true,
-  url_api:    'https://ms-base',
   locale:     'fr-FR',
   locales:    ['fr-FR', 'en-EN', 'es-ES'],
+  api : {
+    url: 'https://ms-base',
+    version: '1.0.0'
+  },
   theme: {
     light: '#fff',
     dark: '#0c0c0c'

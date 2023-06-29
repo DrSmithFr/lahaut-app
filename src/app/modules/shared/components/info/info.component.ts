@@ -7,6 +7,7 @@ import {Component, Input} from '@angular/core';
 })
 export class InfoComponent {
   @Input() type: 'info' | 'warning' | 'error' | 'success' | 'pending' = 'info';
+  @Input() icon: string | null = null;
 
   MatIconMap: { [key: string]: string } = {
     info: 'info',

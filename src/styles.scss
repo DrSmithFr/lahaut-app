@@ -29,6 +29,8 @@
 
 // Themes Light/Dark
 :root {
+  --shadow: rgba(0, 0, 0, 0.2);
+
   --background: #fff;
   --background-transparent: #{rgba(#fff, 0.7)};
   --background-overlay: #{rgba(#fff, 0.8)};
@@ -68,6 +70,8 @@
 [data-theme="dark"] {
   // colors
   --green: #68cf3b;
+
+  --shadow: rgba(255, 255, 255, 0.2);
 
   --background: #{map-get($base, 900)};
   --background-transparent: #{rgba(map-get($base, 800), 0.7)};
@@ -208,17 +212,29 @@ h1, h2, h3, h4, h5, .title, .mat-card-title {
 
 // Custom styles
 html {
-  background-image: url(assets/corporate/background/background.png);
-
-  @include desktop {
-    background-image: url(assets/corporate/background/background-short.png);
-  }
-
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   background-color: var(--background);
 
-  @import "animations/background-img-raise";
-  @include background-img-raise();
+  &::before {
+    content: " ";
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-image: url(assets/corporate/background/background.png);
+
+    @include desktop {
+      background-image: url(assets/corporate/background/background-short.png);
+    }
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    @import "animations/background-img-raise";
+    @include background-img-raise();
+  }
 }

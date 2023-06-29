@@ -5,7 +5,7 @@ import {environment} from "../../../../../environments/environment";
   providedIn: 'root'
 })
 export class UrlService {
-  readonly API_URL = environment.url_api;
+  readonly API_URL = environment.api.url;
 
   urlFormUri(uri: string): string {
     return this.API_URL + uri;

@@ -1,12 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
 import {SwPush, SwUpdate, VersionReadyEvent} from '@angular/service-worker';
-import {filter, map} from 'rxjs/operators';
+import {filter, map, tap} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
 import {trigger} from '@angular/animations';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {GoogleAnalyticsService} from "../../services/google-analytics.service";
 import {routeAnimations} from "../../route.animations";
+import {ApiService} from "../../modules/api/services/api.service";
+import {
+  IncompatibilityLevel,
+  IncompatibilityType,
+  VersionService
+} from "../../modules/api/services/utils/version.service";
 
 @Component(
   {
@@ -20,20 +26,51 @@ import {routeAnimations} from "../../route.animations";
 )
 export class AppComponent implements OnInit {
 
+  serverError = false;
+  waitingForUpdate = false;
+  updateAvailable = false;
+
   constructor(
     private swPush: SwPush,
     private swUpdate: SwUpdate,
     private router: Router,
     private snackBar: MatSnackBar,
     private gtag: GoogleAnalyticsService,
+    private api: ApiService,
+    private version: VersionService,
   ) {
   }
 
   ngOnInit(): void {
-    // resetting the scrollbar after navigation
-    // due to the nested router use
-    // + the fixed size of layout (to keep footer away during page transition)
-    // this needed
+    this.resetScrollAfterNavigationEnd();
+    this.checkForApiMismatch();
+
+    if (environment.production && this.swUpdate.isEnabled) {
+      // PWA look for update
+      this
+        .swUpdate
+        .versionUpdates
+        .pipe(
+          filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY'),
+          map(
+            evt => ({
+              type: 'UPDATE_AVAILABLE',
+              current: evt.currentVersion,
+              available: evt.latestVersion,
+            })
+          ),
+          tap(() => {
+            this.updateAvailable = true;
+          })
+        ).subscribe();
+    }
+  }
+
+  // resetting the scrollbar after navigation
+  // due to the nested router use
+  // + the fixed size of layout (to keep footer away during page transition)
+  // this needed
+  resetScrollAfterNavigationEnd() {
     this
       .router
       .events
@@ -50,43 +87,51 @@ export class AppComponent implements OnInit {
 
         window.scrollTo(0, 0);
       });
-
-    if (environment.production && this.swUpdate.isEnabled) {
-      // PWA look for update
-      this
-        .swUpdate
-        .versionUpdates
-        .pipe(
-          filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY'),
-          map(
-            evt => ({
-              type: 'UPDATE_AVAILABLE',
-              current: evt.currentVersion,
-              available: evt.latestVersion,
-            })
-          )
-        ).subscribe(() => {
-        this.showUpdateBanner();
-      });
-    }
   }
 
-  showUpdateBanner() {
+  checkForApiMismatch() {
     this
-      .snackBar
-      .open(
-        'Mise à jour disponible !',
-        'Appliquer',
-      )
-      .onAction()
-      .subscribe(() => {
-        this
-          .swUpdate
-          .activateUpdate()
-          .then(() => {
-            window.location.reload();
-          });
+      .api
+      .getApiVersion()
+      .subscribe({
+        next: (version) => {
+          const compatible = this.version.isCompatible(version);
+
+          if (compatible === true) {
+            console.log('APP fully compatible with API');
+            return;
+          }
+
+          console.warn('APP not compatible with API', compatible);
+
+          if (compatible.type === IncompatibilityType.client) {
+            if (compatible.level > IncompatibilityLevel.patch) {
+              this.waitingForUpdate = true;
+            } else {
+              this.snackBar.open(
+                'Une nouvelle version est en cours de téléchargement.',
+                'Ok',
+                {
+                  duration: 5000,
+                }
+              );
+            }
+          }
+
+          if (compatible.type === IncompatibilityType.server) {
+            if (compatible.level > IncompatibilityLevel.patch) {
+              this.serverError = true;
+            }
+          }
+        },
+        error: () => {
+          this.serverError = true;
+        }
       });
+  }
+
+  refresh() {
+    window.location.reload();
   }
 
   prepareRoute(outlet: RouterOutlet) {
