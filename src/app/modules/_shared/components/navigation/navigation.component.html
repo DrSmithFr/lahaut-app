@@ -14,8 +14,7 @@
           aria-label="retour à la page précédente"
           *ngIf="showLogo"
           routerLink="/search">
-          <mat-icon *ngIf="!isMonitor">chevron_left</mat-icon>
-          <mat-icon *ngIf="isMonitor">dashboard</mat-icon>
+          <mat-icon>chevron_left</mat-icon>
           <img src="{{logoUrl.light.large}}" alt="Logo" *ngIf="!isDarkMode">
           <img src="{{logoUrl.dark.large}}" alt="Logo" *ngIf="isDarkMode">
         </button>
