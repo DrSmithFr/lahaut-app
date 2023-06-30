@@ -19,16 +19,24 @@
 
 .logo {
   padding: 0 14px;
-  height: calc(#{$toolbar-desktop} - 10px);
 
-  @include tablet() {
-    width: auto;
-    height: calc(#{$toolbar-tablet} - 15px);
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  @include mobile-all() {
-    width: auto;
-    height: calc(#{$toolbar-mobile} - 15px);
+  .logo-button,
+  img {
+    height: calc(#{$toolbar-desktop} - 10px);
+
+    @include tablet() {
+      width: auto;
+      height: calc(#{$toolbar-tablet} - 15px);
+    }
+
+    @include mobile-all() {
+      width: auto;
+      height: calc(#{$toolbar-mobile} - 15px);
+    }
   }
 }
 

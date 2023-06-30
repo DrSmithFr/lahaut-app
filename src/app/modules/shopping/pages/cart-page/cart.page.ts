@@ -37,12 +37,10 @@ export class CartPage extends UnsubscribeOnDestroyComponent implements OnInit, O
   }
 
   ngOnInit() {
-    this.navigationService.setPreviousButtonVisibility(true);
     this.navigationService.setShoppingCartVisibility(false);
   }
 
   override ngOnDestroy() {
-    this.navigationService.setPreviousButtonVisibility(false);
     this.navigationService.setShoppingCartVisibility(true);
     super.ngOnDestroy();
   }

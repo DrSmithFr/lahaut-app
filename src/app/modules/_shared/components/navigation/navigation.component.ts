@@ -32,7 +32,6 @@ export class NavigationComponent extends UnsubscribeOnDestroyComponent implement
   @Input() showLogo = true;
   @Input() showMenuButton = false;
   @Input() isMenuOpen = false;
-  @Input() showPreviousButton = false;
   @Input() showShoppingCartButton = true;
 
   showShoppingCart = false;
@@ -119,15 +118,6 @@ export class NavigationComponent extends UnsubscribeOnDestroyComponent implement
         .subscribe((cart) => {
           this.showShoppingCart = cart !== null && !CartModel.isEmpty(cart);
           this.shoppingCartCount = cart?.items?.length ?? 0;
-        })
-    );
-
-    this.unsubscribeOnDestroy(
-      this
-        .navigationService
-        .isPreviousButtonVisibleSubject()
-        .subscribe((show) => {
-          this.showPreviousButton = show;
         })
     );
 
