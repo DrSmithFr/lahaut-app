@@ -26,7 +26,7 @@
 
   .logo-button,
   img {
-    padding-left: 0;
+    padding: 0;
     height: calc(#{$toolbar-desktop} - 10px);
 
     @include tablet() {

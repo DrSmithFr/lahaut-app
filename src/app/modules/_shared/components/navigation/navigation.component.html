@@ -7,25 +7,36 @@
     <button mat-button style="height: 0; position: absolute;" aria-label="disable-auto-focus"></button>
 
     <mat-toolbar-row class="space-between">
-      <div class="navigation-button logo">
+      <div class="navigation-button">
         <button
-          mat-button
-          class="logo-button"
-          aria-label="retour à la page précédente"
+          color="accent"
+          mat-icon-button
+          aria-label="Page précédente"
           *ngIf="showLogo"
-          routerLink="/search">
+          (click)="goToPreviousPage()">
           <mat-icon>chevron_left</mat-icon>
-          <img src="{{logoUrl.light.large}}" alt="Logo" *ngIf="!isDarkMode">
-          <img src="{{logoUrl.dark.large}}" alt="Logo" *ngIf="isDarkMode">
         </button>
 
         <button
+          color="accent"
           mat-icon-button
           aria-label="ouvrir/fermer la liste des conversations chat"
           *ngIf="showMenuButton"
           (click)="toggleMenu()">
           <mat-icon *ngIf="isMenuOpen">chevron_left</mat-icon>
           <mat-icon *ngIf="!isMenuOpen">menu</mat-icon>
+        </button>
+      </div>
+
+      <div class="navigation-button logo">
+        <button
+          mat-button
+          class="logo-button"
+          aria-label="retour à la page précédente"
+          *ngIf="showLogo"
+          routerLink="/">
+          <img src="{{logoUrl.light.large}}" alt="Logo" *ngIf="!isDarkMode">
+          <img src="{{logoUrl.dark.large}}" alt="Logo" *ngIf="isDarkMode">
         </button>
       </div>
 

@@ -57,10 +57,8 @@ export class NavigationComponent extends UnsubscribeOnDestroyComponent implement
       .subscribe(event => {
         if (event instanceof NavigationEnd) {
           // Ignore shopping pages
-          if (!event.url.startsWith('/shopping')) {
-            this.previousUrl = this.currentUrl;
-            this.currentUrl = event.url;
-          }
+          this.previousUrl = this.currentUrl;
+          this.currentUrl = event.url;
 
           console.log('NavigationEnd:', event.url);
           console.log('PreviousPage:', this.previousUrl);
