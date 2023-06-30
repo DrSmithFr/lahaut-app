@@ -1,21 +1,19 @@
-<div class="app-page">
-  <app-navigation [transparent]="true"></app-navigation>
+<div class="app-page page-connect">
+  <nav>
+    <app-navigation [transparent]="true"></app-navigation>
+  </nav>
 
-  <div class="app-page-container">
-    <div class="connect-page">
-      <div class="connect-container">
-        <div class="connect-header">
-          <h1 class="connect-title">Connexion</h1>
-        </div>
+  <header>
+    <h1 class="connect-title">Connexion</h1>
+  </header>
 
-        <app-login></app-login>
+  <main>
+    <app-login></app-login>
 
-        <p class="right">
-          <a class="accent extra-link" routerLink="/customer/register">Pas encore de compte ?</a>
-        </p>
-      </div>
-    </div>
-  </div>
+    <p class="right">
+      <a class="accent extra-link" routerLink="/customer/register">Pas encore de compte ?</a>
+    </p>
+  </main>
 </div>
 
 

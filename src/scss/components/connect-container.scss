@@ -1,43 +1,17 @@
 @import "breakpoints";
 
-.connect-page {
-  max-width: 500px;
-  margin: 0 auto 50px;
-
-  @include mobile-all() {
-    max-width: 100%;
-  }
-}
-
-.connect-container {
-  padding: 30px 30px 0;
-
-  @import "animations/fade-in";
-  @include fade-in(0.5s);
-
-  @include mobile-xl() {
-    max-width: 75%;
-    margin: auto;
+.page-connect {
+  header,
+  main {
+    max-width: 500px !important;
   }
 
-  @include mobile-xs() {
-    max-width: 100%;
+  header {
+    text-align: center;
   }
 
   mat-icon {
     color: var(--text);
-  }
-
-  .connect-header {
-    text-align: center;
-
-    h1 {
-      color: var(--accent);
-      font-size: 20px;
-      line-height: 20px;
-      font-weight: bold;
-      margin-bottom: 30px;
-    }
   }
 
   .full-width {
@@ -51,7 +25,8 @@
   }
 }
 
-.connect-container .shake-on-error {
+
+.shake-on-error {
   @import "animations/shake";
   @include shake();
 
@@ -59,14 +34,4 @@
   animation-iteration-count: 1;
 }
 
-.connect-footer {
-  position: relative;
-  top: 100px;
 
-  display: flex;
-  justify-content: center;
-
-  button {
-    margin-bottom: 20px;
-  }
-}

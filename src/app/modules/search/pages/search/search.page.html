@@ -1,25 +1,29 @@
 <div class="app-page">
-  <app-navigation [transparent]="true"></app-navigation>
-  <mat-progress-bar mode="indeterminate" *ngIf="loading" class="top-loader"></mat-progress-bar>
+  <nav>
+    <app-navigation [transparent]="true"></app-navigation>
+    <mat-progress-bar mode="indeterminate" *ngIf="loading" class="top-loader"></mat-progress-bar>
+  </nav>
 
-  <div class="app-page-container">
-    <section>
-      <img class="logo" src="{{logoUrl.light.large}}" alt="Logo" *ngIf="!isDarkMode">
-      <img class="logo" src="{{logoUrl.dark.large}}" alt="Logo" *ngIf="isDarkMode">
+  <main>
+    <div class="app-page-content">
+      <section>
+        <img class="logo" src="{{logoUrl.light.large}}" alt="Logo" *ngIf="!isDarkMode">
+        <img class="logo" src="{{logoUrl.dark.large}}" alt="Logo" *ngIf="isDarkMode">
 
-      <div class="search-form-slider">
-        <app-search-form [urlParamQuery]="urlParamQuery" (query)="requestResults($event)"></app-search-form>
-      </div>
-    </section>
+        <div class="search-form-slider">
+          <app-search-form [urlParamQuery]="urlParamQuery" (query)="requestResults($event)"></app-search-form>
+        </div>
+      </section>
 
-    <section class="results-container" #container>
-      <app-result [search]="search" *ngIf="!loading"></app-result>
-    </section>
+      <section class="results-container" #container>
+        <app-result [search]="search" *ngIf="!loading"></app-result>
+      </section>
 
-    <section *ngIf="!loading && searched && search.results && search.results.size === 0">
-      <app-search-next-availability [query]="currentQuery"></app-search-next-availability>
-    </section>
-  </div>
+      <section *ngIf="!loading && searched && search.results && search.results.size === 0">
+        <app-search-next-availability [query]="currentQuery"></app-search-next-availability>
+      </section>
+    </div>
+  </main>
 </div>
 
 

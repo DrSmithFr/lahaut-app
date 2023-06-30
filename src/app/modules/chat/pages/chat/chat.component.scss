@@ -1,11 +1,10 @@
 @import "breakpoints";
 @import "toolbar";
 
-.chat .chat-sidenav {
+.chat {
   width: 400px;
 
   @include mobile-xs() {
     width: 80%;
   }
-
 }

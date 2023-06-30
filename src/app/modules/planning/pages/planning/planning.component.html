@@ -1,60 +1,66 @@
 <div class="app-page">
-  <app-navigation></app-navigation>
-  <mat-progress-bar mode="indeterminate" *ngIf="loading" class="top-loader"></mat-progress-bar>
-  <mat-menu #menu>
-    <button mat-menu-item (click)="addAvailability()">
-      <mat-icon>event_available</mat-icon>
-      <span>Déclarer vos disponibilités</span>
-    </button>
-    <button mat-menu-item (click)="removeAvailability()">
-      <mat-icon>event_busy</mat-icon>
-      <span>Déclarer une absence</span>
-    </button>
-  </mat-menu>
+  <nav>
+    <app-navigation></app-navigation>
+    <mat-progress-bar mode="indeterminate" *ngIf="loading" class="top-loader"></mat-progress-bar>
 
-  <div class="app-page-container planning">
+    <mat-menu #menu>
+      <button mat-menu-item (click)="addAvailability()">
+        <mat-icon>event_available</mat-icon>
+        <span>Déclarer vos disponibilités</span>
+      </button>
+      <button mat-menu-item (click)="removeAvailability()">
+        <mat-icon>event_busy</mat-icon>
+        <span>Déclarer une absence</span>
+      </button>
+    </mat-menu>
+  </nav>
 
-    <div class="planning-header">
-      <div class="planning-menu">
-        <button mat-icon-button aria-label="Revenir aujourd'hui" (click)="goToday()">
-          <mat-icon>today</mat-icon>
-        </button>
-        <h1 class="center">{{selectedDate|date: 'MMMM'|uppercase}}</h1>
-        <button mat-icon-button aria-label="Ajouter des diponibilité" [matMenuTriggerFor]="menu">
-          <mat-icon>settings</mat-icon>
-        </button>
-      </div>
+  <main>
+    <div class="app-page-content planning">
 
-      <div class="planning-navigation">
-        <div class="week-selector">
-          <button mat-icon-button aria-label="Semaine précédente" (click)="goPreviousWeek()">
-            <mat-icon>chevron_left</mat-icon>
+      <div class="planning-header">
+        <div class="planning-menu">
+          <button mat-icon-button aria-label="Revenir aujourd'hui" (click)="goToday()">
+            <mat-icon>today</mat-icon>
           </button>
-          <h2 class="center">SEMAINE {{selectedDate|date: 'w'}}</h2>
-          <button mat-icon-button aria-label="Semaine suivante" (click)="goNextWeek()">
-            <mat-icon>chevron_right</mat-icon>
+          <h1 class="center">{{selectedDate|date: 'MMMM'|uppercase}}</h1>
+          <button mat-icon-button aria-label="Ajouter des diponibilité" [matMenuTriggerFor]="menu">
+            <mat-icon>settings</mat-icon>
           </button>
+        </div>
+
+        <div class="planning-navigation">
+          <div class="week-selector">
+            <button mat-icon-button aria-label="Semaine précédente" (click)="goPreviousWeek()">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+            <h2 class="center">SEMAINE {{selectedDate|date: 'w'}}</h2>
+            <button mat-icon-button aria-label="Semaine suivante" (click)="goNextWeek()">
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="day-picker">
+          <a class="day"
+             *ngFor="let day of week.days"
+             href="javascript:void(0)"
+             [class.today]="today.getDate() === day.getDate()"
+             [class.selected]="selectedDate.getDate() === day.getDate()"
+             (click)="selectDate(day)">
+            <div class="day-number">
+              {{day|date: 'd'}}
+            </div>
+            <div class="day-name short">{{day|date: 'EE'|titlecase}}</div>
+            <div class="day-name long">{{day|date: 'EEEE'|titlecase}}</div>
+          </a>
         </div>
       </div>
 
-      <div class="day-picker">
-        <a class="day"
-           *ngFor="let day of week.days"
-           href="javascript:void(0)"
-           [class.today]="today.getDate() === day.getDate()"
-           [class.selected]="selectedDate.getDate() === day.getDate()"
-           (click)="selectDate(day)">
-          <div class="day-number">
-            {{day|date: 'd'}}
-          </div>
-          <div class="day-name short">{{day|date: 'EE'|titlecase}}</div>
-          <div class="day-name long">{{day|date: 'EEEE'|titlecase}}</div>
-        </a>
+      <div class="agenda content" *ngIf="!loading">
+        <app-planning-result [results]="results" (requestRefresh)="loadSlots()"></app-planning-result>
       </div>
     </div>
+  </main>
 
-    <div class="agenda content" *ngIf="!loading">
-      <app-planning-result [results]="results" (requestRefresh)="loadSlots()"></app-planning-result>
-    </div>
-  </div>
 </div>

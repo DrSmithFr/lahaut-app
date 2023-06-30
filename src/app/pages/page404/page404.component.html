@@ -1,14 +1,19 @@
 <div class="app-page">
-  <app-navigation></app-navigation>
+  <nav>
+    <app-navigation></app-navigation>
+  </nav>
 
-  <section class="error-container">
-    <span class="four"><span class="screen-reader-text">4</span></span>
-    <span class="zero"><span class="screen-reader-text">0</span></span>
-    <span class="four"><span class="screen-reader-text">4</span></span>
-  </section>
+  <main>
+    <section class="error-container">
+      <span class="four"><span class="screen-reader-text">4</span></span>
+      <span class="zero"><span class="screen-reader-text">0</span></span>
+      <span class="four"><span class="screen-reader-text">4</span></span>
+    </section>
 
-  <div class="link-container">
-    <a routerLink="/search" class="more-link" *ngIf="!isLoggedMonitor">Retourner à l'accueil</a>
-    <a routerLink="/dashboard" class="more-link" *ngIf="isLoggedMonitor">Retourner au Dashboard</a>
-  </div>
+    <div class="link-container">
+      <a routerLink="/search" class="more-link" *ngIf="!isLoggedMonitor">Retourner à l'accueil</a>
+      <a routerLink="/monitor/dashboard" class="more-link" *ngIf="isLoggedMonitor">Retourner au Dashboard</a>
+    </div>
+  </main>
+
 </div>

@@ -25,6 +25,7 @@
   --font-title: #{$font-title};
 
   --blur: 10px;
+  --max-page-width: 800px;
 }
 
 // Themes Light/Dark
@@ -214,6 +215,10 @@ h1, h2, h3, h4, h5, .title, .mat-card-title {
 html {
   background-color: var(--background);
 
+  .ng-animating .app-page::before {
+    height: 100vh;
+  }
+
   .app-page::before {
     content: " ";
 
@@ -221,9 +226,9 @@ html {
     position: fixed;
 
     width: 100vw;
-    height: 100vh;
+    height: 100%;
 
-
+    z-index: -1;
     overflow: hidden;
 
     background-image: url(assets/corporate/background/background.png);
@@ -237,5 +242,88 @@ html {
     background-attachment: fixed;
 
     background-position: bottom;
+  }
+}
+
+// Page default styles
+.ng-animating .app-page{
+  height: 100dvh;
+  width: 100dvw;
+  overflow: hidden;
+}
+
+.app-page {
+
+  & > header,
+  & > main {
+    max-width: var(--max-page-width);
+    padding: 0 20px;
+
+    margin: $toolbar-desktop auto 0;
+
+    @include tablet() {
+      margin-top: $toolbar-tablet;
+    }
+
+    @include mobile-all() {
+      margin-top: $toolbar-mobile;
+    }
+  }
+
+  & > main {
+    padding: 0 20px;
+  }
+
+  & > header {
+    h1, h2, h3, h4, h5, h6 {
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    &.primary {
+      h1, h2, h3, h4, h5, h6 {
+        color: var(--primary);
+      }
+    }
+
+    &.accent {
+      h1, h2, h3, h4, h5, h6 {
+        color: var(--accent);
+      }
+    }
+
+    &.warn {
+      h1, h2, h3, h4, h5, h6 {
+        color: var(--warn);
+      }
+    }
+  }
+
+  & > nav {
+    position: fixed;
+
+    top: 0;
+    right: 0;
+    left: 0;
+
+    height: 0;
+  }
+
+  & > footer {
+    margin-top: 20px;
+    padding: 20px;
+
+    position: fixed;
+
+    bottom: 0;
+    right: 0;
+    left: 0;
   }
 }

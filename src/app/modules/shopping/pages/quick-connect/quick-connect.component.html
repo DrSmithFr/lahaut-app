@@ -1,9 +1,13 @@
-<div class="app-page">
-  <app-navigation></app-navigation>
+<div class="app-page quick-connect-page">
+  <nav>
+    <app-navigation></app-navigation>
+  </nav>
 
-  <div class="app-page-container quick-connect-page">
+  <header>
     <h1>Compte Client</h1>
+  </header>
 
+  <main>
     <mat-tab-group>
       <mat-tab label="Se connecter">
         <app-login (login)="onConnect()" [autoRedirect]="false"></app-login>
@@ -12,5 +16,5 @@
         <app-register-customer (registration)="onConnect()" [autoRedirect]="false"></app-register-customer>
       </mat-tab>
     </mat-tab-group>
-  </div>
+  </main>
 </div>
