@@ -21,6 +21,7 @@ import {SharedModule} from "./modules/_shared/shared.module";
 import {ConnectModule} from "./modules/connect/connect.module";
 import {MatButtonModule} from "@angular/material/button";
 import {environment} from "../environments/environment";
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from "@angular/material/form-field";
 
 registerLocaleData(fr);
 
@@ -88,7 +89,8 @@ registerLocaleData(fr);
       }
     },
     {provide: LOCALE_ID, useValue: environment.locale},
-    {provide: MAT_DATE_LOCALE, useValue: environment.locale}
+    {provide: MAT_DATE_LOCALE, useValue: environment.locale},
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }
   ],
   bootstrap: [AppComponent]
 })

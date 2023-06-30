@@ -6,7 +6,7 @@
   </p>
 
   <form [formGroup]="periodForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Date debut</mat-label>
       <input
         matInput
@@ -20,7 +20,7 @@
       <mat-datepicker #pickerStart [touchUi]="toucheUi"></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="full-width" *ngIf="periodForm.value.dayOnly === false">
+    <mat-form-field appearance="outline" class="full-width" *ngIf="periodForm.value.dayOnly === false">
       <mat-label>Date de fin</mat-label>
       <input
         matInput

@@ -1,19 +1,23 @@
 <div class="app-page">
   <app-navigation></app-navigation>
 
-  <div class="connect-page">
-    <div class="connect-container">
-      <div class="connect-header">
-        <h1 class="connect-title">Inscription Client</h1>
+  <div class="app-page-container">
+
+    <div class="connect-page">
+      <div class="connect-container">
+        <div class="connect-header">
+          <h1 class="connect-title">Inscription Client</h1>
+        </div>
+
+        <app-register-customer></app-register-customer>
+
+        <p class="right">
+          <a class="primary extra-link" routerLink="/login">Vous avez déjà un compte ?</a>
+        </p>
       </div>
-
-      <app-register-customer></app-register-customer>
-
-      <p class="right">
-        <a class="primary extra-link" routerLink="/login">Vous avez déjà un compte ?</a>
-      </p>
     </div>
   </div>
+
 </div>
 
 <div class="bottom-overlay" [class.hide]="!showOverlay">

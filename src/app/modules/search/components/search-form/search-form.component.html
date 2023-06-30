@@ -8,7 +8,7 @@
           <h1>Réserve ton vol</h1>
         </div>
         <div class="input1">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Lieu</mat-label>
             <mat-select formControlName="location" (selectionChange)="onLocationChange($event.value)">
               <mat-option *ngFor="let location of activityLocations" [value]="location.identifier">{{location.name}}</mat-option>
@@ -16,7 +16,7 @@
           </mat-form-field>
         </div>
         <div class="input2">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Type de vol</mat-label>
             <mat-select formControlName="activityType" (selectionChange)="trySubmit()">
               <mat-option *ngFor="let type of activityTypes" [value]="type.identifier">{{type.name}}</mat-option>
@@ -24,7 +24,7 @@
           </mat-form-field>
         </div>
         <div class="input3">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Date</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="date" (focus)="autoOpen && picker.open()" (dateChange)="trySubmit()" placeholder="mm/dd/yyyy">
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -32,7 +32,7 @@
           </mat-form-field>
         </div>
         <div class="input4">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Nombre de personnes</mat-label>
             <mat-select formControlName="person" (selectionChange)="trySubmit()">
               <mat-option value="1">1 Personnes</mat-option>

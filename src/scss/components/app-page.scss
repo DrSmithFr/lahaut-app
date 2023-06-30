@@ -3,19 +3,7 @@
 
 .app-page {
   width: 100dvw;
-
-  min-height: calc(100dvh - #{$toolbar-desktop});
-  margin-top: $toolbar-desktop;
-
-  @include tablet() {
-    min-height: calc(100dvh - #{$toolbar-tablet});
-    margin-top: $toolbar-tablet;
-  }
-
-  @include mobile-all() {
-    min-height: calc(100dvh - #{$toolbar-mobile});
-    margin-top: $toolbar-mobile;
-  }
+  min-height: 100dvh;
 
   &.ng-animating {
     overflow: hidden;
@@ -25,8 +13,16 @@
 
   .app-page-container {
     max-width: 800px;
-    margin: 0 auto;
-
     padding: 20px;
+
+    margin: $toolbar-desktop auto 0;
+
+    @include tablet() {
+      margin-top: $toolbar-tablet;
+    }
+
+    @include mobile-all() {
+      margin-top: $toolbar-mobile;
+    }
   }
 }

@@ -43,7 +43,7 @@
                 type="text"
                 formControlName="username"
                 autocomplete="email">
-              <mat-icon matPrefix>mail</mat-icon>
+              <mat-icon matSuffix>mail</mat-icon>
               <mat-error *ngIf="hasError(getUsername())">
             <span *ngIf="getUsername()?.errors?.['required']">
               Entre ton email
@@ -66,7 +66,7 @@
                 matInput
                 required
                 type="text">
-              <mat-icon matPrefix>phone</mat-icon>
+              <mat-icon matSuffix>phone</mat-icon>
             </mat-form-field>
 
             <div class="buttons">
@@ -100,7 +100,6 @@
                 formControlName="password"
                 autocomplete="password"
                 placeholder="Mot de passe">
-              <mat-icon matPrefix>key</mat-icon>
               <button
                 mat-icon-button
                 matSuffix
@@ -124,7 +123,6 @@
                 formControlName="password2"
                 autocomplete="password_repeat"
                 placeholder="Comfirmes ton mot de passe">
-              <mat-icon matPrefix>key</mat-icon>
               <button
                 mat-icon-button
                 matSuffix

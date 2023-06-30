@@ -1,7 +1,7 @@
 @import "breakpoints";
 
 .connect-page {
-  max-width: 680px;
+  max-width: 500px;
   margin: 0 auto 50px;
 
   @include mobile-all() {

@@ -12,7 +12,7 @@
       formControlName="username"
       autocomplete="email"
       tabindex="1">
-    <mat-icon matPrefix>mail</mat-icon>
+    <mat-icon matSuffix>mail</mat-icon>
     <mat-error *ngIf="hasError(getUsername())">
             <span *ngIf="getUsername()?.errors?.['required']">
               Entre ton email
@@ -38,7 +38,6 @@
       autocomplete="password"
       placeholder="Mot de passe"
       tabindex="2">
-    <mat-icon matPrefix>key</mat-icon>
     <mat-icon
       matSuffix
       (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'">
@@ -60,7 +59,6 @@
       autocomplete="password_repeat"
       placeholder="Comfirmes ton mot de passe"
       tabindex="3">
-    <mat-icon matPrefix>key</mat-icon>
     <mat-icon
       matSuffix
       (click)="hidePassword2 = !hidePassword2" [attr.aria-label]="'Hide password'">
