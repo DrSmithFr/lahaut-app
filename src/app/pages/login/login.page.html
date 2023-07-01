@@ -1,4 +1,4 @@
-<div class="app-page page-connect">
+<div class="app-page page-connect background-two">
   <nav>
     <app-navigation [transparent]="true"></app-navigation>
   </nav>
@@ -8,7 +8,11 @@
   </header>
 
   <main>
-    <app-login></app-login>
+    <mat-card>
+      <mat-card-content>
+        <app-login></app-login>
+      </mat-card-content>
+    </mat-card>
 
     <p class="right">
       <a class="accent extra-link" routerLink="/customer/register">Pas encore de compte ?</a>

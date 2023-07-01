@@ -9,8 +9,7 @@ img.logo {
 }
 
 .search-form-slider {
-  @import "animations/slide-up";
-  @include slide-up();
+  backdrop-filter: var(--blur);
 }
 
 

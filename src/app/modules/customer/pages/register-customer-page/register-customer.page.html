@@ -1,4 +1,4 @@
-<div class="app-page page-connect">
+<div class="app-page page-connect background-three">
   <nav>
     <app-navigation></app-navigation>
   </nav>
@@ -8,13 +8,17 @@
   </header>
 
   <main>
-    <div class="connect-container">
-      <app-register-customer></app-register-customer>
+    <mat-card>
+      <mat-card-content>
+        <div class="connect-container">
+          <app-register-customer></app-register-customer>
 
-      <p class="right">
-        <a class="primary extra-link" routerLink="/login">Vous avez déjà un compte ?</a>
-      </p>
-    </div>
+          <p class="right">
+            <a class="primary extra-link" routerLink="/login">Vous avez déjà un compte ?</a>
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </main>
 
   <footer>

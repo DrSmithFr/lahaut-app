@@ -2,5 +2,5 @@
 .mat-datepicker-content,
 .mdc-menu-surface.mat-mdc-select-panel {
   background: var(--background-overlay) !important;
-  backdrop-filter: blur(var(--blur));
+  backdrop-filter: var(--blur);
 }

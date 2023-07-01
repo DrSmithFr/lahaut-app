@@ -19,6 +19,7 @@
 .mat-step-header:hover:not([aria-disabled]),
 .mat-step-header:hover[aria-disabled=false] {
   background-color: var(--background-transparent) !important;
+  backdrop-filter: var(--blur);
 }
 
 .mat-step-header .mat-step-icon-content {

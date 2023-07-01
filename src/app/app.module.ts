@@ -22,6 +22,7 @@ import {ConnectModule} from "./modules/connect/connect.module";
 import {MatButtonModule} from "@angular/material/button";
 import {environment} from "../environments/environment";
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from "@angular/material/form-field";
+import {MatCardModule} from "@angular/material/card";
 
 registerLocaleData(fr);
 
@@ -66,6 +67,7 @@ registerLocaleData(fr);
 
     // Init ngx-mask
     NgxMaskModule.forRoot(),
+    MatCardModule,
   ],
   exports: [
     HttpClientModule,

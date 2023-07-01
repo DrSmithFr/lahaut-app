@@ -26,6 +26,7 @@ mat-accordion mat-expansion-panel {
     box-shadow: none;
 
     background: var(--background-transparent);
+    backdrop-filter: var(--blur);
   }
 
   .mat-expansion-panel:hover {

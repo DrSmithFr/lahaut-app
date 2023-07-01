@@ -8,7 +8,7 @@
 
 .mat-mdc-dialog-container .mdc-dialog__surface {
   background: var(--background-overlay) !important;
-  backdrop-filter: blur(var(--blur));
+  backdrop-filter: var(--blur);
 }
 
 h1.mdc-dialog__title {

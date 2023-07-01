@@ -1,4 +1,4 @@
-<div class="app-page page-connect">
+<div class="app-page page-connect background-four">
   <nav>
     <app-navigation></app-navigation>
   </nav>
@@ -8,164 +8,168 @@
   </header>
 
   <main>
-    <div class="app-page-content">
-      <div [ngClass]="{'shake-on-error form-error': shaking && hasErrorInForm()}">
-        <div class="connect-container">
-          <mat-stepper [orientation]="stepperOrientation" [linear]="false" #stepper>
-            <mat-step [stepControl]="identityForm">
-              <form [formGroup]="identityForm">
-                <ng-template matStepLabel>Identité</ng-template>
-                <mat-form-field class="full-width">
-                  <mat-label>Prénom</mat-label>
-                  <input matInput placeholder="Prénom" formControlName="firstname" required>
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                  <mat-label>Nom</mat-label>
-                  <input matInput placeholder="Nom" formControlName="lastname" required>
-                </mat-form-field>
-                <div class="buttons right">
-                  <button
-                    [disabled]="identityForm.invalid"
-                    mat-flat-button
-                    color="primary"
-                    matStepperNext>
-                    Continuer
-                  </button>
-                </div>
-              </form>
-            </mat-step>
-            <mat-step [stepControl]="contactForm">
-              <form [formGroup]="contactForm">
-                <ng-template matStepLabel>Contact</ng-template>
-                <mat-form-field class="full-width">
-                  <mat-label>Email</mat-label>
-                  <input
-                    matInput
-                    required
-                    autofocus
-                    type="text"
-                    formControlName="username"
-                    autocomplete="email">
-                  <mat-icon matSuffix>mail</mat-icon>
-                  <mat-error *ngIf="hasError(getUsername())">
+    <mat-card>
+      <mat-card-content>
+        <div class="app-page-content">
+          <div [ngClass]="{'shake-on-error form-error': shaking && hasErrorInForm()}">
+            <div class="connect-container">
+              <mat-stepper [orientation]="stepperOrientation" [linear]="false" #stepper>
+                <mat-step [stepControl]="identityForm">
+                  <form [formGroup]="identityForm">
+                    <ng-template matStepLabel>Identité</ng-template>
+                    <mat-form-field class="full-width">
+                      <mat-label>Prénom</mat-label>
+                      <input matInput placeholder="Prénom" formControlName="firstname" required>
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                      <mat-label>Nom</mat-label>
+                      <input matInput placeholder="Nom" formControlName="lastname" required>
+                    </mat-form-field>
+                    <div class="buttons right">
+                      <button
+                        [disabled]="identityForm.invalid"
+                        mat-flat-button
+                        color="primary"
+                        matStepperNext>
+                        Continuer
+                      </button>
+                    </div>
+                  </form>
+                </mat-step>
+                <mat-step [stepControl]="contactForm">
+                  <form [formGroup]="contactForm">
+                    <ng-template matStepLabel>Contact</ng-template>
+                    <mat-form-field class="full-width">
+                      <mat-label>Email</mat-label>
+                      <input
+                        matInput
+                        required
+                        autofocus
+                        type="text"
+                        formControlName="username"
+                        autocomplete="email">
+                      <mat-icon matSuffix>mail</mat-icon>
+                      <mat-error *ngIf="hasError(getUsername())">
             <span *ngIf="getUsername()?.errors?.['required']">
               Entre ton email
             </span>
-                    <span *ngIf="getUsername()?.errors?.['email']">
+                        <span *ngIf="getUsername()?.errors?.['email']">
               Entre une adresse email valide
             </span>
-                    <span *ngIf="getUsername()?.errors?.['used']">
+                        <span *ngIf="getUsername()?.errors?.['used']">
               Un compte existe déjà pour cette adresse.
               <a routerLink="/login" [queryParams]="{username: getUsername()?.value}" class="forgot-password">essayer de vous connecter ?</a>
             </span>
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                  <mat-label>Mobile</mat-label>
-                  <input
-                    [specialCharacters]="['+', ' ']"
-                    mask="+00 0 00 00 00 00"
-                    formControlName="phone"
-                    matInput
-                    required
-                    type="text">
-                  <mat-icon matSuffix>phone</mat-icon>
-                </mat-form-field>
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                      <mat-label>Mobile</mat-label>
+                      <input
+                        [specialCharacters]="['+', ' ']"
+                        mask="+00 0 00 00 00 00"
+                        formControlName="phone"
+                        matInput
+                        required
+                        type="text">
+                      <mat-icon matSuffix>phone</mat-icon>
+                    </mat-form-field>
 
-                <div class="buttons">
-                  <button
-                    mat-stroked-button
-                    matStepperPrevious>
-                    précédent
-                  </button>
-                  <button
-                    [disabled]="contactForm.invalid"
-                    mat-flat-button
-                    color="primary"
-                    matStepperNext>
-                    Continuer
-                  </button>
-                </div>
+                    <div class="buttons">
+                      <button
+                        mat-stroked-button
+                        matStepperPrevious>
+                        précédent
+                      </button>
+                      <button
+                        [disabled]="contactForm.invalid"
+                        mat-flat-button
+                        color="primary"
+                        matStepperNext>
+                        Continuer
+                      </button>
+                    </div>
 
-              </form>
-            </mat-step>
-            <mat-step [stepControl]="passwordForm">
-              <form [formGroup]="passwordForm"
-                    (ngSubmit)="onSubmit()">
-                <ng-template matStepLabel>Identifiant</ng-template>
-                <mat-form-field class="full-width">
-                  <mat-label>Password</mat-label>
-                  <input
-                    matInput
-                    required
-                    #password
-                    [type]="hidePassword ? 'password' : 'text'"
-                    formControlName="password"
-                    autocomplete="password"
-                    placeholder="Mot de passe">
-                  <button
-                    mat-icon-button
-                    matSuffix
-                    tabindex="-1"
-                    (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hidePassword">
-                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-                  </button>
-                  <mat-error *ngIf="hasError(getPassword())">
-                    Entre ton mot de passe !
-                  </mat-error>
-                </mat-form-field>
+                  </form>
+                </mat-step>
+                <mat-step [stepControl]="passwordForm">
+                  <form [formGroup]="passwordForm"
+                        (ngSubmit)="onSubmit()">
+                    <ng-template matStepLabel>Identifiant</ng-template>
+                    <mat-form-field class="full-width">
+                      <mat-label>Password</mat-label>
+                      <input
+                        matInput
+                        required
+                        #password
+                        [type]="hidePassword ? 'password' : 'text'"
+                        formControlName="password"
+                        autocomplete="password"
+                        placeholder="Mot de passe">
+                      <button
+                        mat-icon-button
+                        matSuffix
+                        tabindex="-1"
+                        (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hidePassword">
+                        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button>
+                      <mat-error *ngIf="hasError(getPassword())">
+                        Entre ton mot de passe !
+                      </mat-error>
+                    </mat-form-field>
 
-                <mat-form-field class="full-width">
-                  <mat-label>Confirmation</mat-label>
-                  <input
-                    matInput
-                    required
-                    #password
-                    [type]="hidePassword2 ? 'password' : 'text'"
-                    formControlName="password2"
-                    autocomplete="password_repeat"
-                    placeholder="Comfirmes ton mot de passe">
-                  <button
-                    mat-icon-button
-                    matSuffix
-                    tabindex="-1"
-                    (click)="hidePassword2 = !hidePassword2" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hidePassword2">
-                    <mat-icon>{{hidePassword2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-                  </button>
-                  <mat-error *ngIf="hasError(getPassword2())">
+                    <mat-form-field class="full-width">
+                      <mat-label>Confirmation</mat-label>
+                      <input
+                        matInput
+                        required
+                        #password
+                        [type]="hidePassword2 ? 'password' : 'text'"
+                        formControlName="password2"
+                        autocomplete="password_repeat"
+                        placeholder="Comfirmes ton mot de passe">
+                      <button
+                        mat-icon-button
+                        matSuffix
+                        tabindex="-1"
+                        (click)="hidePassword2 = !hidePassword2" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hidePassword2">
+                        <mat-icon>{{hidePassword2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button>
+                      <mat-error *ngIf="hasError(getPassword2())">
           <span *ngIf="getPassword2()?.errors?.['required']">
             Comfirmes ton mot de passe !
           </span>
-                    <span *ngIf="getPassword2()?.errors?.['different']">
+                        <span *ngIf="getPassword2()?.errors?.['different']">
             Les mots de passe ne correspondent pas
           </span>
-                  </mat-error>
-                </mat-form-field>
+                      </mat-error>
+                    </mat-form-field>
 
-                <div class="buttons">
-                  <button
-                    mat-stroked-button
-                    matStepperPrevious>
-                    précédent
-                  </button>
-                  <button
-                    [disabled]="contactForm.invalid || showLoader"
-                    [class.spinner]="showLoader"
-                    mat-flat-button
-                    color="primary"
-                    matStepperNext>
-                    Continuer
-                  </button>
-                </div>
+                    <div class="buttons">
+                      <button
+                        mat-stroked-button
+                        matStepperPrevious>
+                        précédent
+                      </button>
+                      <button
+                        [disabled]="contactForm.invalid || showLoader"
+                        [class.spinner]="showLoader"
+                        mat-flat-button
+                        color="primary"
+                        matStepperNext>
+                        Continuer
+                      </button>
+                    </div>
 
-              </form>
-            </mat-step>
-          </mat-stepper>
+                  </form>
+                </mat-step>
+              </mat-stepper>
 
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </mat-card-content>
+    </mat-card>
   </main>
 </div>

@@ -3,7 +3,7 @@
   color: var(--text-dark);
 
   background: var(--background-overlay);
-  backdrop-filter: blur(var(--blur));
+  backdrop-filter: var(--blur);
 
   border-bottom: 1px solid var(--border-light);
 
@@ -14,7 +14,7 @@
 
     .navigation-button {
       background: var(--background-overlay);
-      backdrop-filter: blur(var(--blur));
+      backdrop-filter: var(--blur);
 
       border-radius: 10px;
     }

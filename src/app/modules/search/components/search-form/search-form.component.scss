@@ -1,8 +1,11 @@
 @import "breakpoints";
 
-.light-card {
-  box-shadow: none;
-  background: var(--background-transparent);
+.search-form {
+  backdrop-filter: var(--blur) !important;
+  background: var(--background-dark-transparent) !important;
+
+  padding: 20px;
+  border-radius: 4px;
 }
 
 .search-form-grid {

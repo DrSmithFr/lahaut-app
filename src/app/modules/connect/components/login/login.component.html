@@ -2,7 +2,7 @@
   [ngClass]="{'shake-on-error form-error': shaking && loginForm.invalid}"
   [formGroup]="loginForm"
   (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="outline" class="full-width">
+  <mat-form-field class="full-width">
     <mat-label i18n="email|login form email field">Email</mat-label>
     <input
       matInput
@@ -17,7 +17,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width password-field">
+  <mat-form-field class="full-width password-field">
     <mat-label i18n>Mot de passe</mat-label>
     <input
       matInput

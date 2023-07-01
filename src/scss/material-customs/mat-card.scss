@@ -1,6 +1,7 @@
 .mat-card, .mat-mdc-card, .mdc-card {
   background: var(--background-dark-transparent) !important;
-  box-shadow: none !important;
+  backdrop-filter: var(--blur);
 
+  box-shadow: none !important;
   margin: 10px 0 !important;
 }

@@ -4,7 +4,7 @@
   <form [formGroup]="paramForm" (ngSubmit)="onSubmit()">
     <section>
       <h2>Période</h2>
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field class="full-width">
         <mat-label>Date debut</mat-label>
         <input
           matInput
@@ -16,7 +16,7 @@
         <mat-datepicker #pickerStart [touchUi]="toucheUi"></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field class="full-width">
         <mat-label>Date de fin</mat-label>
         <input
           matInput
@@ -35,7 +35,7 @@
 
     <section>
       <h2>Lieu de vol</h2>
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field class="full-width">
         <mat-label>Lieu</mat-label>
         <mat-select formControlName="location" (selectionChange)="onLocationChange($event.value)">
           <mat-option *ngFor="let location of activityLocations" [value]="location.identifier">{{location.name}}</mat-option>

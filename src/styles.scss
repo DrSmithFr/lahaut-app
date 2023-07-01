@@ -24,7 +24,7 @@
   --font-text: #{$font-text};
   --font-title: #{$font-title};
 
-  --blur: 10px;
+  --blur: blur(10px);
   --max-page-width: 800px;
 }
 
@@ -75,8 +75,8 @@
   --shadow: rgba(255, 255, 255, 0.2);
 
   --background: #{map-get($base, 900)};
-  --background-transparent: #{rgba(map-get($base, 800), 0.7)};
   --background-overlay: #{rgba(map-get($base, 800), 0.8)};
+  --background-transparent: #{rgba(map-get($base, 800), 0.7)};
 
   --background-dark: #{rgba(#666,.7)};
   --background-dark-transparent: #{rgba(map-get($base, 900), 0.7)};
@@ -245,6 +245,27 @@ html {
   }
 }
 
+// Page Background
+$backgrounds: (
+  one: 'assets/corporate/backgrounds/background-1.png',
+  two: 'assets/corporate/backgrounds/background-2.png',
+  three: 'assets/corporate/backgrounds/background-3.png',
+  four: 'assets/corporate/backgrounds/background-4.png',
+  five: 'assets/corporate/backgrounds/background-5.png',
+);
+
+@each $name, $src in $backgrounds {
+  .background-#{$name} {
+    &::before {
+      background-image: url($src) !important;
+
+      @include desktop {
+        background-image: url($src) !important;
+      }
+    }
+  }
+}
+
 // Page default styles
 .ng-animating .app-page{
   height: 100dvh;
@@ -253,6 +274,12 @@ html {
 }
 
 .app-page {
+
+  &.overlay,
+  .overlay {
+    background: var(--background-dark-transparent) !important;
+    backdrop-filter: var(--blur);
+  }
 
   & > header,
   & > main {
