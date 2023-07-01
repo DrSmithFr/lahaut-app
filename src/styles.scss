@@ -286,14 +286,18 @@ $backgrounds: (
     max-width: var(--max-page-width);
     padding: 0 20px;
 
-    margin: $toolbar-desktop auto 0;
+    margin: auto 0;
 
-    @include tablet() {
-      margin-top: $toolbar-tablet;
-    }
+    & > * {
+      margin-top: $toolbar-desktop;
 
-    @include mobile-all() {
-      margin-top: $toolbar-mobile;
+      @include tablet() {
+        margin-top: $toolbar-tablet;
+      }
+
+      @include mobile-all() {
+        margin-top: $toolbar-mobile;
+      }
     }
   }
 
