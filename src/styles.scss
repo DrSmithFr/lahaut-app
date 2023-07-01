@@ -190,6 +190,7 @@ a {
 
   &.primary {
     color: var(--primary);
+
     &:hover {
       color: var(--primary-dark);
     }
@@ -197,6 +198,7 @@ a {
 
   &.accent {
     color: var(--accent);
+
     &:hover {
       color: var(--accent-dark);
     }
@@ -204,12 +206,12 @@ a {
 
   &.warn {
     color: var(--warn);
+
     &:hover {
       color: var(--warn-dark);
     }
   }
 }
-
 
 
 h1, h2, h3, h4, h5, .title, .mat-card-title {
@@ -256,27 +258,27 @@ html {
 
 // Page Background
 $backgrounds: (
-  one: 'assets/corporate/backgrounds/background-1.png',
-  two: 'assets/corporate/backgrounds/background-2.png',
-  three: 'assets/corporate/backgrounds/background-3.png',
-  four: 'assets/corporate/backgrounds/background-4.png',
-  five: 'assets/corporate/backgrounds/background-5.png',
+  searchPage: 'assets/corporate/backgrounds/background-1.jpeg',
+  loginPage: 'assets/corporate/backgrounds/background-2.jpeg',
+  registerCustomer: 'assets/corporate/backgrounds/background-3.jpeg',
+  registerMonitor: 'assets/corporate/backgrounds/background-4.jpeg',
+  cartPage: 'assets/corporate/backgrounds/background-5.png',
 );
 
 @each $name, $src in $backgrounds {
   .background-#{$name} {
     &::before {
-      //background-image: url($src) !important;
+      background-image: url($src) !important;
 
-      //@include desktop {
-      //  background-image: url($src) !important;
-      //}
+      @include desktop {
+        background-image: url($src) !important;
+      }
     }
   }
 }
 
 // Page default styles
-.ng-animating .app-page{
+.ng-animating .app-page {
   height: 100dvh;
   width: 100dvw;
   overflow: hidden;
