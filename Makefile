@@ -12,7 +12,7 @@ dependencies:
 	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && npm install
 
 start:
-	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && ng serve
+	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && ng serve --host=0.0.0.0 --port=4200 --disable-host-check
 
 prod:
 	. ${NVM_DIR}/nvm.sh && nvm use $(cat .nvmrc) && ng build --production

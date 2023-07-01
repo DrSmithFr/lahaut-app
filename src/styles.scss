@@ -32,7 +32,7 @@
 :root {
   --shadow: rgba(0, 0, 0, 0.2);
 
-  --background-img-mobile: url('assets/corporate/background/background-mobile.jpeg');
+  --background-img-mobile: url('assets/corporate/background/background-mobile.png');
   --background-img-decktop: url('assets/corporate/background/background-desktop.png');
 
   --background: #fff;
@@ -76,8 +76,8 @@
   --green: #68cf3b;
   --shadow: rgba(255, 255, 255, 0.2);
 
-  --background-img-mobile: url('assets/corporate/background/background.png');
-  --background-img-decktop: url('assets/corporate/background/background-desktop-dark.png');
+  --background-img-mobile: url('assets/corporate/background/background-mobile.png');
+  --background-img-decktop: url('assets/corporate/background/background-desktop.png');
 
   --background: #{map-get($base, 900)};
   --background-overlay: #{rgba(map-get($base, 800), 0.8)};
@@ -260,20 +260,20 @@ html {
 
 // Page Background
 $backgrounds: (
-  searchPage: 'assets/corporate/backgrounds/background-1.jpeg',
-  loginPage: 'assets/corporate/backgrounds/background-2.jpeg',
-  registerCustomer: 'assets/corporate/backgrounds/background-3.jpeg',
-  registerMonitor: 'assets/corporate/backgrounds/background-4.jpeg',
+  searchPage: 'assets/corporate/backgrounds/background-1.png',
+  loginPage: 'assets/corporate/backgrounds/background-2.png',
+  registerCustomer: 'assets/corporate/backgrounds/background-3.png',
+  registerMonitor: 'assets/corporate/backgrounds/background-4.png',
   cartPage: 'assets/corporate/backgrounds/background-5.png',
 );
 
 @each $name, $src in $backgrounds {
   .background-#{$name} {
     &::before {
-      background-image: url($src) !important;
+      background-image: url($src); // !important;
 
       @include desktop {
-        background-image: url($src) !important;
+        background-image: url($src); // !important;
       }
     }
   }
