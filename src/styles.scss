@@ -32,6 +32,9 @@
 :root {
   --shadow: rgba(0, 0, 0, 0.2);
 
+  --background-img-mobile: url('assets/corporate/background/background-mobile.jpeg');
+  --background-img-decktop: url('assets/corporate/background/background-desktop.png');
+
   --background: #fff;
   --background-transparent: #{rgba(#fff, 0.7)};
   --background-overlay: #{rgba(#fff, 0.8)};
@@ -71,8 +74,10 @@
 [data-theme="dark"] {
   // colors
   --green: #68cf3b;
-
   --shadow: rgba(255, 255, 255, 0.2);
+
+  --background-img-mobile: url('assets/corporate/background/background.png');
+  --background-img-decktop: url('assets/corporate/background/background-desktop-dark.png');
 
   --background: #{map-get($base, 900)};
   --background-overlay: #{rgba(map-get($base, 800), 0.8)};
@@ -231,10 +236,14 @@ html {
     z-index: -1;
     overflow: hidden;
 
-    background-image: url(assets/corporate/background/background.png);
+    background-image: var(--background-img-mobile);
+
+    @include tablet {
+      background-image: var(--background-img-decktop);
+    }
 
     @include desktop {
-      background-image: url(assets/corporate/background/background-short.png);
+      background-image: var(--background-img-decktop);
     }
 
     background-size: contain;
@@ -257,11 +266,11 @@ $backgrounds: (
 @each $name, $src in $backgrounds {
   .background-#{$name} {
     &::before {
-      background-image: url($src) !important;
+      //background-image: url($src) !important;
 
-      @include desktop {
-        background-image: url($src) !important;
-      }
+      //@include desktop {
+      //  background-image: url($src) !important;
+      //}
     }
   }
 }
@@ -286,9 +295,9 @@ $backgrounds: (
     max-width: var(--max-page-width);
     padding: 0 20px;
 
-    margin: auto 0;
+    margin: 0 auto;
 
-    & > * {
+    & > :first-child {
       margin-top: $toolbar-desktop;
 
       @include tablet() {
