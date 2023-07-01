@@ -239,16 +239,18 @@ html {
     overflow: hidden;
 
     background-image: var(--background-img-mobile);
+    background-size: cover;
 
     @include tablet {
       background-image: var(--background-img-decktop);
+      background-size: contain;
     }
 
     @include desktop {
       background-image: var(--background-img-decktop);
+      background-size: contain;
     }
 
-    background-size: contain;
     background-repeat: no-repeat;
     background-attachment: fixed;
 
