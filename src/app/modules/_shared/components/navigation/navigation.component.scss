@@ -17,12 +17,17 @@
   }
 }
 
+
+
 .logo {
   padding: 0 14px;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background: none !important;
+  backdrop-filter: none !important;
 
   .logo-button,
   img {
