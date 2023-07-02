@@ -18,12 +18,12 @@ export const environment = {
   },
   logo: {
     light: {
-      small: 'assets/corporate/logo/logo.png',
-      large: 'assets/corporate/logo/logo_large.png',
+      small: 'assets/corporate/logo/logo_new.png',
+      large: 'assets/corporate/logo/logo_large_new.png',
     },
     dark: {
-      small: 'assets/corporate/logo/logo_dark.png',
-      large: 'assets/corporate/logo/logo_large_dark.png',
+      small: 'assets/corporate/logo/logo_new.png',
+      large: 'assets/corporate/logo/logo_large_new.png',
     }
   },
   google: {

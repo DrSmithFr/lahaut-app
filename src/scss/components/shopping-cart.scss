@@ -1,6 +1,7 @@
 @import "theme";
 
 .shopping-card {
+  backdrop-filter: var(--blur);
   background: var(--background-dark-transparent);
 
   padding: 40px;
