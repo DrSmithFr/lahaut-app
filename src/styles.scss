@@ -236,7 +236,7 @@ html {
     overflow: hidden;
 
     background-image: var(--background-img-mobile);
-    background-size: contain;
+    background-size: cover;
 
     @include tablet {
       background-image: var(--background-img-decktop);
@@ -320,7 +320,6 @@ $backgrounds: (
       text-transform: uppercase;
       font-weight: bold;
       color: var(--accent);
-      -webkit-text-stroke: 1px black;
     }
 
     &.primary {
