@@ -101,10 +101,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ms-app:build:production"
+              "buildTarget": "ms-app:build:production"
             },
             "development": {
-              "browserTarget": "ms-app:build:development"
+              "buildTarget": "ms-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -112,7 +112,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ms-app:build"
+            "buildTarget": "ms-app:build"
           }
         },
         "test": {
