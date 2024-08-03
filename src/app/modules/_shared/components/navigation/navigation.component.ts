@@ -14,7 +14,7 @@ import {UnsubscribeOnDestroyComponent} from "../unsubscribe-on-destroy.component
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent extends UnsubscribeOnDestroyComponent implements OnInit {
   @ViewChild('navWrapper', {static: false}) navWrapper: ElementRef<HTMLInputElement>;
