@@ -9,7 +9,7 @@ export const environment = {
   locale:     'fr-FR',
   locales:    ['fr-FR', 'en-EN', 'es-ES'],
   api : {
-    url: 'https://ms-base',
+    url: 'https://localhost:8000',
     version: '1.0.0'
   },
   theme: {
